@@ -85,7 +85,10 @@
             "band": "cream",
             "eyebrow": "Watch",
             "heading": "See Spice Rush in action",
-            "youtube_id": "J4kd87FJFvY",
+            "teaser_url": "shopify://shop_images/spice-rush-teaser.mp4",
+            "full_url": "shopify://shop_images/spice-rush-web.mp4",
+            "poster_url": "shopify://shop_images/spice-rush-poster.jpg",
+            "full_duration": "5 min",
             "description": "Spice Rush Collagen Black Tea by TMolecule — bold milled black tea blended with hydrolyzed collagen peptides, ginger, Ceylon cinnamon, and green cardamom. One scoop, hot water, stir."
           }
         },

@@ -58,8 +58,17 @@
 .tm-disclaimer p { margin:0; }
 .tm-video { max-width:1100px; margin:0 auto; padding:64px 24px; text-align:center; }
 .tm-video .tm-h2 { margin:8px 0 32px; }
-.tm-video__wrap { position:relative; width:100%; padding-bottom:56.25%; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(74,55,24,.18); }
-.tm-video__wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.tm-video__wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(74,55,24,.18); background:#000; }
+.tm-video__teaser { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.tm-video__play { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background:transparent; border:0; cursor:pointer; color:#faf7f0; font-family:var(--tm-sans,'Inter',sans-serif); transition:background .2s ease; }
+.tm-video__play:hover { background:rgba(42,31,16,.25); }
+.tm-video__play-label { font-size:15px; font-weight:600; letter-spacing:.04em; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+.tm-video__play-label small { font-weight:400; opacity:.85; }
+.tm-video__modal { position:fixed; inset:0; z-index:9999; background:rgba(20,12,4,.92); display:flex; align-items:center; justify-content:center; padding:24px; }
+.tm-video__modal[hidden] { display:none; }
+.tm-video__full { width:100%; max-width:1200px; max-height:90vh; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
+.tm-video__close { position:absolute; top:24px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(250,247,240,.15); border:0; color:#faf7f0; font-size:28px; cursor:pointer; line-height:1; }
+.tm-video__close:hover { background:rgba(250,247,240,.3); }
 .tm-band--espresso blockquote { background:#faf3e0; border:1px solid #e0c591; color:#2b2a28; box-shadow:0 8px 24px rgba(0,0,0,.3); }
 .tm-band--espresso blockquote p { color:#2b2a28; }
 .tm-band--espresso cite { color:#7a5a2b; opacity:1; font-weight:600; }

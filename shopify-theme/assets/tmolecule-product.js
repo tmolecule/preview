@@ -30,6 +30,29 @@
       });
     });
 
+    // Video modal: click teaser play button -> open full video
+    document.querySelectorAll('[data-tm-video]').forEach(function(wrap){
+      var modal = wrap.parentElement.querySelector('[data-tm-video-modal]');
+      var full = modal ? modal.querySelector('video') : null;
+      var open = wrap.querySelector('[data-tm-video-open]');
+      var close = modal ? modal.querySelector('[data-tm-video-close]') : null;
+      if (open && modal && full) {
+        open.addEventListener('click', function(){
+          modal.hidden = false;
+          full.play();
+        });
+      }
+      if (close && modal && full) {
+        close.addEventListener('click', function(){
+          full.pause();
+          modal.hidden = true;
+        });
+        modal.addEventListener('click', function(e){
+          if (e.target === modal) { full.pause(); modal.hidden = true; }
+        });
+      }
+    });
+
     // Sticky CTA — reveal after main ATC scrolls out of view
     var sticky = document.querySelector('.tm-sticky-cta');
     var trigger = document.querySelector('.tm-buybox__cta');

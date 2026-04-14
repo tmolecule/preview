@@ -227,8 +227,17 @@
   .tm-footer__disclaimer p { margin:0; }
   .tm-video { max-width:1100px; margin:0 auto; padding:64px 24px; text-align:center; }
   .tm-video .tm-h2 { margin:8px 0 32px; }
-  .tm-video__wrap { position:relative; width:100%; padding-bottom:56.25%; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(74,55,24,.18); }
-  .tm-video__wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .tm-video__wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(74,55,24,.18); background:#000; }
+  .tm-video__teaser { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .tm-video__play { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background:transparent; border:0; cursor:pointer; color:#faf7f0; font-family:'Inter',sans-serif; transition:background .2s ease; }
+  .tm-video__play:hover { background:rgba(42,31,16,.25); }
+  .tm-video__play-label { font-size:15px; font-weight:600; letter-spacing:.04em; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .tm-video__play-label small { font-weight:400; opacity:.85; }
+  .tm-video__modal { position:fixed; inset:0; z-index:9999; background:rgba(20,12,4,.92); display:flex; align-items:center; justify-content:center; padding:24px; }
+  .tm-video__modal[hidden] { display:none; }
+  .tm-video__full { width:100%; max-width:1200px; max-height:90vh; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
+  .tm-video__close { position:absolute; top:24px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(250,247,240,.15); border:0; color:#faf7f0; font-size:28px; cursor:pointer; line-height:1; }
+  .tm-video__close:hover { background:rgba(250,247,240,.3); }
   .tm-footer__bottom { max-width:1200px; margin:16px auto 0; padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; }
   .tm-footer__pay { display:flex; gap:8px; flex-wrap:wrap; }
   .tm-footer__pay span { padding:4px 8px; background:rgba(255,255,255,.1); border-radius:3px; font-size:11px; letter-spacing:.04em; }
@@ -419,8 +428,16 @@
   <div class="tm-video">
     <p class="tm-eyebrow">Watch</p>
     <h2 class="tm-h2">See Spice Rush in action</h2>
-    <div class="tm-video__wrap">
-      <iframe src="https://www.youtube.com/embed/J4kd87FJFvY?rel=0&modestbranding=1" title="Spice Rush Collagen Black Tea" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <div class="tm-video__wrap" data-tm-video>
+      <video class="tm-video__teaser" src="../media/spice-rush-teaser.mp4" poster="../media/spice-rush-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <button class="tm-video__play" type="button" data-tm-video-open aria-label="Play full video">
+        <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="rgba(42,31,16,.85)"/><path d="M26 20 L46 32 L26 44 Z" fill="#faf7f0"/></svg>
+        <span class="tm-video__play-label">Watch the full story <small>(5 min)</small></span>
+      </button>
+    </div>
+    <div class="tm-video__modal" data-tm-video-modal hidden>
+      <button class="tm-video__close" type="button" data-tm-video-close aria-label="Close video">×</button>
+      <video class="tm-video__full" src="../media/spice-rush-web.mp4" poster="../media/spice-rush-poster.jpg" controls playsinline preload="none"></video>
     </div>
     <script type="application/ld+json">
     {
@@ -428,10 +445,9 @@
       "@type": "VideoObject",
       "name": "See Spice Rush in action",
       "description": "Spice Rush Collagen Black Tea by TMolecule — bold milled black tea blended with hydrolyzed collagen peptides, ginger, Ceylon cinnamon, and green cardamom.",
-      "thumbnailUrl": "https://i.ytimg.com/vi/J4kd87FJFvY/maxresdefault.jpg",
+      "thumbnailUrl": "https://tmolecule.com/cdn/shop/files/spice-rush-poster.jpg",
       "uploadDate": "2026-04-14",
-      "embedUrl": "https://www.youtube.com/embed/J4kd87FJFvY",
-      "contentUrl": "https://youtu.be/J4kd87FJFvY"
+      "contentUrl": "https://tmolecule.com/cdn/shop/files/spice-rush-web.mp4"
     }
     </script>
   </div>
@@ -591,6 +607,17 @@
       onScroll();
     }
   })();
+
+  // Video modal
+  document.querySelectorAll('[data-tm-video]').forEach(function(wrap){
+    var modal = wrap.parentElement.querySelector('[data-tm-video-modal]');
+    var full = modal ? modal.querySelector('video') : null;
+    var openBtn = wrap.querySelector('[data-tm-video-open]');
+    var closeBtn = modal ? modal.querySelector('[data-tm-video-close]') : null;
+    if (openBtn && modal && full) openBtn.addEventListener('click', function(){ modal.hidden = false; full.play(); });
+    if (closeBtn && modal && full) closeBtn.addEventListener('click', function(){ full.pause(); modal.hidden = true; });
+    if (modal && full) modal.addEventListener('click', function(e){ if (e.target === modal) { full.pause(); modal.hidden = true; } });
+  });
 </script>
 
 </body>

@@ -1,8 +1,1 @@
-.env
-.env.*
-!.env.example
-.DS_Store
-node_modules/
-vault/
-.obsidian/
-*.log
+media/*.mp4

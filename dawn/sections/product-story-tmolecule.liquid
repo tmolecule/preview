@@ -159,27 +159,39 @@
           <div class="tm-video">
             {%- if block.settings.eyebrow != blank -%}<p class="tm-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
             {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
-            {%- if block.settings.youtube_id != blank -%}
-              <div class="tm-video__wrap">
-                <iframe
-                  src="https://www.youtube.com/embed/{{ block.settings.youtube_id }}?rel=0&modestbranding=1"
-                  title="{{ block.settings.heading | default: product.title | escape }}"
-                  loading="lazy"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allowfullscreen></iframe>
+            {%- if block.settings.teaser_url != blank -%}
+              <div class="tm-video__wrap" data-tm-video>
+                <video
+                  class="tm-video__teaser"
+                  src="{{ block.settings.teaser_url }}"
+                  poster="{{ block.settings.poster_url }}"
+                  autoplay muted loop playsinline preload="metadata"></video>
+                {%- if block.settings.full_url != blank -%}
+                  <button class="tm-video__play" type="button" data-tm-video-open aria-label="Play full video">
+                    <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="rgba(42,31,16,.85)"/><path d="M26 20 L46 32 L26 44 Z" fill="#faf7f0"/></svg>
+                    <span class="tm-video__play-label">Watch the full story{%- if block.settings.full_duration != blank %} <small>({{ block.settings.full_duration }})</small>{%- endif -%}</span>
+                  </button>
+                {%- endif -%}
               </div>
+              {%- if block.settings.full_url != blank -%}
+                <div class="tm-video__modal" data-tm-video-modal hidden>
+                  <button class="tm-video__close" type="button" data-tm-video-close aria-label="Close video">×</button>
+                  <video
+                    class="tm-video__full"
+                    src="{{ block.settings.full_url }}"
+                    poster="{{ block.settings.poster_url }}"
+                    controls playsinline preload="none"></video>
+                </div>
+              {%- endif -%}
               <script type="application/ld+json">
               {
                 "@context": "https://schema.org",
                 "@type": "VideoObject",
                 "name": {{ block.settings.heading | default: product.title | json }},
                 "description": {{ block.settings.description | default: product.description | strip_html | truncate: 300 | json }},
-                "thumbnailUrl": "https://i.ytimg.com/vi/{{ block.settings.youtube_id }}/maxresdefault.jpg",
+                "thumbnailUrl": {{ block.settings.poster_url | json }},
                 "uploadDate": "{{ 'now' | date: '%Y-%m-%d' }}",
-                "embedUrl": "https://www.youtube.com/embed/{{ block.settings.youtube_id }}",
-                "contentUrl": "https://youtu.be/{{ block.settings.youtube_id }}"
+                "contentUrl": {{ block.settings.full_url | json }}
               }
               </script>
             {%- endif -%}
@@ -269,7 +281,10 @@
       {"type":"select","id":"band","label":"Band color","default":"cream","options":[{"value":"cream","label":"Cream"},{"value":"sand","label":"Sand"},{"value":"honey","label":"Honey"},{"value":"deep-sand","label":"Deep sand"},{"value":"espresso","label":"Espresso"}]},
       {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Watch"},
       {"type":"text","id":"heading","label":"Heading","default":"See Spice Rush in action"},
-      {"type":"text","id":"youtube_id","label":"YouTube video ID","info":"e.g. 'J4kd87FJFvY' from https://youtu.be/J4kd87FJFvY"},
+      {"type":"url","id":"teaser_url","label":"Teaser video URL","info":"Short muted autoplay loop (MP4 hosted in Shopify Files)"},
+      {"type":"url","id":"full_url","label":"Full video URL","info":"Full-length MP4 opened in modal when user clicks play"},
+      {"type":"url","id":"poster_url","label":"Poster image URL"},
+      {"type":"text","id":"full_duration","label":"Full video duration","default":"5 min","info":"Shown on play button, e.g. '5 min'"},
       {"type":"textarea","id":"description","label":"SEO description (for VideoObject schema)"}
     ]},
     { "type": "disclaimer", "name": "FDA disclaimer", "limit": 1, "settings": [
