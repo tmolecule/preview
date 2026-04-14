@@ -109,10 +109,8 @@
   .tm-faq summary::after { font-size:20px; }
   .tm-faq .rte { padding:0 0 14px; font-family:var(--tm-sans); font-size:14px; }
 
-  .tm-band--sand:has(.tm-ing) { position:relative; overflow:hidden; padding-top:120px; }
-  .tm-grass-banner { position:absolute; top:-2px; left:0; right:0; width:100%; height:auto; pointer-events:none; z-index:0; display:block; opacity:.7; }
-  .tm-grass-banner svg { width:100%; height:auto; display:block; }
-  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; position:relative; z-index:1; }
+  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; }
+  .tm-ing__origin { display:block; font-family:var(--tm-sans); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--tm-accent); margin-bottom:4px; }
   .tm-ing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:left; }
   @media (max-width:900px) { .tm-ing__grid { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px) { .tm-ing__grid { grid-template-columns:1fr; } }
@@ -225,7 +223,9 @@
   .tm-footer__social { display:flex; gap:14px; margin-top:4px; }
   .tm-footer__social a { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; font-size:18px; }
   .tm-footer__social a:hover { background:rgba(255,255,255,.15); }
-  .tm-footer__bottom { max-width:1200px; margin:48px auto 0; padding-top:24px; border-top:1px solid rgba(212,198,154,.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; }
+  .tm-footer__disclaimer { max-width:1200px; margin:40px auto 0; padding-top:24px; border-top:1px solid rgba(212,198,154,.2); font-size:11px; line-height:1.6; color:rgba(255,255,255,.55); letter-spacing:.02em; }
+  .tm-footer__disclaimer p { margin:0; }
+  .tm-footer__bottom { max-width:1200px; margin:16px auto 0; padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; }
   .tm-footer__pay { display:flex; gap:8px; flex-wrap:wrap; }
   .tm-footer__pay span { padding:4px 8px; background:rgba(255,255,255,.1); border-radius:3px; font-size:11px; letter-spacing:.04em; }
   @media (max-width:900px) { .tm-footer__inner { grid-template-columns:repeat(2,1fr); } }
@@ -284,7 +284,7 @@
   <div class="buybox__info">
     <p class="new">🔥 BESTSELLER</p>
     <h1>Spice Rush Collagen Black Tea</h1>
-    <p class="sub">Revitalizing energy, built on 90 years of family tea. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.</p>
+    <p class="sub">A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.</p>
     <div class="rating"><span class="stars">★★★★★</span> 4.8 · 216 reviews</div>
     <ul class="buybox__bullets">
       <li>💪 Collagen peptides in every cup — skin, joints, recovery</li>
@@ -333,13 +333,13 @@
       <div class="tm-trust__item"><div class="badge">🥥</div><span>Keto & paleo friendly</span></div>
       <div class="tm-trust__item"><div class="badge">🇺🇸</div><span>Made in USA</span></div>
       <div class="tm-trust__item"><div class="badge">🌶️</div><span>Real whole spices</span></div>
-      <div class="tm-trust__item"><div class="badge badge--svg"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#7a5a2b"><circle cx="10" cy="12" r="1.6"/><circle cx="16" cy="9" r="1.2"/><circle cx="22" cy="13" r="1.8"/><circle cx="29" cy="10" r="1.3"/><circle cx="13" cy="18" r="1.4"/><circle cx="20" cy="20" r="2"/><circle cx="27" cy="19" r="1.5"/><circle cx="32" cy="15" r="1.1"/><circle cx="9" cy="24" r="1.6"/><circle cx="16" cy="27" r="1.3"/><circle cx="23" cy="26" r="1.7"/><circle cx="30" cy="25" r="1.2"/><circle cx="13" cy="32" r="1.4"/><circle cx="21" cy="33" r="1.5"/><circle cx="28" cy="31" r="1.3"/></g></svg></div><span>Milled for smoothness</span></div>
+      <div class="tm-trust__item"><div class="badge badge--svg"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#7a5a2b"><circle cx="10" cy="12" r="1.6"/><circle cx="16" cy="9" r="1.2"/><circle cx="22" cy="13" r="1.8"/><circle cx="29" cy="10" r="1.3"/><circle cx="13" cy="18" r="1.4"/><circle cx="20" cy="20" r="2"/><circle cx="27" cy="19" r="1.5"/><circle cx="32" cy="15" r="1.1"/><circle cx="9" cy="24" r="1.6"/><circle cx="16" cy="27" r="1.3"/><circle cx="23" cy="26" r="1.7"/><circle cx="30" cy="25" r="1.2"/><circle cx="13" cy="32" r="1.4"/><circle cx="21" cy="33" r="1.5"/><circle cx="28" cy="31" r="1.3"/></g></svg></div><span>Milled for a uniform blend</span></div>
       <div class="tm-trust__item"><div class="badge">👨‍👩‍👧</div><span>Family heritage since 1935</span></div>
       <div class="tm-trust__item"><div class="badge">💪</div><span>Collagen peptides</span></div>
       <div class="tm-trust__item"><div class="badge">🥥</div><span>Keto & paleo friendly</span></div>
       <div class="tm-trust__item"><div class="badge">🇺🇸</div><span>Made in USA</span></div>
       <div class="tm-trust__item"><div class="badge">🌶️</div><span>Real whole spices</span></div>
-      <div class="tm-trust__item"><div class="badge badge--svg"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#7a5a2b"><circle cx="10" cy="12" r="1.6"/><circle cx="16" cy="9" r="1.2"/><circle cx="22" cy="13" r="1.8"/><circle cx="29" cy="10" r="1.3"/><circle cx="13" cy="18" r="1.4"/><circle cx="20" cy="20" r="2"/><circle cx="27" cy="19" r="1.5"/><circle cx="32" cy="15" r="1.1"/><circle cx="9" cy="24" r="1.6"/><circle cx="16" cy="27" r="1.3"/><circle cx="23" cy="26" r="1.7"/><circle cx="30" cy="25" r="1.2"/><circle cx="13" cy="32" r="1.4"/><circle cx="21" cy="33" r="1.5"/><circle cx="28" cy="31" r="1.3"/></g></svg></div><span>Milled for smoothness</span></div>
+      <div class="tm-trust__item"><div class="badge badge--svg"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#7a5a2b"><circle cx="10" cy="12" r="1.6"/><circle cx="16" cy="9" r="1.2"/><circle cx="22" cy="13" r="1.8"/><circle cx="29" cy="10" r="1.3"/><circle cx="13" cy="18" r="1.4"/><circle cx="20" cy="20" r="2"/><circle cx="27" cy="19" r="1.5"/><circle cx="32" cy="15" r="1.1"/><circle cx="9" cy="24" r="1.6"/><circle cx="16" cy="27" r="1.3"/><circle cx="23" cy="26" r="1.7"/><circle cx="30" cy="25" r="1.2"/><circle cx="13" cy="32" r="1.4"/><circle cx="21" cy="33" r="1.5"/><circle cx="28" cy="31" r="1.3"/></g></svg></div><span>Milled for a uniform blend</span></div>
     </div>
   </div>
   </div>
@@ -351,7 +351,7 @@
       <summary>Overview</summary>
       <div class="tm-tabs__body rte">
         <p>Spice Rush is a revitalizing black tea blend built on four generations of tea-sourcing know-how. We take bold, full-bodied black tea, mill it to a fine powder for a smoother brew, and blend in collagen peptides and three warming spices: ginger, cinnamon, and cardamom.</p>
-        <p>One scoop, hot water, stir. No strainer, no steep timer, no sugar. A cleaner energy than coffee, a warmer ritual than a supplement.</p>
+        <p>One scoop, hot water, stir — thirty seconds to a full cup. No steeping, no straining, no timer. Drink it black, or add milk and a touch of sweetener to taste. A cleaner energy than coffee, a warmer ritual than a supplement.</p>
       </div>
     </details>
     <details>
@@ -360,17 +360,17 @@
     </details>
     <details>
       <summary>Brewing</summary>
-      <div class="tm-tabs__body rte"><p><strong>Hot:</strong> Add one scoop (≈5g) to 8oz near-boiling water (200–212°F). Stir 15 seconds. That's it.</p><p><strong>Iced:</strong> Mix one scoop with 2oz hot water to dissolve, then pour over ice and top with cold water or milk.</p><p><strong>Latte:</strong> Stir into 6oz steamed milk (dairy or oat) with a teaspoon of honey.</p></div>
+      <div class="tm-tabs__body rte"><p><strong>Hot:</strong> Add one scoop (≈5g) to 8oz near-boiling water (200–212°F). Stir 15 seconds. That's it.</p><p><strong>Iced:</strong> Mix one scoop with 2oz hot water and stir to suspend, then pour over ice and top with cold water or milk.</p><p><strong>Latte:</strong> Stir into 6oz steamed milk (dairy or oat) with a teaspoon of honey.</p></div>
     </details>
     <details>
       <summary>FAQs</summary>
       <div class="tm-tabs__body tm-faq">
         <details><summary>How much caffeine is in a scoop?</summary><div class="rte"><p>About 40–50mg per scoop — roughly half a cup of coffee. Sustained energy, no jitters.</p></div></details>
-        <details><summary>What kind of collagen do you use?</summary><div class="rte"><p>Hydrolyzed bovine collagen peptides. Unflavored and completely soluble in hot water.</p></div></details>
+        <details><summary>What kind of collagen do you use?</summary><div class="rte"><p>Hydrolyzed bovine collagen peptides. Unflavored, and heat-stable — the peptides stay intact in hot water, so the benefits come through in every cup.</p></div></details>
         <details><summary>Is this keto and paleo friendly?</summary><div class="rte"><p>Yes — zero sugar, zero starch, zero fillers. Just five ingredients: black tea, collagen peptides, ginger, cinnamon, and cardamom.</p></div></details>
         <details><summary>Why milled instead of loose leaf?</summary><div class="rte"><p>Milling creates a homogenous blend with the spices and collagen so every scoop delivers the same balanced cup. No steeping, no strainer, no bitter over-brew.</p></div></details>
         <details><summary>How long does a pack last?</summary><div class="rte"><p>Each pack contains roughly 20 servings. At one cup a day, that's about three weeks.</p></div></details>
-        <details><summary>How should I store it?</summary><div class="rte"><p>Keep the pack sealed at room temperature, away from direct sunlight and humidity. Good for 12 months from the date on the pack.</p></div></details>
+        <details><summary>How should I store it?</summary><div class="rte"><p>Keep the pack sealed at room temperature, away from direct sunlight and humidity. Use by the expiration date printed on the package.</p></div></details>
       </div>
     </details>
   </div>
@@ -378,38 +378,6 @@
 
   <!-- ingredient grid -->
   <div class="tm-band tm-band--sand">
-  <div class="tm-grass-banner" aria-hidden="true">
-    <svg viewBox="0 0 1800 98" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="grassGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#d6c69a" stop-opacity="0"/>
-          <stop offset="35%" stop-color="#b8a476" stop-opacity=".5"/>
-          <stop offset="75%" stop-color="#8a7a42" stop-opacity=".85"/>
-          <stop offset="100%" stop-color="#6b5a28" stop-opacity="1"/>
-        </linearGradient>
-      </defs>
-      <path fill="url(#grassGrad)" d="M0 60 L 0 98 L 1800 98 L 1800 60
-        C 1780 60 1775 54 1770 48 L 1765 60
-        C 1750 60 1748 45 1745 32 L 1740 40 C 1735 30 1732 42 1730 50 L 1725 48 C 1720 55 1718 58 1715 60
-        L 1700 60 C 1695 50 1692 38 1690 26 L 1685 35 C 1680 25 1677 40 1673 48 L 1668 58 L 1655 60
-        C 1640 60 1635 50 1630 36 L 1625 48 C 1618 38 1612 46 1608 55 L 1600 60
-        L 1560 60 C 1555 48 1548 30 1540 18 L 1530 28 C 1522 20 1516 32 1510 44 L 1502 54 C 1495 46 1490 50 1485 58 L 1478 60
-        L 1430 60 C 1425 52 1418 38 1412 28 L 1405 38 C 1398 28 1392 40 1388 50 L 1380 58 L 1370 60
-        L 1330 60 C 1320 60 1315 48 1308 32 L 1300 44 C 1292 34 1285 46 1280 56 L 1272 60
-        L 1220 60 C 1215 50 1208 35 1200 22 L 1192 32 C 1185 22 1178 36 1172 46 L 1165 56 L 1155 60
-        L 1100 60 C 1095 52 1088 40 1080 28 L 1072 38 C 1065 28 1058 42 1053 52 L 1045 60
-        L 1000 60 C 990 60 984 46 976 30 L 968 42 C 960 32 954 44 948 54 L 940 60
-        L 890 60 C 884 50 876 32 868 20 L 858 32 C 850 22 842 36 836 46 L 828 56 L 820 60
-        L 770 60 C 764 50 758 38 750 26 L 742 36 C 734 26 728 40 722 50 L 714 58 L 705 60
-        L 660 60 C 654 52 647 38 640 26 L 632 36 C 624 26 618 40 612 50 L 604 58 L 595 60
-        L 550 60 C 540 60 534 44 528 30 L 518 42 C 510 32 504 44 498 54 L 490 60
-        L 440 60 C 432 50 424 32 416 20 L 406 32 C 398 22 390 36 384 46 L 376 56 L 368 60
-        L 320 60 C 314 50 308 38 300 26 L 292 36 C 284 26 278 40 272 50 L 264 58 L 255 60
-        L 210 60 C 204 52 197 38 190 26 L 182 36 C 174 26 168 40 162 50 L 154 58 L 145 60
-        L 100 60 C 92 60 85 48 78 34 L 70 44 C 62 36 56 46 50 55 L 42 60
-        L 0 60 Z"/>
-    </svg>
-  </div>
   <div class="tm-ing">
     <h2 class="tm-h2">What's in the scoop</h2>
     <p class="tm-sub">Five ingredients. Nothing else. No sugar, no starch, no fillers, no natural-flavors mystery blend.</p>
@@ -468,7 +436,7 @@
     <div class="tm-ed__copy">
       <p class="tm-eyebrow">Heritage since 1935</p>
       <h2 class="tm-h2">One scoop. Near-boiling. Done.</h2>
-      <div class="rte"><p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop to hot water, stir for fifteen seconds, drink. The milling does the work — spice and leaf dissolve straight into the cup. It's the easiest ritual you'll ever protect from your mornings.</p></div>
+      <div class="rte"><p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop to hot water, stir for fifteen seconds, drink. The milling does the work — spice and leaf suspend straight into the cup. It's the easiest ritual you'll ever protect from your mornings.</p></div>
     </div>
   </div>
   </div>
@@ -519,7 +487,6 @@
     <div>
       <h4>Policies</h4>
       <ul>
-        <li><a href="/pages/disclaimer">Disclaimer</a></li>
         <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
         <li><a href="/pages/terms-of-service">Terms of Service</a></li>
         <li><a href="/policies/refund-policy">Return Policy</a></li>
@@ -542,6 +509,9 @@
         <a href="https://twitter.com/GetTMolecule" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L22 21h-6.2l-4.8-6.3L5.3 21H2.3l7-8L2 3h6.3l4.4 5.8L17.5 3zm-1 16h1.7L7.6 4.8H5.8L16.5 19z"/></svg></a>
       </div>
     </div>
+  </div>
+  <div class="tm-footer__disclaimer">
+    <p>* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary.</p>
   </div>
   <div class="tm-footer__bottom">
     <div>© 2026, TMolecule. All rights reserved.</div>

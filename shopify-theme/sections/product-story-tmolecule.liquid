@@ -154,6 +154,13 @@
           </div>
         </div>
 
+      {%- when 'disclaimer' -%}
+        <div class="tm-band tm-band--espresso" {{ block.shopify_attributes }}>
+          <div class="tm-disclaimer">
+            <p>{{ block.settings.body }}</p>
+          </div>
+        </div>
+
       {%- endcase -%}
     {%- endfor -%}
   </section>
@@ -173,7 +180,7 @@
       {"type":"text","id":"icon_3","label":"Icon 3","default":"🥥"}, {"type":"text","id":"label_3","label":"Label 3","default":"Keto & paleo friendly"},
       {"type":"text","id":"icon_4","label":"Icon 4","default":"🇺🇸"}, {"type":"text","id":"label_4","label":"Label 4","default":"Made in USA"},
       {"type":"text","id":"icon_5","label":"Icon 5","default":"🌶️"}, {"type":"text","id":"label_5","label":"Label 5","default":"Real whole spices"},
-      {"type":"text","id":"icon_6","label":"Icon 6","default":"🧂"}, {"type":"text","id":"label_6","label":"Label 6","default":"Milled for smoothness"}
+      {"type":"text","id":"icon_6","label":"Icon 6","default":"🧂"}, {"type":"text","id":"label_6","label":"Label 6","default":"Milled for a uniform blend"}
     ]},
     { "type": "tabs", "name": "Tabs accordion", "settings": [
       {"type":"text","id":"tab1_title","label":"Tab 1 title","default":"Overview"}, {"type":"richtext","id":"tab1_body","label":"Tab 1 body"},
@@ -225,6 +232,9 @@
       {"type":"text","id":"heading","label":"Heading"},
       {"type":"richtext","id":"body","label":"Body"},
       {"type":"checkbox","id":"reverse","label":"Image on right","default":false}
+    ]},
+    { "type": "disclaimer", "name": "FDA disclaimer", "limit": 1, "settings": [
+      {"type":"textarea","id":"body","label":"Disclaimer text","default":"* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary."}
     ]},
     { "type": "reviews", "name": "Reviews", "limit": 1, "settings": [
       {"type":"text","id":"heading","label":"Heading","default":"What sippers say"},

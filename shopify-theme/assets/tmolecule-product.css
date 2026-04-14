@@ -54,6 +54,8 @@
 .tm-band--espresso { background:linear-gradient(180deg,#3a2d1a 0%,#2a1f10 100%); color:#f5ecd8; }
 .tm-band--espresso .tm-h2 { color:#f5ecd8; }
 .tm-band--espresso .tm-eyebrow { color:#d4b97a; }
+.tm-disclaimer { max-width:1200px; margin:0 auto; padding:32px 24px; font-size:12px; line-height:1.6; color:rgba(245,236,216,.65); letter-spacing:.02em; }
+.tm-disclaimer p { margin:0; }
 .tm-band--espresso blockquote { background:#faf3e0; border:1px solid #e0c591; color:#2b2a28; box-shadow:0 8px 24px rgba(0,0,0,.3); }
 .tm-band--espresso blockquote p { color:#2b2a28; }
 .tm-band--espresso cite { color:#7a5a2b; opacity:1; font-weight:600; }
