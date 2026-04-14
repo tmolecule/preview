@@ -1,0 +1,44 @@
+{{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<div class="tm-page">
+  <div class="tm-ann">
+    <div class="tm-ann__track">
+      {%- for i in (1..5) -%}
+        {%- for block in section.blocks -%}
+          <span class="tm-ann__item">{{ block.settings.message }}</span>
+          <span class="tm-ann__item"><span class="dot">●</span></span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TMolecule announcement",
+  "tag": "section",
+  "class": "tm-ann-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        { "type": "text", "id": "message", "label": "Text", "default": "🚚 Free shipping on orders over $35" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TMolecule announcement",
+      "blocks": [
+        { "type": "message", "settings": { "message": "🚚 Free shipping on orders over $35" } },
+        { "type": "message", "settings": { "message": "⚡ Same-day shipping for orders before 12pm ET" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,147 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar-tmolecule",
+      "blocks": {
+        "m1": { "type": "message", "settings": { "message": "🚚 Free shipping on orders over $35" } },
+        "m2": { "type": "message", "settings": { "message": "⚡ Same-day shipping for orders before 12pm ET" } }
+      },
+      "block_order": ["m1", "m2"]
+    },
+    "main": {
+      "type": "main-product-tmolecule",
+      "settings": {
+        "label": "🔥 BESTSELLER",
+        "subheadline": "A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.",
+        "show_rating": true,
+        "rating_text": "4.8 · 216 reviews",
+        "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
+        "show_subscribe_toggle": true
+      },
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "icon": "✨", "label": "Just<br>Launched" } },
+        "b2": { "type": "badge", "settings": { "icon": "🇺🇸", "label": "Made in<br>USA" } },
+        "b3": { "type": "badge", "settings": { "icon": "🚫", "label": "No<br>Sugar" } },
+        "b4": { "type": "badge", "settings": { "icon": "🥑", "label": "Keto<br>Friendly" } },
+        "b5": { "type": "badge", "settings": { "icon": "🥩", "label": "Paleo<br>Friendly" } },
+        "b6": { "type": "badge", "settings": { "icon": "🌾", "label": "Gluten<br>Free" } },
+        "b7": { "type": "badge", "settings": { "icon": "🌱", "label": "Non<br>GMO" } },
+        "b8": { "type": "badge", "settings": { "icon": "🚚", "label": "Fast<br>Shipping" } }
+      },
+      "block_order": ["b1","b2","b3","b4","b5","b6","b7","b8"]
+    },
+    "story": {
+      "type": "product-story-tmolecule",
+      "blocks": {
+        "trust": { "type": "trust_marquee" },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "tab1_title": "Overview",
+            "tab1_body": "<p>Spice Rush is a revitalizing black tea blend built on four generations of tea-sourcing know-how. We take bold, full-bodied black tea, mill it to a fine powder for a smoother brew, and blend in collagen peptides and three warming spices: ginger, cinnamon, and cardamom.</p><p>One scoop, hot water, stir — thirty seconds to a full cup. No steeping, no straining, no timer. Drink it black, or add milk and a touch of sweetener to taste. A cleaner energy than coffee, a warmer ritual than a supplement.</p>",
+            "tab2_title": "Tasting Notes",
+            "tab2_body": "<p>Bold and malty up front, warming ginger mid-palate, sweet cinnamon and floral cardamom on the finish. Rich body from milling. Drinks beautifully black, or with a splash of milk and a pinch of salt for a creamier chai.</p>",
+            "tab3_title": "Brewing",
+            "tab3_body": "<p><strong>Hot:</strong> Add one scoop (≈5g) to 8oz near-boiling water (200–212°F). Stir 15 seconds. That's it.</p><p><strong>Iced:</strong> Mix one scoop with 2oz hot water and stir to suspend, then pour over ice and top with cold water or milk.</p><p><strong>Latte:</strong> Stir into 6oz steamed milk (dairy or oat) with a teaspoon of honey.</p>",
+            "tab4_title": "FAQs",
+            "tab4_body": "<details><summary>How much caffeine is in a scoop?</summary><div class=\"rte\"><p>About 40–50mg per scoop — roughly half a cup of coffee. Sustained energy, no jitters.</p></div></details><details><summary>What kind of collagen do you use?</summary><div class=\"rte\"><p>Hydrolyzed bovine collagen peptides. Unflavored, and heat-stable — the peptides stay intact in hot water, so the benefits come through in every cup.</p></div></details><details><summary>Is this keto and paleo friendly?</summary><div class=\"rte\"><p>Yes — zero sugar, zero starch, zero fillers. Just five ingredients: black tea, collagen peptides, ginger, cinnamon, and cardamom.</p></div></details><details><summary>Why milled instead of loose leaf?</summary><div class=\"rte\"><p>Milling creates a homogenous blend with the spices and collagen so every scoop delivers the same balanced cup. No steeping, no strainer, no bitter over-brew.</p></div></details><details><summary>How long does a pack last?</summary><div class=\"rte\"><p>Each pack contains roughly 20 servings. At one cup a day, that's about three weeks.</p></div></details><details><summary>How should I store it?</summary><div class=\"rte\"><p>Keep the pack sealed at room temperature, away from direct sunlight and humidity. Use by the expiration date printed on the package.</p></div></details>"
+          }
+        },
+        "ingredients": {
+          "type": "ingredient_grid",
+          "settings": {
+            "heading": "What's in the scoop",
+            "subhead": "Five ingredients. Nothing else. No sugar, no starch, no fillers, no natural-flavors mystery blend.",
+            "title_1": "Bold Black Tea",
+            "body_1": "Full-bodied Assam-style black tea, milled fine so every particle brews in seconds. No steeping, no strainer.",
+            "title_2": "Collagen Peptides",
+            "body_2": "Hydrolyzed collagen peptides — supports skin, joints, and post-workout recovery. Unflavored and completely soluble.",
+            "title_3": "Real Ginger",
+            "body_3": "Warming, digestive, alive. Dried and milled from whole root — not a \"ginger flavor\" compound.",
+            "title_4": "Ceylon Cinnamon",
+            "body_4": "True cinnamon — sweet, delicate, lower coumarin than cassia. The cinnamon your grandmother used.",
+            "title_5": "Green Cardamom",
+            "body_5": "Whole pods ground for the bright, floral lift that turns a chai from flat to alive. Never pre-ground.",
+            "title_6": "Milled",
+            "body_6": "The tea leaves are milled to an ultra-fine powder, then blended evenly with the spices and collagen peptides. Every scoop delivers the same balanced mix — tea, spice, and protein in one consistent cup.",
+            "cta_label": "Try Spice Rush",
+            "cta_sub": "Starting at $6.99"
+          }
+        },
+        "heritage": {
+          "type": "heritage",
+          "settings": {
+            "eyebrow": "Heritage since 1935",
+            "heading": "Four generations. One leaf.",
+            "body": "<p>In 1935, my great-grandfather started sourcing tea — tin by tin, estate by estate, refusing anything that didn't meet his nose test. Ninety-one years later, we're still doing it.</p><p>Spice Rush is what happens when four generations of tea obsession meet a modern life. We took a classic spiced black-tea ritual, milled the leaf so you can actually drink it in under a minute, and added collagen peptides so one cup earns its keep.</p>",
+            "signature": "— The TMolecule family",
+            "cta_label": "Taste the heritage",
+            "cta_sub": "$6.99 · ships today"
+          }
+        },
+        "compare": {
+          "type": "compare",
+          "settings": {
+            "heading": "Spice Rush vs. the chai you've been buying",
+            "us_label": "TMolecule Spice Rush",
+            "them_label": "Typical Chai Latte Mix",
+            "ico_1": "🍬", "row_1": "Sugar", "us_1": "Zero", "them_1": "15–25g per serving",
+            "ico_2": "💪", "row_2": "Protein", "us_2": "Collagen peptides", "them_2": "None",
+            "ico_3": "🌶️", "row_3": "Spices", "us_3": "Whole, milled in-house", "them_3": "\"Natural flavors,\" powders",
+            "ico_4": "🍃", "row_4": "Tea grade", "us_4": "Full-leaf, milled fine", "them_4": "Dust, fannings, extract",
+            "ico_5": "🥑", "row_5": "Diet fit", "us_5": "Keto, paleo, clean label", "them_5": "Sugar-loaded, additive-heavy",
+            "ico_6": "👨‍👩‍👧", "row_6": "Heritage", "us_6": "Heritage since 1935", "them_6": "A marketing department",
+            "cta_label": "Make the switch",
+            "cta_sub": "$6.99 · one scoop, one cup"
+          }
+        },
+        "ed1": {
+          "type": "editorial",
+          "settings": {
+            "band": "deep-sand",
+            "eyebrow": "The ritual",
+            "heading": "One scoop. Near-boiling. Done.",
+            "body": "<p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop to hot water, stir for fifteen seconds, drink. The milling does the work — spice and leaf suspend straight into the cup. It's the easiest ritual you'll ever protect from your mornings.</p>",
+            "reverse": false
+          }
+        },
+        "ed2": {
+          "type": "editorial",
+          "settings": {
+            "band": "honey",
+            "eyebrow": "Why collagen",
+            "heading": "The most useful tea you'll drink all day",
+            "body": "<p>Every scoop delivers collagen peptides — the protein that supports skin, joints, hair, and post-workout recovery. Most people take it in a flavorless capsule or a chalky shake. We put it in the cup you were going to drink anyway. Keto-friendly. Paleo-friendly. Habit-friendly.</p>",
+            "reverse": true
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "heading": "What sippers say",
+            "quote_1": "I swapped my 11am coffee for a Spice Rush and my afternoons got their focus back. Plus — collagen. Win-win.",
+            "author_1": "Marielle S., verified buyer",
+            "quote_2": "Tastes like real chai, not a sugar bomb. My daily cup. The cardamom is so bright.",
+            "author_2": "David R., verified buyer",
+            "quote_3": "30 seconds to brew, no strainer, no mess. Finally a clean-label collagen drink I actually enjoy.",
+            "author_3": "Aisha K., verified buyer",
+            "cta_label": "Join the ritual",
+            "cta_sub": "$6.99 · free shipping over $35"
+          }
+        },
+        "disclaimer": {
+          "type": "disclaimer",
+          "settings": {
+            "body": "* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary."
+          }
+        }
+      },
+      "block_order": ["trust","tabs","ingredients","heritage","compare","ed1","ed2","reviews","disclaimer"]
+    },
+    "sticky": {
+      "type": "sticky-cta-tmolecule",
+      "settings": { "cta_label": "Add to cart", "ship_note": "free ship over $35" }
+    }
+  },
+  "order": ["announcement", "main", "story", "sticky"]
+}

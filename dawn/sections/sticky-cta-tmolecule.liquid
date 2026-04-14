@@ -1,0 +1,30 @@
+{{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
+
+{%- if template contains 'product' and product -%}
+<div class="tm-page">
+  <div class="tm-sticky-cta" data-tm-sticky>
+    {%- if product.featured_media -%}
+      <img class="tm-sticky-cta__thumb" src="{{ product.featured_media | image_url: width: 120 }}" alt="">
+    {%- endif -%}
+    <div class="tm-sticky-cta__info">
+      <p class="tm-sticky-cta__name">{{ product.title }}</p>
+      <p class="tm-sticky-cta__price" data-tm-sticky-price>{{ product.selected_or_first_available_variant.price | money }}<small>{{ section.settings.ship_note }}</small></p>
+    </div>
+    <a href="#top" class="tm-sticky-cta__btn">{{ section.settings.cta_label | default: 'Add to cart' }}</a>
+  </div>
+</div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "TMolecule sticky CTA",
+  "tag": "section",
+  "class": "tm-sticky-cta-section",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "Add to cart" },
+    { "type": "text", "id": "ship_note", "label": "Shipping note", "default": "free ship over $35" }
+  ],
+  "presets": [ { "name": "TMolecule sticky CTA" } ]
+}
+{% endschema %}

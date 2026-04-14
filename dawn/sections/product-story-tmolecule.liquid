@@ -1,0 +1,257 @@
+{{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
+
+{%- capture leaf_svg -%}<svg class="tm-ing__flourish tm-ing__flourish--tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path d="M100 20c-30 10-55 35-65 70-5 20-3 42 8 60 3-22 14-44 33-60 14-12 30-22 42-36 0 0 4-24-18-34zm0 8c12 4 13 18 13 26-10 12-24 20-36 30-18 16-28 36-32 56-6-14-6-30-2-46 10-30 32-54 57-66z"/><path d="M60 130c-6 14-12 28-14 44 12-6 23-16 30-29 10-18 12-38 12-60-14 14-22 30-28 45z"/></g></svg>{%- endcapture -%}
+
+<div class="tm-page">
+  <section class="tm-story">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+
+      {%- when 'trust_marquee' -%}
+        <div class="tm-band tm-band--sand" {{ block.shopify_attributes }}>
+          <div class="tm-trust">
+            <div class="tm-trust__track">
+              {%- for i in (1..2) -%}
+                {%- for n in (1..6) -%}
+                  {%- assign ico = 'icon_' | append: n -%}
+                  {%- assign lbl = 'label_' | append: n -%}
+                  {%- if block.settings[lbl] != blank -%}
+                    <div class="tm-trust__item"><div class="tm-badge">{{ block.settings[ico] }}</div><span>{{ block.settings[lbl] }}</span></div>
+                  {%- endif -%}
+                {%- endfor -%}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+
+      {%- when 'tabs' -%}
+        <div class="tm-band tm-band--cream" {{ block.shopify_attributes }}>
+          <div class="tm-tabs">
+            {%- for n in (1..4) -%}
+              {%- assign t = 'tab' | append: n | append: '_title' -%}
+              {%- assign b = 'tab' | append: n | append: '_body' -%}
+              {%- if block.settings[t] != blank -%}
+                <details {% if forloop.first %}open{% endif %}>
+                  <summary>{{ block.settings[t] }}</summary>
+                  <div class="tm-tabs__body rte">{{ block.settings[b] }}</div>
+                </details>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+
+      {%- when 'ingredient_grid' -%}
+        <div class="tm-band tm-band--sand" {{ block.shopify_attributes }}>
+          <div class="tm-ing">
+            {{ leaf_svg }}
+            {%- assign leaf_svg_br = leaf_svg | replace: 'tm-ing__flourish--tl', 'tm-ing__flourish--br' -%}
+            {{ leaf_svg_br }}
+            {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.subhead != blank -%}<p class="tm-sub">{{ block.settings.subhead }}</p>{%- endif -%}
+            <div class="tm-ing__grid">
+              {%- for n in (1..6) -%}
+                {%- assign img = 'img_' | append: n -%}
+                {%- assign ttl = 'title_' | append: n -%}
+                {%- assign body = 'body_' | append: n -%}
+                {%- if block.settings[ttl] != blank -%}
+                  <div class="tm-ing__card">
+                    {%- if block.settings[img] != blank -%}
+                      <img src="{{ block.settings[img] | image_url: width: 600 }}" alt="" loading="lazy">
+                    {%- endif -%}
+                    <h3>{{ block.settings[ttl] }}</h3>
+                    <p>{{ block.settings[body] }}</p>
+                  </div>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            {%- if block.settings.cta_label != blank -%}
+              <div class="tm-cta-wrap"><a href="{{ block.settings.cta_link | default: '#' }}" class="tm-inline-cta">{{ block.settings.cta_label }}{%- if block.settings.cta_sub != blank -%}<span class="tm-inline-cta__sub">{{ block.settings.cta_sub }}</span>{%- endif -%}</a></div>
+            {%- endif -%}
+          </div>
+        </div>
+
+      {%- when 'heritage' -%}
+        <div class="tm-band tm-band--honey" {{ block.shopify_attributes }}>
+          <div class="tm-heritage">
+            <div class="tm-heritage__media">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1400 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+            <div class="tm-heritage__copy">
+              {%- if block.settings.eyebrow != blank -%}<p class="tm-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+              {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+              <div class="rte">{{ block.settings.body }}</div>
+              {%- if block.settings.signature != blank -%}<p class="tm-sig">{{ block.settings.signature }}</p>{%- endif -%}
+              {%- if block.settings.cta_label != blank -%}
+                <div class="tm-cta-wrap" style="text-align:left;"><a href="{{ block.settings.cta_link | default: '#' }}" class="tm-inline-cta">{{ block.settings.cta_label }}{%- if block.settings.cta_sub != blank -%}<span class="tm-inline-cta__sub">{{ block.settings.cta_sub }}</span>{%- endif -%}</a></div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+
+      {%- when 'compare' -%}
+        <div class="tm-band tm-band--cream" {{ block.shopify_attributes }}>
+          <div class="tm-compare">
+            {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+            <table>
+              <thead><tr><th></th><th>{{ block.settings.us_label }}</th><th>{{ block.settings.them_label }}</th></tr></thead>
+              <tbody>
+                {%- for n in (1..6) -%}
+                  {%- assign row = 'row_' | append: n -%}
+                  {%- assign ico = 'ico_' | append: n -%}
+                  {%- assign us = 'us_' | append: n -%}
+                  {%- assign them = 'them_' | append: n -%}
+                  {%- if block.settings[row] != blank -%}
+                    <tr>
+                      <td><span class="tm-compare__ico">{{ block.settings[ico] }}</span>{{ block.settings[row] }}</td>
+                      <td class="tm-compare__us"><span class="tm-yes">✓</span>{{ block.settings[us] }}</td>
+                      <td class="tm-compare__them"><span class="tm-no">✕</span>{{ block.settings[them] }}</td>
+                    </tr>
+                  {%- endif -%}
+                {%- endfor -%}
+              </tbody>
+            </table>
+            {%- if block.settings.cta_label != blank -%}
+              <div class="tm-cta-wrap"><a href="{{ block.settings.cta_link | default: '#' }}" class="tm-inline-cta">{{ block.settings.cta_label }}{%- if block.settings.cta_sub != blank -%}<span class="tm-inline-cta__sub">{{ block.settings.cta_sub }}</span>{%- endif -%}</a></div>
+            {%- endif -%}
+          </div>
+        </div>
+
+      {%- when 'editorial' -%}
+        {%- assign band_class = block.settings.band | default: 'deep-sand' -%}
+        <div class="tm-band tm-band--{{ band_class }}" {{ block.shopify_attributes }}>
+          <div class="tm-ed {% if block.settings.reverse %}tm-ed--reverse{% endif %}">
+            <div class="tm-ed__media">
+              {%- if block.settings.image != blank -%}
+                <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy">
+              {%- endif -%}
+            </div>
+            <div class="tm-ed__copy">
+              {%- if block.settings.eyebrow != blank -%}<p class="tm-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+              {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+              <div class="rte">{{ block.settings.body }}</div>
+            </div>
+          </div>
+        </div>
+
+      {%- when 'reviews' -%}
+        <div class="tm-band tm-band--espresso" {{ block.shopify_attributes }}>
+          <div class="tm-reviews">
+            {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+            <div class="tm-reviews__grid">
+              {%- for n in (1..3) -%}
+                {%- assign q = 'quote_' | append: n -%}
+                {%- assign a = 'author_' | append: n -%}
+                {%- if block.settings[q] != blank -%}
+                  <blockquote><p>"{{ block.settings[q] }}"</p><cite>— {{ block.settings[a] }}</cite></blockquote>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+            {%- if block.settings.cta_label != blank -%}
+              <div class="tm-cta-wrap"><a href="{{ block.settings.cta_link | default: '#' }}" class="tm-inline-cta">{{ block.settings.cta_label }}{%- if block.settings.cta_sub != blank -%}<span class="tm-inline-cta__sub">{{ block.settings.cta_sub }}</span>{%- endif -%}</a></div>
+            {%- endif -%}
+          </div>
+        </div>
+
+      {%- when 'disclaimer' -%}
+        <div class="tm-band tm-band--espresso" {{ block.shopify_attributes }}>
+          <div class="tm-disclaimer">
+            <p>{{ block.settings.body }}</p>
+          </div>
+        </div>
+
+      {%- endcase -%}
+    {%- endfor -%}
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "TMolecule story",
+  "tag": "section",
+  "class": "tm-story-section",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [],
+  "blocks": [
+    { "type": "trust_marquee", "name": "Trust marquee", "limit": 1, "settings": [
+      {"type":"text","id":"icon_1","label":"Icon 1","default":"👨‍👩‍👧"}, {"type":"text","id":"label_1","label":"Label 1","default":"Family heritage since 1935"},
+      {"type":"text","id":"icon_2","label":"Icon 2","default":"💪"}, {"type":"text","id":"label_2","label":"Label 2","default":"Collagen peptides"},
+      {"type":"text","id":"icon_3","label":"Icon 3","default":"🥥"}, {"type":"text","id":"label_3","label":"Label 3","default":"Keto & paleo friendly"},
+      {"type":"text","id":"icon_4","label":"Icon 4","default":"🇺🇸"}, {"type":"text","id":"label_4","label":"Label 4","default":"Made in USA"},
+      {"type":"text","id":"icon_5","label":"Icon 5","default":"🌶️"}, {"type":"text","id":"label_5","label":"Label 5","default":"Real whole spices"},
+      {"type":"text","id":"icon_6","label":"Icon 6","default":"🧂"}, {"type":"text","id":"label_6","label":"Label 6","default":"Milled for a uniform blend"}
+    ]},
+    { "type": "tabs", "name": "Tabs accordion", "settings": [
+      {"type":"text","id":"tab1_title","label":"Tab 1 title","default":"Overview"}, {"type":"richtext","id":"tab1_body","label":"Tab 1 body"},
+      {"type":"text","id":"tab2_title","label":"Tab 2 title","default":"Tasting Notes"}, {"type":"richtext","id":"tab2_body","label":"Tab 2 body"},
+      {"type":"text","id":"tab3_title","label":"Tab 3 title","default":"Brewing"}, {"type":"richtext","id":"tab3_body","label":"Tab 3 body"},
+      {"type":"text","id":"tab4_title","label":"Tab 4 title","default":"FAQs"}, {"type":"richtext","id":"tab4_body","label":"Tab 4 body (use nested <details> for individual Q&As)"}
+    ]},
+    { "type": "ingredient_grid", "name": "Ingredient grid", "settings": [
+      {"type":"text","id":"heading","label":"Heading","default":"What's in the scoop"},
+      {"type":"text","id":"subhead","label":"Subhead","default":"Five ingredients. Nothing else."},
+      {"type":"image_picker","id":"img_1","label":"Card 1 image"}, {"type":"text","id":"title_1","label":"Title 1"}, {"type":"text","id":"body_1","label":"Body 1"},
+      {"type":"image_picker","id":"img_2","label":"Card 2 image"}, {"type":"text","id":"title_2","label":"Title 2"}, {"type":"text","id":"body_2","label":"Body 2"},
+      {"type":"image_picker","id":"img_3","label":"Card 3 image"}, {"type":"text","id":"title_3","label":"Title 3"}, {"type":"text","id":"body_3","label":"Body 3"},
+      {"type":"image_picker","id":"img_4","label":"Card 4 image"}, {"type":"text","id":"title_4","label":"Title 4"}, {"type":"text","id":"body_4","label":"Body 4"},
+      {"type":"image_picker","id":"img_5","label":"Card 5 image"}, {"type":"text","id":"title_5","label":"Title 5"}, {"type":"text","id":"body_5","label":"Body 5"},
+      {"type":"image_picker","id":"img_6","label":"Card 6 image"}, {"type":"text","id":"title_6","label":"Title 6"}, {"type":"text","id":"body_6","label":"Body 6"},
+      {"type":"text","id":"cta_label","label":"CTA label (optional)","default":"Try Spice Rush"},
+      {"type":"text","id":"cta_sub","label":"CTA sublabel","default":"Starting at $6.99"},
+      {"type":"url","id":"cta_link","label":"CTA link"}
+    ]},
+    { "type": "heritage", "name": "Heritage", "settings": [
+      {"type":"image_picker","id":"image","label":"Image"},
+      {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Heritage since 1935"},
+      {"type":"text","id":"heading","label":"Heading","default":"Four generations. One leaf."},
+      {"type":"richtext","id":"body","label":"Body"},
+      {"type":"text","id":"signature","label":"Signature","default":"— The TMolecule family"},
+      {"type":"text","id":"cta_label","label":"CTA label (optional)","default":"Taste the heritage"},
+      {"type":"text","id":"cta_sub","label":"CTA sublabel"},
+      {"type":"url","id":"cta_link","label":"CTA link"}
+    ]},
+    { "type": "compare", "name": "Compare table", "settings": [
+      {"type":"text","id":"heading","label":"Heading","default":"Spice Rush vs. the chai you've been buying"},
+      {"type":"text","id":"us_label","label":"Us column","default":"TMolecule Spice Rush"},
+      {"type":"text","id":"them_label","label":"Them column","default":"Typical Chai Latte Mix"},
+      {"type":"text","id":"ico_1","label":"Row 1 icon","default":"🍬"}, {"type":"text","id":"row_1","label":"Row 1"}, {"type":"text","id":"us_1","label":"Us 1"}, {"type":"text","id":"them_1","label":"Them 1"},
+      {"type":"text","id":"ico_2","label":"Row 2 icon","default":"💪"}, {"type":"text","id":"row_2","label":"Row 2"}, {"type":"text","id":"us_2","label":"Us 2"}, {"type":"text","id":"them_2","label":"Them 2"},
+      {"type":"text","id":"ico_3","label":"Row 3 icon","default":"🌶️"}, {"type":"text","id":"row_3","label":"Row 3"}, {"type":"text","id":"us_3","label":"Us 3"}, {"type":"text","id":"them_3","label":"Them 3"},
+      {"type":"text","id":"ico_4","label":"Row 4 icon","default":"🍃"}, {"type":"text","id":"row_4","label":"Row 4"}, {"type":"text","id":"us_4","label":"Us 4"}, {"type":"text","id":"them_4","label":"Them 4"},
+      {"type":"text","id":"ico_5","label":"Row 5 icon","default":"🥑"}, {"type":"text","id":"row_5","label":"Row 5"}, {"type":"text","id":"us_5","label":"Us 5"}, {"type":"text","id":"them_5","label":"Them 5"},
+      {"type":"text","id":"ico_6","label":"Row 6 icon","default":"👨‍👩‍👧"}, {"type":"text","id":"row_6","label":"Row 6"}, {"type":"text","id":"us_6","label":"Us 6"}, {"type":"text","id":"them_6","label":"Them 6"},
+      {"type":"text","id":"cta_label","label":"CTA label (optional)","default":"Make the switch"},
+      {"type":"text","id":"cta_sub","label":"CTA sublabel"},
+      {"type":"url","id":"cta_link","label":"CTA link"}
+    ]},
+    { "type": "editorial", "name": "Editorial block", "settings": [
+      {"type":"select","id":"band","label":"Band color","default":"deep-sand","options":[{"value":"cream","label":"Cream"},{"value":"sand","label":"Sand"},{"value":"honey","label":"Honey"},{"value":"deep-sand","label":"Deep sand"}]},
+      {"type":"image_picker","id":"image","label":"Image"},
+      {"type":"text","id":"eyebrow","label":"Eyebrow"},
+      {"type":"text","id":"heading","label":"Heading"},
+      {"type":"richtext","id":"body","label":"Body"},
+      {"type":"checkbox","id":"reverse","label":"Image on right","default":false}
+    ]},
+    { "type": "disclaimer", "name": "FDA disclaimer", "limit": 1, "settings": [
+      {"type":"textarea","id":"body","label":"Disclaimer text","default":"* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary."}
+    ]},
+    { "type": "reviews", "name": "Reviews", "limit": 1, "settings": [
+      {"type":"text","id":"heading","label":"Heading","default":"What sippers say"},
+      {"type":"textarea","id":"quote_1","label":"Quote 1"}, {"type":"text","id":"author_1","label":"Author 1"},
+      {"type":"textarea","id":"quote_2","label":"Quote 2"}, {"type":"text","id":"author_2","label":"Author 2"},
+      {"type":"textarea","id":"quote_3","label":"Quote 3"}, {"type":"text","id":"author_3","label":"Author 3"},
+      {"type":"text","id":"cta_label","label":"CTA label (optional)","default":"Join the ritual"},
+      {"type":"text","id":"cta_sub","label":"CTA sublabel"},
+      {"type":"url","id":"cta_link","label":"CTA link"}
+    ]}
+  ],
+  "presets": [
+    { "name":"TMolecule story", "blocks":[
+      {"type":"trust_marquee"},{"type":"tabs"},{"type":"ingredient_grid"},{"type":"heritage"},{"type":"compare"},
+      {"type":"editorial","settings":{"band":"deep-sand"}},{"type":"editorial","settings":{"band":"honey","reverse":true}},
+      {"type":"reviews"}
+    ]}
+  ]
+}
+{% endschema %}
