@@ -1,0 +1,307 @@
+{% comment %}
+  TMolecule product story section (drop-in, OS 2.0)
+  Installs below the default product buy-box to deliver a Lineage-Provisions-style editorial page.
+  All copy and imagery editable in the theme customizer via schema below.
+{% endcomment %}
+
+<section class="tm-story" id="tm-story-{{ section.id }}">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+
+    {%- when 'trust_row' -%}
+      <div class="tm-trust" {{ block.shopify_attributes }}>
+        {%- for i in (1..6) -%}
+          {%- assign icon = 'icon_' | append: i -%}
+          {%- assign label = 'label_' | append: i -%}
+          {%- if block.settings[label] != blank -%}
+            <div class="tm-trust__item">
+              {%- if block.settings[icon] != blank -%}
+                <img src="{{ block.settings[icon] | image_url: width: 80 }}" alt="" width="40" height="40" loading="lazy">
+              {%- endif -%}
+              <span>{{ block.settings[label] }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+    {%- when 'tabs' -%}
+      <div class="tm-tabs" {{ block.shopify_attributes }}>
+        <details open>
+          <summary>{{ block.settings.tab1_title | default: 'Overview' }}</summary>
+          <div class="tm-tabs__body rte">{{ block.settings.tab1_body }}</div>
+        </details>
+        <details>
+          <summary>{{ block.settings.tab2_title | default: 'Tasting Notes' }}</summary>
+          <div class="tm-tabs__body rte">{{ block.settings.tab2_body }}</div>
+        </details>
+        <details>
+          <summary>{{ block.settings.tab3_title | default: 'Brewing' }}</summary>
+          <div class="tm-tabs__body rte">{{ block.settings.tab3_body }}</div>
+        </details>
+        <details>
+          <summary>{{ block.settings.tab4_title | default: 'FAQs' }}</summary>
+          <div class="tm-tabs__body rte">{{ block.settings.tab4_body }}</div>
+        </details>
+      </div>
+
+    {%- when 'ingredient_grid' -%}
+      <div class="tm-ing" {{ block.shopify_attributes }}>
+        {%- if block.settings.heading != blank -%}
+          <h2 class="tm-h2">{{ block.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if block.settings.subhead != blank -%}
+          <p class="tm-sub">{{ block.settings.subhead }}</p>
+        {%- endif -%}
+        <div class="tm-ing__grid">
+          {%- for i in (1..6) -%}
+            {%- assign img = 'img_' | append: i -%}
+            {%- assign ttl = 'title_' | append: i -%}
+            {%- assign body = 'body_' | append: i -%}
+            {%- if block.settings[ttl] != blank -%}
+              <div class="tm-ing__card">
+                {%- if block.settings[img] != blank -%}
+                  <img src="{{ block.settings[img] | image_url: width: 600 }}" alt="" width="300" height="300" loading="lazy">
+                {%- endif -%}
+                <h3>{{ block.settings[ttl] }}</h3>
+                <p>{{ block.settings[body] }}</p>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+    {%- when 'heritage' -%}
+      <div class="tm-heritage" {{ block.shopify_attributes }}>
+        <div class="tm-heritage__media">
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 1400 }}" alt="{{ block.settings.image.alt | escape }}" width="1400" height="900" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="tm-heritage__copy">
+          <p class="tm-eyebrow">{{ block.settings.eyebrow | default: 'Family tea, since 1935' }}</p>
+          <h2 class="tm-h2">{{ block.settings.heading }}</h2>
+          <div class="rte">{{ block.settings.body }}</div>
+          {%- if block.settings.signature != blank -%}
+            <p class="tm-sig">{{ block.settings.signature }}</p>
+          {%- endif -%}
+        </div>
+      </div>
+
+    {%- when 'compare' -%}
+      <div class="tm-compare" {{ block.shopify_attributes }}>
+        {%- if block.settings.heading != blank -%}
+          <h2 class="tm-h2">{{ block.settings.heading }}</h2>
+        {%- endif -%}
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>{{ block.settings.us_label | default: 'TMolecule' }}</th>
+              <th>{{ block.settings.them_label | default: 'Typical Tea' }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for i in (1..6) -%}
+              {%- assign row = 'row_' | append: i -%}
+              {%- assign us = 'us_' | append: i -%}
+              {%- assign them = 'them_' | append: i -%}
+              {%- if block.settings[row] != blank -%}
+                <tr>
+                  <td>{{ block.settings[row] }}</td>
+                  <td class="tm-compare__us">{{ block.settings[us] }}</td>
+                  <td class="tm-compare__them">{{ block.settings[them] }}</td>
+                </tr>
+              {%- endif -%}
+            {%- endfor -%}
+          </tbody>
+        </table>
+      </div>
+
+    {%- when 'editorial' -%}
+      <div class="tm-ed {% if block.settings.reverse %}tm-ed--reverse{% endif %}" {{ block.shopify_attributes }}>
+        <div class="tm-ed__media">
+          {%- if block.settings.image != blank -%}
+            <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image.alt | escape }}" width="1200" height="800" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="tm-ed__copy">
+          {%- if block.settings.eyebrow != blank -%}<p class="tm-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+          <h2 class="tm-h2">{{ block.settings.heading }}</h2>
+          <div class="rte">{{ block.settings.body }}</div>
+        </div>
+      </div>
+
+    {%- when 'reviews' -%}
+      <div class="tm-reviews" {{ block.shopify_attributes }}>
+        {%- if block.settings.heading != blank -%}
+          <h2 class="tm-h2">{{ block.settings.heading }}</h2>
+        {%- endif -%}
+        <div class="tm-reviews__grid">
+          {%- for i in (1..3) -%}
+            {%- assign quote = 'quote_' | append: i -%}
+            {%- assign author = 'author_' | append: i -%}
+            {%- if block.settings[quote] != blank -%}
+              <blockquote>
+                <p>"{{ block.settings[quote] }}"</p>
+                <cite>— {{ block.settings[author] }}</cite>
+              </blockquote>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+    {%- endcase -%}
+  {%- endfor -%}
+</section>
+
+<style>
+  .tm-story { --tm-ink:#2b2a28; --tm-bg:#f6f1e7; --tm-accent:#7a5a2b; --tm-rule:#e3dbc9;
+    color:var(--tm-ink); background:var(--tm-bg); padding:48px 20px; font-family:Georgia, 'Times New Roman', serif; }
+  .tm-story > * + * { margin-top:64px; }
+  .tm-story .tm-h2 { font-size:clamp(28px, 4vw, 42px); line-height:1.15; letter-spacing:-.01em; margin:0 0 16px; }
+  .tm-story .tm-sub { max-width:60ch; margin:0 auto 24px; opacity:.75; }
+  .tm-story .tm-eyebrow { text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--tm-accent); margin:0 0 8px; font-family:system-ui,sans-serif; }
+  .tm-story .rte p { margin:0 0 12px; line-height:1.6; }
+
+  .tm-trust { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:16px; max-width:1100px; margin:0 auto; padding:24px; border-top:1px solid var(--tm-rule); border-bottom:1px solid var(--tm-rule); }
+  .tm-trust__item { display:flex; flex-direction:column; align-items:center; text-align:center; gap:8px; font-family:system-ui,sans-serif; font-size:13px; }
+
+  .tm-tabs { max-width:820px; margin:0 auto; }
+  .tm-tabs details { border-bottom:1px solid var(--tm-rule); }
+  .tm-tabs summary { font-size:18px; padding:18px 0; cursor:pointer; list-style:none; font-weight:600; }
+  .tm-tabs summary::-webkit-details-marker { display:none; }
+  .tm-tabs summary::after { content:'+'; float:right; font-size:24px; line-height:1; }
+  .tm-tabs details[open] summary::after { content:'–'; }
+  .tm-tabs__body { padding:0 0 24px; }
+
+  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; }
+  .tm-ing__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:32px; text-align:left; }
+  .tm-ing__card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:4px; margin-bottom:12px; }
+  .tm-ing__card h3 { font-size:20px; margin:0 0 6px; }
+  .tm-ing__card p { margin:0; line-height:1.55; opacity:.85; font-family:system-ui,sans-serif; font-size:15px; }
+
+  .tm-heritage { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .tm-heritage__media img { width:100%; height:auto; border-radius:4px; }
+  .tm-sig { font-style:italic; margin-top:16px; opacity:.75; }
+
+  .tm-compare { max-width:900px; margin:0 auto; text-align:center; }
+  .tm-compare table { width:100%; border-collapse:collapse; font-family:system-ui,sans-serif; font-size:15px; text-align:left; }
+  .tm-compare th, .tm-compare td { padding:14px; border-bottom:1px solid var(--tm-rule); }
+  .tm-compare thead th { font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:12px; }
+  .tm-compare__us { color:var(--tm-accent); font-weight:600; }
+  .tm-compare__them { opacity:.6; }
+
+  .tm-ed { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .tm-ed--reverse .tm-ed__media { order:2; }
+  .tm-ed__media img { width:100%; height:auto; border-radius:4px; }
+
+  .tm-reviews { max-width:1100px; margin:0 auto; text-align:center; }
+  .tm-reviews__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; text-align:left; }
+  .tm-reviews blockquote { margin:0; padding:24px; background:#fff; border-radius:4px; border:1px solid var(--tm-rule); }
+  .tm-reviews blockquote p { margin:0 0 12px; font-size:17px; line-height:1.5; }
+  .tm-reviews cite { font-style:normal; opacity:.7; font-size:14px; font-family:system-ui,sans-serif; }
+
+  @media (max-width:749px) {
+    .tm-heritage, .tm-ed { grid-template-columns:1fr; gap:24px; }
+    .tm-ed--reverse .tm-ed__media { order:0; }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "TMolecule product story",
+  "tag": "section",
+  "class": "section-tm-story",
+  "enabled_on": { "templates": ["product"] },
+  "settings": [],
+  "blocks": [
+    { "type": "trust_row", "name": "Trust badges row", "limit": 1,
+      "settings": [
+        { "type":"image_picker","id":"icon_1","label":"Icon 1" }, { "type":"text","id":"label_1","label":"Label 1","default":"Since 1935" },
+        { "type":"image_picker","id":"icon_2","label":"Icon 2" }, { "type":"text","id":"label_2","label":"Label 2","default":"Single-origin" },
+        { "type":"image_picker","id":"icon_3","label":"Icon 3" }, { "type":"text","id":"label_3","label":"Label 3","default":"Small-batch" },
+        { "type":"image_picker","id":"icon_4","label":"Icon 4" }, { "type":"text","id":"label_4","label":"Label 4","default":"Whole-leaf" },
+        { "type":"image_picker","id":"icon_5","label":"Icon 5" }, { "type":"text","id":"label_5","label":"Label 5","default":"Third-party tested" },
+        { "type":"image_picker","id":"icon_6","label":"Icon 6" }, { "type":"text","id":"label_6","label":"Label 6","default":"Shipped in 48h" }
+      ]
+    },
+    { "type": "tabs", "name": "Tabs (overview / tasting / brewing / FAQ)", "limit": 1,
+      "settings": [
+        { "type":"text","id":"tab1_title","label":"Tab 1 title","default":"Overview" },
+        { "type":"richtext","id":"tab1_body","label":"Tab 1 body" },
+        { "type":"text","id":"tab2_title","label":"Tab 2 title","default":"Tasting Notes" },
+        { "type":"richtext","id":"tab2_body","label":"Tab 2 body" },
+        { "type":"text","id":"tab3_title","label":"Tab 3 title","default":"Brewing" },
+        { "type":"richtext","id":"tab3_body","label":"Tab 3 body" },
+        { "type":"text","id":"tab4_title","label":"Tab 4 title","default":"FAQs" },
+        { "type":"richtext","id":"tab4_body","label":"Tab 4 body" }
+      ]
+    },
+    { "type": "ingredient_grid", "name": "Ingredient spotlight grid", "limit": 1,
+      "settings": [
+        { "type":"text","id":"heading","label":"Heading","default":"What's in the cup" },
+        { "type":"text","id":"subhead","label":"Subhead","default":"Single-origin leaves, nothing added." },
+        { "type":"image_picker","id":"img_1","label":"Card 1 image" }, { "type":"text","id":"title_1","label":"Card 1 title" }, { "type":"text","id":"body_1","label":"Card 1 body" },
+        { "type":"image_picker","id":"img_2","label":"Card 2 image" }, { "type":"text","id":"title_2","label":"Card 2 title" }, { "type":"text","id":"body_2","label":"Card 2 body" },
+        { "type":"image_picker","id":"img_3","label":"Card 3 image" }, { "type":"text","id":"title_3","label":"Card 3 title" }, { "type":"text","id":"body_3","label":"Card 3 body" },
+        { "type":"image_picker","id":"img_4","label":"Card 4 image" }, { "type":"text","id":"title_4","label":"Card 4 title" }, { "type":"text","id":"body_4","label":"Card 4 body" },
+        { "type":"image_picker","id":"img_5","label":"Card 5 image" }, { "type":"text","id":"title_5","label":"Card 5 title" }, { "type":"text","id":"body_5","label":"Card 5 body" },
+        { "type":"image_picker","id":"img_6","label":"Card 6 image" }, { "type":"text","id":"title_6","label":"Card 6 title" }, { "type":"text","id":"body_6","label":"Card 6 body" }
+      ]
+    },
+    { "type": "heritage", "name": "Heritage story",
+      "settings": [
+        { "type":"image_picker","id":"image","label":"Image" },
+        { "type":"text","id":"eyebrow","label":"Eyebrow","default":"Family tea, since 1935" },
+        { "type":"text","id":"heading","label":"Heading","default":"Three generations. One leaf." },
+        { "type":"richtext","id":"body","label":"Body" },
+        { "type":"text","id":"signature","label":"Signature line" }
+      ]
+    },
+    { "type": "compare", "name": "Us vs. Them table", "limit": 1,
+      "settings": [
+        { "type":"text","id":"heading","label":"Heading","default":"TMolecule vs. the bag in your pantry" },
+        { "type":"text","id":"us_label","label":"Us column","default":"TMolecule" },
+        { "type":"text","id":"them_label","label":"Them column","default":"Typical Tea" },
+        { "type":"text","id":"row_1","label":"Row 1" }, { "type":"text","id":"us_1","label":"Us 1" }, { "type":"text","id":"them_1","label":"Them 1" },
+        { "type":"text","id":"row_2","label":"Row 2" }, { "type":"text","id":"us_2","label":"Us 2" }, { "type":"text","id":"them_2","label":"Them 2" },
+        { "type":"text","id":"row_3","label":"Row 3" }, { "type":"text","id":"us_3","label":"Us 3" }, { "type":"text","id":"them_3","label":"Them 3" },
+        { "type":"text","id":"row_4","label":"Row 4" }, { "type":"text","id":"us_4","label":"Us 4" }, { "type":"text","id":"them_4","label":"Them 4" },
+        { "type":"text","id":"row_5","label":"Row 5" }, { "type":"text","id":"us_5","label":"Us 5" }, { "type":"text","id":"them_5","label":"Them 5" },
+        { "type":"text","id":"row_6","label":"Row 6" }, { "type":"text","id":"us_6","label":"Us 6" }, { "type":"text","id":"them_6","label":"Them 6" }
+      ]
+    },
+    { "type": "editorial", "name": "Editorial image-text block",
+      "settings": [
+        { "type":"image_picker","id":"image","label":"Image" },
+        { "type":"text","id":"eyebrow","label":"Eyebrow" },
+        { "type":"text","id":"heading","label":"Heading" },
+        { "type":"richtext","id":"body","label":"Body" },
+        { "type":"checkbox","id":"reverse","label":"Reverse layout (image right)","default":false }
+      ]
+    },
+    { "type": "reviews", "name": "Featured reviews", "limit": 1,
+      "settings": [
+        { "type":"text","id":"heading","label":"Heading","default":"What sippers say" },
+        { "type":"textarea","id":"quote_1","label":"Quote 1" }, { "type":"text","id":"author_1","label":"Author 1" },
+        { "type":"textarea","id":"quote_2","label":"Quote 2" }, { "type":"text","id":"author_2","label":"Author 2" },
+        { "type":"textarea","id":"quote_3","label":"Quote 3" }, { "type":"text","id":"author_3","label":"Author 3" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "TMolecule product story",
+      "blocks": [
+        { "type": "trust_row" },
+        { "type": "tabs" },
+        { "type": "ingredient_grid" },
+        { "type": "heritage" },
+        { "type": "compare" },
+        { "type": "editorial" },
+        { "type": "editorial", "settings": { "reverse": true } },
+        { "type": "reviews" }
+      ]
+    }
+  ]
+}
+{% endschema %}
