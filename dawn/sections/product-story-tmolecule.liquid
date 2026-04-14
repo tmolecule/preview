@@ -154,6 +154,38 @@
           </div>
         </div>
 
+      {%- when 'video' -%}
+        <div class="tm-band tm-band--{{ block.settings.band | default: 'cream' }}" {{ block.shopify_attributes }}>
+          <div class="tm-video">
+            {%- if block.settings.eyebrow != blank -%}<p class="tm-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.youtube_id != blank -%}
+              <div class="tm-video__wrap">
+                <iframe
+                  src="https://www.youtube.com/embed/{{ block.settings.youtube_id }}?rel=0&modestbranding=1"
+                  title="{{ block.settings.heading | default: product.title | escape }}"
+                  loading="lazy"
+                  frameborder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
+              </div>
+              <script type="application/ld+json">
+              {
+                "@context": "https://schema.org",
+                "@type": "VideoObject",
+                "name": {{ block.settings.heading | default: product.title | json }},
+                "description": {{ block.settings.description | default: product.description | strip_html | truncate: 300 | json }},
+                "thumbnailUrl": "https://i.ytimg.com/vi/{{ block.settings.youtube_id }}/maxresdefault.jpg",
+                "uploadDate": "{{ 'now' | date: '%Y-%m-%d' }}",
+                "embedUrl": "https://www.youtube.com/embed/{{ block.settings.youtube_id }}",
+                "contentUrl": "https://youtu.be/{{ block.settings.youtube_id }}"
+              }
+              </script>
+            {%- endif -%}
+          </div>
+        </div>
+
       {%- when 'disclaimer' -%}
         <div class="tm-band tm-band--espresso" {{ block.shopify_attributes }}>
           <div class="tm-disclaimer">
@@ -232,6 +264,13 @@
       {"type":"text","id":"heading","label":"Heading"},
       {"type":"richtext","id":"body","label":"Body"},
       {"type":"checkbox","id":"reverse","label":"Image on right","default":false}
+    ]},
+    { "type": "video", "name": "Product video", "settings": [
+      {"type":"select","id":"band","label":"Band color","default":"cream","options":[{"value":"cream","label":"Cream"},{"value":"sand","label":"Sand"},{"value":"honey","label":"Honey"},{"value":"deep-sand","label":"Deep sand"},{"value":"espresso","label":"Espresso"}]},
+      {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Watch"},
+      {"type":"text","id":"heading","label":"Heading","default":"See Spice Rush in action"},
+      {"type":"text","id":"youtube_id","label":"YouTube video ID","info":"e.g. 'J4kd87FJFvY' from https://youtu.be/J4kd87FJFvY"},
+      {"type":"textarea","id":"description","label":"SEO description (for VideoObject schema)"}
     ]},
     { "type": "disclaimer", "name": "FDA disclaimer", "limit": 1, "settings": [
       {"type":"textarea","id":"body","label":"Disclaimer text","default":"* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary."}

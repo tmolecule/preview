@@ -79,6 +79,16 @@
             "cta_sub": "$6.99 · ships today"
           }
         },
+        "video": {
+          "type": "video",
+          "settings": {
+            "band": "cream",
+            "eyebrow": "Watch",
+            "heading": "See Spice Rush in action",
+            "youtube_id": "J4kd87FJFvY",
+            "description": "Spice Rush Collagen Black Tea by TMolecule — bold milled black tea blended with hydrolyzed collagen peptides, ginger, Ceylon cinnamon, and green cardamom. One scoop, hot water, stir."
+          }
+        },
         "compare": {
           "type": "compare",
           "settings": {
@@ -136,7 +146,7 @@
           }
         }
       },
-      "block_order": ["trust","tabs","ingredients","heritage","compare","ed1","ed2","reviews","disclaimer"]
+      "block_order": ["trust","tabs","ingredients","heritage","video","compare","ed1","ed2","reviews","disclaimer"]
     },
     "sticky": {
       "type": "sticky-cta-tmolecule",

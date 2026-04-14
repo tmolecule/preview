@@ -225,6 +225,10 @@
   .tm-footer__social a:hover { background:rgba(255,255,255,.15); }
   .tm-footer__disclaimer { max-width:1200px; margin:40px auto 0; padding-top:24px; border-top:1px solid rgba(212,198,154,.2); font-size:11px; line-height:1.6; color:rgba(255,255,255,.55); letter-spacing:.02em; }
   .tm-footer__disclaimer p { margin:0; }
+  .tm-video { max-width:1100px; margin:0 auto; padding:64px 24px; text-align:center; }
+  .tm-video .tm-h2 { margin:8px 0 32px; }
+  .tm-video__wrap { position:relative; width:100%; padding-bottom:56.25%; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(74,55,24,.18); }
+  .tm-video__wrap iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
   .tm-footer__bottom { max-width:1200px; margin:16px auto 0; padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; }
   .tm-footer__pay { display:flex; gap:8px; flex-wrap:wrap; }
   .tm-footer__pay span { padding:4px 8px; background:rgba(255,255,255,.1); border-radius:3px; font-size:11px; letter-spacing:.04em; }
@@ -407,6 +411,29 @@
       <p class="tm-sig">— The TMolecule family</p>
       <div class="tm-cta-wrap" style="text-align:left;"><a href="#top" class="tm-inline-cta">Taste the heritage<span class="tm-inline-cta__sub">$6.99 · ships today</span></a></div>
     </div>
+  </div>
+  </div>
+
+  <!-- video -->
+  <div class="tm-band tm-band--cream">
+  <div class="tm-video">
+    <p class="tm-eyebrow">Watch</p>
+    <h2 class="tm-h2">See Spice Rush in action</h2>
+    <div class="tm-video__wrap">
+      <iframe src="https://www.youtube.com/embed/J4kd87FJFvY?rel=0&modestbranding=1" title="Spice Rush Collagen Black Tea" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "See Spice Rush in action",
+      "description": "Spice Rush Collagen Black Tea by TMolecule — bold milled black tea blended with hydrolyzed collagen peptides, ginger, Ceylon cinnamon, and green cardamom.",
+      "thumbnailUrl": "https://i.ytimg.com/vi/J4kd87FJFvY/maxresdefault.jpg",
+      "uploadDate": "2026-04-14",
+      "embedUrl": "https://www.youtube.com/embed/J4kd87FJFvY",
+      "contentUrl": "https://youtu.be/J4kd87FJFvY"
+    }
+    </script>
   </div>
   </div>
 
