@@ -133,7 +133,8 @@
   .tm-ed__media img { width:100%; height:auto; object-fit:contain; border-radius:4px; display:block; }
 
   .tm-reviews { max-width:1100px; margin:0 auto; text-align:center; }
-  .tm-reviews__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:24px; text-align:left; }
+  .tm-reviews__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:left; }
+  @media (max-width:900px) { .tm-reviews__grid { grid-template-columns:1fr; } }
   .tm-reviews blockquote { margin:0; padding:24px; background:#fff; border-radius:4px; border:1px solid var(--tm-rule); }
   .tm-reviews blockquote p { margin:0 0 12px; font-size:17px; line-height:1.5; }
   .tm-reviews cite { font-style:normal; opacity:.7; font-size:14px; font-family:system-ui,sans-serif; }
@@ -143,12 +144,23 @@
   .thumb-img { width:80px; height:80px; object-fit:contain; border-radius:4px; border:1px solid #e3dbc9; cursor:pointer; background:#ede4cf; padding:4px; }
   .thumb-img.active { border:2px solid #7a5a2b; }
 
-  /* Sticky mobile CTA bar */
-  .sticky-cta { display:none; position:fixed; bottom:0; left:0; right:0; z-index:50; background:#faf3e0; border-top:1px solid var(--tm-rule); padding:12px 16px; box-shadow:0 -8px 24px rgba(74,55,24,.12); align-items:center; gap:12px; }
+  /* Inline section CTAs */
+  .tm-cta-wrap { text-align:center; margin-top:40px; }
+  .tm-inline-cta { display:inline-block; padding:16px 40px; background:linear-gradient(135deg,#a8532a 0%,#7a3a1a 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:15px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; box-shadow:0 4px 14px rgba(168,83,42,.35); transition:transform .15s ease, box-shadow .15s ease; text-decoration:none; }
+  .tm-inline-cta:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(168,83,42,.45); }
+  .tm-inline-cta__sub { display:block; font-size:11px; font-weight:500; letter-spacing:.1em; opacity:.85; margin-top:4px; }
+  .tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#d4b97a 0%,#a8852a 100%); color:#2a1f10; }
+
+  /* Sticky CTA bar (all screens — Lineage-style) */
+  .sticky-cta { display:flex; position:fixed; bottom:0; left:0; right:0; z-index:50; background:#faf3e0; border-top:1px solid var(--tm-rule); padding:14px 24px; box-shadow:0 -8px 24px rgba(74,55,24,.15); align-items:center; gap:16px; transform:translateY(100%); transition:transform .35s cubic-bezier(.4,0,.2,1); }
+  .sticky-cta.is-visible { transform:translateY(0); }
+  .sticky-cta__thumb { width:52px; height:52px; border-radius:6px; object-fit:cover; background:#ede4cf; flex-shrink:0; }
   .sticky-cta__info { flex:1; min-width:0; }
   .sticky-cta__name { font-family:var(--tm-sans); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--tm-accent-dark); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .sticky-cta__price { font-family:var(--tm-serif); font-size:20px; font-weight:700; color:var(--tm-ink); margin:2px 0 0; }
-  .sticky-cta__btn { padding:14px 22px; background:linear-gradient(135deg,#a8532a 0%,#7a3a1a 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; box-shadow:0 3px 10px rgba(168,83,42,.35); white-space:nowrap; }
+  .sticky-cta__price small { font-family:var(--tm-sans); font-size:12px; font-weight:500; opacity:.7; margin-left:6px; }
+  .sticky-cta__btn { padding:14px 28px; background:linear-gradient(135deg,#a8532a 0%,#7a3a1a 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; box-shadow:0 3px 10px rgba(168,83,42,.35); white-space:nowrap; transition:transform .15s ease, box-shadow .15s ease; }
+  .sticky-cta__btn:hover { transform:translateY(-1px); box-shadow:0 5px 14px rgba(168,83,42,.45); }
 
   @media (max-width:900px) {
     .buybox { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
@@ -181,9 +193,11 @@
     .bb span { font-size:10px; }
     .buybox__hero { padding:16px; }
     .tm-footer__bottom { flex-direction:column; text-align:center; }
-    body { padding-bottom:80px; }
-    .sticky-cta { display:flex; }
+    .sticky-cta { padding:10px 14px; gap:10px; }
+    .sticky-cta__thumb { width:44px; height:44px; }
+    .sticky-cta__btn { padding:12px 18px; font-size:13px; }
   }
+  body { padding-bottom:88px; }
 
   /* Footer */
   .tm-footer { background:linear-gradient(180deg,#5a4322 0%,#3e2d15 100%); color:#e8d5a8; padding:64px 20px 32px; font-family:var(--tm-sans); }
@@ -369,6 +383,7 @@
       <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_6_hdjegg.jpg" alt=""><h3>Green Cardamom</h3><p>Whole pods ground for the bright, floral lift that turns a chai from flat to alive. Never pre-ground.</p></div>
       <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_7_pwb57m.jpg" alt=""><h3>Milled</h3><p>The tea leaves are milled to an ultra-fine powder, then blended evenly with the spices and collagen peptides. Every scoop delivers the same balanced mix — tea, spice, and protein in one consistent cup.</p></div>
     </div>
+    <div class="tm-cta-wrap"><a href="#top" class="tm-inline-cta">Try Spice Rush<span class="tm-inline-cta__sub">Starting at $6.99</span></a></div>
   </div>
   </div>
 
@@ -384,6 +399,7 @@
         <p>Spice Rush is what happens when four generations of tea obsession meet a modern life. We took a classic spiced black-tea ritual, milled the leaf so you can actually drink it in under a minute, and added collagen peptides so one cup earns its keep.</p>
       </div>
       <p class="tm-sig">— The TMolecule family</p>
+      <div class="tm-cta-wrap" style="text-align:left;"><a href="#top" class="tm-inline-cta">Taste the heritage<span class="tm-inline-cta__sub">$6.99 · ships today</span></a></div>
     </div>
   </div>
   </div>
@@ -403,6 +419,7 @@
         <tr><td><span class="tm-compare__ico">👨‍👩‍👧</span>Heritage</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Heritage since 1935</td><td class="tm-compare__them"><span class="tm-no">✕</span>A marketing department</td></tr>
       </tbody>
     </table>
+    <div class="tm-cta-wrap"><a href="#top" class="tm-inline-cta">Make the switch<span class="tm-inline-cta__sub">$6.99 · one scoop, one cup</span></a></div>
   </div>
   </div>
 
@@ -439,6 +456,7 @@
       <blockquote><p>"Tastes like real chai, not a sugar bomb. My daily cup. The cardamom is so bright."</p><cite>— David R., verified buyer</cite></blockquote>
       <blockquote><p>"30 seconds to brew, no strainer, no mess. Finally a clean-label collagen drink I actually enjoy."</p><cite>— Aisha K., verified buyer</cite></blockquote>
     </div>
+    <div class="tm-cta-wrap"><a href="#top" class="tm-inline-cta">Join the ritual<span class="tm-inline-cta__sub">$6.99 · free shipping over $35</span></a></div>
   </div>
   </div>
 
@@ -495,11 +513,12 @@
   </div>
 </footer>
 
-<!-- STICKY MOBILE CTA -->
+<!-- STICKY CTA (Lineage-style, appears after buy-box scrolls out) -->
 <div class="sticky-cta" id="stickyCta">
+  <img class="sticky-cta__thumb" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_120,h_120,c_fill/Copy_of_Artboard_1_ldyjej.jpg" alt="">
   <div class="sticky-cta__info">
-    <p class="sticky-cta__name">Spice Rush · Collagen Tea</p>
-    <p class="sticky-cta__price">$6.99</p>
+    <p class="sticky-cta__name">Spice Rush · Collagen Tea Blend</p>
+    <p class="sticky-cta__price">$6.99<small>one pack · free ship over $35</small></p>
   </div>
   <button class="sticky-cta__btn">Add to cart</button>
 </div>
@@ -514,6 +533,19 @@
         hero.src = t.dataset.full;
       });
     });
+
+    var sticky = document.getElementById('stickyCta');
+    var trigger = document.querySelector('.buybox__cta');
+    if (sticky && trigger && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          sticky.classList.toggle('is-visible', !e.isIntersecting);
+        });
+      }, { rootMargin: '0px 0px -40% 0px' });
+      io.observe(trigger);
+    } else if (sticky) {
+      sticky.classList.add('is-visible');
+    }
   })();
 </script>
 
