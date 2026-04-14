@@ -1,0 +1,53 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar-tmolecule",
+      "blocks": {
+        "m1": { "type": "message", "settings": { "message": "🚚 Free shipping on orders over $35" } },
+        "m2": { "type": "message", "settings": { "message": "⚡ Same-day shipping for orders before 12pm ET" } }
+      },
+      "block_order": ["m1", "m2"]
+    },
+    "main": {
+      "type": "main-product-tmolecule",
+      "settings": {
+        "label": "🔥 BESTSELLER",
+        "subheadline": "Revitalizing energy, built on 90 years of family tea. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.",
+        "show_rating": true,
+        "rating_text": "4.8 · 216 reviews",
+        "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
+        "show_subscribe_toggle": true
+      },
+      "blocks": {
+        "b1": { "type": "badge", "settings": { "icon": "✨", "label": "Just<br>Launched" } },
+        "b2": { "type": "badge", "settings": { "icon": "🇺🇸", "label": "Made in<br>USA" } },
+        "b3": { "type": "badge", "settings": { "icon": "🚫", "label": "No<br>Sugar" } },
+        "b4": { "type": "badge", "settings": { "icon": "🥑", "label": "Keto<br>Friendly" } },
+        "b5": { "type": "badge", "settings": { "icon": "🥩", "label": "Paleo<br>Friendly" } },
+        "b6": { "type": "badge", "settings": { "icon": "🌾", "label": "Gluten<br>Free" } },
+        "b7": { "type": "badge", "settings": { "icon": "🌱", "label": "Non<br>GMO" } },
+        "b8": { "type": "badge", "settings": { "icon": "🚚", "label": "Fast<br>Shipping" } }
+      },
+      "block_order": ["b1","b2","b3","b4","b5","b6","b7","b8"]
+    },
+    "story": {
+      "type": "product-story-tmolecule",
+      "blocks": {
+        "trust": { "type": "trust_marquee" },
+        "tabs": { "type": "tabs" },
+        "ingredients": { "type": "ingredient_grid" },
+        "heritage": { "type": "heritage" },
+        "compare": { "type": "compare" },
+        "ed1": { "type": "editorial", "settings": { "band": "deep-sand", "eyebrow": "The ritual", "heading": "One scoop. Near-boiling. Done.", "reverse": false } },
+        "ed2": { "type": "editorial", "settings": { "band": "honey", "eyebrow": "Why collagen", "heading": "The most useful tea you'll drink all day", "reverse": true } },
+        "reviews": { "type": "reviews" }
+      },
+      "block_order": ["trust","tabs","ingredients","heritage","compare","ed1","ed2","reviews"]
+    },
+    "sticky": {
+      "type": "sticky-cta-tmolecule",
+      "settings": { "cta_label": "Add to cart", "ship_note": "free ship over $35" }
+    }
+  },
+  "order": ["announcement", "main", "story", "sticky"]
+}

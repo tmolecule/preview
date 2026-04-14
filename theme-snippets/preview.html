@@ -109,7 +109,11 @@
   .tm-faq summary::after { font-size:20px; }
   .tm-faq .rte { padding:0 0 14px; font-family:var(--tm-sans); font-size:14px; }
 
-  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; }
+  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; position:relative; }
+  .tm-ing__flourish { position:absolute; pointer-events:none; opacity:.1; color:#3a2d1a; width:240px; height:auto; z-index:0; }
+  .tm-ing__flourish--tl { top:-40px; left:-30px; transform:rotate(-18deg); }
+  .tm-ing__flourish--br { bottom:-40px; right:-30px; transform:rotate(162deg); }
+  .tm-ing > * { position:relative; z-index:1; }
   .tm-ing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:left; }
   @media (max-width:900px) { .tm-ing__grid { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px) { .tm-ing__grid { grid-template-columns:1fr; } }
@@ -376,6 +380,8 @@
   <!-- ingredient grid -->
   <div class="tm-band tm-band--sand">
   <div class="tm-ing">
+    <svg class="tm-ing__flourish tm-ing__flourish--tl" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path d="M100 20c-30 10-55 35-65 70-5 20-3 42 8 60 3-22 14-44 33-60 14-12 30-22 42-36 0 0 4-24-18-34zm0 8c12 4 13 18 13 26-10 12-24 20-36 30-18 16-28 36-32 56-6-14-6-30-2-46 10-30 32-54 57-66z"/><path d="M60 130c-6 14-12 28-14 44 12-6 23-16 30-29 10-18 12-38 12-60-14 14-22 30-28 45z"/></g></svg>
+    <svg class="tm-ing__flourish tm-ing__flourish--br" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="currentColor"><path d="M100 20c-30 10-55 35-65 70-5 20-3 42 8 60 3-22 14-44 33-60 14-12 30-22 42-36 0 0 4-24-18-34zm0 8c12 4 13 18 13 26-10 12-24 20-36 30-18 16-28 36-32 56-6-14-6-30-2-46 10-30 32-54 57-66z"/><path d="M60 130c-6 14-12 28-14 44 12-6 23-16 30-29 10-18 12-38 12-60-14 14-22 30-28 45z"/></g></svg>
     <h2 class="tm-h2">What's in the scoop</h2>
     <p class="tm-sub">Five ingredients. Nothing else. No sugar, no starch, no fillers, no natural-flavors mystery blend.</p>
     <div class="tm-ing__grid">
