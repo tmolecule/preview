@@ -143,10 +143,46 @@
   .thumb-img { width:80px; height:80px; object-fit:contain; border-radius:4px; border:1px solid #e3dbc9; cursor:pointer; background:#ede4cf; padding:4px; }
   .thumb-img.active { border:2px solid #7a5a2b; }
 
+  /* Sticky mobile CTA bar */
+  .sticky-cta { display:none; position:fixed; bottom:0; left:0; right:0; z-index:50; background:#faf3e0; border-top:1px solid var(--tm-rule); padding:12px 16px; box-shadow:0 -8px 24px rgba(74,55,24,.12); align-items:center; gap:12px; }
+  .sticky-cta__info { flex:1; min-width:0; }
+  .sticky-cta__name { font-family:var(--tm-sans); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--tm-accent-dark); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sticky-cta__price { font-family:var(--tm-serif); font-size:20px; font-weight:700; color:var(--tm-ink); margin:2px 0 0; }
+  .sticky-cta__btn { padding:14px 22px; background:linear-gradient(135deg,#a8532a 0%,#7a3a1a 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; box-shadow:0 3px 10px rgba(168,83,42,.35); white-space:nowrap; }
+
   @media (max-width:900px) {
-    .buybox { grid-template-columns:1fr; }
+    .buybox { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
     .tm-heritage, .tm-ed { grid-template-columns:1fr; gap:24px; }
     .tm-ed--reverse .tm-ed__media { order:0; }
+    .site-header { padding:16px 16px; }
+    .site-header__brand { font-size:22px; }
+    .site-header__logo img { height:40px; }
+    .buybox__thumbs { flex-direction:row; flex-wrap:wrap; }
+    .buybox__gallery { grid-template-columns:1fr; }
+    .tm-band { padding:56px 16px; }
+    .tm-ing__grid { grid-template-columns:repeat(2,1fr); gap:20px; }
+    .tm-compare table { font-size:13px; }
+    .tm-compare th, .tm-compare td { padding:10px 6px; }
+    .tm-compare__ico { width:26px; height:26px; font-size:13px; margin-right:6px; }
+    .tm-yes, .tm-no { width:18px; height:18px; font-size:11px; margin-right:6px; }
+    .ann__item { font-size:11px; }
+    .tm-trust__item { font-size:13px; }
+  }
+  @media (max-width:560px) {
+    .site-header { grid-template-columns:auto 1fr; padding:14px 14px; }
+    .site-header__brand { font-size:20px; }
+    .site-header__spacer { display:none; }
+    .buybox__info h1 { font-size:26px; }
+    .buybox__opts { flex-wrap:wrap; }
+    .buybox__opts button { flex:1 1 calc(50% - 4px); font-size:13px; padding:10px 8px; }
+    .tm-ing__grid { grid-template-columns:1fr; }
+    .buybox__badges { grid-template-columns:repeat(4,1fr); gap:10px 6px; }
+    .bb__icon { width:40px; height:40px; font-size:18px; }
+    .bb span { font-size:10px; }
+    .buybox__hero { padding:16px; }
+    .tm-footer__bottom { flex-direction:column; text-align:center; }
+    body { padding-bottom:80px; }
+    .sticky-cta { display:flex; }
   }
 
   /* Footer */
@@ -458,6 +494,15 @@
     </div>
   </div>
 </footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" id="stickyCta">
+  <div class="sticky-cta__info">
+    <p class="sticky-cta__name">Spice Rush · Collagen Tea</p>
+    <p class="sticky-cta__price">$6.99</p>
+  </div>
+  <button class="sticky-cta__btn">Add to cart</button>
+</div>
 
 <script>
   (function(){
