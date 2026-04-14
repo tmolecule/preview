@@ -109,10 +109,10 @@
   .tm-faq summary::after { font-size:20px; }
   .tm-faq .rte { padding:0 0 14px; font-family:var(--tm-sans); font-size:14px; }
 
-  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; position:relative; padding-top:70px; }
-  .tm-steam { position:absolute; top:-20px; left:50%; transform:translateX(-50%); width:min(92%,1000px); height:110px; pointer-events:none; z-index:0; opacity:.55; }
-  .tm-steam svg { width:100%; height:100%; display:block; }
-  .tm-ing > *:not(.tm-steam) { position:relative; z-index:1; }
+  .tm-band--sand:has(.tm-ing) { position:relative; overflow:hidden; padding-top:120px; }
+  .tm-grass-banner { position:absolute; top:0; left:0; right:0; width:100%; height:auto; pointer-events:none; z-index:0; display:block; color:#2a1f10; }
+  .tm-grass-banner svg { width:100%; height:auto; display:block; }
+  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; position:relative; z-index:1; }
   .tm-ing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:left; }
   @media (max-width:900px) { .tm-ing__grid { grid-template-columns:repeat(2,1fr); } }
   @media (max-width:560px) { .tm-ing__grid { grid-template-columns:1fr; } }
@@ -378,25 +378,31 @@
 
   <!-- ingredient grid -->
   <div class="tm-band tm-band--sand">
+  <div class="tm-grass-banner" aria-hidden="true">
+    <svg viewBox="0 0 1800 98" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="currentColor" d="M0 60 L 0 98 L 1800 98 L 1800 60
+        C 1780 60 1775 54 1770 48 L 1765 60
+        C 1750 60 1748 45 1745 32 L 1740 40 C 1735 30 1732 42 1730 50 L 1725 48 C 1720 55 1718 58 1715 60
+        L 1700 60 C 1695 50 1692 38 1690 26 L 1685 35 C 1680 25 1677 40 1673 48 L 1668 58 L 1655 60
+        C 1640 60 1635 50 1630 36 L 1625 48 C 1618 38 1612 46 1608 55 L 1600 60
+        L 1560 60 C 1555 48 1548 30 1540 18 L 1530 28 C 1522 20 1516 32 1510 44 L 1502 54 C 1495 46 1490 50 1485 58 L 1478 60
+        L 1430 60 C 1425 52 1418 38 1412 28 L 1405 38 C 1398 28 1392 40 1388 50 L 1380 58 L 1370 60
+        L 1330 60 C 1320 60 1315 48 1308 32 L 1300 44 C 1292 34 1285 46 1280 56 L 1272 60
+        L 1220 60 C 1215 50 1208 35 1200 22 L 1192 32 C 1185 22 1178 36 1172 46 L 1165 56 L 1155 60
+        L 1100 60 C 1095 52 1088 40 1080 28 L 1072 38 C 1065 28 1058 42 1053 52 L 1045 60
+        L 1000 60 C 990 60 984 46 976 30 L 968 42 C 960 32 954 44 948 54 L 940 60
+        L 890 60 C 884 50 876 32 868 20 L 858 32 C 850 22 842 36 836 46 L 828 56 L 820 60
+        L 770 60 C 764 50 758 38 750 26 L 742 36 C 734 26 728 40 722 50 L 714 58 L 705 60
+        L 660 60 C 654 52 647 38 640 26 L 632 36 C 624 26 618 40 612 50 L 604 58 L 595 60
+        L 550 60 C 540 60 534 44 528 30 L 518 42 C 510 32 504 44 498 54 L 490 60
+        L 440 60 C 432 50 424 32 416 20 L 406 32 C 398 22 390 36 384 46 L 376 56 L 368 60
+        L 320 60 C 314 50 308 38 300 26 L 292 36 C 284 26 278 40 272 50 L 264 58 L 255 60
+        L 210 60 C 204 52 197 38 190 26 L 182 36 C 174 26 168 40 162 50 L 154 58 L 145 60
+        L 100 60 C 92 60 85 48 78 34 L 70 44 C 62 36 56 46 50 55 L 42 60
+        L 0 60 Z"/>
+    </svg>
+  </div>
   <div class="tm-ing">
-    <div class="tm-steam" aria-hidden="true">
-      <svg viewBox="0 0 1000 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="steamFade" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#7a5a2b" stop-opacity="0"/>
-            <stop offset="15%" stop-color="#7a5a2b" stop-opacity=".85"/>
-            <stop offset="85%" stop-color="#7a5a2b" stop-opacity=".85"/>
-            <stop offset="100%" stop-color="#7a5a2b" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        <g fill="none" stroke="url(#steamFade)" stroke-width="1.8" stroke-linecap="round">
-          <path d="M20 80 Q 80 55, 140 72 T 280 60 T 420 70 T 560 55 T 700 68 T 840 58 T 980 65"/>
-          <path d="M30 60 Q 100 38, 170 50 T 310 42 T 450 48 T 590 38 T 730 48 T 870 42 T 985 48"/>
-          <path d="M25 42 Q 110 25, 200 32 T 360 26 T 520 30 T 680 22 T 830 28 T 970 26"/>
-          <path d="M40 22 Q 130 10, 220 16 T 400 12 T 580 16 T 760 10 T 950 14"/>
-        </g>
-      </svg>
-    </div>
     <h2 class="tm-h2">What's in the scoop</h2>
     <p class="tm-sub">Five ingredients. Nothing else. No sugar, no starch, no fillers, no natural-flavors mystery blend.</p>
     <div class="tm-ing__grid">
