@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "about": {
+      "type": "about-tmolecule",
+      "blocks": {
+        "hero": { "type": "hero" },
+        "values": { "type": "values" },
+        "timeline": { "type": "timeline" },
+        "signature": { "type": "signature" }
+      },
+      "block_order": ["hero","values","timeline","signature"]
+    }
+  },
+  "order": ["about"]
+}

@@ -11,10 +11,10 @@
             "id": "f11143a60daf4421",
             "type": "leaf",
             "state": {
-              "type": "empty",
+              "type": "graph",
               "state": {},
-              "icon": "lucide-file",
-              "title": "New tab"
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
             }
           }
         ]
@@ -177,5 +177,15 @@
     }
   },
   "active": "f11143a60daf4421",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "shopify-theme/templates/index.json",
+    "shopify-theme/sections/home-tmolecule.liquid",
+    "shopify-theme/templates/page.about.json",
+    "shopify-theme/sections/about-tmolecule.liquid",
+    "shopify-theme/templates/page.contact.json",
+    "shopify-theme/sections/contact-tmolecule.liquid",
+    "content/terms-of-service.html",
+    "content/privacy-policy.html",
+    "content"
+  ]
 }
