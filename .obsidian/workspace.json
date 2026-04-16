@@ -178,14 +178,16 @@
   },
   "active": "f11143a60daf4421",
   "lastOpenFiles": [
+    "zi0Kkh2S",
+    "ziH6GKG1",
+    "dawn/templates/page.about.json",
+    "dawn/sections/home-tmolecule.liquid",
+    "dawn/sections/about-tmolecule.liquid",
+    "dawn/sections/contact-tmolecule.liquid",
     "shopify-theme/templates/index.json",
     "shopify-theme/sections/home-tmolecule.liquid",
     "shopify-theme/templates/page.about.json",
     "shopify-theme/sections/about-tmolecule.liquid",
-    "shopify-theme/templates/page.contact.json",
-    "shopify-theme/sections/contact-tmolecule.liquid",
-    "content/terms-of-service.html",
-    "content/privacy-policy.html",
-    "content"
+    "shopify-theme/templates/page.contact.json"
   ]
 }
