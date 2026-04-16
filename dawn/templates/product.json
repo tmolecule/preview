@@ -121,10 +121,24 @@
       "blocks": {
         "trust": {
           "type": "trust_marquee"
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "tab1_title": "Overview",
+            "tab1_body": "<p>Spice Rush is a revitalizing black tea blend.</p>",
+            "tab2_title": "Tasting Notes",
+            "tab2_body": "<p>Bold and malty up front, warming ginger mid-palate.</p>",
+            "tab3_title": "Brewing",
+            "tab3_body": "<p>One scoop, hot water, stir 15 seconds.</p>",
+            "tab4_title": "FAQs",
+            "tab4_body": "<p>About 40-50mg caffeine per scoop.</p>"
+          }
         }
       },
       "block_order": [
-        "trust"
+        "trust",
+        "tabs"
       ]
     }
   },
