@@ -155,12 +155,24 @@
             "cta_label": "Try Spice Rush",
             "cta_sub": "Starting at $6.99"
           }
+        },
+        "heritage": {
+          "type": "heritage",
+          "settings": {
+            "eyebrow": "Heritage since 1935",
+            "heading": "Four generations. One leaf.",
+            "body": "<p>In 1935, my great-grandfather started sourcing tea tin by tin, estate by estate.</p><p>Spice Rush is what happens when four generations meet a modern life.</p>",
+            "signature": "— The TMolecule family",
+            "cta_label": "Taste the heritage",
+            "cta_sub": "$6.99 · ships today"
+          }
         }
       },
       "block_order": [
         "trust",
         "tabs",
-        "ingredients"
+        "ingredients",
+        "heritage"
       ]
     }
   },
