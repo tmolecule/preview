@@ -55,7 +55,10 @@
                 {%- assign body = 'body_' | append: n -%}
                 {%- if block.settings[ttl] != blank -%}
                   <div class="tm-ing__card">
-                    {%- if block.settings[img] != blank -%}
+                    {%- assign img_url_key = 'img_' | append: n | append: '_url' -%}
+                    {%- if block.settings[img_url_key] != blank -%}
+                      <img src="{{ block.settings[img_url_key] }}" alt="" loading="lazy">
+                    {%- elsif block.settings[img] != blank -%}
                       <img src="{{ block.settings[img] | image_url: width: 600 }}" alt="" loading="lazy">
                     {%- endif -%}
                     <h3>{{ block.settings[ttl] }}</h3>
@@ -74,7 +77,9 @@
         <div class="tm-band tm-band--honey" {{ block.shopify_attributes }}>
           <div class="tm-heritage">
             <div class="tm-heritage__media">
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.image_url != blank -%}
+                <img src="{{ block.settings.image_url }}" alt="" loading="lazy">
+              {%- elsif block.settings.image != blank -%}
                 <img src="{{ block.settings.image | image_url: width: 1400 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy">
               {%- endif -%}
             </div>
@@ -123,7 +128,9 @@
         <div class="tm-band tm-band--{{ band_class }}" {{ block.shopify_attributes }}>
           <div class="tm-ed {% if block.settings.reverse %}tm-ed--reverse{% endif %}">
             <div class="tm-ed__media">
-              {%- if block.settings.image != blank -%}
+              {%- if block.settings.image_url != blank -%}
+                <img src="{{ block.settings.image_url }}" alt="" loading="lazy">
+              {%- elsif block.settings.image != blank -%}
                 <img src="{{ block.settings.image | image_url: width: 1200 }}" alt="{{ block.settings.image.alt | escape }}" loading="lazy">
               {%- endif -%}
             </div>
@@ -235,18 +242,19 @@
     { "type": "ingredient_grid", "name": "Ingredient grid", "settings": [
       {"type":"text","id":"heading","label":"Heading","default":"What's in the scoop"},
       {"type":"text","id":"subhead","label":"Subhead","default":"Five ingredients. Nothing else."},
-      {"type":"image_picker","id":"img_1","label":"Card 1 image"}, {"type":"text","id":"title_1","label":"Title 1"}, {"type":"text","id":"body_1","label":"Body 1"},
-      {"type":"image_picker","id":"img_2","label":"Card 2 image"}, {"type":"text","id":"title_2","label":"Title 2"}, {"type":"text","id":"body_2","label":"Body 2"},
-      {"type":"image_picker","id":"img_3","label":"Card 3 image"}, {"type":"text","id":"title_3","label":"Title 3"}, {"type":"text","id":"body_3","label":"Body 3"},
-      {"type":"image_picker","id":"img_4","label":"Card 4 image"}, {"type":"text","id":"title_4","label":"Title 4"}, {"type":"text","id":"body_4","label":"Body 4"},
-      {"type":"image_picker","id":"img_5","label":"Card 5 image"}, {"type":"text","id":"title_5","label":"Title 5"}, {"type":"text","id":"body_5","label":"Body 5"},
-      {"type":"image_picker","id":"img_6","label":"Card 6 image"}, {"type":"text","id":"title_6","label":"Title 6"}, {"type":"text","id":"body_6","label":"Body 6"},
+      {"type":"url","id":"img_1_url","label":"Card 1 image URL"}, {"type":"image_picker","id":"img_1","label":"Card 1 image (or use URL above)"}, {"type":"text","id":"title_1","label":"Title 1"}, {"type":"text","id":"body_1","label":"Body 1"},
+      {"type":"url","id":"img_2_url","label":"Card 2 image URL"}, {"type":"image_picker","id":"img_2","label":"Card 2 image"}, {"type":"text","id":"title_2","label":"Title 2"}, {"type":"text","id":"body_2","label":"Body 2"},
+      {"type":"url","id":"img_3_url","label":"Card 3 image URL"}, {"type":"image_picker","id":"img_3","label":"Card 3 image"}, {"type":"text","id":"title_3","label":"Title 3"}, {"type":"text","id":"body_3","label":"Body 3"},
+      {"type":"url","id":"img_4_url","label":"Card 4 image URL"}, {"type":"image_picker","id":"img_4","label":"Card 4 image"}, {"type":"text","id":"title_4","label":"Title 4"}, {"type":"text","id":"body_4","label":"Body 4"},
+      {"type":"url","id":"img_5_url","label":"Card 5 image URL"}, {"type":"image_picker","id":"img_5","label":"Card 5 image"}, {"type":"text","id":"title_5","label":"Title 5"}, {"type":"text","id":"body_5","label":"Body 5"},
+      {"type":"url","id":"img_6_url","label":"Card 6 image URL"}, {"type":"image_picker","id":"img_6","label":"Card 6 image"}, {"type":"text","id":"title_6","label":"Title 6"}, {"type":"text","id":"body_6","label":"Body 6"},
       {"type":"text","id":"cta_label","label":"CTA label (optional)","default":"Try Spice Rush"},
       {"type":"text","id":"cta_sub","label":"CTA sublabel","default":"Starting at $6.99"},
       {"type":"url","id":"cta_link","label":"CTA link"}
     ]},
     { "type": "heritage", "name": "Heritage", "settings": [
-      {"type":"image_picker","id":"image","label":"Image"},
+      {"type":"url","id":"image_url","label":"Image URL"},
+      {"type":"image_picker","id":"image","label":"Image (or use URL above)"},
       {"type":"text","id":"eyebrow","label":"Eyebrow","default":"Heritage since 1935"},
       {"type":"text","id":"heading","label":"Heading","default":"Four generations. One leaf."},
       {"type":"richtext","id":"body","label":"Body"},
@@ -271,7 +279,8 @@
     ]},
     { "type": "editorial", "name": "Editorial block", "settings": [
       {"type":"select","id":"band","label":"Band color","default":"deep-sand","options":[{"value":"cream","label":"Cream"},{"value":"sand","label":"Sand"},{"value":"honey","label":"Honey"},{"value":"deep-sand","label":"Deep sand"}]},
-      {"type":"image_picker","id":"image","label":"Image"},
+      {"type":"url","id":"image_url","label":"Image URL"},
+      {"type":"image_picker","id":"image","label":"Image (or use URL above)"},
       {"type":"text","id":"eyebrow","label":"Eyebrow"},
       {"type":"text","id":"heading","label":"Heading"},
       {"type":"richtext","id":"body","label":"Body"},

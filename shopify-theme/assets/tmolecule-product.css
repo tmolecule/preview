@@ -16,7 +16,11 @@
 
 /* Buy box */
 .tm-buybox-wrap { background:linear-gradient(180deg,#faf7f0 0%,#ebe0c0 100%); }
-.tm-buybox { max-width:1200px; margin:0 auto; padding:40px 20px; display:grid; grid-template-columns:1.1fr 1fr; gap:48px; }
+.tm-buybox { max-width:1200px; margin:0 auto; padding:40px 20px; display:grid; grid-template-columns:1.1fr 1fr; gap:48px; align-items:start; }
+.tm-ing { position:relative; }
+.tm-ing__flourish { position:absolute; width:90px; height:90px; opacity:.18; color:var(--tm-accent-dark); pointer-events:none; }
+.tm-ing__flourish--tl { top:16px; left:16px; }
+.tm-ing__flourish--br { bottom:16px; right:16px; transform:rotate(180deg); }
 .tm-buybox__gallery { display:grid; grid-template-columns:80px 1fr; gap:12px; }
 .tm-buybox__thumbs { display:flex; flex-direction:column; gap:8px; }
 .tm-buybox__hero { background:#f6ead0; border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(122,90,43,.12); }

@@ -153,7 +153,13 @@
             "title_6": "Milled",
             "body_6": "The tea leaves are milled to an ultra-fine powder.",
             "cta_label": "Try Spice Rush",
-            "cta_sub": "Starting at $6.99"
+            "cta_sub": "Starting at $6.99",
+            "img_1_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_2_fipmg1.jpg",
+            "img_2_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_3_oi7fln.jpg",
+            "img_3_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_4_ygmqbi.jpg",
+            "img_4_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_5_vymyzw.jpg",
+            "img_5_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_6_hdjegg.jpg",
+            "img_6_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_7_pwb57m.jpg"
           }
         },
         "heritage": {
@@ -164,7 +170,8 @@
             "body": "<p>In 1935, my great-grandfather started sourcing tea tin by tin, estate by estate.</p><p>Spice Rush is what happens when four generations meet a modern life.</p>",
             "signature": "— The TMolecule family",
             "cta_label": "Taste the heritage",
-            "cta_sub": "$6.99 · ships today"
+            "cta_sub": "$6.99 · ships today",
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,c_fill/Copy_of_M1_rdmzmf.jpg"
           }
         },
         "video": {
@@ -221,7 +228,8 @@
             "eyebrow": "The ritual",
             "heading": "One scoop. Near-boiling. Done.",
             "body": "<p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop, stir fifteen seconds, drink.</p>",
-            "reverse": false
+            "reverse": false,
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M2_cqojf2.jpg"
           }
         },
         "ed2": {
@@ -231,7 +239,8 @@
             "eyebrow": "Why collagen",
             "heading": "The most useful tea you'll drink all day",
             "body": "<p>Every scoop delivers collagen peptides for skin, joints, and recovery. Habit-friendly.</p>",
-            "reverse": true
+            "reverse": true,
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M3_vylqxm.jpg"
           }
         },
         "reviews": {

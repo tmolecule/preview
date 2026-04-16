@@ -1,26 +1,5 @@
 {
   "sections": {
-    "announcement": {
-      "type": "announcement-bar-tmolecule",
-      "blocks": {
-        "m1": {
-          "type": "message",
-          "settings": {
-            "message": "🚚 Free shipping on orders over $35"
-          }
-        },
-        "m2": {
-          "type": "message",
-          "settings": {
-            "message": "⚡ Same-day shipping for orders before 12pm ET"
-          }
-        }
-      },
-      "block_order": [
-        "m1",
-        "m2"
-      ]
-    },
     "main": {
       "type": "main-product-tmolecule",
       "settings": {
@@ -32,6 +11,18 @@
         "show_subscribe_toggle": true
       },
       "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "vp": {
+          "type": "variant_picker"
+        },
+        "bb": {
+          "type": "buy_buttons"
+        },
         "b1": {
           "type": "badge",
           "settings": {
@@ -87,25 +78,13 @@
             "icon": "🚚",
             "label": "Fast<br>Shipping"
           }
-        },
-        "_title": {
-          "type": "title"
-        },
-        "_price": {
-          "type": "price"
-        },
-        "_vp": {
-          "type": "variant_picker"
-        },
-        "_bb": {
-          "type": "buy_buttons"
         }
       },
       "block_order": [
-        "_title",
-        "_price",
-        "_vp",
-        "_bb",
+        "title",
+        "price",
+        "vp",
+        "bb",
         "b1",
         "b2",
         "b3",
@@ -114,6 +93,27 @@
         "b6",
         "b7",
         "b8"
+      ]
+    },
+    "announcement": {
+      "type": "announcement-bar-tmolecule",
+      "blocks": {
+        "m1": {
+          "type": "message",
+          "settings": {
+            "message": "🚚 Free shipping on orders over $35"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "message": "⚡ Same-day shipping for orders before 12pm ET"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2"
       ]
     },
     "story": {
@@ -126,34 +126,40 @@
           "type": "tabs",
           "settings": {
             "tab1_title": "Overview",
-            "tab1_body": "<p>Spice Rush is a revitalizing black tea blend built on four generations of tea-sourcing know-how. We take bold, full-bodied black tea, mill it to a fine powder for a smoother brew, and blend in collagen peptides and three warming spices: ginger, cinnamon, and cardamom.</p><p>One scoop, hot water, stir — thirty seconds to a full cup. No steeping, no straining, no timer. Drink it black, or add milk and a touch of sweetener to taste. A cleaner energy than coffee, a warmer ritual than a supplement.</p>",
+            "tab1_body": "<p>Spice Rush is a revitalizing black tea blend.</p>",
             "tab2_title": "Tasting Notes",
-            "tab2_body": "<p>Bold and malty up front, warming ginger mid-palate, sweet cinnamon and floral cardamom on the finish. Rich body from milling. Drinks beautifully black, or with a splash of milk and a pinch of salt for a creamier chai.</p>",
+            "tab2_body": "<p>Bold and malty up front, warming ginger mid-palate.</p>",
             "tab3_title": "Brewing",
-            "tab3_body": "<p><strong>Hot:</strong> Add one scoop (≈5g) to 8oz near-boiling water (200–212°F). Stir 15 seconds. That's it.</p><p><strong>Iced:</strong> Mix one scoop with 2oz hot water and stir to suspend, then pour over ice and top with cold water or milk.</p><p><strong>Latte:</strong> Stir into 6oz steamed milk (dairy or oat) with a teaspoon of honey.</p>",
+            "tab3_body": "<p>One scoop, hot water, stir 15 seconds.</p>",
             "tab4_title": "FAQs",
-            "tab4_body": "<details><summary>How much caffeine is in a scoop?</summary><div class=\"rte\"><p>About 40–50mg per scoop — roughly half a cup of coffee. Sustained energy, no jitters.</p></div></details><details><summary>What kind of collagen do you use?</summary><div class=\"rte\"><p>Hydrolyzed bovine collagen peptides. Unflavored, and heat-stable — the peptides stay intact in hot water, so the benefits come through in every cup.</p></div></details><details><summary>Is this keto and paleo friendly?</summary><div class=\"rte\"><p>Yes — zero sugar, zero starch, zero fillers. Just five ingredients: black tea, collagen peptides, ginger, cinnamon, and cardamom.</p></div></details><details><summary>Why milled instead of loose leaf?</summary><div class=\"rte\"><p>Milling creates a homogenous blend with the spices and collagen so every scoop delivers the same balanced cup. No steeping, no strainer, no bitter over-brew.</p></div></details><details><summary>How long does a pack last?</summary><div class=\"rte\"><p>Each pack contains roughly 20 servings. At one cup a day, that's about three weeks.</p></div></details><details><summary>How should I store it?</summary><div class=\"rte\"><p>Keep the pack sealed at room temperature, away from direct sunlight and humidity. Use by the expiration date printed on the package.</p></div></details>"
+            "tab4_body": "<p>About 40-50mg caffeine per scoop.</p>"
           }
         },
         "ingredients": {
           "type": "ingredient_grid",
           "settings": {
             "heading": "What's in the scoop",
-            "subhead": "Five ingredients. Nothing else. No sugar, no starch, no fillers, no natural-flavors mystery blend.",
+            "subhead": "Five ingredients. Nothing else.",
             "title_1": "Bold Black Tea",
-            "body_1": "Full-bodied Assam-style black tea, milled fine so every particle brews in seconds. No steeping, no strainer.",
+            "body_1": "Full-bodied Assam-style black tea, milled fine.",
             "title_2": "Collagen Peptides",
-            "body_2": "Hydrolyzed collagen peptides — supports skin, joints, and post-workout recovery. Unflavored and completely soluble.",
+            "body_2": "Hydrolyzed collagen peptides for skin, joints, and recovery.",
             "title_3": "Real Ginger",
-            "body_3": "Warming, digestive, alive. Dried and milled from whole root — not a \"ginger flavor\" compound.",
+            "body_3": "Warming, digestive, alive. Dried and milled from whole root.",
             "title_4": "Ceylon Cinnamon",
-            "body_4": "True cinnamon — sweet, delicate, lower coumarin than cassia. The cinnamon your grandmother used.",
+            "body_4": "True cinnamon — sweet, delicate.",
             "title_5": "Green Cardamom",
-            "body_5": "Whole pods ground for the bright, floral lift that turns a chai from flat to alive. Never pre-ground.",
+            "body_5": "Whole pods ground for bright, floral lift.",
             "title_6": "Milled",
-            "body_6": "The tea leaves are milled to an ultra-fine powder, then blended evenly with the spices and collagen peptides. Every scoop delivers the same balanced mix — tea, spice, and protein in one consistent cup.",
+            "body_6": "The tea leaves are milled to an ultra-fine powder.",
             "cta_label": "Try Spice Rush",
-            "cta_sub": "Starting at $6.99"
+            "cta_sub": "Starting at $6.99",
+            "img_1_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_2_fipmg1.jpg",
+            "img_2_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_3_oi7fln.jpg",
+            "img_3_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_4_ygmqbi.jpg",
+            "img_4_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_5_vymyzw.jpg",
+            "img_5_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_6_hdjegg.jpg",
+            "img_6_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_7_pwb57m.jpg"
           }
         },
         "heritage": {
@@ -161,10 +167,11 @@
           "settings": {
             "eyebrow": "Heritage since 1935",
             "heading": "Four generations. One leaf.",
-            "body": "<p>In 1935, my great-grandfather started sourcing tea — tin by tin, estate by estate, refusing anything that didn't meet his nose test. Ninety-one years later, we're still doing it.</p><p>Spice Rush is what happens when four generations of tea obsession meet a modern life. We took a classic spiced black-tea ritual, milled the leaf so you can actually drink it in under a minute, and added collagen peptides so one cup earns its keep.</p>",
+            "body": "<p>In 1935, my great-grandfather started sourcing tea tin by tin, estate by estate.</p><p>Spice Rush is what happens when four generations meet a modern life.</p>",
             "signature": "— The TMolecule family",
             "cta_label": "Taste the heritage",
-            "cta_sub": "$6.99 · ships today"
+            "cta_sub": "$6.99 · ships today",
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,c_fill/Copy_of_M1_rdmzmf.jpg"
           }
         },
         "video": {
@@ -177,7 +184,7 @@
             "full_url": "https://cdn.shopify.com/videos/c/o/v/bb928fee36a3401e8c02309bd1237d47.mp4",
             "poster_url": "https://cdn.shopify.com/s/files/1/0645/9559/1422/files/spice-rush-poster.jpg?v=1776177378",
             "full_duration": "5 min",
-            "description": "Spice Rush Collagen Black Tea by TMolecule — bold milled black tea blended with hydrolyzed collagen peptides, ginger, Ceylon cinnamon, and green cardamom. One scoop, hot water, stir."
+            "description": "Spice Rush Collagen Black Tea by TMolecule."
           }
         },
         "compare": {
@@ -189,7 +196,7 @@
             "ico_1": "🍬",
             "row_1": "Sugar",
             "us_1": "Zero",
-            "them_1": "15–25g per serving",
+            "them_1": "15-25g per serving",
             "ico_2": "💪",
             "row_2": "Protein",
             "us_2": "Collagen peptides",
@@ -197,21 +204,21 @@
             "ico_3": "🌶️",
             "row_3": "Spices",
             "us_3": "Whole, milled in-house",
-            "them_3": "\"Natural flavors,\" powders",
+            "them_3": "Natural flavors, powders",
             "ico_4": "🍃",
             "row_4": "Tea grade",
             "us_4": "Full-leaf, milled fine",
-            "them_4": "Dust, fannings, extract",
+            "them_4": "Dust, fannings",
             "ico_5": "🥑",
             "row_5": "Diet fit",
-            "us_5": "Keto, paleo, clean label",
-            "them_5": "Sugar-loaded, additive-heavy",
+            "us_5": "Keto, paleo",
+            "them_5": "Sugar-loaded",
             "ico_6": "👨‍👩‍👧",
             "row_6": "Heritage",
-            "us_6": "Heritage since 1935",
-            "them_6": "A marketing department",
+            "us_6": "Since 1935",
+            "them_6": "Marketing department",
             "cta_label": "Make the switch",
-            "cta_sub": "$6.99 · one scoop, one cup"
+            "cta_sub": "$6.99 one scoop, one cup"
           }
         },
         "ed1": {
@@ -220,8 +227,9 @@
             "band": "deep-sand",
             "eyebrow": "The ritual",
             "heading": "One scoop. Near-boiling. Done.",
-            "body": "<p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop to hot water, stir for fifteen seconds, drink. The milling does the work — spice and leaf suspend straight into the cup. It's the easiest ritual you'll ever protect from your mornings.</p>",
-            "reverse": false
+            "body": "<p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop, stir fifteen seconds, drink.</p>",
+            "reverse": false,
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M2_cqojf2.jpg"
           }
         },
         "ed2": {
@@ -230,22 +238,23 @@
             "band": "honey",
             "eyebrow": "Why collagen",
             "heading": "The most useful tea you'll drink all day",
-            "body": "<p>Every scoop delivers collagen peptides — the protein that supports skin, joints, hair, and post-workout recovery. Most people take it in a flavorless capsule or a chalky shake. We put it in the cup you were going to drink anyway. Keto-friendly. Paleo-friendly. Habit-friendly.</p>",
-            "reverse": true
+            "body": "<p>Every scoop delivers collagen peptides for skin, joints, and recovery. Habit-friendly.</p>",
+            "reverse": true,
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M3_vylqxm.jpg"
           }
         },
         "reviews": {
           "type": "reviews",
           "settings": {
             "heading": "What sippers say",
-            "quote_1": "I swapped my 11am coffee for a Spice Rush and my afternoons got their focus back. Plus — collagen. Win-win.",
+            "quote_1": "I swapped my 11am coffee for a Spice Rush and my afternoons got their focus back. Plus collagen. Win-win.",
             "author_1": "Marielle S., verified buyer",
-            "quote_2": "Tastes like real chai, not a sugar bomb. My daily cup. The cardamom is so bright.",
+            "quote_2": "Tastes like real chai, not a sugar bomb. My daily cup.",
             "author_2": "David R., verified buyer",
-            "quote_3": "30 seconds to brew, no strainer, no mess. Finally a clean-label collagen drink I actually enjoy.",
+            "quote_3": "30 seconds to brew, no strainer, no mess.",
             "author_3": "Aisha K., verified buyer",
             "cta_label": "Join the ritual",
-            "cta_sub": "$6.99 · free shipping over $35"
+            "cta_sub": "$6.99 free shipping over $35"
           }
         },
         "disclaimer": {
