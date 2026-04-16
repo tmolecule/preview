@@ -166,13 +166,27 @@
             "cta_label": "Taste the heritage",
             "cta_sub": "$6.99 · ships today"
           }
+        },
+        "video": {
+          "type": "video",
+          "settings": {
+            "band": "deep-sand",
+            "eyebrow": "Watch",
+            "heading": "See Spice Rush in action",
+            "teaser_url": "https://cdn.shopify.com/videos/c/o/v/fccda327cb1341ada65bb35e7bb9f0bc.mp4",
+            "full_url": "https://cdn.shopify.com/videos/c/o/v/bb928fee36a3401e8c02309bd1237d47.mp4",
+            "poster_url": "https://cdn.shopify.com/s/files/1/0645/9559/1422/files/spice-rush-poster.jpg?v=1776177378",
+            "full_duration": "5 min",
+            "description": "Spice Rush Collagen Black Tea by TMolecule."
+          }
         }
       },
       "block_order": [
         "trust",
         "tabs",
         "ingredients",
-        "heritage"
+        "heritage",
+        "video"
       ]
     }
   },
