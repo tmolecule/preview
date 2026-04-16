@@ -1,46 +1,10 @@
-{{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'tmolecule-product.js' | asset_url }}" defer></script>
-
-<div class="tm-page">
-  <div class="tm-buybox-wrap">
-    <section class="tm-buybox">
-      {%- assign featured = product.featured_media -%}
-      <div class="tm-buybox__gallery" data-tm-gallery>
-        {%- if product.media.size > 1 -%}
-          <div class="tm-buybox__thumbs">
-            {%- for media in product.media limit: 5 -%}
-              <img data-tm-thumb
-                   class="{% if forloop.first %}is-active{% endif %}"
-                   src="{{ media | image_url: width: 160 }}"
-                   data-full="{{ media | image_url: width: 1400 }}"
-                   alt="{{ media.alt | escape }}"
-                   width="80" height="80" loading="lazy">
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-        <div class="tm-buybox__hero">
-          {%- if featured -%}
-            <img data-tm-hero
-                 src="{{ featured | image_url: width: 1400 }}"
-                 alt="{{ featured.alt | escape | default: product.title }}"
-                 width="1400" height="1400">
-          {%- endif -%}
-        </div>
-      </div>
-
-      <div class="tm-buybox__info">
-        {%- if section.settings.label != blank -%}<p class="tm-new">{{ section.settings.label }}</p>{%- endif -%}
-        <h1>{{ product.title }}</h1>
-        {%- if section.settings.subheadline != blank -%}<p class="tm-sub">{{ section.settings.subheadline }}</p>{%- endif -%}
-
-        {% form 'product', product %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-          <p class="tm-buybox__price">{{ product.selected_or_first_available_variant.price | money }}</p>
-          <button type="submit" name="add" class="tm-buybox__cta">Add to cart</button>
-        {% endform %}
-      </div>
-    </section>
-  </div>
+<div class="tm-minimal-product">
+  <h1>{{ product.title }}</h1>
+  <p>Price: {{ product.price | money }}</p>
+  {% form 'product', product %}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <button type="submit" name="add">Add to cart</button>
+  {% endform %}
 </div>
 
 {% schema %}
@@ -55,9 +19,6 @@
     { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
     { "type": "buy_buttons", "name": "Buy buttons", "limit": 1 }
   ],
-  "settings": [
-    { "type": "text", "id": "label", "label": "Top label", "default": "🔥 BESTSELLER" },
-    { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "A revitalizing daily ritual." }
-  ]
+  "settings": []
 }
 {% endschema %}
