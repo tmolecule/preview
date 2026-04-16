@@ -94,9 +94,31 @@
         "b7",
         "b8"
       ]
+    },
+    "announcement": {
+      "type": "announcement-bar-tmolecule",
+      "blocks": {
+        "m1": {
+          "type": "message",
+          "settings": {
+            "message": "🚚 Free shipping on orders over $35"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "message": "⚡ Same-day shipping for orders before 12pm ET"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2"
+      ]
     }
   },
   "order": [
+    "announcement",
     "main"
   ]
 }
