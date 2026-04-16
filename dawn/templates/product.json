@@ -10,9 +10,93 @@
         "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
         "show_subscribe_toggle": true
       },
-      "blocks": { "title": {"type":"title"}, "price": {"type":"price"}, "vp": {"type":"variant_picker"}, "bb": {"type":"buy_buttons"} },
-      "block_order": ["title","price","vp","bb"]
+      "blocks": {
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "vp": {
+          "type": "variant_picker"
+        },
+        "bb": {
+          "type": "buy_buttons"
+        },
+        "b1": {
+          "type": "badge",
+          "settings": {
+            "icon": "✨",
+            "label": "Just<br>Launched"
+          }
+        },
+        "b2": {
+          "type": "badge",
+          "settings": {
+            "icon": "🇺🇸",
+            "label": "Made in<br>USA"
+          }
+        },
+        "b3": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚫",
+            "label": "No<br>Sugar"
+          }
+        },
+        "b4": {
+          "type": "badge",
+          "settings": {
+            "icon": "🥑",
+            "label": "Keto<br>Friendly"
+          }
+        },
+        "b5": {
+          "type": "badge",
+          "settings": {
+            "icon": "🥩",
+            "label": "Paleo<br>Friendly"
+          }
+        },
+        "b6": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌾",
+            "label": "Gluten<br>Free"
+          }
+        },
+        "b7": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌱",
+            "label": "Non<br>GMO"
+          }
+        },
+        "b8": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "label": "Fast<br>Shipping"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "vp",
+        "bb",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ]
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }

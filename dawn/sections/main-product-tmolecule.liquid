@@ -73,6 +73,19 @@
             {% if product.available %}Add to cart{% else %}Sold out{% endif %}
           </button>
         {% endform %}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="tm-buybox__badges">
+            {%- for block in section.blocks -%}
+              {%- if block.type == 'badge' -%}
+                <div class="tm-bb" {{ block.shopify_attributes }}>
+                  <div class="tm-bb__icon">{{ block.settings.icon }}</div>
+                  <span>{{ block.settings.label }}</span>
+                </div>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
       </div>
     </section>
   </div>
@@ -88,7 +101,13 @@
     { "type": "title", "name": "Title", "limit": 1 },
     { "type": "price", "name": "Price", "limit": 1 },
     { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
-    { "type": "buy_buttons", "name": "Buy buttons", "limit": 1 }
+    { "type": "buy_buttons", "name": "Buy buttons", "limit": 1 },
+    { "type": "badge", "name": "Trust badge",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji", "default": "✨" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Just<br>Launched" }
+      ]
+    }
   ],
   "settings": [
     { "type": "text", "id": "label", "label": "Top label", "default": "🔥 BESTSELLER" },
