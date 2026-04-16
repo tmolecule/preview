@@ -43,6 +43,7 @@
       {%- when 'ingredient_grid' -%}
         <div class="tm-band tm-band--sand" {{ block.shopify_attributes }}>
           <div class="tm-ing">
+            <!-- DEBUG img_1_url={{ block.settings.img_1_url }} -->
             {{ leaf_svg }}
             {%- assign leaf_svg_br = leaf_svg | replace: 'tm-ing__flourish--tl', 'tm-ing__flourish--br' -%}
             {{ leaf_svg_br }}
