@@ -9,11 +9,15 @@
 
 {% schema %}
 {
-  "name": "TMolecule product minimal",
+  "name": "TMolecule product",
   "tag": "section",
   "class": "tm-main-product",
   "blocks": [
-    { "type": "@app" }
+    { "type": "@app" },
+    { "type": "title", "name": "Title", "limit": 1 },
+    { "type": "price", "name": "Price", "limit": 1 },
+    { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
+    { "type": "buy_buttons", "name": "Buy buttons", "limit": 1 }
   ],
   "settings": []
 }
