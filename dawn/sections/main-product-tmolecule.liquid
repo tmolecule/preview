@@ -1,5 +1,7 @@
 <div class="tm-minimal-product">
+  {%- if section.settings.label != blank -%}<p class="tm-new">{{ section.settings.label }}</p>{%- endif -%}
   <h1>{{ product.title }}</h1>
+  {%- if section.settings.subheadline != blank -%}<p class="tm-sub">{{ section.settings.subheadline }}</p>{%- endif -%}
   <p>Price: {{ product.price | money }}</p>
   {% form 'product', product %}
     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
@@ -19,6 +21,9 @@
     { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
     { "type": "buy_buttons", "name": "Buy buttons", "limit": 1 }
   ],
-  "settings": []
+  "settings": [
+    { "type": "text", "id": "label", "label": "Top label", "default": "🔥 BESTSELLER" },
+    { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "A revitalizing daily ritual from a family curating tea blends since 1935." }
+  ]
 }
 {% endschema %}

@@ -2,6 +2,7 @@
   "sections": {
     "main": {
       "type": "main-product-tmolecule",
+      "settings": { "label": "🔥 BESTSELLER", "subheadline": "A revitalizing daily ritual." },
       "blocks": { "title": {"type":"title"}, "price": {"type":"price"}, "vp": {"type":"variant_picker"}, "bb": {"type":"buy_buttons"} },
       "block_order": ["title","price","vp","bb"]
     }
