@@ -2,13 +2,8 @@
   "sections": {
     "main": {
       "type": "main-product-tmolecule",
-      "blocks": {
-        "_title": { "type": "title" },
-        "_price": { "type": "price" },
-        "_vp": { "type": "variant_picker" },
-        "_bb": { "type": "buy_buttons" }
-      },
-      "block_order": ["_title","_price","_vp","_bb"]
+      "blocks": { "title": {"type":"title"}, "price": {"type":"price"}, "vp": {"type":"variant_picker"}, "bb": {"type":"buy_buttons"} },
+      "block_order": ["title","price","vp","bb"]
     }
   },
   "order": ["main"]
