@@ -1,134 +1,20 @@
-{{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'tmolecule-product.js' | asset_url }}" defer></script>
-
-<div class="tm-page">
-  <div class="tm-buybox-wrap">
-    <section class="tm-buybox">
-      {%- assign featured = product.featured_media -%}
-      <div class="tm-buybox__gallery" data-tm-gallery>
-        {%- if product.media.size > 1 -%}
-          <div class="tm-buybox__thumbs">
-            {%- for media in product.media limit: 5 -%}
-              <img data-tm-thumb
-                   class="{% if forloop.first %}is-active{% endif %}"
-                   src="{{ media | image_url: width: 160 }}"
-                   data-full="{{ media | image_url: width: 1400 }}"
-                   alt="{{ media.alt | escape }}"
-                   width="80" height="80" loading="lazy">
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-        <div class="tm-buybox__hero">
-          {%- if featured -%}
-            <img data-tm-hero
-                 src="{{ featured | image_url: width: 1400 }}"
-                 alt="{{ featured.alt | escape | default: product.title }}"
-                 width="1400" height="1400">
-          {%- endif -%}
-        </div>
-      </div>
-
-      <div class="tm-buybox__info">
-        {%- if section.settings.label != blank -%}<p class="tm-new">{{ section.settings.label }}</p>{%- endif -%}
-        <h1>{{ product.title }}</h1>
-        {%- if section.settings.subheadline != blank -%}<p class="tm-sub">{{ section.settings.subheadline }}</p>{%- endif -%}
-
-        {%- if section.settings.show_rating -%}
-          <div class="tm-rating"><span class="tm-stars">★★★★★</span> {{ section.settings.rating_text | default: '4.8 · 216 reviews' }}</div>
-        {%- endif -%}
-
-        {%- assign bullets = section.settings.bullets | split: '|' -%}
-        {%- if bullets.size > 0 -%}
-          <ul class="tm-buybox__bullets">
-            {%- for b in bullets -%}
-              <li>{{ b | strip }}</li>
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
-
-        {% form 'product', product, class: 'sans', novalidate: 'novalidate' %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
-
-          <div class="tm-buybox__opts">
-            {%- for variant in product.variants -%}
-              <button type="button" class="{% if forloop.first %}is-active{% endif %}"
-                      data-tm-variant
-                      data-variant-id="{{ variant.id }}"
-                      data-variant-price="{{ variant.price | money }}">
-                {{ variant.title }} — {{ variant.price | money }}
-              </button>
-            {%- endfor -%}
-          </div>
-
-          {%- if section.settings.show_subscribe_toggle -%}
-            <div class="tm-buybox__opts">
-              <button type="button" class="is-active">One-time</button>
-              <button type="button">Subscribe &amp; Save 15%</button>
-            </div>
-          {%- endif -%}
-
-          <p class="tm-buybox__price" data-tm-price>{{ product.selected_or_first_available_variant.price | money }}</p>
-          <button type="submit" name="add" class="tm-buybox__cta"
-                  {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Add to cart{% else %}Sold out{% endif %}
-          </button>
-        {% endform %}
-
-        {%- if section.blocks.size > 0 -%}
-          <div class="tm-buybox__badges">
-            {%- for block in section.blocks -%}
-              {%- if block.type == 'badge' -%}
-                <div class="tm-bb" {{ block.shopify_attributes }}>
-                  <div class="tm-bb__icon">{{ block.settings.icon }}</div>
-                  <span>{{ block.settings.label }}</span>
-                </div>
-              {%- endif -%}
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
-      </div>
-    </section>
-  </div>
+<div class="tm-minimal-product">
+  <h1>{{ product.title }}</h1>
+  <p>Price: {{ product.price | money }}</p>
+  {% form 'product', product %}
+    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+    <button type="submit" name="add">Add to cart</button>
+  {% endform %}
 </div>
 
 {% schema %}
 {
-  "name": "TMolecule product",
+  "name": "TMolecule product minimal",
   "tag": "section",
   "class": "tm-main-product",
-
-  "settings": [
-    { "type": "text", "id": "label", "label": "Top label", "default": "🔥 BESTSELLER" },
-    { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "A revitalizing daily ritual from a family who has been curating tea blends since 1935." },
-    { "type": "checkbox", "id": "show_rating", "label": "Show rating row", "default": true },
-    { "type": "text", "id": "rating_text", "label": "Rating text", "default": "4.8 · 216 reviews" },
-    { "type": "textarea", "id": "bullets", "label": "Bullets (separate with |)",
-      "default": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA" },
-    { "type": "checkbox", "id": "show_subscribe_toggle", "label": "Show subscribe toggle (display only)", "default": true }
-  ],
   "blocks": [
-    { "type": "@app" },
-    { "type": "badge", "name": "Trust badge",
-      "settings": [
-        { "type": "text", "id": "icon", "label": "Emoji", "default": "✨" },
-        { "type": "text", "id": "label", "label": "Label (use <br> for line break)", "default": "Just<br>Launched" }
-      ]
-    }
+    { "type": "@app" }
   ],
-  "presets": [
-    {
-      "name": "TMolecule product",
-      "blocks": [
-        { "type":"badge","settings":{"icon":"✨","label":"Just<br>Launched"} },
-        { "type":"badge","settings":{"icon":"🇺🇸","label":"Made in<br>USA"} },
-        { "type":"badge","settings":{"icon":"🚫","label":"No<br>Sugar"} },
-        { "type":"badge","settings":{"icon":"🥑","label":"Keto<br>Friendly"} },
-        { "type":"badge","settings":{"icon":"🥩","label":"Paleo<br>Friendly"} },
-        { "type":"badge","settings":{"icon":"🌾","label":"Gluten<br>Free"} },
-        { "type":"badge","settings":{"icon":"🌱","label":"Non<br>GMO"} },
-        { "type":"badge","settings":{"icon":"🚚","label":"Fast<br>Shipping"} }
-      ]
-    }
-  ]
+  "settings": []
 }
 {% endschema %}
