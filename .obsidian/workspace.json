@@ -178,6 +178,7 @@
   },
   "active": "f11143a60daf4421",
   "lastOpenFiles": [
+    "zikTAG4B",
     "ziojZmVR",
     "ziXAh2nJ",
     "ziekozhr",
@@ -187,7 +188,6 @@
     "dawn/templates/page.about.json",
     "dawn/sections/home-tmolecule.liquid",
     "dawn/sections/about-tmolecule.liquid",
-    "dawn/sections/contact-tmolecule.liquid",
-    "shopify-theme/templates/index.json"
+    "dawn/sections/contact-tmolecule.liquid"
   ]
 }
