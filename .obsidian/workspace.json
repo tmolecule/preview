@@ -178,6 +178,7 @@
   },
   "active": "f11143a60daf4421",
   "lastOpenFiles": [
+    "shopify-theme/templates/product.json",
     "zi0Kkh2S",
     "ziH6GKG1",
     "dawn/templates/page.about.json",
@@ -187,7 +188,6 @@
     "shopify-theme/templates/index.json",
     "shopify-theme/sections/home-tmolecule.liquid",
     "shopify-theme/templates/page.about.json",
-    "shopify-theme/sections/about-tmolecule.liquid",
-    "shopify-theme/templates/page.contact.json"
+    "shopify-theme/sections/about-tmolecule.liquid"
   ]
 }

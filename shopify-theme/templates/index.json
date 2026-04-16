@@ -11,11 +11,27 @@
     "home": {
       "type": "home-tmolecule",
       "blocks": {
-        "hero": { "type": "hero" },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "cta_link": "/products/premium-collagen-spice-rush-black-tea-blend-revitalizing-energy-with-ginger-cinnamon-cardamom-keto-paleo-friendly-made-in-usa-milled-product-for-smoother-flow",
+            "secondary_link": "/pages/about"
+          }
+        },
         "trust": { "type": "trust" },
-        "featured": { "type": "featured" },
+        "featured": {
+          "type": "featured",
+          "settings": {
+            "product": "premium-collagen-spice-rush-black-tea-blend-revitalizing-energy-with-ginger-cinnamon-cardamom-keto-paleo-friendly-made-in-usa-milled-product-for-smoother-flow"
+          }
+        },
         "usp": { "type": "usp" },
-        "heritage": { "type": "heritage" },
+        "heritage": {
+          "type": "heritage",
+          "settings": {
+            "cta_link": "/pages/about"
+          }
+        },
         "reviews": { "type": "reviews" }
       },
       "block_order": ["hero","trust","featured","usp","heritage","reviews"]
