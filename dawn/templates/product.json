@@ -179,6 +179,40 @@
             "full_duration": "5 min",
             "description": "Spice Rush Collagen Black Tea by TMolecule."
           }
+        },
+        "compare": {
+          "type": "compare",
+          "settings": {
+            "heading": "Spice Rush vs. the chai you've been buying",
+            "us_label": "TMolecule Spice Rush",
+            "them_label": "Typical Chai Latte Mix",
+            "ico_1": "🍬",
+            "row_1": "Sugar",
+            "us_1": "Zero",
+            "them_1": "15-25g per serving",
+            "ico_2": "💪",
+            "row_2": "Protein",
+            "us_2": "Collagen peptides",
+            "them_2": "None",
+            "ico_3": "🌶️",
+            "row_3": "Spices",
+            "us_3": "Whole, milled in-house",
+            "them_3": "Natural flavors, powders",
+            "ico_4": "🍃",
+            "row_4": "Tea grade",
+            "us_4": "Full-leaf, milled fine",
+            "them_4": "Dust, fannings",
+            "ico_5": "🥑",
+            "row_5": "Diet fit",
+            "us_5": "Keto, paleo",
+            "them_5": "Sugar-loaded",
+            "ico_6": "👨‍👩‍👧",
+            "row_6": "Heritage",
+            "us_6": "Since 1935",
+            "them_6": "Marketing department",
+            "cta_label": "Make the switch",
+            "cta_sub": "$6.99 one scoop, one cup"
+          }
         }
       },
       "block_order": [
@@ -186,7 +220,8 @@
         "tabs",
         "ingredients",
         "heritage",
-        "video"
+        "video",
+        "compare"
       ]
     }
   },
