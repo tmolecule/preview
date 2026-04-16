@@ -115,10 +115,22 @@
         "m1",
         "m2"
       ]
+    },
+    "story": {
+      "type": "product-story-tmolecule",
+      "blocks": {
+        "trust": {
+          "type": "trust_marquee"
+        }
+      },
+      "block_order": [
+        "trust"
+      ]
     }
   },
   "order": [
     "announcement",
-    "main"
+    "main",
+    "story"
   ]
 }
