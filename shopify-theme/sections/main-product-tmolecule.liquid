@@ -23,7 +23,7 @@
             <img data-tm-hero
                  src="{{ featured | image_url: width: 1400 }}"
                  alt="{{ featured.alt | escape | default: product.title }}"
-                 width="1400" height="1400">
+                 loading="eager">
           {%- endif -%}
         </div>
       </div>
@@ -105,7 +105,7 @@
     { "type": "badge", "name": "Trust badge",
       "settings": [
         { "type": "text", "id": "icon", "label": "Emoji", "default": "✨" },
-        { "type": "text", "id": "label", "label": "Label (use <br> for line break)", "default": "Just<br>Launched" }
+        { "type": "text", "id": "label", "label": "Label", "default": "Just<br>Launched" }
       ]
     }
   ],
@@ -116,7 +116,7 @@
     { "type": "text", "id": "rating_text", "label": "Rating text", "default": "4.8 · 216 reviews" },
     { "type": "textarea", "id": "bullets", "label": "Bullets (separate with |)",
       "default": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA" },
-    { "type": "checkbox", "id": "show_subscribe_toggle", "label": "Show subscribe toggle (display only)", "default": true }
+    { "type": "checkbox", "id": "show_subscribe_toggle", "label": "Show subscribe toggle", "default": true }
   ]
 }
 {% endschema %}

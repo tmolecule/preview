@@ -23,7 +23,7 @@
             <img data-tm-hero
                  src="{{ featured | image_url: width: 1400 }}"
                  alt="{{ featured.alt | escape | default: product.title }}"
-                 width="1400" height="1400">
+                 loading="eager">
           {%- endif -%}
         </div>
       </div>
