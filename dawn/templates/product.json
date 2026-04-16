@@ -2,7 +2,14 @@
   "sections": {
     "main": {
       "type": "main-product-tmolecule",
-      "settings": { "label": "🔥 BESTSELLER", "subheadline": "A revitalizing daily ritual." },
+      "settings": {
+        "label": "🔥 BESTSELLER",
+        "subheadline": "A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.",
+        "show_rating": true,
+        "rating_text": "4.8 · 216 reviews",
+        "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
+        "show_subscribe_toggle": true
+      },
       "blocks": { "title": {"type":"title"}, "price": {"type":"price"}, "vp": {"type":"variant_picker"}, "bb": {"type":"buy_buttons"} },
       "block_order": ["title","price","vp","bb"]
     }
