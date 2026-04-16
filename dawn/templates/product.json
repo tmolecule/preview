@@ -2,23 +2,14 @@
   "sections": {
     "main": {
       "type": "main-product-tmolecule",
-      "settings": {
-        "label": "🔥 BESTSELLER",
-        "subheadline": "A revitalizing daily ritual from a family who has been curating tea blends since 1935.",
-        "show_rating": true,
-        "rating_text": "4.8 · 216 reviews",
-        "bullets": "💪 Collagen peptides|🌶️ Warming spice blend|🥥 Keto & paleo friendly",
-        "show_subscribe_toggle": true
-      },
+      "settings": { "label": "🔥 BESTSELLER", "subheadline": "Test subheadline" },
       "blocks": {
         "_title": { "type": "title" },
         "_price": { "type": "price" },
         "_vp": { "type": "variant_picker" },
-        "_bb": { "type": "buy_buttons" },
-        "b1": { "type": "badge", "settings": { "icon": "✨", "label": "Just<br>Launched" } },
-        "b2": { "type": "badge", "settings": { "icon": "🇺🇸", "label": "Made in<br>USA" } }
+        "_bb": { "type": "buy_buttons" }
       },
-      "block_order": ["_title","_price","_vp","_bb","b1","b2"]
+      "block_order": ["_title","_price","_vp","_bb"]
     }
   },
   "order": ["main"]
