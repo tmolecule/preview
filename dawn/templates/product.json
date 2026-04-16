@@ -213,6 +213,26 @@
             "cta_label": "Make the switch",
             "cta_sub": "$6.99 one scoop, one cup"
           }
+        },
+        "ed1": {
+          "type": "editorial",
+          "settings": {
+            "band": "deep-sand",
+            "eyebrow": "The ritual",
+            "heading": "One scoop. Near-boiling. Done.",
+            "body": "<p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop, stir fifteen seconds, drink.</p>",
+            "reverse": false
+          }
+        },
+        "ed2": {
+          "type": "editorial",
+          "settings": {
+            "band": "honey",
+            "eyebrow": "Why collagen",
+            "heading": "The most useful tea you'll drink all day",
+            "body": "<p>Every scoop delivers collagen peptides for skin, joints, and recovery. Habit-friendly.</p>",
+            "reverse": true
+          }
         }
       },
       "block_order": [
@@ -221,7 +241,9 @@
         "ingredients",
         "heritage",
         "video",
-        "compare"
+        "compare",
+        "ed1",
+        "ed2"
       ]
     }
   },
