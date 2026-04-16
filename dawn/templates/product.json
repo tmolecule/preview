@@ -233,6 +233,26 @@
             "body": "<p>Every scoop delivers collagen peptides for skin, joints, and recovery. Habit-friendly.</p>",
             "reverse": true
           }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "heading": "What sippers say",
+            "quote_1": "I swapped my 11am coffee for a Spice Rush and my afternoons got their focus back. Plus collagen. Win-win.",
+            "author_1": "Marielle S., verified buyer",
+            "quote_2": "Tastes like real chai, not a sugar bomb. My daily cup.",
+            "author_2": "David R., verified buyer",
+            "quote_3": "30 seconds to brew, no strainer, no mess.",
+            "author_3": "Aisha K., verified buyer",
+            "cta_label": "Join the ritual",
+            "cta_sub": "$6.99 free shipping over $35"
+          }
+        },
+        "disclaimer": {
+          "type": "disclaimer",
+          "settings": {
+            "body": "* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary."
+          }
         }
       },
       "block_order": [
@@ -243,13 +263,23 @@
         "video",
         "compare",
         "ed1",
-        "ed2"
+        "ed2",
+        "reviews",
+        "disclaimer"
       ]
+    },
+    "sticky": {
+      "type": "sticky-cta-tmolecule",
+      "settings": {
+        "cta_label": "Add to cart",
+        "ship_note": "free ship over $35"
+      }
     }
   },
   "order": [
     "announcement",
     "main",
-    "story"
+    "story",
+    "sticky"
   ]
 }
