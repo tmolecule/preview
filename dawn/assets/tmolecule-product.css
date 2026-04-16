@@ -23,6 +23,7 @@
 .tm-ing__flourish--br { bottom:16px; right:16px; transform:rotate(180deg); }
 .tm-buybox__gallery { display:grid; grid-template-columns:80px 1fr; gap:12px; }
 .tm-buybox__thumbs { display:flex; flex-direction:column; gap:8px; }
+/* TMOLECULE_BUILD_2026_04_16_1100 */
 .tm-buybox__hero { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(122,90,43,.12); border:1px solid var(--tm-rule); }
 .tm-buybox__hero img { width:100%; height:auto; display:block; border-radius:8px; }
 .tm-buybox__thumbs img { width:80px; height:80px; object-fit:contain; border-radius:4px; border:1px solid #e3dbc9; cursor:pointer; background:#ede4cf; padding:4px; }
