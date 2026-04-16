@@ -50,23 +50,12 @@
             {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
             {%- if block.settings.subhead != blank -%}<p class="tm-sub">{{ block.settings.subhead }}</p>{%- endif -%}
             <div class="tm-ing__grid">
-              {%- for n in (1..6) -%}
-                {%- assign img = 'img_' | append: n -%}
-                {%- assign ttl = 'title_' | append: n -%}
-                {%- assign body = 'body_' | append: n -%}
-                {%- if block.settings[ttl] != blank -%}
-                  <div class="tm-ing__card">
-                    {%- assign img_url_key = 'img_' | append: n | append: '_url' -%}
-                    {%- if block.settings[img_url_key] != blank -%}
-                      <img src="{{ block.settings[img_url_key] }}" alt="" loading="lazy">
-                    {%- elsif block.settings[img] != blank -%}
-                      <img src="{{ block.settings[img] | image_url: width: 600 }}" alt="" loading="lazy">
-                    {%- endif -%}
-                    <h3>{{ block.settings[ttl] }}</h3>
-                    <p>{{ block.settings[body] }}</p>
-                  </div>
-                {%- endif -%}
-              {%- endfor -%}
+              {%- if block.settings.title_1 != blank -%}<div class="tm-ing__card">{%- if block.settings.img_1_url != blank -%}<img src="{{ block.settings.img_1_url }}" alt="" loading="lazy">{%- elsif block.settings.img_1 != blank -%}<img src="{{ block.settings.img_1 | image_url: width: 600 }}" alt="" loading="lazy">{%- endif -%}<h3>{{ block.settings.title_1 }}</h3><p>{{ block.settings.body_1 }}</p></div>{%- endif -%}
+              {%- if block.settings.title_2 != blank -%}<div class="tm-ing__card">{%- if block.settings.img_2_url != blank -%}<img src="{{ block.settings.img_2_url }}" alt="" loading="lazy">{%- elsif block.settings.img_2 != blank -%}<img src="{{ block.settings.img_2 | image_url: width: 600 }}" alt="" loading="lazy">{%- endif -%}<h3>{{ block.settings.title_2 }}</h3><p>{{ block.settings.body_2 }}</p></div>{%- endif -%}
+              {%- if block.settings.title_3 != blank -%}<div class="tm-ing__card">{%- if block.settings.img_3_url != blank -%}<img src="{{ block.settings.img_3_url }}" alt="" loading="lazy">{%- elsif block.settings.img_3 != blank -%}<img src="{{ block.settings.img_3 | image_url: width: 600 }}" alt="" loading="lazy">{%- endif -%}<h3>{{ block.settings.title_3 }}</h3><p>{{ block.settings.body_3 }}</p></div>{%- endif -%}
+              {%- if block.settings.title_4 != blank -%}<div class="tm-ing__card">{%- if block.settings.img_4_url != blank -%}<img src="{{ block.settings.img_4_url }}" alt="" loading="lazy">{%- elsif block.settings.img_4 != blank -%}<img src="{{ block.settings.img_4 | image_url: width: 600 }}" alt="" loading="lazy">{%- endif -%}<h3>{{ block.settings.title_4 }}</h3><p>{{ block.settings.body_4 }}</p></div>{%- endif -%}
+              {%- if block.settings.title_5 != blank -%}<div class="tm-ing__card">{%- if block.settings.img_5_url != blank -%}<img src="{{ block.settings.img_5_url }}" alt="" loading="lazy">{%- elsif block.settings.img_5 != blank -%}<img src="{{ block.settings.img_5 | image_url: width: 600 }}" alt="" loading="lazy">{%- endif -%}<h3>{{ block.settings.title_5 }}</h3><p>{{ block.settings.body_5 }}</p></div>{%- endif -%}
+              {%- if block.settings.title_6 != blank -%}<div class="tm-ing__card">{%- if block.settings.img_6_url != blank -%}<img src="{{ block.settings.img_6_url }}" alt="" loading="lazy">{%- elsif block.settings.img_6 != blank -%}<img src="{{ block.settings.img_6 | image_url: width: 600 }}" alt="" loading="lazy">{%- endif -%}<h3>{{ block.settings.title_6 }}</h3><p>{{ block.settings.body_6 }}</p></div>{%- endif -%}
             </div>
             {%- if block.settings.cta_label != blank -%}
               <div class="tm-cta-wrap"><a href="{{ block.settings.cta_link | default: '#' }}" class="tm-inline-cta">{{ block.settings.cta_label }}{%- if block.settings.cta_sub != blank -%}<span class="tm-inline-cta__sub">{{ block.settings.cta_sub }}</span>{%- endif -%}</a></div>
