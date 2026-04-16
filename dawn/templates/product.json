@@ -2,7 +2,6 @@
   "sections": {
     "main": {
       "type": "main-product-tmolecule",
-      "settings": { "label": "🔥 BESTSELLER", "subheadline": "Test subheadline" },
       "blocks": {
         "_title": { "type": "title" },
         "_price": { "type": "price" },
