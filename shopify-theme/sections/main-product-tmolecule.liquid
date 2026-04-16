@@ -96,7 +96,19 @@
   "name": "TMolecule product",
   "tag": "section",
   "class": "tm-main-product",
-
+  "blocks": [
+    { "type": "@app" },
+    { "type": "title", "name": "Title", "limit": 1 },
+    { "type": "price", "name": "Price", "limit": 1 },
+    { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
+    { "type": "buy_buttons", "name": "Buy buttons", "limit": 1 },
+    { "type": "badge", "name": "Trust badge",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji", "default": "✨" },
+        { "type": "text", "id": "label", "label": "Label (use <br> for line break)", "default": "Just<br>Launched" }
+      ]
+    }
+  ],
   "settings": [
     { "type": "text", "id": "label", "label": "Top label", "default": "🔥 BESTSELLER" },
     { "type": "textarea", "id": "subheadline", "label": "Subheadline", "default": "A revitalizing daily ritual from a family who has been curating tea blends since 1935." },
@@ -105,30 +117,6 @@
     { "type": "textarea", "id": "bullets", "label": "Bullets (separate with |)",
       "default": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA" },
     { "type": "checkbox", "id": "show_subscribe_toggle", "label": "Show subscribe toggle (display only)", "default": true }
-  ],
-  "blocks": [
-    { "type": "@app" },
-    { "type": "badge", "name": "Trust badge",
-      "settings": [
-        { "type": "text", "id": "icon", "label": "Emoji", "default": "✨" },
-        { "type": "text", "id": "label", "label": "Label (use <br> for line break)", "default": "Just<br>Launched" }
-      ]
-    }
-  ],
-  "presets": [
-    {
-      "name": "TMolecule product",
-      "blocks": [
-        { "type":"badge","settings":{"icon":"✨","label":"Just<br>Launched"} },
-        { "type":"badge","settings":{"icon":"🇺🇸","label":"Made in<br>USA"} },
-        { "type":"badge","settings":{"icon":"🚫","label":"No<br>Sugar"} },
-        { "type":"badge","settings":{"icon":"🥑","label":"Keto<br>Friendly"} },
-        { "type":"badge","settings":{"icon":"🥩","label":"Paleo<br>Friendly"} },
-        { "type":"badge","settings":{"icon":"🌾","label":"Gluten<br>Free"} },
-        { "type":"badge","settings":{"icon":"🌱","label":"Non<br>GMO"} },
-        { "type":"badge","settings":{"icon":"🚚","label":"Fast<br>Shipping"} }
-      ]
-    }
   ]
 }
 {% endschema %}

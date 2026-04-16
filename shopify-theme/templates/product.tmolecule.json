@@ -3,10 +3,23 @@
     "announcement": {
       "type": "announcement-bar-tmolecule",
       "blocks": {
-        "m1": { "type": "message", "settings": { "message": "🚚 Free shipping on orders over $35" } },
-        "m2": { "type": "message", "settings": { "message": "⚡ Same-day shipping for orders before 12pm ET" } }
+        "m1": {
+          "type": "message",
+          "settings": {
+            "message": "🚚 Free shipping on orders over $35"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "message": "⚡ Same-day shipping for orders before 12pm ET"
+          }
+        }
       },
-      "block_order": ["m1", "m2"]
+      "block_order": [
+        "m1",
+        "m2"
+      ]
     },
     "main": {
       "type": "main-product-tmolecule",
@@ -19,21 +32,96 @@
         "show_subscribe_toggle": true
       },
       "blocks": {
-        "b1": { "type": "badge", "settings": { "icon": "✨", "label": "Just<br>Launched" } },
-        "b2": { "type": "badge", "settings": { "icon": "🇺🇸", "label": "Made in<br>USA" } },
-        "b3": { "type": "badge", "settings": { "icon": "🚫", "label": "No<br>Sugar" } },
-        "b4": { "type": "badge", "settings": { "icon": "🥑", "label": "Keto<br>Friendly" } },
-        "b5": { "type": "badge", "settings": { "icon": "🥩", "label": "Paleo<br>Friendly" } },
-        "b6": { "type": "badge", "settings": { "icon": "🌾", "label": "Gluten<br>Free" } },
-        "b7": { "type": "badge", "settings": { "icon": "🌱", "label": "Non<br>GMO" } },
-        "b8": { "type": "badge", "settings": { "icon": "🚚", "label": "Fast<br>Shipping" } }
+        "b1": {
+          "type": "badge",
+          "settings": {
+            "icon": "✨",
+            "label": "Just<br>Launched"
+          }
+        },
+        "b2": {
+          "type": "badge",
+          "settings": {
+            "icon": "🇺🇸",
+            "label": "Made in<br>USA"
+          }
+        },
+        "b3": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚫",
+            "label": "No<br>Sugar"
+          }
+        },
+        "b4": {
+          "type": "badge",
+          "settings": {
+            "icon": "🥑",
+            "label": "Keto<br>Friendly"
+          }
+        },
+        "b5": {
+          "type": "badge",
+          "settings": {
+            "icon": "🥩",
+            "label": "Paleo<br>Friendly"
+          }
+        },
+        "b6": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌾",
+            "label": "Gluten<br>Free"
+          }
+        },
+        "b7": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌱",
+            "label": "Non<br>GMO"
+          }
+        },
+        "b8": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "label": "Fast<br>Shipping"
+          }
+        },
+        "_title": {
+          "type": "title"
+        },
+        "_price": {
+          "type": "price"
+        },
+        "_vp": {
+          "type": "variant_picker"
+        },
+        "_bb": {
+          "type": "buy_buttons"
+        }
       },
-      "block_order": ["b1","b2","b3","b4","b5","b6","b7","b8"]
+      "block_order": [
+        "_title",
+        "_price",
+        "_vp",
+        "_bb",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ]
     },
     "story": {
       "type": "product-story-tmolecule",
       "blocks": {
-        "trust": { "type": "trust_marquee" },
+        "trust": {
+          "type": "trust_marquee"
+        },
         "tabs": {
           "type": "tabs",
           "settings": {
@@ -98,12 +186,30 @@
             "heading": "Spice Rush vs. the chai you've been buying",
             "us_label": "TMolecule Spice Rush",
             "them_label": "Typical Chai Latte Mix",
-            "ico_1": "🍬", "row_1": "Sugar", "us_1": "Zero", "them_1": "15–25g per serving",
-            "ico_2": "💪", "row_2": "Protein", "us_2": "Collagen peptides", "them_2": "None",
-            "ico_3": "🌶️", "row_3": "Spices", "us_3": "Whole, milled in-house", "them_3": "\"Natural flavors,\" powders",
-            "ico_4": "🍃", "row_4": "Tea grade", "us_4": "Full-leaf, milled fine", "them_4": "Dust, fannings, extract",
-            "ico_5": "🥑", "row_5": "Diet fit", "us_5": "Keto, paleo, clean label", "them_5": "Sugar-loaded, additive-heavy",
-            "ico_6": "👨‍👩‍👧", "row_6": "Heritage", "us_6": "Heritage since 1935", "them_6": "A marketing department",
+            "ico_1": "🍬",
+            "row_1": "Sugar",
+            "us_1": "Zero",
+            "them_1": "15–25g per serving",
+            "ico_2": "💪",
+            "row_2": "Protein",
+            "us_2": "Collagen peptides",
+            "them_2": "None",
+            "ico_3": "🌶️",
+            "row_3": "Spices",
+            "us_3": "Whole, milled in-house",
+            "them_3": "\"Natural flavors,\" powders",
+            "ico_4": "🍃",
+            "row_4": "Tea grade",
+            "us_4": "Full-leaf, milled fine",
+            "them_4": "Dust, fannings, extract",
+            "ico_5": "🥑",
+            "row_5": "Diet fit",
+            "us_5": "Keto, paleo, clean label",
+            "them_5": "Sugar-loaded, additive-heavy",
+            "ico_6": "👨‍👩‍👧",
+            "row_6": "Heritage",
+            "us_6": "Heritage since 1935",
+            "them_6": "A marketing department",
             "cta_label": "Make the switch",
             "cta_sub": "$6.99 · one scoop, one cup"
           }
@@ -149,12 +255,31 @@
           }
         }
       },
-      "block_order": ["trust","tabs","ingredients","heritage","video","compare","ed1","ed2","reviews","disclaimer"]
+      "block_order": [
+        "trust",
+        "tabs",
+        "ingredients",
+        "heritage",
+        "video",
+        "compare",
+        "ed1",
+        "ed2",
+        "reviews",
+        "disclaimer"
+      ]
     },
     "sticky": {
       "type": "sticky-cta-tmolecule",
-      "settings": { "cta_label": "Add to cart", "ship_note": "free ship over $35" }
+      "settings": {
+        "cta_label": "Add to cart",
+        "ship_note": "free ship over $35"
+      }
     }
   },
-  "order": ["announcement", "main", "story", "sticky"]
+  "order": [
+    "announcement",
+    "main",
+    "story",
+    "sticky"
+  ]
 }
