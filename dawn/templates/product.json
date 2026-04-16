@@ -134,11 +134,33 @@
             "tab4_title": "FAQs",
             "tab4_body": "<p>About 40-50mg caffeine per scoop.</p>"
           }
+        },
+        "ingredients": {
+          "type": "ingredient_grid",
+          "settings": {
+            "heading": "What's in the scoop",
+            "subhead": "Five ingredients. Nothing else.",
+            "title_1": "Bold Black Tea",
+            "body_1": "Full-bodied Assam-style black tea, milled fine.",
+            "title_2": "Collagen Peptides",
+            "body_2": "Hydrolyzed collagen peptides for skin, joints, and recovery.",
+            "title_3": "Real Ginger",
+            "body_3": "Warming, digestive, alive. Dried and milled from whole root.",
+            "title_4": "Ceylon Cinnamon",
+            "body_4": "True cinnamon — sweet, delicate.",
+            "title_5": "Green Cardamom",
+            "body_5": "Whole pods ground for bright, floral lift.",
+            "title_6": "Milled",
+            "body_6": "The tea leaves are milled to an ultra-fine powder.",
+            "cta_label": "Try Spice Rush",
+            "cta_sub": "Starting at $6.99"
+          }
         }
       },
       "block_order": [
         "trust",
-        "tabs"
+        "tabs",
+        "ingredients"
       ]
     }
   },
