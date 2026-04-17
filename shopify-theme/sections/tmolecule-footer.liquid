@@ -1,0 +1,110 @@
+<style>
+  .tm-footer { background:linear-gradient(180deg,#2a1f10 0%,#1a1208 100%); color:#faf3e0; padding:64px 40px 32px; font-family:'Inter', system-ui, sans-serif; }
+  .tm-footer a { color:#d4b97a; text-decoration:none; }
+  .tm-footer a:hover { color:#faf7f0; }
+  .tm-footer__brand { max-width:1200px; margin:0 auto 48px; text-align:center; border-bottom:1px solid rgba(212,185,122,.2); padding-bottom:40px; }
+  .tm-footer__brand img { height:60px; margin-bottom:12px; filter:brightness(0) invert(1); }
+  .tm-footer__tagline { font-family:'Fraunces', Georgia, serif; font-size:18px; font-style:italic; opacity:.8; margin:0; }
+  .tm-footer__inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1.5fr 1fr; gap:48px; }
+  .tm-footer h4 { font-family:'Fraunces', Georgia, serif; font-size:16px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:#faf7f0; margin:0 0 20px; }
+  .tm-footer ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; font-size:14px; }
+  .tm-footer__newsletter p { font-size:14px; line-height:1.55; opacity:.8; margin:0 0 16px; }
+  .tm-footer__form { display:flex; gap:8px; }
+  .tm-footer__form input { flex:1; padding:10px 12px; border:1px solid rgba(212,185,122,.3); background:rgba(250,247,240,.08); color:#faf7f0; border-radius:4px; font-family:'Inter'; font-size:14px; }
+  .tm-footer__form input::placeholder { color:rgba(250,247,240,.5); }
+  .tm-footer__form button { padding:10px 20px; background:linear-gradient(135deg,#d4b97a,#a8852a); color:#2a1f10; border:0; border-radius:4px; font-weight:700; letter-spacing:.04em; cursor:pointer; font-family:'Inter'; font-size:13px; text-transform:uppercase; }
+  .tm-footer__social { display:flex; gap:12px; }
+  .tm-footer__social a { width:36px; height:36px; border-radius:50%; background:rgba(212,185,122,.15); display:flex; align-items:center; justify-content:center; transition:background .2s ease; }
+  .tm-footer__social a:hover { background:rgba(212,185,122,.3); }
+  .tm-footer__disclaimer { max-width:1200px; margin:48px auto 0; padding:24px 0 16px; border-top:1px solid rgba(212,185,122,.2); font-size:11px; line-height:1.6; color:rgba(250,247,240,.55); letter-spacing:.02em; }
+  .tm-footer__disclaimer p { margin:0; }
+  .tm-footer__bottom { max-width:1200px; margin:16px auto 0; padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; opacity:.7; }
+  .tm-footer__pay { display:flex; gap:8px; flex-wrap:wrap; }
+  .tm-footer__pay span { padding:4px 8px; background:rgba(250,247,240,.08); border-radius:3px; font-size:11px; letter-spacing:.04em; }
+  @media (max-width:860px) { .tm-footer__inner { grid-template-columns:1fr 1fr; gap:32px; } .tm-footer__bottom { flex-direction:column; text-align:center; } }
+  @media (max-width:520px) { .tm-footer__inner { grid-template-columns:1fr; } }
+</style>
+
+<footer class="tm-footer">
+  <div class="tm-footer__brand">
+    {%- if section.settings.logo != blank -%}
+      <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}">
+    {%- else -%}
+      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=400" alt="{{ shop.name | escape }}" width="400" height="110">
+    {%- endif -%}
+    {%- if section.settings.tagline != blank -%}
+      <p class="tm-footer__tagline">{{ section.settings.tagline }}</p>
+    {%- endif -%}
+  </div>
+
+  <div class="tm-footer__inner">
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="{{ routes.root_url }}">Home</a></li>
+        <li><a href="{{ routes.all_products_collection_url }}">Shop</a></li>
+        <li><a href="/pages/contact">Contact Us</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="/policies/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+        <li><a href="/policies/refund-policy">Return Policy</a></li>
+      </ul>
+    </div>
+    <div class="tm-footer__newsletter">
+      <h4>Subscribe</h4>
+      <p>{{ section.settings.newsletter_text | default: "Join the ritual. Early access, new drops, and the occasional brewing tip." }}</p>
+      {%- form 'customer', class: 'tm-footer__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="your@email.com" required>
+        <button type="submit">Join</button>
+      {%- endform -%}
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <div class="tm-footer__social">
+        {%- if section.settings.facebook != blank -%}<a href="{{ section.settings.facebook }}" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.5-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7V13h2.6v8h3.2z"/></svg></a>{%- endif -%}
+        {%- if section.settings.instagram != blank -%}<a href="{{ section.settings.instagram }}" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>{%- endif -%}
+        {%- if section.settings.tiktok != blank -%}<a href="{{ section.settings.tiktok }}" aria-label="TikTok" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M19.3 8.6c-1.6 0-3-.6-4-1.6-.7-.7-1.2-1.7-1.4-2.8h-3v11.3c0 1.3-1.1 2.4-2.4 2.4-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4c.3 0 .5 0 .8.1v-3c-.3 0-.5-.1-.8-.1-3 0-5.4 2.4-5.4 5.4s2.4 5.4 5.4 5.4 5.4-2.4 5.4-5.4V10c1.1.7 2.4 1.1 3.8 1.1h.7v-2.5h-.1z"/></svg></a>{%- endif -%}
+        {%- if section.settings.twitter != blank -%}<a href="{{ section.settings.twitter }}" aria-label="X" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3l-6.6 7.5L22 21h-6.2l-4.8-6.3L5.3 21H2.3l7-8L2 3h6.3l4.4 5.8L17.5 3zm-1 16h1.7L7.6 4.8H5.8L16.5 19z"/></svg></a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+
+  {%- if section.settings.disclaimer != blank -%}
+    <div class="tm-footer__disclaimer">
+      <p>{{ section.settings.disclaimer }}</p>
+    </div>
+  {%- endif -%}
+
+  <div class="tm-footer__bottom">
+    <div>© {{ 'now' | date: '%Y' }}, {{ shop.name }}. All rights reserved.</div>
+    <div class="tm-footer__pay">
+      {%- for type in shop.enabled_payment_types -%}
+        <span>{{ type | capitalize }}</span>
+      {%- endfor -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "TMolecule footer",
+  "tag": "footer",
+  "class": "tm-footer-section",
+  "settings": [
+    { "type":"image_picker", "id":"logo", "label":"Footer logo (optional)" },
+    { "type":"text", "id":"tagline", "label":"Tagline", "default":"Food with benefits. Real health benefits." },
+    { "type":"textarea", "id":"newsletter_text", "label":"Newsletter text", "default":"Join the ritual. Early access, new drops, and the occasional brewing tip." },
+    { "type":"url", "id":"facebook", "label":"Facebook URL", "default":"https://facebook.com/GetTMolecule" },
+    { "type":"url", "id":"instagram", "label":"Instagram URL", "default":"https://instagram.com/tmolecule.official" },
+    { "type":"url", "id":"tiktok", "label":"TikTok URL", "default":"https://tiktok.com/@tmolecule" },
+    { "type":"url", "id":"twitter", "label":"X / Twitter URL", "default":"https://twitter.com/GetTMolecule" },
+    { "type":"textarea", "id":"disclaimer", "label":"FDA disclaimer text", "default":"* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary." }
+  ],
+  "presets": [{"name":"TMolecule footer"}]
+}
+{% endschema %}
