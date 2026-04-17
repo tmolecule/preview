@@ -8,3 +8,9 @@
 .tm-inline-cta:hover { box-shadow:0 6px 20px #8a102061; }
 .tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#e8d0a0 0%,#c0a060 100%); color:#0a1840; }
 .tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#8a1020 0%,#c0283a 100%); }
+.tm-band--honey { color:#f5ecd8; }
+.tm-band--honey .tm-h2 { color:#f5ecd8; }
+.tm-band--honey .tm-eyebrow { color:#d4b97a; }
+.tm-band--deep-sand { color:#f5ecd8; }
+.tm-band--deep-sand .tm-h2 { color:#f5ecd8; }
+.tm-band--deep-sand .tm-eyebrow { color:#d4b97a; }
