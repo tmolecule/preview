@@ -63,7 +63,7 @@
         {%- endif -%}
         <label>Name<input type="text" name="contact[name]" value="{%- if form.name -%}{{ form.name }}{%- elsif customer -%}{{ customer.name }}{%- endif -%}" required></label>
         <label>Email<input type="email" name="contact[email]" value="{%- if form.email -%}{{ form.email }}{%- elsif customer -%}{{ customer.email }}{%- endif -%}" required></label>
-        <label>Phone (optional)<input type="tel" name="contact[phone]" value="{{ form.phone }}"></label>
+        <label>Phone<input type="tel" name="contact[phone]" value="{{ form.phone }}" required></label>
         <label>Message<textarea name="contact[body]" required>{{ form.body }}</textarea></label>
         <button class="tm-contact__submit" type="submit">Send message</button>
       {%- endform -%}
