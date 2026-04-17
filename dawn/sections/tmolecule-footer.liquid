@@ -3,7 +3,9 @@
   .tm-footer a { color:#d4b97a; text-decoration:none; }
   .tm-footer a:hover { color:#faf7f0; }
   .tm-footer__brand { max-width:1200px; margin:0 auto 48px; text-align:center; border-bottom:1px solid rgba(212,185,122,.2); padding-bottom:40px; }
-  .tm-footer__brand img { height:60px; width:auto; margin-bottom:12px; filter:brightness(0) invert(1); display:inline-block; }
+  .tm-footer__brand-logo { display:inline-flex; align-items:flex-start; justify-content:center; margin-bottom:12px; }
+  .tm-footer__brand img { height:60px; width:auto; filter:brightness(0) invert(1); display:block; }
+  .tm-footer__brand sup { font-family:'Inter',sans-serif; font-size:14px; color:#d4b97a; margin-left:4px; margin-top:6px; font-weight:700; }
   .tm-footer__tagline { font-family:'Fraunces', Georgia, serif; font-size:18px; font-style:italic; opacity:.8; margin:0; }
   .tm-footer__inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr 1.5fr 1fr; gap:48px; }
   .tm-footer h4 { font-family:'Fraunces', Georgia, serif; font-size:16px; font-weight:600; letter-spacing:.04em; text-transform:uppercase; color:#faf7f0; margin:0 0 20px; }
@@ -27,11 +29,14 @@
 
 <footer class="tm-footer">
   <div class="tm-footer__brand">
-    {%- if section.settings.logo != blank -%}
-      <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}">
-    {%- else -%}
-      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=400" alt="{{ shop.name | escape }}" width="400" height="110">
-    {%- endif -%}
+    <div class="tm-footer__brand-logo">
+      {%- if section.settings.logo != blank -%}
+        <img src="{{ section.settings.logo | image_url: width: 400 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}">
+      {%- else -%}
+        <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=400" alt="{{ shop.name | escape }}" width="400" height="110">
+      {%- endif -%}
+      <sup>&reg;</sup>
+    </div>
     {%- if section.settings.tagline != blank -%}
       <p class="tm-footer__tagline">{{ section.settings.tagline }}</p>
     {%- endif -%}

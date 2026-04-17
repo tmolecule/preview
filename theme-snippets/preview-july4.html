@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TMolecule — Spice Rush Collagen Black Tea (preview)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { font-family: 'Fraunces', Georgia, 'Times New Roman', serif; color:#2b2a28; background:#faf7f0;
+    --tm-serif:'Fraunces', Georgia, serif; --tm-sans:'Inter', system-ui, -apple-system, sans-serif;
+    --tm-ink:#2b2a28; --tm-bg:#faf7f0; --tm-accent:#7a5a2b; --tm-accent-dark:#4a3718; --tm-rule:#e3dbc9; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:var(--tm-serif); font-variation-settings:"SOFT" 50; }
+  .sans { font-family:var(--tm-sans); }
+
+  /* Announcement bar */
+  .ann { background:linear-gradient(90deg,#3a2d1a,#4a3718); color:#f5ecd8; overflow:hidden; -webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent); }
+  .ann__track { display:flex; gap:80px; width:max-content; padding:10px 0; animation:tm-marquee 42s linear infinite; }
+  .ann__item { font-family:var(--tm-sans); font-size:13px; letter-spacing:.06em; text-transform:uppercase; white-space:nowrap; display:flex; align-items:center; gap:10px; flex-shrink:0; }
+  .ann__item .dot { color:#d4b97a; }
+
+  /* Site header */
+  .site-header { display:flex; align-items:center; justify-content:center; padding:16px 40px; border-bottom:1px solid var(--tm-rule); background:rgba(250,247,240,.92); backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px); position:sticky; top:0; z-index:40; transition:padding .25s ease, box-shadow .25s ease; }
+  .site-header.is-scrolled { padding:10px 40px; box-shadow:0 2px 12px rgba(74,55,24,.08); }
+  .site-header.is-scrolled .site-header__logo img { height:36px; }
+  .site-header__logo { display:inline-flex; align-items:center; text-decoration:none; }
+  .site-header__logo img { height:44px; width:auto; display:block; transition:height .25s ease, opacity .2s ease; }
+  .site-header__logo:hover img { opacity:.85; }
+
+  /* Buy box (approximate default Shopify product section) */
+  .buybox-wrap { background:linear-gradient(180deg,#faf7f0 0%,#ebe0c0 100%); }
+  .buybox { max-width:1200px; margin:0 auto; padding:40px 20px; display:grid; grid-template-columns:1.1fr 1fr; gap:48px; }
+  .buybox__gallery { display:grid; grid-template-columns:80px 1fr; gap:12px; }
+  .buybox__thumbs { display:flex; flex-direction:column; gap:8px; }
+  .buybox__thumbs img { width:80px; height:80px; object-fit:cover; border:1px solid #e3dbc9; border-radius:4px; cursor:pointer; }
+  .buybox__thumbs img.active { border-color:#7a5a2b; border-width:2px; }
+  .buybox__hero img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:4px; }
+  .buybox__info .new { font-size:11px; font-family:system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#7a5a2b; margin:0 0 8px; }
+  .buybox__info h1 { font-size:clamp(28px,3.5vw,40px); line-height:1.1; margin:0 0 12px; letter-spacing:-.01em; }
+  .buybox__info .sub { font-size:18px; line-height:1.45; opacity:.8; margin:0 0 16px; }
+  .buybox__info .rating { font-family:system-ui,sans-serif; font-size:14px; margin-bottom:16px; }
+  .buybox__info .rating .stars { color:#c89a3a; }
+  .buybox__bullets { list-style:none; padding:0; margin:0 0 24px; font-family:system-ui,sans-serif; font-size:15px; }
+  .buybox__bullets li { padding:6px 0; border-bottom:1px solid #ece5d3; }
+  .buybox__bullets li:last-child { border-bottom:0; }
+  .buybox__price { font-size:28px; font-weight:700; margin:0 0 16px; }
+  .buybox__opts { display:flex; gap:8px; margin-bottom:16px; }
+  .buybox__opts button { flex:1; padding:12px; border:1px solid #d4c8a8; background:#fff; border-radius:4px; cursor:pointer; font-family:system-ui,sans-serif; font-size:14px; }
+  .buybox__opts button.active { border-color:#2b2a28; border-width:2px; }
+  .buybox__cta { display:block; width:100%; padding:16px; background:linear-gradient(135deg,#a8532a 0%,#7a3a1a 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:16px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; cursor:pointer; box-shadow:0 4px 14px rgba(168,83,42,.35); transition:transform .15s ease, box-shadow .15s ease; }
+  .buybox__cta:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(168,83,42,.45); }
+
+  .buybox__usa { text-align:center; margin:20px 0 0; padding-top:16px; border-top:1px solid var(--tm-rule); font-family:var(--tm-sans); font-size:14px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--tm-accent-dark); }
+  .buybox__badges { display:grid; grid-template-columns:repeat(4,1fr); gap:12px 8px; margin-top:24px; padding-top:20px; border-top:1px solid var(--tm-rule); }
+  .bb { display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px; }
+  .bb__icon { width:48px; height:48px; border-radius:50%; background:#fff; border:1.5px solid var(--tm-accent); display:flex; align-items:center; justify-content:center; font-size:22px; box-shadow:0 2px 6px rgba(122,90,43,.1); }
+  .bb span { font-family:var(--tm-sans); font-size:11px; font-weight:600; line-height:1.25; color:var(--tm-accent-dark); text-transform:uppercase; letter-spacing:.04em; }
+  @media (max-width:480px) { .buybox__badges { grid-template-columns:repeat(3,1fr); } }
+
+  /* Story section */
+  .tm-story { --tm-ink:#2b2a28; --tm-accent:#7a5a2b; --tm-rule:#e3dbc9;
+    color:var(--tm-ink); }
+  .tm-band { padding:80px 20px; width:100%; box-shadow:inset 0 8px 16px -8px rgba(74,55,24,.15); }
+  .tm-band > * { max-width:1200px; margin-left:auto; margin-right:auto; }
+  .tm-band--cream { background:linear-gradient(180deg,#fdfbf5 0%,#f0e6ca 100%); }
+  .tm-band--sand { background:linear-gradient(180deg,#f6ead0 0%,#e3d0a8 100%); }
+  .tm-band--honey { background:linear-gradient(180deg,#e0cf9e 0%,#c9b47a 100%); }
+  .tm-band--deep-sand { background:linear-gradient(180deg,#c9b47a 0%,#a89568 100%); }
+  .tm-band--espresso { background:linear-gradient(180deg,#3a2d1a 0%,#2a1f10 100%); color:#f5ecd8; }
+  .tm-band--espresso .tm-h2 { color:#f5ecd8; }
+  .tm-band--espresso .tm-eyebrow { color:#d4b97a; }
+  .tm-band--espresso blockquote { background:#faf3e0; border:1px solid #e0c591; color:#2b2a28; box-shadow:0 8px 24px rgba(0,0,0,.3); }
+  .tm-band--espresso blockquote p { color:#2b2a28; }
+  .tm-band--espresso cite { color:#7a5a2b; opacity:1; font-weight:600; }
+  .tm-story .tm-h2 { font-size:clamp(28px,4vw,42px); line-height:1.15; letter-spacing:-.01em; margin:0 0 16px; }
+  .tm-story .tm-sub { max-width:60ch; margin:0 auto 24px; opacity:.75; }
+  .tm-story .tm-eyebrow { text-transform:uppercase; letter-spacing:.14em; font-size:12px; color:var(--tm-accent); margin:0 0 8px; font-family:system-ui,sans-serif; }
+  .rte p { margin:0 0 12px; line-height:1.6; }
+
+  .tm-trust { overflow:hidden; max-width:100%; padding:0; margin:0; border-top:1px solid var(--tm-rule); border-bottom:1px solid var(--tm-rule); -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent); }
+  .tm-trust__track { display:flex; gap:48px; width:max-content; padding:20px 0; animation:tm-marquee 38s linear infinite; }
+  .tm-trust__item { display:flex; align-items:center; gap:10px; flex-shrink:0; font-family:var(--tm-sans); font-size:14px; white-space:nowrap; }
+  .tm-trust__item .badge { width:36px; height:36px; border-radius:50%; background:#fff; border:1px solid var(--tm-rule); display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; overflow:hidden; }
+  .tm-trust__item .badge--img img { width:100%; height:100%; object-fit:cover; display:block; }
+  .tm-trust__item .badge--svg svg { width:70%; height:70%; }
+  @keyframes tm-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  .tm-trust:hover .tm-trust__track { animation-play-state:paused; }
+  .tm-band--sand:has(.tm-trust) { padding:0; }
+
+  .tm-tabs { max-width:820px; margin:0 auto; }
+  .tm-tabs details { border-bottom:1px solid var(--tm-rule); }
+  .tm-tabs summary { font-size:18px; padding:18px 0; cursor:pointer; list-style:none; font-weight:600; }
+  .tm-tabs summary::-webkit-details-marker { display:none; }
+  .tm-tabs summary::after { content:'+'; float:right; font-size:24px; line-height:1; }
+  .tm-tabs details[open] summary::after { content:'–'; }
+  .tm-tabs__body { padding:0 0 24px; }
+  .tm-faq details { border-bottom:1px solid var(--tm-rule); }
+  .tm-faq details:first-child { border-top:1px solid var(--tm-rule); }
+  .tm-faq summary { font-size:15px; font-weight:600; padding:14px 0; font-family:var(--tm-sans); }
+  .tm-faq summary::after { font-size:20px; }
+  .tm-faq .rte { padding:0 0 14px; font-family:var(--tm-sans); font-size:14px; }
+
+  .tm-ing { max-width:1200px; margin:0 auto; text-align:center; }
+  .tm-ing__origin { display:block; font-family:var(--tm-sans); font-size:11px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--tm-accent); margin-bottom:4px; }
+  .tm-ing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:left; }
+  @media (max-width:900px) { .tm-ing__grid { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px) { .tm-ing__grid { grid-template-columns:1fr; } }
+  .tm-ing__card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:4px; margin-bottom:12px; display:block; }
+  .tm-ing__card h3 { font-size:20px; margin:0 0 6px; }
+  .tm-ing__card p { margin:0; line-height:1.55; opacity:.85; font-family:system-ui,sans-serif; font-size:15px; }
+
+  .tm-heritage { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .tm-heritage__media img { width:100%; height:auto; object-fit:contain; border-radius:4px; display:block; }
+  .tm-sig { font-style:italic; margin-top:16px; opacity:.75; }
+
+  .tm-compare { max-width:900px; margin:0 auto; text-align:center; }
+  .tm-compare table { width:100%; border-collapse:collapse; font-family:system-ui,sans-serif; font-size:15px; text-align:left; }
+  .tm-compare th, .tm-compare td { padding:14px; border-bottom:1px solid var(--tm-rule); }
+  .tm-compare thead th { font-weight:700; text-transform:uppercase; letter-spacing:.08em; font-size:12px; }
+  .tm-compare__us { color:var(--tm-accent); font-weight:600; }
+  .tm-compare__them { opacity:.6; }
+  .tm-compare__ico { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#fff; border:1px solid var(--tm-rule); font-size:16px; margin-right:10px; vertical-align:middle; }
+  .tm-yes { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:#4a7a3a; color:#fff; font-size:13px; font-weight:700; margin-right:10px; vertical-align:middle; }
+  .tm-no { display:inline-flex; align-items:center; justify-content:center; width:22px; height:22px; border-radius:50%; background:#b84a3a; color:#fff; font-size:12px; font-weight:700; margin-right:10px; vertical-align:middle; }
+
+  .tm-ed { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+  .tm-ed--reverse .tm-ed__media { order:2; }
+  .tm-ed__media img { width:100%; height:auto; object-fit:contain; border-radius:4px; display:block; }
+
+  .tm-reviews { max-width:1100px; margin:0 auto; text-align:center; }
+  .tm-reviews__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; text-align:left; }
+  @media (max-width:900px) { .tm-reviews__grid { grid-template-columns:1fr; } }
+  .tm-reviews blockquote { margin:0; padding:24px; background:#fff; border-radius:4px; border:1px solid var(--tm-rule); }
+  .tm-reviews blockquote p { margin:0 0 12px; font-size:17px; line-height:1.5; }
+  .tm-reviews cite { font-style:normal; opacity:.7; font-size:14px; font-family:system-ui,sans-serif; }
+
+  .buybox__hero { background:linear-gradient(135deg,#ede4cf 0%,#d6c69a 60%,#b89966 100%); border-radius:8px; padding:24px; box-shadow:0 8px 24px rgba(122,90,43,.12); }
+  .hero-img { width:100%; aspect-ratio:1/1; object-fit:contain; border-radius:4px; mix-blend-mode:multiply; }
+  .thumb-img { width:80px; height:80px; object-fit:contain; border-radius:4px; border:1px solid #e3dbc9; cursor:pointer; background:#ede4cf; padding:4px; }
+  .thumb-img.active { border:2px solid #7a5a2b; }
+
+  /* Inline section CTAs */
+  .tm-cta-wrap { text-align:center; margin-top:40px; }
+  .tm-inline-cta { display:inline-block; padding:16px 40px; background:linear-gradient(135deg,#4a3718 0%,#2a1f10 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:15px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; box-shadow:0 4px 14px rgba(42,31,16,.28); transition:transform .15s ease, box-shadow .15s ease; text-decoration:none; }
+  .tm-inline-cta:hover { transform:translateY(-1px); box-shadow:0 6px 20px rgba(42,31,16,.38); }
+  .tm-inline-cta__sub { display:block; font-size:11px; font-weight:500; letter-spacing:.1em; opacity:.85; margin-top:4px; }
+  .tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#d4b97a 0%,#a8852a 100%); color:#2a1f10; box-shadow:0 4px 14px rgba(212,185,122,.3); }
+  .tm-band--espresso .tm-inline-cta:hover { box-shadow:0 6px 20px rgba(212,185,122,.45); }
+  .tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#2a1f10 0%,#1a1208 100%); }
+
+  /* Sticky CTA bar (all screens — Lineage-style) */
+  .sticky-cta { display:flex; position:fixed; bottom:0; left:0; right:0; z-index:50; background:#faf3e0; border-top:1px solid var(--tm-rule); padding:14px 24px; box-shadow:0 -8px 24px rgba(74,55,24,.15); align-items:center; gap:16px; transform:translateY(100%); transition:transform .35s cubic-bezier(.4,0,.2,1); }
+  .sticky-cta.is-visible { transform:translateY(0); }
+  .sticky-cta__thumb { width:52px; height:52px; border-radius:6px; object-fit:cover; background:#ede4cf; flex-shrink:0; }
+  .sticky-cta__info { flex:1; min-width:0; }
+  .sticky-cta__name { font-family:var(--tm-sans); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--tm-accent-dark); margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .sticky-cta__price { font-family:var(--tm-serif); font-size:20px; font-weight:700; color:var(--tm-ink); margin:2px 0 0; }
+  .sticky-cta__price small { font-family:var(--tm-sans); font-size:12px; font-weight:500; opacity:.7; margin-left:6px; }
+  .sticky-cta__btn { padding:14px 28px; background:linear-gradient(135deg,#a8532a 0%,#7a3a1a 100%); color:#faf7f0; border:0; border-radius:4px; font-family:var(--tm-sans); font-size:14px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; cursor:pointer; box-shadow:0 3px 10px rgba(168,83,42,.35); white-space:nowrap; transition:transform .15s ease, box-shadow .15s ease; }
+  .sticky-cta__btn:hover { transform:translateY(-1px); box-shadow:0 5px 14px rgba(168,83,42,.45); }
+
+  @media (max-width:900px) {
+    .buybox { grid-template-columns:1fr; padding:24px 16px; gap:24px; }
+    .tm-heritage, .tm-ed { grid-template-columns:1fr; gap:24px; }
+    .tm-ed--reverse .tm-ed__media { order:0; }
+    .site-header { padding:14px 16px; }
+    .site-header__logo img { height:38px; }
+    .buybox__thumbs { flex-direction:row; flex-wrap:wrap; }
+    .buybox__gallery { grid-template-columns:1fr; }
+    .tm-band { padding:56px 16px; }
+    .tm-ing__grid { grid-template-columns:repeat(2,1fr); gap:20px; }
+    .tm-compare table { font-size:13px; }
+    .tm-compare th, .tm-compare td { padding:10px 6px; }
+    .tm-compare__ico { width:26px; height:26px; font-size:13px; margin-right:6px; }
+    .tm-yes, .tm-no { width:18px; height:18px; font-size:11px; margin-right:6px; }
+    .ann__item { font-size:11px; }
+    .tm-trust__item { font-size:13px; }
+  }
+  @media (max-width:560px) {
+    .site-header { padding:12px 14px; }
+    .site-header__logo img { height:34px; }
+    .buybox__info h1 { font-size:26px; }
+    .buybox__opts { flex-wrap:wrap; }
+    .buybox__opts button { flex:1 1 calc(50% - 4px); font-size:13px; padding:10px 8px; }
+    .tm-ing__grid { grid-template-columns:1fr; }
+    .buybox__badges { grid-template-columns:repeat(4,1fr); gap:10px 6px; }
+    .bb__icon { width:40px; height:40px; font-size:18px; }
+    .bb span { font-size:10px; }
+    .buybox__hero { padding:16px; }
+    .tm-footer__bottom { flex-direction:column; text-align:center; }
+    .sticky-cta { padding:10px 14px; gap:10px; }
+    .sticky-cta__thumb { width:44px; height:44px; }
+    .sticky-cta__btn { padding:12px 18px; font-size:13px; }
+  }
+  body { padding-bottom:88px; }
+
+  /* Footer */
+  .tm-footer { background:linear-gradient(180deg,#5a4322 0%,#3e2d15 100%); color:#e8d5a8; padding:64px 20px 32px; font-family:var(--tm-sans); }
+  .tm-footer__brand { max-width:1200px; margin:0 auto 40px; padding-bottom:32px; border-bottom:1px solid rgba(212,198,154,.2); text-align:center; }
+  .tm-footer__brand img { height:64px; width:auto; display:block; margin:0 auto 12px; filter:brightness(1.15) contrast(1.05); }
+  .tm-footer__tagline { margin:0; font-family:var(--tm-serif); font-size:15px; color:#d4c69a; letter-spacing:.02em; }
+  .tm-footer__inner { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); gap:48px; }
+  .tm-footer h4 { font-family:var(--tm-serif); color:#faf3e0; font-size:18px; margin:0 0 16px; letter-spacing:.02em; }
+  .tm-footer ul { list-style:none; margin:0; padding:0; }
+  .tm-footer li { margin-bottom:10px; font-size:14px; }
+  .tm-footer a { color:#d4c69a; text-decoration:none; transition:color .2s; }
+  .tm-footer a:hover { color:#faf3e0; }
+  .tm-footer__newsletter p { font-size:14px; line-height:1.5; margin:0 0 12px; }
+  .tm-footer__form { display:flex; gap:8px; }
+  .tm-footer__form input { flex:1; padding:10px 12px; background:rgba(255,255,255,.08); border:1px solid rgba(212,198,154,.25); border-radius:4px; color:#faf3e0; font-size:14px; font-family:inherit; }
+  .tm-footer__form input::placeholder { color:rgba(212,198,154,.6); }
+  .tm-footer__form button { padding:10px 18px; background:#a8532a; color:#faf3e0; border:0; border-radius:4px; font-weight:600; cursor:pointer; font-size:13px; letter-spacing:.05em; text-transform:uppercase; }
+  .tm-footer__form button:hover { background:#7a3a1a; }
+  .tm-footer__social { display:flex; gap:14px; margin-top:4px; }
+  .tm-footer__social a { width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,.08); display:flex; align-items:center; justify-content:center; font-size:18px; }
+  .tm-footer__social a:hover { background:rgba(255,255,255,.15); }
+  .tm-footer__disclaimer { max-width:1200px; margin:40px auto 0; padding-top:24px; border-top:1px solid rgba(212,198,154,.2); font-size:11px; line-height:1.6; color:rgba(255,255,255,.55); letter-spacing:.02em; }
+  .tm-footer__disclaimer p { margin:0; }
+  .tm-video { max-width:1100px; margin:0 auto; padding:64px 24px; text-align:center; }
+  .tm-video .tm-h2 { margin:8px 0 32px; }
+  .tm-video__wrap { position:relative; width:100%; aspect-ratio:16/9; border-radius:8px; overflow:hidden; box-shadow:0 12px 40px rgba(74,55,24,.18); background:linear-gradient(135deg,#a89568 0%,#6d5a30 100%); }
+  .tm-video__teaser { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .tm-video__play { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; background:transparent; border:0; cursor:pointer; color:#faf7f0; font-family:'Inter',sans-serif; transition:background .2s ease; }
+  .tm-video__play:hover { background:rgba(42,31,16,.25); }
+  .tm-video__play-label { font-size:15px; font-weight:600; letter-spacing:.04em; text-shadow:0 2px 8px rgba(0,0,0,.5); }
+  .tm-video__play-label small { font-weight:400; opacity:.85; }
+  .tm-video__modal { position:fixed; inset:0; z-index:9999; background:rgba(20,12,4,.92); display:flex; align-items:center; justify-content:center; padding:24px; }
+  .tm-video__modal[hidden] { display:none; }
+  .tm-video__full { width:100%; max-width:1200px; max-height:90vh; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,.6); }
+  .tm-video__close { position:absolute; top:24px; right:24px; width:44px; height:44px; border-radius:50%; background:rgba(250,247,240,.15); border:0; color:#faf7f0; font-size:28px; cursor:pointer; line-height:1; }
+  .tm-video__close:hover { background:rgba(250,247,240,.3); }
+  .tm-footer__bottom { max-width:1200px; margin:16px auto 0; padding-top:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; font-size:13px; }
+  .tm-footer__pay { display:flex; gap:8px; flex-wrap:wrap; }
+  .tm-footer__pay span { padding:4px 8px; background:rgba(255,255,255,.1); border-radius:3px; font-size:11px; letter-spacing:.04em; }
+  @media (max-width:900px) { .tm-footer__inner { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:500px) { .tm-footer__inner { grid-template-columns:1fr; gap:32px; } }
+/* SEASONAL OVERRIDE — july4: Navy, white, crimson — Jun 25–Jul 10 */
+.tm-band--cream { background:linear-gradient(180deg,#f5f5fa 0%,#e0e0f0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#dce0f0 0%,#b0b8d8 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#c0283a 0%,#a01828 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#1a2858 0%,#0a1840 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#0a1840 0%,#050c20 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#c0283a 0%,#8a1020 100%); box-shadow:0 4px 14px #8a102047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #8a102061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#e8d0a0 0%,#c0a060 100%); color:#0a1840; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#8a1020 0%,#c0283a 100%); }
+.tm-band--honey { color:#f5ecd8; }
+.tm-band--honey .tm-h2 { color:#f5ecd8; }
+.tm-band--honey .tm-eyebrow { color:#d4b97a; }
+.tm-band--deep-sand { color:#f5ecd8; }
+.tm-band--deep-sand .tm-h2 { color:#f5ecd8; }
+.tm-band--deep-sand .tm-eyebrow { color:#d4b97a; }
+
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann">
+  <div class="ann__track">
+    <span class="ann__item">🚚 Free shipping on orders over $35</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">⚡ Same-day shipping for orders before 12pm ET</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">🚚 Free shipping on orders over $35</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">⚡ Same-day shipping for orders before 12pm ET</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">🚚 Free shipping on orders over $35</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">⚡ Same-day shipping for orders before 12pm ET</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">🚚 Free shipping on orders over $35</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+    <span class="ann__item">⚡ Same-day shipping for orders before 12pm ET</span>
+    <span class="ann__item"><span class="dot">●</span></span>
+  </div>
+</div>
+
+<!-- SITE HEADER -->
+<header class="site-header">
+  <a class="site-header__logo" href="/" aria-label="TMolecule home">
+    <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="TMolecule">
+  </a>
+</header>
+
+<!-- BUY BOX (approximation of default Shopify product section) -->
+<div class="buybox-wrap">
+<section class="buybox">
+  <div class="buybox__gallery">
+    <div class="buybox__thumbs">
+      <img class="thumb-img active" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_160,h_160,c_fill/Copy_of_Artboard_1_ldyjej.jpg" data-full="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,h_1400,c_fill/Copy_of_Artboard_1_ldyjej.jpg" alt="">
+      <img class="thumb-img" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_160,h_160,c_fill/Copy_of_Artboard_2_fipmg1.jpg" data-full="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,h_1400,c_fill/Copy_of_Artboard_2_fipmg1.jpg" alt="">
+      <img class="thumb-img" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_160,h_160,c_fill/Copy_of_Artboard_3_oi7fln.jpg" data-full="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,h_1400,c_fill/Copy_of_Artboard_3_oi7fln.jpg" alt="">
+      <img class="thumb-img" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_160,h_160,c_fill/Copy_of_Artboard_4_ygmqbi.jpg" data-full="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,h_1400,c_fill/Copy_of_Artboard_4_ygmqbi.jpg" alt="">
+      <img class="thumb-img" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_160,h_160,c_fill/Copy_of_Artboard_5_vymyzw.jpg" data-full="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,h_1400,c_fill/Copy_of_Artboard_5_vymyzw.jpg" alt="">
+    </div>
+    <div class="buybox__hero">
+      <img class="hero-img" id="heroImg" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,h_1400,c_fill/Copy_of_Artboard_1_ldyjej.jpg" alt="TMolecule First Flush Darjeeling">
+    </div>
+  </div>
+  <div class="buybox__info">
+    <p class="new">🔥 BESTSELLER</p>
+    <h1>Spice Rush Collagen Black Tea</h1>
+    <p class="sub">A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.</p>
+    <div class="rating"><span class="stars">★★★★★</span> 4.8 · 216 reviews</div>
+    <ul class="buybox__bullets">
+      <li>💪 Collagen peptides in every cup — skin, joints, recovery</li>
+      <li>🌶️ Warming spice blend: ginger, cinnamon, cardamom</li>
+      <li>🥥 Keto & paleo friendly — zero sugar, zero fillers</li>
+      <li>👨‍👩‍👧 Family tea heritage since 1935</li>
+      <li>☕ Milled powder — brews smoother, no bitter edge</li>
+      <li>🇺🇸 Made in USA</li>
+    </ul>
+    <div class="sans">
+      <div class="buybox__opts">
+        <button class="active">1 Pack — $6.99</button>
+        <button>2 Packs — $12.49</button>
+        <button>3 Packs — $18.00</button>
+      </div>
+      <div class="buybox__opts">
+        <button class="active">One-time</button>
+        <button>Subscribe & Save 15%</button>
+      </div>
+      <p class="buybox__price" id="bb-price">$6.99</p>
+      <button class="buybox__cta">Add to cart</button>
+      <div class="buybox__badges">
+        <div class="bb"><div class="bb__icon">✨</div><span>Just<br>Launched</span></div>
+        <div class="bb"><div class="bb__icon">🇺🇸</div><span>Made in<br>USA</span></div>
+        <div class="bb"><div class="bb__icon">🚫</div><span>No<br>Sugar</span></div>
+        <div class="bb"><div class="bb__icon">🥑</div><span>Keto<br>Friendly</span></div>
+        <div class="bb"><div class="bb__icon">🥩</div><span>Paleo<br>Friendly</span></div>
+        <div class="bb"><div class="bb__icon">🌾</div><span>Gluten<br>Free</span></div>
+        <div class="bb"><div class="bb__icon">🌱</div><span>Non<br>GMO</span></div>
+        <div class="bb"><div class="bb__icon">🚚</div><span>Fast<br>Shipping</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- STORY SECTION -->
+<section class="tm-story">
+
+  <!-- trust row (marquee) -->
+  <div class="tm-band tm-band--sand">
+  <div class="tm-trust">
+    <div class="tm-trust__track">
+      <div class="tm-trust__item"><div class="badge">👨‍👩‍👧</div><span>Family heritage since 1935</span></div>
+      <div class="tm-trust__item"><div class="badge">💪</div><span>Collagen peptides</span></div>
+      <div class="tm-trust__item"><div class="badge">🥥</div><span>Keto & paleo friendly</span></div>
+      <div class="tm-trust__item"><div class="badge">🇺🇸</div><span>Made in USA</span></div>
+      <div class="tm-trust__item"><div class="badge">🌶️</div><span>Real whole spices</span></div>
+      <div class="tm-trust__item"><div class="badge badge--svg"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#7a5a2b"><circle cx="10" cy="12" r="1.6"/><circle cx="16" cy="9" r="1.2"/><circle cx="22" cy="13" r="1.8"/><circle cx="29" cy="10" r="1.3"/><circle cx="13" cy="18" r="1.4"/><circle cx="20" cy="20" r="2"/><circle cx="27" cy="19" r="1.5"/><circle cx="32" cy="15" r="1.1"/><circle cx="9" cy="24" r="1.6"/><circle cx="16" cy="27" r="1.3"/><circle cx="23" cy="26" r="1.7"/><circle cx="30" cy="25" r="1.2"/><circle cx="13" cy="32" r="1.4"/><circle cx="21" cy="33" r="1.5"/><circle cx="28" cy="31" r="1.3"/></g></svg></div><span>Milled for a uniform blend</span></div>
+      <div class="tm-trust__item"><div class="badge">👨‍👩‍👧</div><span>Family heritage since 1935</span></div>
+      <div class="tm-trust__item"><div class="badge">💪</div><span>Collagen peptides</span></div>
+      <div class="tm-trust__item"><div class="badge">🥥</div><span>Keto & paleo friendly</span></div>
+      <div class="tm-trust__item"><div class="badge">🇺🇸</div><span>Made in USA</span></div>
+      <div class="tm-trust__item"><div class="badge">🌶️</div><span>Real whole spices</span></div>
+      <div class="tm-trust__item"><div class="badge badge--svg"><svg viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="#7a5a2b"><circle cx="10" cy="12" r="1.6"/><circle cx="16" cy="9" r="1.2"/><circle cx="22" cy="13" r="1.8"/><circle cx="29" cy="10" r="1.3"/><circle cx="13" cy="18" r="1.4"/><circle cx="20" cy="20" r="2"/><circle cx="27" cy="19" r="1.5"/><circle cx="32" cy="15" r="1.1"/><circle cx="9" cy="24" r="1.6"/><circle cx="16" cy="27" r="1.3"/><circle cx="23" cy="26" r="1.7"/><circle cx="30" cy="25" r="1.2"/><circle cx="13" cy="32" r="1.4"/><circle cx="21" cy="33" r="1.5"/><circle cx="28" cy="31" r="1.3"/></g></svg></div><span>Milled for a uniform blend</span></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- tabs -->
+  <div class="tm-band tm-band--cream">
+  <div class="tm-tabs">
+    <details open>
+      <summary>Overview</summary>
+      <div class="tm-tabs__body rte">
+        <p>Spice Rush is a revitalizing black tea blend built on four generations of tea-sourcing know-how. We take bold, full-bodied black tea, mill it to a fine powder for a smoother brew, and blend in collagen peptides and three warming spices: ginger, cinnamon, and cardamom.</p>
+        <p>One scoop, hot water, stir — thirty seconds to a full cup. No steeping, no straining, no timer. Drink it black, or add milk and a touch of sweetener to taste. A cleaner energy than coffee, a warmer ritual than a supplement.</p>
+      </div>
+    </details>
+    <details>
+      <summary>Tasting Notes</summary>
+      <div class="tm-tabs__body rte"><p>Bold and malty up front, warming ginger mid-palate, sweet cinnamon and floral cardamom on the finish. Rich body from milling. Drinks beautifully black, or with a splash of milk and a pinch of salt for a creamier chai.</p></div>
+    </details>
+    <details>
+      <summary>Brewing</summary>
+      <div class="tm-tabs__body rte"><p><strong>Hot:</strong> Add one scoop (≈5g) to 8oz near-boiling water (200–212°F). Stir 15 seconds. That's it.</p><p><strong>Iced:</strong> Mix one scoop with 2oz hot water and stir to suspend, then pour over ice and top with cold water or milk.</p><p><strong>Latte:</strong> Stir into 6oz steamed milk (dairy or oat) with a teaspoon of honey.</p></div>
+    </details>
+    <details>
+      <summary>FAQs</summary>
+      <div class="tm-tabs__body tm-faq">
+        <details><summary>How much caffeine is in a scoop?</summary><div class="rte"><p>About 40–50mg per scoop — roughly half a cup of coffee. Sustained energy, no jitters.</p></div></details>
+        <details><summary>What kind of collagen do you use?</summary><div class="rte"><p>Hydrolyzed bovine collagen peptides. Unflavored, and heat-stable — the peptides stay intact in hot water, so the benefits come through in every cup.</p></div></details>
+        <details><summary>Is this keto and paleo friendly?</summary><div class="rte"><p>Yes — zero sugar, zero starch, zero fillers. Just five ingredients: black tea, collagen peptides, ginger, cinnamon, and cardamom.</p></div></details>
+        <details><summary>Why milled instead of loose leaf?</summary><div class="rte"><p>Milling creates a homogenous blend with the spices and collagen so every scoop delivers the same balanced cup. No steeping, no strainer, no bitter over-brew.</p></div></details>
+        <details><summary>How long does a pack last?</summary><div class="rte"><p>Each pack contains roughly 20 servings. At one cup a day, that's about three weeks.</p></div></details>
+        <details><summary>How should I store it?</summary><div class="rte"><p>Keep the pack sealed at room temperature, away from direct sunlight and humidity. Use by the expiration date printed on the package.</p></div></details>
+      </div>
+    </details>
+  </div>
+  </div>
+
+  <!-- ingredient grid -->
+  <div class="tm-band tm-band--sand">
+  <div class="tm-ing">
+    <h2 class="tm-h2">What's in the scoop</h2>
+    <p class="tm-sub">Five ingredients. Nothing else. No sugar, no starch, no fillers, no natural-flavors mystery blend.</p>
+    <div class="tm-ing__grid">
+      <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_2_fipmg1.jpg" alt=""><h3>Bold Black Tea</h3><p>Full-bodied Assam-style black tea, milled fine so every particle brews in seconds. No steeping, no strainer.</p></div>
+      <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_3_oi7fln.jpg" alt=""><h3>Collagen Peptides</h3><p>Hydrolyzed collagen peptides — supports skin, joints, and post-workout recovery. Unflavored and completely soluble.</p></div>
+      <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_4_ygmqbi.jpg" alt=""><h3>Real Ginger</h3><p>Warming, digestive, alive. Dried and milled from whole root — not a "ginger flavor" compound.</p></div>
+      <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_5_vymyzw.jpg" alt=""><h3>Ceylon Cinnamon</h3><p>True cinnamon — sweet, delicate, lower coumarin than cassia. The cinnamon your grandmother used.</p></div>
+      <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_6_hdjegg.jpg" alt=""><h3>Green Cardamom</h3><p>Whole pods ground for the bright, floral lift that turns a chai from flat to alive. Never pre-ground.</p></div>
+      <div class="tm-ing__card"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_7_pwb57m.jpg" alt=""><h3>Milled</h3><p>The tea leaves are milled to an ultra-fine powder, then blended evenly with the spices and collagen peptides. Every scoop delivers the same balanced mix — tea, spice, and protein in one consistent cup.</p></div>
+    </div>
+    <div class="tm-cta-wrap"><a href="#top" class="tm-inline-cta">Try Spice Rush<span class="tm-inline-cta__sub">Starting at $6.99</span></a></div>
+  </div>
+  </div>
+
+  <!-- heritage -->
+  <div class="tm-band tm-band--honey">
+  <div class="tm-heritage">
+    <div class="tm-heritage__media"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,c_fill/Copy_of_M1_rdmzmf.jpg" alt=""></div>
+    <div class="tm-heritage__copy">
+      <p class="tm-eyebrow">Heritage since 1935</p>
+      <h2 class="tm-h2">Four generations. One leaf.</h2>
+      <div class="rte">
+        <p>In 1935, my great-grandfather started sourcing tea — tin by tin, estate by estate, refusing anything that didn't meet his nose test. Ninety-one years later, we're still doing it.</p>
+        <p>Spice Rush is what happens when four generations of tea obsession meet a modern life. We took a classic spiced black-tea ritual, milled the leaf so you can actually drink it in under a minute, and added collagen peptides so one cup earns its keep.</p>
+      </div>
+      <p class="tm-sig">— The TMolecule family</p>
+      <div class="tm-cta-wrap" style="text-align:left;"><a href="#top" class="tm-inline-cta">Taste the heritage<span class="tm-inline-cta__sub">$6.99 · ships today</span></a></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- video -->
+  <div class="tm-band tm-band--cream">
+  <div class="tm-video">
+    <p class="tm-eyebrow">Watch</p>
+    <h2 class="tm-h2">See Spice Rush in action</h2>
+    <div class="tm-video__wrap" data-tm-video>
+      <video class="tm-video__teaser" src="../media/spice-rush-teaser.mp4" poster="../media/spice-rush-poster.jpg" autoplay muted loop playsinline preload="metadata"></video>
+      <button class="tm-video__play" type="button" data-tm-video-open aria-label="Play full video">
+        <svg viewBox="0 0 64 64" width="72" height="72" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="rgba(42,31,16,.85)"/><path d="M26 20 L46 32 L26 44 Z" fill="#faf7f0"/></svg>
+        <span class="tm-video__play-label">Watch the full story <small>(5 min)</small></span>
+      </button>
+    </div>
+    <div class="tm-video__modal" data-tm-video-modal hidden>
+      <button class="tm-video__close" type="button" data-tm-video-close aria-label="Close video">×</button>
+      <video class="tm-video__full" src="../media/spice-rush-web.mp4" poster="../media/spice-rush-poster.jpg" controls playsinline preload="none"></video>
+    </div>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      "name": "See Spice Rush in action",
+      "description": "Spice Rush Collagen Black Tea by TMolecule — bold milled black tea blended with hydrolyzed collagen peptides, ginger, Ceylon cinnamon, and green cardamom.",
+      "thumbnailUrl": "https://tmolecule.com/cdn/shop/files/spice-rush-poster.jpg",
+      "uploadDate": "2026-04-14",
+      "contentUrl": "https://tmolecule.com/cdn/shop/files/spice-rush-web.mp4"
+    }
+    </script>
+  </div>
+  </div>
+
+  <!-- compare -->
+  <div class="tm-band tm-band--cream">
+  <div class="tm-compare">
+    <h2 class="tm-h2">Spice Rush vs. the chai you've been buying</h2>
+    <table>
+      <thead><tr><th></th><th>TMolecule Spice Rush</th><th>Typical Chai Latte Mix</th></tr></thead>
+      <tbody>
+        <tr><td><span class="tm-compare__ico">🍬</span>Sugar</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Zero</td><td class="tm-compare__them"><span class="tm-no">✕</span>15–25g per serving</td></tr>
+        <tr><td><span class="tm-compare__ico">💪</span>Protein</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Collagen peptides</td><td class="tm-compare__them"><span class="tm-no">✕</span>None</td></tr>
+        <tr><td><span class="tm-compare__ico">🌶️</span>Spices</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Whole, milled in-house</td><td class="tm-compare__them"><span class="tm-no">✕</span>"Natural flavors," powders</td></tr>
+        <tr><td><span class="tm-compare__ico">🍃</span>Tea grade</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Full-leaf, milled fine</td><td class="tm-compare__them"><span class="tm-no">✕</span>Dust, fannings, extract</td></tr>
+        <tr><td><span class="tm-compare__ico">🥑</span>Diet fit</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Keto, paleo, clean label</td><td class="tm-compare__them"><span class="tm-no">✕</span>Sugar-loaded, additive-heavy</td></tr>
+        <tr><td><span class="tm-compare__ico">👨‍👩‍👧</span>Heritage</td><td class="tm-compare__us"><span class="tm-yes">✓</span>Heritage since 1935</td><td class="tm-compare__them"><span class="tm-no">✕</span>A marketing department</td></tr>
+      </tbody>
+    </table>
+    <div class="tm-cta-wrap"><a href="#top" class="tm-inline-cta">Make the switch<span class="tm-inline-cta__sub">$6.99 · one scoop, one cup</span></a></div>
+  </div>
+  </div>
+
+  <!-- editorial block 1 -->
+  <div class="tm-band tm-band--deep-sand">
+  <div class="tm-ed">
+    <div class="tm-ed__media"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M2_cqojf2.jpg" alt=""></div>
+    <div class="tm-ed__copy">
+      <p class="tm-eyebrow">Heritage since 1935</p>
+      <h2 class="tm-h2">One scoop. Near-boiling. Done.</h2>
+      <div class="rte"><p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop to hot water, stir for fifteen seconds, drink. The milling does the work — spice and leaf suspend straight into the cup. It's the easiest ritual you'll ever protect from your mornings.</p></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- editorial block 2 reversed -->
+  <div class="tm-band tm-band--honey">
+  <div class="tm-ed tm-ed--reverse">
+    <div class="tm-ed__media"><img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M3_vylqxm.jpg" alt=""></div>
+    <div class="tm-ed__copy">
+      <p class="tm-eyebrow">Why collagen</p>
+      <h2 class="tm-h2">The most useful tea you'll drink all day</h2>
+      <div class="rte"><p>Every scoop delivers collagen peptides — the protein that supports skin, joints, hair, and post-workout recovery. Most people take it in a flavorless capsule or a chalky shake. We put it in the cup you were going to drink anyway. Keto-friendly. Paleo-friendly. Habit-friendly.</p></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- reviews -->
+  <div class="tm-band tm-band--espresso">
+  <div class="tm-reviews">
+    <h2 class="tm-h2">What sippers say</h2>
+    <div class="tm-reviews__grid">
+      <blockquote><p>"I swapped my 11am coffee for a Spice Rush and my afternoons got their focus back. Plus — collagen. Win-win."</p><cite>— Marielle S., verified buyer</cite></blockquote>
+      <blockquote><p>"Tastes like real chai, not a sugar bomb. My daily cup. The cardamom is so bright."</p><cite>— David R., verified buyer</cite></blockquote>
+      <blockquote><p>"30 seconds to brew, no strainer, no mess. Finally a clean-label collagen drink I actually enjoy."</p><cite>— Aisha K., verified buyer</cite></blockquote>
+    </div>
+    <div class="tm-cta-wrap"><a href="#top" class="tm-inline-cta">Join the ritual<span class="tm-inline-cta__sub">$6.99 · free shipping over $35</span></a></div>
+  </div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="tm-footer">
+  <div class="tm-footer__brand">
+    <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="TMolecule">
+    <p class="tm-footer__tagline">Food with benefits. Real health benefits.</p>
+  </div>
+  <div class="tm-footer__inner">
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/collections">Shop</a></li>
+        <li><a href="/pages/contact">Contact Us</a></li>
+        <li><a href="/policies/terms-of-service">Terms of Service</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="/pages/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/pages/terms-of-service">Terms of Service</a></li>
+        <li><a href="/policies/refund-policy">Return Policy</a></li>
+      </ul>
+    </div>
+    <div class="tm-footer__newsletter">
+      <h4>Subscribe</h4>
+      <p>Join the ritual. Early access, new drops, and the occasional brewing tip.</p>
+      <form class="tm-footer__form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit">Join</button>
+      </form>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <div class="tm-footer__social">
+        <a href="https://facebook.com/GetTMolecule" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.5-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7V13h2.6v8h3.2z"/></svg></a>
+        <a href="https://instagram.com/tmolecule.official" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+        <a href="https://tiktok.com/@tmolecule" aria-label="TikTok"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M19.3 8.6c-1.6 0-3-.6-4-1.6-.7-.7-1.2-1.7-1.4-2.8h-3v11.3c0 1.3-1.1 2.4-2.4 2.4-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4c.3 0 .5 0 .8.1v-3c-.3 0-.5-.1-.8-.1-3 0-5.4 2.4-5.4 5.4s2.4 5.4 5.4 5.4 5.4-2.4 5.4-5.4V10c1.1.7 2.4 1.1 3.8 1.1h.7v-2.5h-.1z"/></svg></a>
+        <a href="https://twitter.com/GetTMolecule" aria-label="X"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L22 21h-6.2l-4.8-6.3L5.3 21H2.3l7-8L2 3h6.3l4.4 5.8L17.5 3zm-1 16h1.7L7.6 4.8H5.8L16.5 19z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="tm-footer__disclaimer">
+    <p>* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary.</p>
+  </div>
+  <div class="tm-footer__bottom">
+    <div>© 2026, TMolecule. All rights reserved.</div>
+    <div class="tm-footer__pay">
+      <span>Amazon</span><span>Amex</span><span>Apple Pay</span><span>Diners</span><span>Discover</span><span>Google Pay</span><span>Mastercard</span><span>PayPal</span><span>Shop Pay</span><span>Visa</span>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY CTA (Lineage-style, appears after buy-box scrolls out) -->
+<div class="sticky-cta" id="stickyCta">
+  <img class="sticky-cta__thumb" src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_120,h_120,c_fill/Copy_of_Artboard_1_ldyjej.jpg" alt="">
+  <div class="sticky-cta__info">
+    <p class="sticky-cta__name">Spice Rush · Collagen Tea Blend</p>
+    <p class="sticky-cta__price">$6.99<small>one pack · free ship over $35</small></p>
+  </div>
+  <button class="sticky-cta__btn">Add to cart</button>
+</div>
+
+<script>
+  (function(){
+    var hero = document.getElementById('heroImg');
+    document.querySelectorAll('.thumb-img').forEach(function(t){
+      t.addEventListener('click', function(){
+        document.querySelectorAll('.thumb-img').forEach(function(x){ x.classList.remove('active'); });
+        t.classList.add('active');
+        hero.src = t.dataset.full;
+      });
+    });
+
+    var sticky = document.getElementById('stickyCta');
+    var trigger = document.querySelector('.buybox__cta');
+    if (sticky && trigger && 'IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          sticky.classList.toggle('is-visible', !e.isIntersecting);
+        });
+      }, { rootMargin: '0px 0px -40% 0px' });
+      io.observe(trigger);
+    } else if (sticky) {
+      sticky.classList.add('is-visible');
+    }
+
+    var header = document.querySelector('.site-header');
+    if (header) {
+      var onScroll = function(){
+        header.classList.toggle('is-scrolled', window.scrollY > 40);
+      };
+      window.addEventListener('scroll', onScroll, { passive:true });
+      onScroll();
+    }
+  })();
+
+  // Video modal
+  document.querySelectorAll('[data-tm-video]').forEach(function(wrap){
+    var modal = wrap.parentElement.querySelector('[data-tm-video-modal]');
+    var full = modal ? modal.querySelector('video') : null;
+    var openBtn = wrap.querySelector('[data-tm-video-open]');
+    var closeBtn = modal ? modal.querySelector('[data-tm-video-close]') : null;
+    if (openBtn && modal && full) openBtn.addEventListener('click', function(){ modal.hidden = false; full.play(); });
+    if (closeBtn && modal && full) closeBtn.addEventListener('click', function(){ full.pause(); modal.hidden = true; });
+    if (modal && full) modal.addEventListener('click', function(e){ if (e.target === modal) { full.pause(); modal.hidden = true; } });
+  });
+</script>
+
+</body>
+</html>
