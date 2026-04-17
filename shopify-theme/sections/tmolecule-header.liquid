@@ -1,10 +1,11 @@
 <style>
-  .tm-header { display:flex; align-items:center; justify-content:center; padding:{{ section.settings.padding }}px 40px; border-bottom:1px solid #e3dbc9; background:rgba(250,247,240,.92); backdrop-filter:saturate(1.4) blur(10px); -webkit-backdrop-filter:saturate(1.4) blur(10px); position:sticky; top:0; z-index:40; transition:padding .25s ease, box-shadow .25s ease; }
-  .tm-header.is-scrolled { padding:10px 40px; box-shadow:0 2px 12px rgba(74,55,24,.08); }
-  .tm-header__logo { display:inline-flex; align-items:center; text-decoration:none; }
-  .tm-header__logo img { height:{{ section.settings.logo_height }}px; width:auto; display:block; transition:height .25s ease, opacity .2s ease; }
+  .tm-header { display:flex; align-items:center; justify-content:center; padding:{{ section.settings.padding }}px 40px; background:linear-gradient(180deg,#fdfaf0 0%,#f2e8d0 100%); border-bottom:2px solid #c87040; position:sticky; top:0; z-index:40; transition:padding .25s ease, box-shadow .25s ease; box-shadow:0 2px 20px rgba(74,55,24,.1); }
+  .tm-header.is-scrolled { padding:10px 40px; box-shadow:0 4px 20px rgba(74,55,24,.18); }
+  .tm-header__logo { display:inline-flex; align-items:flex-start; text-decoration:none; }
+  .tm-header__logo img { height:{{ section.settings.logo_height }}px; width:auto; display:block; transition:height .25s ease, opacity .2s ease; filter:contrast(1.1) brightness(.9); }
   .tm-header.is-scrolled .tm-header__logo img { height:{{ section.settings.logo_height | minus: 8 }}px; }
   .tm-header__logo:hover img { opacity:.85; }
+  .tm-header__logo sup { font-size:12px; font-family:'Inter',sans-serif; color:#c87040; margin-left:4px; margin-top:4px; font-weight:700; }
   @media (max-width:720px) { .tm-header { padding:14px 16px; } .tm-header__logo img { height:38px; } }
   @media (max-width:480px) { .tm-header { padding:12px 14px; } .tm-header__logo img { height:34px; } }
 </style>
@@ -14,7 +15,7 @@
     {%- if section.settings.logo != blank -%}
       <img src="{{ section.settings.logo | image_url: width: 1200 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}">
     {%- else -%}
-      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="{{ shop.name | escape }}" width="800" height="220">
+      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="{{ shop.name | escape }}" width="800" height="220"><sup>&reg;</sup>
     {%- endif -%}
   </a>
 </header>
