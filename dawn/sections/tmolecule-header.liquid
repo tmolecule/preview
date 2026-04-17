@@ -14,7 +14,7 @@
     {%- if section.settings.logo != blank -%}
       <img src="{{ section.settings.logo | image_url: width: 1200 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}">
     {%- else -%}
-      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="{{ shop.name | escape }}" width="800" height="220">
+      <span style="font-family:Fraunces,Georgia,serif;font-weight:700;font-size:28px;color:#2b2a28;letter-spacing:-.01em;">{{ shop.name }}</span>
     {%- endif -%}
   </a>
 </header>
