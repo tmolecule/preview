@@ -178,6 +178,9 @@
   },
   "active": "f11143a60daf4421",
   "lastOpenFiles": [
+    "shopify-theme/sections/footer-group.json",
+    "shopify-theme/sections/tmolecule-footer.liquid",
+    "dawn/sections/tmolecule-footer.liquid",
     "shopify-theme/sections/header-group.json",
     "shopify-theme/sections/tmolecule-header.liquid",
     "dawn/sections/tmolecule-header.liquid",
@@ -186,9 +189,6 @@
     "ziE5vJ2t",
     "ziJfxA3P",
     "zixyeFkj",
-    "ziNgkgP1",
-    "zie0kddq",
-    "zieEI365",
-    "zidbY4cp"
+    "ziNgkgP1"
   ]
 }
