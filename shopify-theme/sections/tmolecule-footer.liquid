@@ -86,7 +86,7 @@
   {%- endif -%}
 
   <div class="tm-footer__bottom">
-    <div>© {{ 'now' | date: '%Y' }}, {{ shop.name }}. All rights reserved.</div>
+    <div>© {{ 'now' | date: '%Y' }}, {{ shop.name }}<sup style="font-size:.6em;vertical-align:super;margin-left:1px;opacity:.85;">&reg;</sup>. All rights reserved.</div>
     <div class="tm-footer__pay">
       {%- for type in shop.enabled_payment_types -%}
         {{ type | payment_type_svg_tag: class: 'tm-pay__icon' }}
