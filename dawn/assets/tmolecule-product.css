@@ -24,8 +24,8 @@
 .tm-buybox__gallery { display:grid; grid-template-columns:80px 1fr; gap:12px; }
 .tm-buybox__thumbs { display:flex; flex-direction:column; gap:8px; }
 /* TMOLECULE_BUILD_2026_04_16_1100 */
-.tm-buybox__hero { background:#fff; border-radius:8px; overflow:hidden; box-shadow:0 8px 24px rgba(122,90,43,.12); border:1px solid var(--tm-rule); }
-.tm-buybox__hero img { width:100%; height:auto; display:block; border-radius:8px; }
+.tm-buybox__hero { background:radial-gradient(circle at 30% 20%,#f8ebd0 0%,#e8d6b0 55%,#c8b48a 100%); border-radius:16px; overflow:hidden; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); }
+.tm-buybox__hero img { width:100%; height:auto; display:block; mix-blend-mode:multiply; }
 .tm-buybox__thumbs img { width:80px; height:80px; object-fit:contain; border-radius:4px; border:1px solid #e3dbc9; cursor:pointer; background:#ede4cf; padding:4px; }
 .tm-buybox__thumbs img.is-active { border:2px solid #7a5a2b; }
 .tm-buybox__info .tm-new { font-size:11px; font-family:var(--tm-sans); letter-spacing:.14em; text-transform:uppercase; color:var(--tm-accent); margin:0 0 8px; }
@@ -112,13 +112,13 @@
 /* Ingredient grid */
 .tm-ing { max-width:1200px; margin:0 auto; text-align:center; }
 .tm-ing__grid { display:grid; grid-template-columns:repeat(3,1fr); gap:32px; text-align:left; }
-.tm-ing__card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:4px; margin-bottom:12px; }
+.tm-ing__card img { width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px; margin-bottom:12px; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); }
 .tm-ing__card h3 { font-size:20px; margin:0 0 6px; }
 .tm-ing__card p { margin:0; line-height:1.55; opacity:.85; font-family:var(--tm-sans); font-size:15px; }
 
 /* Heritage */
 .tm-heritage { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
-.tm-heritage__media img { width:100%; height:auto; object-fit:contain; border-radius:4px; }
+.tm-heritage__media img { width:100%; height:auto; object-fit:contain; border-radius:16px; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); filter:drop-shadow(0 8px 16px rgba(26,22,16,.25)); }
 .tm-sig { font-style:italic; margin-top:16px; opacity:.75; }
 
 /* Compare */
@@ -135,7 +135,7 @@
 /* Editorial */
 .tm-ed { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
 .tm-ed--reverse .tm-ed__media { order:2; }
-.tm-ed__media img { width:100%; height:auto; object-fit:contain; border-radius:4px; }
+.tm-ed__media img { width:100%; height:auto; object-fit:contain; border-radius:16px; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); }
 
 /* Reviews */
 .tm-reviews { max-width:1100px; margin:0 auto; text-align:center; }
