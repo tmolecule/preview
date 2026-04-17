@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — thanksgiving: Harvest gold, cranberry, warm brown — Nov 1–28 */
+.tm-band--cream { background:linear-gradient(180deg,#faf5e0 0%,#f0e4c0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#e8d4a0 0%,#d0b878 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#c09848 0%,#a07828 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#884020 0%,#683018 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#3a1810 0%,#281008 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#884020 0%,#581810 100%); box-shadow:0 4px 14px #58181047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #58181061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#d0a860 0%,#b08840 100%); color:#3a1810; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#581810 0%,#884020 100%); }

@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — holiday: Forest green, cranberry, gold — Dec 1–31 */
+.tm-band--cream { background:linear-gradient(180deg,#f5f5f0 0%,#e8e8d8 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#c8d8c0 0%,#a0b890 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#8a2030 0%,#6a1020 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#1a3828 0%,#0a2818 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#0a1810 0%,#050c08 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#1a3828 0%,#0a2010 100%); box-shadow:0 4px 14px #0a201047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #0a201061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#d4b060 0%,#b09040 100%); color:#0a1810; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#0a2010 0%,#1a3828 100%); }

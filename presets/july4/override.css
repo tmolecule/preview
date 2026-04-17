@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — july4: Navy, white, crimson — Jun 25–Jul 10 */
+.tm-band--cream { background:linear-gradient(180deg,#f5f5fa 0%,#e0e0f0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#dce0f0 0%,#b0b8d8 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#c0283a 0%,#a01828 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#1a2858 0%,#0a1840 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#0a1840 0%,#050c20 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#c0283a 0%,#8a1020 100%); box-shadow:0 4px 14px #8a102047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #8a102061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#e8d0a0 0%,#c0a060 100%); color:#0a1840; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#8a1020 0%,#c0283a 100%); }

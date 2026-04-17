@@ -178,17 +178,18 @@
   },
   "active": "f11143a60daf4421",
   "lastOpenFiles": [
-    "shopify-theme/sections/footer-group.json",
-    "shopify-theme/sections/tmolecule-footer.liquid",
-    "dawn/sections/tmolecule-footer.liquid",
-    "shopify-theme/sections/header-group.json",
-    "shopify-theme/sections/tmolecule-header.liquid",
-    "dawn/sections/tmolecule-header.liquid",
-    "ziqUi6yA",
-    "vault/Memory/project_shopify_product_template.md",
-    "ziE5vJ2t",
-    "ziJfxA3P",
-    "zixyeFkj",
-    "ziNgkgP1"
+    "presets/newyear/override.css",
+    "presets/newyear",
+    "presets/holiday/override.css",
+    "presets/holiday",
+    "presets/thanksgiving/override.css",
+    "presets/thanksgiving",
+    "presets/halloween/override.css",
+    "presets/halloween",
+    "presets/fall/override.css",
+    "presets/fall",
+    "presets/july4/override.css",
+    "presets/README.md",
+    "vault/Memory/project_shopify_product_template.md"
   ]
 }

@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — default: Year-round earth tones */
+.tm-band--cream { background:linear-gradient(180deg,#fdfbf5 0%,#f0e6ca 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#f6ead0 0%,#e3d0a8 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#e0cf9e 0%,#c9b47a 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#c9b47a 0%,#a89568 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#3a2d1a 0%,#2a1f10 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#4a3718 0%,#2a1f10 100%); box-shadow:0 4px 14px #2a1f1047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #2a1f1061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#d4b97a 0%,#a8852a 100%); color:#3a2d1a; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#2a1f10 0%,#4a3718 100%); }

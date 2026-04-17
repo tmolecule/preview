@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — halloween: Black, orange, purple — Oct 15–31 */
+.tm-band--cream { background:linear-gradient(180deg,#f5f0e8 0%,#e8dcd0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#e8a040 0%,#d08020 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#c06010 0%,#a04008 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#3a2050 0%,#281040 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#1a1020 0%,#0a0810 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#e08020 0%,#c06010 100%); box-shadow:0 4px 14px #c0601047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #c0601061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#e8a040 0%,#c08020 100%); color:#1a1020; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#c06010 0%,#e08020 100%); }

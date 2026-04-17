@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — valentines: Rose, blush, burgundy — Feb 1–15 */
+.tm-band--cream { background:linear-gradient(180deg,#fef5f5 0%,#f5e0e0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#f5dede 0%,#e8c0c0 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#d4a0a0 0%,#c08080 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#b87070 0%,#8a4a4a 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#4a1a2a 0%,#2a0a15 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#8a2040 0%,#5a1028 100%); box-shadow:0 4px 14px #5a102847; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #5a102861; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#e8a0b0 0%,#c07080 100%); color:#4a1a2a; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#5a1028 0%,#8a2040 100%); }

@@ -1,0 +1,10 @@
+/* SEASONAL OVERRIDE — fall: Burnt orange, amber, deep brown — Sep–Oct */
+.tm-band--cream { background:linear-gradient(180deg,#faf5e8 0%,#f0e0c0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#e8d0a0 0%,#d0b080 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#c8a050 0%,#a88030 100%); }
+.tm-band--deep-sand { background:linear-gradient(180deg,#a06020 0%,#784010 100%); }
+.tm-band--espresso { background:linear-gradient(180deg,#3a2010 0%,#2a1508 100%); }
+.tm-inline-cta { background:linear-gradient(135deg,#a06020 0%,#683010 100%); box-shadow:0 4px 14px #68301047; }
+.tm-inline-cta:hover { box-shadow:0 6px 20px #68301061; }
+.tm-band--espresso .tm-inline-cta { background:linear-gradient(135deg,#e8c080 0%,#c09040 100%); color:#3a2010; }
+.tm-band--honey .tm-inline-cta, .tm-band--deep-sand .tm-inline-cta { background:linear-gradient(135deg,#683010 0%,#a06020 100%); }
