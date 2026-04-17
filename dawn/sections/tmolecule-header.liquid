@@ -1,32 +1,105 @@
 <style>
-  .tm-header { display:flex; align-items:center; justify-content:center; padding:{{ section.settings.padding }}px 40px; background:linear-gradient(180deg,#fdfaf0 0%,#f2e8d0 100%); border-bottom:2px solid #c87040; position:sticky; top:0; z-index:40; transition:padding .25s ease, box-shadow .25s ease; box-shadow:0 2px 20px rgba(74,55,24,.1); }
-  .tm-header.is-scrolled { padding:10px 40px; box-shadow:0 4px 20px rgba(74,55,24,.18); }
-  .tm-header__logo { display:inline-flex; align-items:flex-start; text-decoration:none; }
+  .tm-header { display:grid; grid-template-columns:1fr auto 1fr; align-items:center; padding:{{ section.settings.padding }}px 32px; background:linear-gradient(180deg,#fdfaf0 0%,#f2e8d0 100%); border-bottom:2px solid #c87040; position:sticky; top:0; z-index:40; transition:padding .25s ease, box-shadow .25s ease; box-shadow:0 2px 20px rgba(74,55,24,.1); gap:24px; }
+  .tm-header.is-scrolled { padding:10px 32px; box-shadow:0 4px 20px rgba(74,55,24,.18); }
+  .tm-header__nav { display:flex; gap:28px; align-items:center; justify-self:start; font-family:'Inter', system-ui, sans-serif; }
+  .tm-header__nav a { color:#2b2a28; text-decoration:none; font-size:13px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; transition:color .15s ease; }
+  .tm-header__nav a:hover { color:#c87040; }
+  .tm-header__logo { justify-self:center; display:inline-flex; align-items:flex-start; text-decoration:none; }
   .tm-header__logo img { height:{{ section.settings.logo_height }}px; width:auto; display:block; transition:height .25s ease, opacity .2s ease; filter:contrast(1.1) brightness(.9); }
   .tm-header.is-scrolled .tm-header__logo img { height:{{ section.settings.logo_height | minus: 8 }}px; }
   .tm-header__logo:hover img { opacity:.85; }
   .tm-header__logo sup { font-size:12px; font-family:'Inter',sans-serif; color:#c87040; margin-left:4px; margin-top:4px; font-weight:700; }
-  @media (max-width:720px) { .tm-header { padding:14px 16px; } .tm-header__logo img { height:38px; } }
-  @media (max-width:480px) { .tm-header { padding:12px 14px; } .tm-header__logo img { height:34px; } }
+  .tm-header__icons { display:flex; gap:8px; align-items:center; justify-self:end; }
+  .tm-header__icon { width:40px; height:40px; display:inline-flex; align-items:center; justify-content:center; border-radius:50%; background:transparent; color:#2b2a28; text-decoration:none; transition:background .15s ease, color .15s ease; position:relative; border:0; cursor:pointer; }
+  .tm-header__icon:hover { background:rgba(200,112,64,.12); color:#c87040; }
+  .tm-header__icon svg { width:20px; height:20px; }
+  .tm-header__cart-count { position:absolute; top:4px; right:4px; min-width:18px; height:18px; padding:0 4px; border-radius:9px; background:#c87040; color:#fff; font-family:'Inter',sans-serif; font-size:10px; font-weight:700; display:flex; align-items:center; justify-content:center; line-height:1; }
+  .tm-header__cart-count[data-count="0"] { display:none; }
+  .tm-header__menu-toggle { display:none; }
+
+  /* Search modal */
+  .tm-search-modal { position:fixed; inset:0; z-index:100; background:rgba(26,22,16,.85); backdrop-filter:blur(8px); display:flex; align-items:flex-start; justify-content:center; padding:15vh 24px 0; }
+  .tm-search-modal[hidden] { display:none; }
+  .tm-search-modal__inner { width:100%; max-width:600px; background:#faf7f0; border-radius:16px; padding:32px; box-shadow:0 30px 60px rgba(0,0,0,.4); }
+  .tm-search-modal__form { display:flex; gap:8px; align-items:center; }
+  .tm-search-modal__input { flex:1; padding:14px 18px; border:2px solid #e3dbc9; border-radius:10px; font-family:'Inter'; font-size:16px; background:#fff; color:#2b2a28; }
+  .tm-search-modal__input:focus { outline:none; border-color:#c87040; }
+  .tm-search-modal__submit, .tm-search-modal__close { padding:12px 20px; background:#c87040; color:#fff; border:0; border-radius:10px; font-family:'Inter'; font-size:14px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; cursor:pointer; }
+  .tm-search-modal__close { background:transparent; color:#2b2a28; }
+
+  @media (max-width:720px) {
+    .tm-header { grid-template-columns:auto 1fr auto; padding:12px 16px; gap:12px; }
+    .tm-header__nav { display:none; }
+    .tm-header__menu-toggle { display:inline-flex; }
+    .tm-header__logo img { height:36px; }
+  }
 </style>
 
 <header class="tm-header" id="tm-header">
-  <a class="tm-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }}">
+  <nav class="tm-header__nav" aria-label="Main">
+    <button class="tm-header__icon tm-header__menu-toggle" type="button" aria-label="Open menu" data-tm-menu>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="{{ routes.root_url }}">Home</a>
+    <a href="{{ routes.all_products_collection_url | default: '/collections/all' }}">Shop</a>
+    <a href="/pages/about">About</a>
+    <a href="/pages/contact">Contact</a>
+  </nav>
+
+  <a class="tm-header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
     {%- if section.settings.logo != blank -%}
       <img src="{{ section.settings.logo | image_url: width: 1200 }}" alt="{{ shop.name | escape }}" width="{{ section.settings.logo.width }}" height="{{ section.settings.logo.height }}">
     {%- else -%}
-      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="{{ shop.name | escape }}" width="800" height="220"><sup>&reg;</sup>
+      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=1200" alt="{{ shop.name | escape }}" width="800" height="220">
     {%- endif -%}
+    <sup>&reg;</sup>
   </a>
+
+  <div class="tm-header__icons">
+    <button class="tm-header__icon" type="button" aria-label="Search" data-tm-search-open>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </button>
+    <a class="tm-header__icon" href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" aria-label="Account">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a class="tm-header__icon" href="{{ routes.cart_url }}" aria-label="Cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <span class="tm-header__cart-count" data-count="{{ cart.item_count }}">{{ cart.item_count }}</span>
+    </a>
+  </div>
 </header>
+
+<div class="tm-search-modal" data-tm-search-modal hidden>
+  <div class="tm-search-modal__inner">
+    <form class="tm-search-modal__form" action="{{ routes.search_url }}" method="get" role="search">
+      <input class="tm-search-modal__input" type="search" name="q" placeholder="Search products, articles…" autocomplete="off" autofocus>
+      <button class="tm-search-modal__submit" type="submit">Search</button>
+      <button class="tm-search-modal__close" type="button" data-tm-search-close aria-label="Close">✕</button>
+    </form>
+  </div>
+</div>
 
 <script>
 (function(){
-  var h = document.getElementById('tm-header');
-  if (!h) return;
-  var onScroll = function(){ h.classList.toggle('is-scrolled', window.scrollY > 20); };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  var header = document.getElementById('tm-header');
+  if (header) {
+    var onScroll = function(){ header.classList.toggle('is-scrolled', window.scrollY > 20); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  var modal = document.querySelector('[data-tm-search-modal]');
+  var openBtn = document.querySelector('[data-tm-search-open]');
+  var closeBtn = document.querySelector('[data-tm-search-close]');
+  if (modal && openBtn) {
+    openBtn.addEventListener('click', function(){
+      modal.hidden = false;
+      var input = modal.querySelector('input');
+      if (input) setTimeout(function(){ input.focus(); }, 50);
+    });
+  }
+  if (modal && closeBtn) closeBtn.addEventListener('click', function(){ modal.hidden = true; });
+  if (modal) modal.addEventListener('click', function(e){ if (e.target === modal) modal.hidden = true; });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && modal && !modal.hidden) modal.hidden = true; });
 })();
 </script>
 
