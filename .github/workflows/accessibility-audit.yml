@@ -177,6 +177,20 @@ jobs:
             JSON report committed to repo: audits/axe-${{ steps.date.outputs.stamp }}.json
             Download as artifact (90-day retention) from the run URL above.
 
+            — Action required —
+
+            Update the audit date on the public accessibility statement:
+              1. Shopify Admin → Customize
+              2. Navigate to Pages → Accessibility
+              3. Open the "TMolecule accessibility" section settings
+              4. Change the "Last audit date" field to: ${{ steps.date.outputs.stamp }}
+              5. (optionally) also update "Statement last updated" to today
+              6. Save and publish
+
+            This keeps the publicly-visible "Our most recent audit was run on …" line
+            on /pages/accessibility honest and current — auditors and complainants
+            will check that date.
+
             Next scheduled run: 3rd of next month at 09:07 ET (13:07 UTC).
         env:
           SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}

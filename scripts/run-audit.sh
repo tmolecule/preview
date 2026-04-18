@@ -87,7 +87,19 @@ $FULL_LOG
 JSON report: $REPORT_JSON
 Log file:    $LOG_FILE
 
-Next scheduled run: 1st of next month at 9:07 am local (via crontab)."
+— Action required —
+
+Update the audit date on the public accessibility statement:
+  1. Shopify Admin → Customize
+  2. Navigate to Pages → Accessibility
+  3. Open the TMolecule accessibility section settings
+  4. Change the 'Last audit date' field to: $DATE
+  5. (optionally) also update 'Statement last updated' to today
+  6. Save and publish
+
+This keeps /pages/accessibility honest — auditors and complainants will check that date.
+
+Next scheduled run: 3rd of next month at 09:07 ET (via crontab)."
 
 send_email "[Monthly a11y audit · FINISHED · $STATUS] tmolecule.com · $DATE" "$FINISH_BODY"
 
