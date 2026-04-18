@@ -212,6 +212,8 @@ req = urllib.request.Request(
     headers={
         'Authorization': f'Bearer {RESEND_API_KEY}',
         'Content-Type':  'application/json',
+        'User-Agent':    'TMolecule-AuditBot/1.0 (+https://tmolecule.com)',
+        'Accept':        'application/json',
     },
 )
 try:
