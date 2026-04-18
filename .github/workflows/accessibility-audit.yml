@@ -1,8 +1,7 @@
 name: Accessibility Audit
 
 # Runs on the 3rd of each month at 13:07 UTC (09:07 ET) and on manual dispatch.
-# Scans all 7 public pages on tmolecule.com against WCAG 2.1 AA using axe-core.
-# Sends start + finish emails via Resend HTTP API.
+# Sends start + finish HTML emails (warm TMolecule palette) via Resend.
 
 on:
   schedule:
@@ -19,56 +18,29 @@ jobs:
     timeout-minutes: 15
 
     env:
-      REPORT_NAME: "Monthly Accessibility Audit — tmolecule.com"
-      REPORT_DESCRIPTION: "Automated WCAG 2.1 Level AA scan of all public pages (Home, Shop, Product, Cart, About, Contact, Accessibility), run via axe-core v4.10. Flags violations by severity (critical / serious / moderate / minor) for color contrast, form labeling, ARIA usage, heading order, keyboard focus, landmarks, language attributes, and image alt text. Result is saved as a dated JSON report for audit trail and regression tracking."
-      RESEND_FROM: "TMolecule Audits <audits@tmolecule.com>"
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      RESEND_TO:      ${{ secrets.AUDIT_EMAIL_TO }}
+      RESEND_FROM:    "TMolecule Audits <audits@tmolecule.com>"
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Compute run date
         id: date
         run: |
           echo "stamp=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
-          echo "iso=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
 
-      - name: Send START email (Resend API)
+      - name: Send START email
         if: env.RESEND_API_KEY != ''
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RESEND_TO: ${{ secrets.AUDIT_EMAIL_TO }}
-        run: |
-          BODY=$(cat <<EOF
-          Report: ${REPORT_NAME}
-
-          ${REPORT_DESCRIPTION}
-
-          — Run details —
-
-          Status:   STARTING
-          Time:     ${{ steps.date.outputs.iso }}
-          Target:   https://tmolecule.com
-          Scope:    7 pages · WCAG 2.1 AA ruleset
-          Runner:   GitHub Actions · ubuntu-latest
-          Workflow: ${{ github.workflow }} · run #${{ github.run_number }}
-          URL:      ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-          A second email with the full per-page stats table will follow when the run finishes.
-          EOF
-          )
-
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X POST https://api.resend.com/emails \
-            -H "Authorization: Bearer ${RESEND_API_KEY}" \
-            -H "Content-Type: application/json" \
-            -d "$(jq -n --arg from "$RESEND_FROM" --arg to "$RESEND_TO" --arg subj "[Monthly a11y audit · STARTED] tmolecule.com · ${{ steps.date.outputs.stamp }}" --arg txt "$BODY" \
-              '{from:$from, to:[$to], subject:$subj, text:$txt}')")
-          echo "Resend response: $RESPONSE"
-          echo "$RESPONSE" | grep -q "HTTP_STATUS:200" || { echo "::error::Resend API failed on START email"; exit 1; }
-
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
+          RUN_URL:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RUN_DATE: ${{ steps.date.outputs.stamp }}
+        run: python scripts/send-audit-email.py start
 
       - name: Install Playwright + Chromium
         run: |
@@ -86,31 +58,21 @@ jobs:
           echo "exit=$EXIT" >> "$GITHUB_OUTPUT"
           exit 0
 
-      - name: Build stats + result
+      - name: Determine status
         id: result
         run: |
-          LOG="audits/axe-${{ steps.date.outputs.stamp }}.log"
           if [ "${{ steps.audit.outputs.exit }}" = "0" ]; then
             echo "status=PASS" >> "$GITHUB_OUTPUT"
-            echo "status_line=PASS — 0 critical / 0 serious WCAG 2.1 AA violations across all pages" >> "$GITHUB_OUTPUT"
           else
             echo "status=FAIL" >> "$GITHUB_OUTPUT"
-            echo "status_line=FAIL — critical or serious violations detected (see stats below)" >> "$GITHUB_OUTPUT"
           fi
-          {
-            echo "stats<<STATS_EOF"
-            cat "$LOG"
-            echo "STATS_EOF"
-          } >> "$GITHUB_OUTPUT"
 
       - name: Write job summary
         run: |
           {
-            echo "# ${REPORT_NAME}"
+            echo "# Monthly Accessibility Audit · tmolecule.com"
             echo ""
-            echo "${REPORT_DESCRIPTION}"
-            echo ""
-            echo "## Result: ${{ steps.result.outputs.status_line }}"
+            echo "**Status:** ${{ steps.result.outputs.status }}"
             echo ""
             echo '```'
             cat "audits/axe-${{ steps.date.outputs.stamp }}.log"
@@ -125,7 +87,6 @@ jobs:
           retention-days: 90
 
       - name: Commit dated report to repo
-        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -150,51 +111,9 @@ jobs:
               body: `Critical or serious WCAG 2.1 AA violations detected.\n\n**Report:** audits/axe-${{ steps.date.outputs.stamp }}.json\n**Run:** ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}`
             });
 
-      - name: Send FINISH email (Resend API)
+      - name: Send FINISH email
         if: always() && env.RESEND_API_KEY != ''
         env:
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          RESEND_TO: ${{ secrets.AUDIT_EMAIL_TO }}
-        run: |
-          BODY=$(cat <<EOF
-          Report: ${REPORT_NAME}
-
-          ${REPORT_DESCRIPTION}
-
-          — Run details —
-
-          Status:   FINISHED — ${{ steps.result.outputs.status }}
-          Result:   ${{ steps.result.outputs.status_line }}
-          Run:      ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-
-          — Per-page stats —
-
-          ${{ steps.result.outputs.stats }}
-
-          — Artifacts —
-
-          JSON report committed to repo: audits/axe-${{ steps.date.outputs.stamp }}.json
-          Download as artifact (90-day retention) from the run URL above.
-
-          — Action required —
-
-          Update the audit date on the public accessibility statement:
-            1. Shopify Admin → Customize
-            2. Navigate to Pages → Accessibility
-            3. Open the TMolecule accessibility section settings
-            4. Change the 'Last audit date' field to: ${{ steps.date.outputs.stamp }}
-            5. (optionally) also update 'Statement last updated' to today
-            6. Save and publish
-
-          This keeps /pages/accessibility honest — auditors and complainants will check that date.
-
-          Next scheduled run: 3rd of next month at 09:07 ET (13:07 UTC).
-          EOF
-          )
-
-          RESPONSE=$(curl -s -w "\nHTTP_STATUS:%{http_code}" -X POST https://api.resend.com/emails \
-            -H "Authorization: Bearer ${RESEND_API_KEY}" \
-            -H "Content-Type: application/json" \
-            -d "$(jq -n --arg from "$RESEND_FROM" --arg to "$RESEND_TO" --arg subj "[Monthly a11y audit · FINISHED · ${{ steps.result.outputs.status }}] tmolecule.com · ${{ steps.date.outputs.stamp }}" --arg txt "$BODY" \
-              '{from:$from, to:[$to], subject:$subj, text:$txt}')")
-          echo "Resend response: $RESPONSE"
+          RUN_URL:  ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RUN_DATE: ${{ steps.date.outputs.stamp }}
+        run: python scripts/send-audit-email.py finish "${{ steps.result.outputs.status }}" "audits/axe-${{ steps.date.outputs.stamp }}.log"
