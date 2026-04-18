@@ -1,0 +1,182 @@
+name: Accessibility Audit
+
+# Runs on the 3rd of each month at 13:07 UTC (09:07 ET) and on manual dispatch.
+# Scans all 7 public pages on tmolecule.com against WCAG 2.1 AA using axe-core.
+
+on:
+  schedule:
+    - cron: "7 13 3 * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # so the job can commit the dated JSON report back to the repo
+  issues: write     # so it can open an issue if violations are found
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      REPORT_NAME: "Monthly Accessibility Audit — tmolecule.com"
+      REPORT_DESCRIPTION: "Automated WCAG 2.1 Level AA scan of all public pages (Home, Shop, Product, Cart, About, Contact, Accessibility), run via axe-core v4.10. Flags violations by severity (critical / serious / moderate / minor) for color contrast, form labeling, ARIA usage, heading order, keyboard focus, landmarks, language attributes, and image alt text. Result is saved as a dated JSON report for audit trail and regression tracking."
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Compute run date
+        id: date
+        run: |
+          echo "stamp=$(date -u +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+          echo "iso=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+
+      - name: Send START email
+        if: env.SMTP_USERNAME != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "[Monthly a11y audit · STARTED] tmolecule.com · ${{ steps.date.outputs.stamp }}"
+          to: ${{ secrets.AUDIT_EMAIL_TO }}
+          from: ${{ secrets.SMTP_FROM }}
+          body: |
+            Report: ${{ env.REPORT_NAME }}
+
+            ${{ env.REPORT_DESCRIPTION }}
+
+            — Run details —
+
+            Status:   STARTING
+            Time:     ${{ steps.date.outputs.iso }}
+            Target:   https://tmolecule.com
+            Scope:    7 pages · WCAG 2.1 AA ruleset
+            Runner:   GitHub Actions · ubuntu-latest
+            Workflow: ${{ github.workflow }} · run #${{ github.run_number }}
+            URL:      ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            A second email with the full per-page stats table will follow when the run finishes.
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Playwright + Chromium
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Run axe-core audit
+        id: audit
+        continue-on-error: true
+        run: |
+          mkdir -p audits
+          python scripts/axe-audit.py > audits/axe-${{ steps.date.outputs.stamp }}.log 2>&1
+          EXIT=$?
+          echo "exit=$EXIT" >> "$GITHUB_OUTPUT"
+          exit 0  # never fail the step — email still needs to send
+
+      - name: Build stats + result
+        id: result
+        run: |
+          LOG="audits/axe-${{ steps.date.outputs.stamp }}.log"
+          if [ "${{ steps.audit.outputs.exit }}" = "0" ]; then
+            echo "status=PASS" >> "$GITHUB_OUTPUT"
+            echo "status_line=PASS — 0 critical / 0 serious WCAG 2.1 AA violations across all pages" >> "$GITHUB_OUTPUT"
+          else
+            echo "status=FAIL" >> "$GITHUB_OUTPUT"
+            echo "status_line=FAIL — critical or serious violations detected (see stats below)" >> "$GITHUB_OUTPUT"
+          fi
+          # Preserve log content for email body
+          {
+            echo "stats<<STATS_EOF"
+            cat "$LOG"
+            echo "STATS_EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Write job summary
+        run: |
+          {
+            echo "# ${REPORT_NAME}"
+            echo ""
+            echo "${REPORT_DESCRIPTION}"
+            echo ""
+            echo "## Result: ${{ steps.result.outputs.status_line }}"
+            echo ""
+            echo '```'
+            cat "audits/axe-${{ steps.date.outputs.stamp }}.log"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload JSON report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report-${{ steps.date.outputs.stamp }}
+          path: audits/axe-${{ steps.date.outputs.stamp }}.*
+          retention-days: 90
+
+      - name: Commit dated report to repo
+        if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audits/axe-${{ steps.date.outputs.stamp }}.* || true
+          if ! git diff --cached --quiet; then
+            git commit -m "audit: accessibility report ${{ steps.date.outputs.stamp }} (${{ steps.result.outputs.status }})"
+            git push
+          else
+            echo "no new report files to commit"
+          fi
+
+      - name: Open issue if violations found
+        if: steps.result.outputs.status == 'FAIL'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `Accessibility audit failed — ${{ steps.date.outputs.stamp }}`,
+              labels: ['accessibility', 'audit'],
+              body: `The monthly accessibility audit detected critical or serious WCAG 2.1 AA violations.\n\n**Report:** audits/axe-${{ steps.date.outputs.stamp }}.json\n**Run:** ${process.env.GITHUB_SERVER_URL}/${process.env.GITHUB_REPOSITORY}/actions/runs/${process.env.GITHUB_RUN_ID}\n\nSee the workflow job summary for per-page stats.`
+            });
+
+      - name: Send FINISH email
+        if: always() && env.SMTP_USERNAME != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_SERVER }}
+          server_port: ${{ secrets.SMTP_PORT }}
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "[Monthly a11y audit · FINISHED · ${{ steps.result.outputs.status }}] tmolecule.com · ${{ steps.date.outputs.stamp }}"
+          to: ${{ secrets.AUDIT_EMAIL_TO }}
+          from: ${{ secrets.SMTP_FROM }}
+          body: |
+            Report: ${{ env.REPORT_NAME }}
+
+            ${{ env.REPORT_DESCRIPTION }}
+
+            — Run details —
+
+            Status:   FINISHED — ${{ steps.result.outputs.status }}
+            Result:   ${{ steps.result.outputs.status_line }}
+            Run:      ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+            — Per-page stats —
+
+            ${{ steps.result.outputs.stats }}
+
+            — Artifacts —
+
+            JSON report committed to repo: audits/axe-${{ steps.date.outputs.stamp }}.json
+            Download as artifact (90-day retention) from the run URL above.
+
+            Next scheduled run: 3rd of next month at 09:07 ET (13:07 UTC).
+        env:
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
