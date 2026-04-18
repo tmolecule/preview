@@ -41,7 +41,7 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "[Monthly a11y audit · STARTED] tmolecule.com · ${{ steps.date.outputs.stamp }}"
           to: ${{ secrets.AUDIT_EMAIL_TO }}
-          from: ${{ secrets.SMTP_FROM }}
+          from: audits@tmolecule.com
           body: |
             Report: ${{ env.REPORT_NAME }}
 
@@ -156,7 +156,7 @@ jobs:
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: "[Monthly a11y audit · FINISHED · ${{ steps.result.outputs.status }}] tmolecule.com · ${{ steps.date.outputs.stamp }}"
           to: ${{ secrets.AUDIT_EMAIL_TO }}
-          from: ${{ secrets.SMTP_FROM }}
+          from: audits@tmolecule.com
           body: |
             Report: ${{ env.REPORT_NAME }}
 
