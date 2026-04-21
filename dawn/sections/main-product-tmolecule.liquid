@@ -1,6 +1,10 @@
 {{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tmolecule-product.js' | asset_url }}" defer></script>
 
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+
 <div class="tm-page">
   <div class="tm-buybox-wrap">
     <section class="tm-buybox">
@@ -49,22 +53,41 @@
         {% form 'product', product, class: 'sans', novalidate: 'novalidate' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-          <div class="tm-buybox__opts">
-            {%- for variant in product.variants -%}
-              <button type="button" class="{% if forloop.first %}is-active{% endif %}"
+          {%- assign pack_labels = 'One pack|Two packs|Six packs' | split: '|' -%}
+          {%- assign pack_callouts = '||Free shipping' | split: '|' -%}
+          <div class="tm-buybox__opts tm-buybox__opts--packs">
+            {%- for variant in product.variants limit: 3 -%}
+              {%- assign idx = forloop.index0 -%}
+              <button type="button" class="tm-pack{% if forloop.first %} is-active{% endif %}"
                       data-tm-variant
                       data-variant-id="{{ variant.id }}"
                       data-variant-price="{{ variant.price | money }}">
-                {{ variant.title }} — {{ variant.price | money }}
+                <span class="tm-pack__label">{{ pack_labels[idx] | default: variant.title }}</span>
+                <span class="tm-pack__price">{{ variant.price | money }}</span>
+                {%- assign callout = pack_callouts[idx] -%}
+                {%- if callout != blank -%}
+                  <span class="tm-pack__callout">{{ callout }}</span>
+                {%- endif -%}
               </button>
             {%- endfor -%}
           </div>
 
-          {%- if section.settings.show_subscribe_toggle -%}
-            <div class="tm-buybox__opts">
-              <button type="button" class="is-active">One-time</button>
-              <button type="button">Subscribe &amp; Save 15%</button>
+          {%- if section.settings.show_subscribe_toggle and product.selling_plan_groups.size > 0 -%}
+            {%- assign plan = product.selling_plan_groups.first.selling_plans.first -%}
+            {%- assign discount_label = '' -%}
+            {%- if plan.price_adjustments.first -%}
+              {%- assign adj = plan.price_adjustments.first -%}
+              {%- if adj.value_type == 'percentage' -%}
+                {%- assign discount_label = adj.value | append: '% off' -%}
+              {%- elsif adj.value_type == 'fixed_amount' -%}
+                {%- assign discount_label = adj.value | money | append: ' off' -%}
+              {%- endif -%}
+            {%- endif -%}
+            <div class="tm-buybox__opts tm-buybox__opts--subscribe">
+              <button type="button" class="is-active" data-tm-subscribe data-plan-id="">One-time</button>
+              <button type="button" data-tm-subscribe data-plan-id="{{ plan.id }}">Subscribe{% if discount_label != '' %} &amp; Save {{ discount_label }}{% endif %}</button>
             </div>
+            <input type="hidden" name="selling_plan" value="" data-tm-selling-plan>
           {%- endif -%}
 
           <p class="tm-buybox__price" data-tm-price>{{ product.selected_or_first_available_variant.price | money }}</p>

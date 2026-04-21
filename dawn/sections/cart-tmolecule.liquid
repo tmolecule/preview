@@ -1,0 +1,480 @@
+<style>
+  /* confetti celebration */
+  .tm-confetti-layer { position:fixed; inset:0; pointer-events:none; z-index:200; overflow:hidden; }
+  .tm-confetti-piece {
+    position:absolute; top:-60px; width:22px; height:22px;
+    background-size:contain; background-repeat:no-repeat; background-position:center;
+    will-change:transform, opacity;
+    animation: tm-confetti-fall var(--dur, 3.2s) linear forwards;
+    opacity:.92;
+  }
+  @keyframes tm-confetti-fall {
+    0%   { transform:translate(0, 0) rotate(0deg); opacity:1; }
+    90%  { opacity:1; }
+    100% { transform:translate(var(--drift, 0), 110vh) rotate(var(--spin, 360deg)); opacity:0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tm-confetti-layer { display:none !important; }
+  }
+
+  .tm-cart { --ink:#1a1816; --cream:#faf7f0; --sand:#f5e9d0; --warm:#ede0c4; --terra:#c87040; --terra-dark:#a85830; --espresso:#1a1610; --rule:rgba(74,55,24,.15); color:var(--ink); font-family:'Fraunces', Georgia, serif; background:linear-gradient(180deg,#faf6ec 0%,#ede0c4 100%); padding:80px 24px; min-height:70vh; }
+  .tm-cart__wrap { max-width:1100px; margin:0 auto; }
+  .tm-cart__head { text-align:left; margin-bottom:48px; padding-bottom:32px; border-bottom:1px solid var(--rule); }
+  .tm-cart__eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:11px; color:var(--terra-dark); margin:0 0 10px; font-family:'Inter'; font-weight:700; }
+  .tm-cart__title { font-size:clamp(40px,5vw,64px); line-height:1; letter-spacing:-.03em; font-weight:800; margin:0; }
+  .tm-cart__count { font-family:'Inter'; font-size:14px; opacity:.7; margin:8px 0 0; letter-spacing:.02em; }
+
+  /* Urgency / discount-unlocked banner */
+  .tm-cart__offer {
+    display:grid; grid-template-columns:auto 1fr auto; gap:18px; align-items:center;
+    margin:0; padding:18px 22px;
+    background:linear-gradient(135deg,#fefaf0 0%,#f7eacd 100%);
+    border:1px solid rgba(200,112,64,.25);
+    border-left:4px solid var(--terra-dark);
+    border-radius:12px;
+    box-shadow:0 4px 16px rgba(168,88,48,.12);
+    position:relative;
+    overflow:hidden;
+  }
+  .tm-cart__offer::before {
+    content:""; position:absolute; inset:0;
+    background:linear-gradient(90deg, transparent 0%, rgba(200,112,64,.08) 50%, transparent 100%);
+    animation: tm-offer-shimmer 3.2s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes tm-offer-shimmer {
+    0% { transform:translateX(-100%); }
+    100% { transform:translateX(100%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tm-cart__offer::before { animation:none !important; display:none; }
+  }
+  .tm-cart__offer-icon {
+    width:44px; height:44px; border-radius:50%;
+    background:var(--terra-dark); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px; flex-shrink:0;
+    box-shadow:0 3px 10px rgba(168,88,48,.35);
+    position:relative; z-index:1;
+  }
+  .tm-cart__offer-text { position:relative; z-index:1; }
+  .tm-cart__offer-eyebrow { font-family:'Inter'; font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--terra-dark); margin:0 0 3px; }
+  .tm-cart__offer-headline { font-family:'Fraunces',Georgia,serif; font-size:17px; font-weight:800; line-height:1.25; color:var(--ink); margin:0 0 2px; letter-spacing:-.01em; }
+  .tm-cart__offer-body { font-family:'Inter'; font-size:13px; line-height:1.45; color:rgba(26,22,16,.75); margin:0; }
+  .tm-cart__offer-cta {
+    display:inline-flex; align-items:center; gap:6px;
+    padding:10px 18px; background:var(--terra-dark); color:#fff;
+    font-family:'Inter'; font-size:11px; font-weight:800; letter-spacing:.12em; text-transform:uppercase;
+    text-decoration:none; border-radius:6px; white-space:nowrap;
+    transition:background .15s ease, transform .15s ease;
+    position:relative; z-index:1;
+  }
+  .tm-cart__offer-cta:hover { background:var(--ink); transform:translateY(-1px); }
+
+  /* activated state — both trigger AND target are in the cart */
+  .tm-cart__offer--activated { background:linear-gradient(135deg,#f0f7ea 0%,#d8e8c8 100%); border-color:rgba(74,122,58,.3); border-left-color:#4a7a3a; animation:tm-offer-celebrate 1.2s ease-out; }
+  .tm-cart__offer--activated .tm-cart__offer-icon { background:#4a7a3a; box-shadow:0 3px 10px rgba(74,122,58,.35); animation:tm-icon-bounce 1.2s cubic-bezier(.34,1.56,.64,1); }
+  .tm-cart__offer--activated .tm-cart__offer-eyebrow { color:#2f5a22; }
+  .tm-cart__offer--activated::before { background:linear-gradient(90deg, transparent 0%, rgba(74,122,58,.12) 50%, transparent 100%); }
+  @keyframes tm-offer-celebrate {
+    0%   { transform:scale(.98); box-shadow:0 0 0 0 rgba(74,122,58,.4); }
+    40%  { transform:scale(1.02); box-shadow:0 0 0 14px rgba(74,122,58,0); }
+    100% { transform:scale(1); box-shadow:0 4px 16px rgba(74,122,58,.15); }
+  }
+  @keyframes tm-icon-bounce {
+    0%   { transform:scale(.4) rotate(-20deg); }
+    45%  { transform:scale(1.25) rotate(10deg); }
+    70%  { transform:scale(.92) rotate(-4deg); }
+    100% { transform:scale(1) rotate(0deg); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .tm-cart__offer--activated, .tm-cart__offer--activated .tm-cart__offer-icon { animation:none !important; }
+  }
+  @media (max-width:640px) {
+    .tm-cart__offer { grid-template-columns:auto 1fr; }
+    .tm-cart__offer-cta { grid-column:1 / -1; justify-self:start; margin-top:4px; }
+  }
+
+  /* free shipping progress bar */
+  .tm-cart__ship { margin:0; padding:18px 22px; background:#fefaf0; border:1px solid var(--rule); border-radius:12px; box-shadow:0 4px 14px rgba(74,55,24,.08); }
+  .tm-cart__ship-msg { font-family:'Inter'; font-size:14px; color:var(--ink); margin:0 0 10px; display:flex; align-items:center; gap:8px; line-height:1.35; }
+  .tm-cart__ship-msg strong { color:var(--terra-dark); font-weight:800; }
+  .tm-cart__ship-msg .tm-cart__ship-icon { flex-shrink:0; color:var(--terra-dark); }
+  .tm-cart__ship-bar { height:8px; background:var(--warm); border-radius:999px; overflow:hidden; position:relative; }
+  .tm-cart__ship-fill { height:100%; background:linear-gradient(90deg, var(--terra) 0%, var(--terra-dark) 100%); border-radius:999px; transition:width .4s cubic-bezier(.4,0,.2,1); box-shadow:0 0 8px rgba(200,112,64,.5); }
+  .tm-cart__ship--unlocked .tm-cart__ship-msg { color:#3a5a28; }
+  .tm-cart__ship--unlocked .tm-cart__ship-msg strong { color:#3a5a28; }
+  .tm-cart__ship--unlocked .tm-cart__ship-fill { background:linear-gradient(90deg,#7ba85c 0%,#4a7a3a 100%); }
+  .tm-cart__ship--unlocked .tm-cart__ship-icon { color:#4a7a3a; }
+
+  /* empty */
+  .tm-cart__empty { text-align:center; padding:80px 24px; max-width:520px; margin:0 auto; }
+  .tm-cart__empty h2 { font-size:clamp(28px,4vw,42px); margin:0 0 16px; font-weight:800; letter-spacing:-.02em; }
+  .tm-cart__empty p { font-family:'Inter'; font-size:16px; opacity:.8; margin:0 0 32px; line-height:1.6; }
+
+  /* grid */
+  .tm-cart__body { display:grid; grid-template-columns:1.6fr 1fr; gap:48px; align-items:start; }
+  .tm-cart__items { display:grid; gap:20px; }
+
+  /* item card */
+  .tm-cart__item { display:grid; grid-template-columns:96px 1fr auto; gap:20px; padding:20px; background:#fefaf0; border:1px solid var(--rule); border-radius:12px; align-items:center; box-shadow:0 4px 14px rgba(74,55,24,.08); }
+  .tm-cart__item-media { width:96px; height:96px; border-radius:8px; overflow:hidden; background:radial-gradient(circle at 30% 20%,#f8ebd0 0%,#e8d6b0 55%,#c8b48a 100%); display:flex; align-items:center; justify-content:center; }
+  .tm-cart__item-media img { width:100%; height:100%; object-fit:contain; mix-blend-mode:multiply; }
+  .tm-cart__item-info { min-width:0; }
+  .tm-cart__item-title { font-family:'Fraunces', Georgia, serif; font-size:17px; font-weight:800; line-height:1.25; margin:0 0 4px; letter-spacing:-.01em; }
+  .tm-cart__item-title a { color:var(--ink); text-decoration:none; }
+  .tm-cart__item-title a:hover { color:var(--terra-dark); }
+  .tm-cart__item-variant { font-family:'Inter'; font-size:13px; color:rgba(26,22,16,.65); margin:0 0 8px; }
+  .tm-cart__item-price { font-family:'Fraunces', Georgia, serif; font-size:16px; font-weight:700; color:var(--terra-dark); margin:0; }
+  .tm-cart__item-right { display:flex; flex-direction:column; gap:10px; align-items:flex-end; }
+
+  /* qty stepper */
+  .tm-cart__qty { display:inline-flex; align-items:center; border:1.5px solid var(--rule); border-radius:999px; background:#fff; overflow:hidden; }
+  .tm-cart__qty > a { width:32px; height:32px; background:transparent; text-decoration:none; font-family:'Fraunces', Georgia, serif; font-size:18px; font-weight:700; color:var(--ink); line-height:1; display:flex; align-items:center; justify-content:center; transition:background .15s ease; user-select:none; }
+  .tm-cart__qty > a:hover { background:var(--warm); color:var(--terra-dark); }
+  .tm-cart__qty-value { min-width:36px; text-align:center; font-family:'Inter'; font-size:14px; font-weight:700; color:var(--ink); padding:0 4px; }
+
+  .tm-cart__remove { font-family:'Inter'; font-size:11px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; color:rgba(26,22,16,.55); text-decoration:none; transition:color .15s ease; }
+  .tm-cart__remove:hover { color:var(--terra-dark); }
+
+  /* summary */
+  .tm-cart__summary { position:sticky; top:24px; background:#fefaf0; border:1px solid var(--rule); border-radius:12px; padding:28px; box-shadow:0 12px 32px -8px rgba(74,55,24,.18); }
+  .tm-cart__summary h2 { font-size:22px; font-weight:800; margin:0 0 20px; letter-spacing:-.01em; padding-bottom:16px; border-bottom:1px solid var(--rule); }
+  .tm-cart__row { display:flex; justify-content:space-between; align-items:baseline; font-family:'Inter'; font-size:15px; padding:10px 0; }
+  .tm-cart__row--total { font-family:'Fraunces', Georgia, serif; font-size:22px; font-weight:800; border-top:1px solid var(--rule); margin-top:12px; padding-top:20px; }
+  .tm-cart__row--total .tm-cart__amount { color:var(--terra-dark); }
+  .tm-cart__note { margin:16px 0 24px; font-family:'Inter'; font-size:12px; color:rgba(26,22,16,.6); line-height:1.5; text-align:center; }
+  .tm-cart__taxes { font-family:'Inter'; font-size:12px; color:rgba(26,22,16,.55); margin:-6px 0 18px; }
+
+  /* perforated checkout button */
+  .tm-cart__checkout {
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    width:100%; padding:20px 32px;
+    background:var(--terra); color:#fff; border:0;
+    font-family:'Inter'; font-size:15px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;
+    cursor:pointer;
+    filter:drop-shadow(0 8px 20px rgba(200,112,64,.4));
+    transition:filter .2s ease, transform .2s ease, background .2s ease;
+    -webkit-mask-image:
+      radial-gradient(circle 3px at 9px 0,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 9px 100%,  transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 0 9px,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 100% 9px,  transparent 3px, #000 3.5px);
+    -webkit-mask-size:18px 100%, 18px 100%, 100% 18px, 100% 18px;
+    -webkit-mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-mask-position:top, bottom, left, right;
+    -webkit-mask-composite:source-in;
+    mask-image:
+      radial-gradient(circle 3px at 9px 0,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 9px 100%,  transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 0 9px,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 100% 9px,  transparent 3px, #000 3.5px);
+    mask-size:18px 100%, 18px 100%, 100% 18px, 100% 18px;
+    mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    mask-position:top, bottom, left, right;
+    mask-composite:intersect;
+  }
+  .tm-cart__checkout:hover { transform:translateY(-2px); filter:drop-shadow(0 12px 28px rgba(200,112,64,.55)); background:var(--terra-dark); }
+
+  .tm-cart__continue { display:block; text-align:center; margin-top:14px; font-family:'Inter'; font-size:13px; color:var(--terra-dark); text-decoration:none; letter-spacing:.02em; }
+  .tm-cart__continue:hover { text-decoration:underline; }
+
+  .tm-btn { display:inline-flex; align-items:center; padding:18px 40px; background:var(--terra-dark); color:#fff; border:0; font-family:'Inter'; font-size:14px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:0 6px 20px rgba(200,112,64,.35); transition:all .2s ease; border-radius:4px; }
+  .tm-btn:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(200,112,64,.45); background:var(--terra-dark); }
+
+  @media (max-width:860px) {
+    .tm-cart { padding:48px 16px; }
+    .tm-cart__body { grid-template-columns:1fr; gap:32px; }
+    .tm-cart__item { grid-template-columns:72px 1fr; gap:14px; padding:16px; }
+    .tm-cart__item-media { width:72px; height:72px; }
+    .tm-cart__item-right { grid-column:1 / -1; flex-direction:row; justify-content:space-between; }
+    .tm-cart__summary { position:static; }
+  }
+</style>
+
+<div class="tm-cart">
+  <div class="tm-cart__wrap">
+    <header class="tm-cart__head">
+      <p class="tm-cart__eyebrow">{{ section.settings.eyebrow | default: 'Your order' }}</p>
+      <h1 class="tm-cart__title">{{ section.settings.heading | default: 'Cart' }}</h1>
+      {%- if cart.item_count > 0 -%}
+        <p class="tm-cart__count">{{ cart.item_count }} {% if cart.item_count == 1 %}item{% else %}items{% endif %}</p>
+      {%- endif -%}
+    </header>
+
+    {%- if cart.item_count == 0 -%}
+      <div class="tm-cart__empty">
+        <h2>{{ section.settings.empty_heading | default: 'Your cart is empty' }}</h2>
+        <p>{{ section.settings.empty_body | default: 'Looks like you haven’t added anything yet. Start your daily wellness ritual with Spice Rush.' }}</p>
+        <a href="{{ section.settings.empty_cta_url | default: '/collections/all' }}" class="tm-btn">{{ section.settings.empty_cta_label | default: 'Start your ritual' }}</a>
+      </div>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" id="tm-cart-form" novalidate>
+        <div class="tm-cart__body">
+          <div class="tm-cart__items">
+            {%- for item in cart.items -%}
+              <article class="tm-cart__item" data-line="{{ forloop.index }}">
+                <div class="tm-cart__item-media">
+                  {%- if item.image -%}
+                    <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.image.alt | escape }}" width="96" height="96" loading="lazy">
+                  {%- endif -%}
+                </div>
+                <div class="tm-cart__item-info">
+                  <h3 class="tm-cart__item-title"><a href="{{ item.url }}">{{ item.product.title }}</a></h3>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <p class="tm-cart__item-variant">{{ item.variant.title }}</p>
+                  {%- endunless -%}
+                  {%- if item.selling_plan_allocation -%}
+                    <p class="tm-cart__item-variant">{{ item.selling_plan_allocation.selling_plan.name }}</p>
+                  {%- endif -%}
+                  <p class="tm-cart__item-price">{{ item.final_line_price | money }}</p>
+                </div>
+                <div class="tm-cart__item-right">
+                  <div class="tm-cart__qty">
+                    {%- assign dec_qty = item.quantity | minus: 1 -%}
+                    <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ dec_qty }}" aria-label="Decrease quantity" rel="nofollow">–</a>
+                    <span class="tm-cart__qty-value" aria-live="polite">{{ item.quantity }}</span>
+                    <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity={{ item.quantity | plus: 1 }}" aria-label="Increase quantity" rel="nofollow">+</a>
+                  </div>
+                  <a class="tm-cart__remove" href="{{ item.url_to_remove }}" rel="nofollow">Remove</a>
+                </div>
+              </article>
+            {%- endfor -%}
+
+            {%- if section.settings.offer_enabled -%}
+              {%- if cart.item_count > 1 -%}
+                <div class="tm-cart__offer tm-cart__offer--activated" role="status" aria-live="polite">
+                  <div class="tm-cart__offer-icon" aria-hidden="true">{{ section.settings.offer_activated_icon | default: '🎉' }}</div>
+                  <div class="tm-cart__offer-text">
+                    <p class="tm-cart__offer-eyebrow">{{ section.settings.offer_activated_eyebrow | default: 'Applied at checkout' }}</p>
+                    <p class="tm-cart__offer-headline">{{ section.settings.offer_activated_headline | default: "Yay! 10% discount applied" }}</p>
+                    <p class="tm-cart__offer-body">{{ section.settings.offer_activated_body | default: "Nicely done — your bundle bonus is locked in and will apply when you check out." }}</p>
+                  </div>
+                </div>
+              {%- else -%}
+                <div class="tm-cart__offer" role="status" aria-live="polite">
+                  <div class="tm-cart__offer-icon" aria-hidden="true">{{ section.settings.offer_icon | default: '🎁' }}</div>
+                  <div class="tm-cart__offer-text">
+                    <p class="tm-cart__offer-eyebrow">{{ section.settings.offer_eyebrow | default: 'Unlocked · applies at checkout' }}</p>
+                    <p class="tm-cart__offer-headline">{{ section.settings.offer_headline | default: 'Add another product, save 10%' }}</p>
+                    <p class="tm-cart__offer-body">{{ section.settings.offer_body | default: "Add any second product to unlock 10% off. Empty your cart and the offer resets — so don't linger." }}</p>
+                  </div>
+                  {%- if section.settings.offer_cta_url != blank and section.settings.offer_cta_label != blank -%}
+                    <a class="tm-cart__offer-cta" href="{{ section.settings.offer_cta_url }}">{{ section.settings.offer_cta_label }}</a>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+
+            {%- if section.settings.show_shipping_bar -%}
+              {%- assign threshold_cents = section.settings.shipping_threshold | times: 100 -%}
+              {%- assign remaining_cents = threshold_cents | minus: cart.total_price -%}
+              {%- if remaining_cents > 0 -%}
+                {%- assign pct = cart.total_price | times: 100 | divided_by: threshold_cents -%}
+                <div class="tm-cart__ship">
+                  <p class="tm-cart__ship-msg">
+                    <svg class="tm-cart__ship-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7zM7 20a2 2 0 100-4 2 2 0 000 4zM17 20a2 2 0 100-4 2 2 0 000 4z"/></svg>
+                    You're <strong>{{ remaining_cents | money }}</strong> away from free shipping within the US
+                  </p>
+                  <div class="tm-cart__ship-bar"><div class="tm-cart__ship-fill" style="width:{{ pct }}%"></div></div>
+                </div>
+              {%- else -%}
+                <div class="tm-cart__ship tm-cart__ship--unlocked">
+                  <p class="tm-cart__ship-msg">
+                    <svg class="tm-cart__ship-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+                    <strong>Free shipping within the US unlocked</strong> — your order ships on us.
+                  </p>
+                  <div class="tm-cart__ship-bar"><div class="tm-cart__ship-fill" style="width:100%"></div></div>
+                </div>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+
+          <aside class="tm-cart__summary">
+            <h2>Order summary</h2>
+            <div class="tm-cart__row">
+              <span>Subtotal</span>
+              <span class="tm-cart__amount">{{ cart.items_subtotal_price | money }}</span>
+            </div>
+            {%- if cart.total_discount > 0 -%}
+              <div class="tm-cart__row">
+                <span>Discount</span>
+                <span class="tm-cart__amount">−{{ cart.total_discount | money }}</span>
+              </div>
+            {%- endif -%}
+            <div class="tm-cart__row tm-cart__row--total">
+              <span>Total</span>
+              <span class="tm-cart__amount">{{ cart.total_price | money }}</span>
+            </div>
+            <p class="tm-cart__taxes">Shipping &amp; taxes calculated at checkout.</p>
+            <button type="submit" name="checkout" class="tm-cart__checkout">Checkout</button>
+            <a class="tm-cart__continue" href="/collections/all">← Continue shopping</a>
+          </aside>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+</div>
+
+<script>
+(function(){
+  // SVG data-URI confetti shapes, grouped by seasonal preset.
+  var S = {};
+  function svg(body){ return "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'>" + body + "</svg>"; }
+
+  // default — tea + spice (year-round TMolecule story)
+  S['default'] = [
+    // tea leaf (sage)
+    svg("<path d='M16 4 Q8 8 8 18 Q8 25 16 28 Q24 25 24 18 Q24 8 16 4 Z' fill='%235a8a3a' stroke='%233a6a20' stroke-width='0.7'/><path d='M16 5 V27' stroke='%233a6a20' stroke-width='0.7'/>"),
+    // cardamom pod (green, ridged)
+    svg("<ellipse cx='16' cy='16' rx='4.5' ry='10' fill='%238db068' stroke='%236b8c4a' stroke-width='0.6'/><line x1='13' y1='8' x2='13' y2='24' stroke='%236b8c4a' stroke-width='0.5'/><line x1='16' y1='7' x2='16' y2='25' stroke='%236b8c4a' stroke-width='0.5'/><line x1='19' y1='8' x2='19' y2='24' stroke='%236b8c4a' stroke-width='0.5'/>"),
+    // cinnamon stick (warm brown cylinder)
+    svg("<rect x='10' y='6' width='12' height='20' rx='3' fill='%238a4020' stroke='%235a2810' stroke-width='0.5'/><line x1='13' y1='7' x2='13' y2='25' stroke='%235a2810' stroke-width='0.5'/><line x1='16' y1='7' x2='16' y2='25' stroke='%235a2810' stroke-width='0.5'/><line x1='19' y1='7' x2='19' y2='25' stroke='%235a2810' stroke-width='0.5'/>"),
+    // star anise (rust, 8-lobed)
+    svg("<g fill='%23a8522a' stroke='%235a2810' stroke-width='0.4'><ellipse cx='16' cy='10' rx='2.4' ry='3.6'/><ellipse cx='16' cy='22' rx='2.4' ry='3.6'/><ellipse cx='10' cy='16' rx='3.6' ry='2.4'/><ellipse cx='22' cy='16' rx='3.6' ry='2.4'/><ellipse cx='11.5' cy='11.5' rx='2.9' ry='1.9' transform='rotate(-45 11.5 11.5)'/><ellipse cx='20.5' cy='11.5' rx='2.9' ry='1.9' transform='rotate(45 20.5 11.5)'/><ellipse cx='11.5' cy='20.5' rx='2.9' ry='1.9' transform='rotate(45 11.5 20.5)'/><ellipse cx='20.5' cy='20.5' rx='2.9' ry='1.9' transform='rotate(-45 20.5 20.5)'/></g><circle cx='16' cy='16' r='2' fill='%235a2810'/>"),
+    // ginger root (tan)
+    svg("<path d='M6 16 Q6 11 11 10 Q14 8 17 11 Q21 8 25 12 Q28 16 25 20 Q23 24 17 22 Q14 25 10 22 Q6 22 6 16 Z' fill='%23d4a068' stroke='%238a5a2a' stroke-width='0.6'/>"),
+    // small warm honey sparkle (fills space)
+    svg("<path d='M16 6 L17.2 14.8 L26 16 L17.2 17.2 L16 26 L14.8 17.2 L6 16 L14.8 14.8 Z' fill='%23d4b97a'/>")
+  ];
+  S.valentines = [
+    svg("<path d='M16 28s-11-7-11-15.5C5 7.8 8.8 5 12.5 5c2.1 0 3.9 1.1 3.5 3 -.4-1.9 1.4-3 3.5-3C23.2 5 27 7.8 27 12.5 27 21 16 28 16 28z' fill='%23c0355a'/>"),
+    svg("<path d='M16 28s-11-7-11-15.5C5 7.8 8.8 5 12.5 5c2.1 0 3.9 1.1 3.5 3 -.4-1.9 1.4-3 3.5-3C23.2 5 27 7.8 27 12.5 27 21 16 28 16 28z' fill='%23f0a0b0'/>"),
+    svg("<circle cx='16' cy='16' r='4' fill='%23c0355a'/><path d='M16 20 L16 28' stroke='%233a5a28' stroke-width='1.4'/>")
+  ];
+  S.spring = [
+    svg("<path d='M16 4 C10 6 7 12 7 18 C7 24 11 28 16 28 C21 28 25 24 25 18 C25 12 22 6 16 4 Z' fill='%234a7a3a' stroke='%232f5a22' stroke-width='0.6'/>"),
+    svg("<path d='M16 2 C12 4 10 8 10 14 C10 18 13 22 16 22 C19 22 22 18 22 14 C22 8 20 4 16 2 Z' fill='%236b9055'/>"),
+    svg("<circle cx='16' cy='10' r='3.2' fill='%23f0a0b0'/><circle cx='10' cy='16' r='3.2' fill='%23f0a0b0'/><circle cx='22' cy='16' r='3.2' fill='%23f0a0b0'/><circle cx='16' cy='16' r='2.5' fill='%23d4af37'/>"),
+    svg("<circle cx='16' cy='16' r='8' fill='%23d4e0c0'/>")
+  ];
+  S.july4 = [
+    svg("<path d='M16 3 L19 12 L29 12 L21 18 L24 28 L16 22 L8 28 L11 18 L3 12 L13 12 Z' fill='%23b22234'/>"),
+    svg("<rect x='4' y='8' width='22' height='14' fill='%23b22234'/><rect x='4' y='11' width='22' height='2' fill='white'/><rect x='4' y='15' width='22' height='2' fill='white'/><rect x='4' y='19' width='22' height='2' fill='white'/><rect x='4' y='8' width='10' height='7' fill='%233c3b6e'/>"),
+    svg("<circle cx='16' cy='16' r='4' fill='%233c3b6e'/>"),
+    svg("<circle cx='16' cy='16' r='4' fill='%23ffffff' stroke='%23b22234' stroke-width='1.5'/>")
+  ];
+  S.fall = [
+    svg("<path d='M16 3 L19 7 L22 5 L21 10 L26 9 L23 14 L28 17 L22 18 L24 24 L19 22 L16 28 L13 22 L8 24 L10 18 L4 17 L9 14 L6 9 L11 10 L10 5 L13 7 Z' fill='%23c85a1a'/>"),
+    svg("<path d='M16 4 C10 6 7 12 7 18 C7 24 11 28 16 28 C21 28 25 24 25 18 C25 12 22 6 16 4 Z' fill='%23d47b2a'/>"),
+    svg("<path d='M16 3 C14 7 12 8 12 12 C10 12 10 14 12 15 C10 15 10 18 13 18 C11 19 12 22 14 22 C13 24 14 27 16 27 C18 27 19 24 18 22 C20 22 21 19 19 18 C22 18 22 15 20 15 C22 14 22 12 20 12 C20 8 18 7 16 3 Z' fill='%23a06020'/>"),
+    svg("<path d='M10 14 Q10 11 16 11 Q22 11 22 14 Z M11 14 Q11 24 16 26 Q21 24 21 14 Z' fill='%23b8862a'/>")
+  ];
+  S.halloween = [
+    svg("<path d='M2 14 Q5 10 8 14 Q10 10 12 14 Q14 12 16 14 Q18 12 20 14 Q22 10 24 14 Q27 10 30 14 Q28 18 22 18 Q18 18 16 20 Q14 18 10 18 Q4 18 2 14 Z' fill='%23ff6600'/>"),
+    svg("<path d='M8 18 Q8 12 12 12 Q13 10 16 10 Q19 10 20 12 Q24 12 24 18 Q24 26 16 26 Q8 26 8 18 Z' fill='%23ff7518'/><polygon points='13,17 15,17 14,19' fill='%23402008'/><polygon points='17,17 19,17 18,19' fill='%23402008'/>"),
+    svg("<path d='M8 14 Q8 6 16 6 Q24 6 24 14 L24 27 L21 24 L18 27 L16 24 L14 27 L11 24 L8 27 Z' fill='%23f5ecd8'/><circle cx='13' cy='13' r='1.5' fill='%23400050'/><circle cx='19' cy='13' r='1.5' fill='%23400050'/>"),
+    svg("<circle cx='16' cy='16' r='5' fill='%23400050'/>")
+  ];
+  S.thanksgiving = [
+    svg("<path d='M10 14 Q10 11 16 11 Q22 11 22 14 Z M11 14 Q11 24 16 26 Q21 24 21 14 Z' fill='%23b8862a'/>"),
+    svg("<path d='M16 3 L19 7 L22 5 L21 10 L26 9 L23 14 L28 17 L22 18 L24 24 L19 22 L16 28 L13 22 L8 24 L10 18 L4 17 L9 14 L6 9 L11 10 L10 5 L13 7 Z' fill='%23c85a1a'/>"),
+    svg("<ellipse cx='12' cy='10' rx='2.5' ry='4' fill='%23d4af37'/><ellipse cx='20' cy='10' rx='2.5' ry='4' fill='%23d4af37'/><ellipse cx='10' cy='17' rx='2.5' ry='4' fill='%23d4af37'/><ellipse cx='22' cy='17' rx='2.5' ry='4' fill='%23d4af37'/>"),
+    svg("<circle cx='16' cy='16' r='8' fill='%23a83030'/>")
+  ];
+  S.holiday = [
+    svg("<path d='M16 3 L11 10 L13 10 L9 16 L12 16 L7 22 L14 22 L14 28 L18 28 L18 22 L25 22 L20 16 L23 16 L19 10 L21 10 Z' fill='%23306830'/>"),
+    svg("<g stroke='%23a0c8e0' stroke-width='1.8' fill='none' stroke-linecap='round'><line x1='16' y1='4' x2='16' y2='28'/><line x1='4' y1='16' x2='28' y2='16'/><line x1='7' y1='7' x2='25' y2='25'/><line x1='7' y1='25' x2='25' y2='7'/></g>"),
+    svg("<circle cx='16' cy='16' r='7' fill='none' stroke='%23306830' stroke-width='4'/>"),
+    svg("<circle cx='16' cy='16' r='5' fill='%23a6282d'/>"),
+    svg("<circle cx='16' cy='16' r='5' fill='%23d4af37'/>")
+  ];
+  S.newyear = [
+    svg("<path d='M16 3 L17.5 14.5 L29 16 L17.5 17.5 L16 29 L14.5 17.5 L3 16 L14.5 14.5 Z' fill='%23d4af37'/>"),
+    svg("<path d='M12 6 L20 6 L18.5 14 Q18.5 16 16 16 Q13.5 16 13.5 14 Z' fill='%23d4af37'/><rect x='15.2' y='16' width='1.6' height='9' fill='%23d4af37'/>"),
+    svg("<rect x='8' y='8' width='4' height='2' fill='%23d4af37' transform='rotate(20 10 9)'/>"),
+    svg("<rect x='8' y='8' width='4' height='2' fill='%23c0355a' transform='rotate(-30 10 9)'/>"),
+    svg("<rect x='8' y='8' width='4' height='2' fill='%23306830' transform='rotate(45 10 9)'/>"),
+    svg("<circle cx='16' cy='16' r='3' fill='%23d4af37'/>")
+  ];
+
+  function fire(){
+    var preset = (document.body.dataset.tmPreset || 'default').trim();
+    var shapes = S[preset] || S['default'];
+    var layer = document.createElement('div');
+    layer.className = 'tm-confetti-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(layer);
+
+    var count = 48;
+    for (var i = 0; i < count; i++) {
+      var piece = document.createElement('div');
+      piece.className = 'tm-confetti-piece';
+      var url = shapes[Math.floor(Math.random() * shapes.length)];
+      piece.style.backgroundImage = 'url("' + url + '")';
+      var size = 14 + Math.random() * 14;
+      piece.style.width = size + 'px';
+      piece.style.height = size + 'px';
+      piece.style.left = (Math.random() * 100) + '%';
+      piece.style.setProperty('--dur', (2.6 + Math.random() * 2.4) + 's');
+      piece.style.setProperty('--drift', ((Math.random() * 260) - 130) + 'px');
+      piece.style.setProperty('--spin', ((Math.random() * 1080) - 540) + 'deg');
+      piece.style.animationDelay = (Math.random() * 0.4) + 's';
+      layer.appendChild(piece);
+    }
+    // Clean up after all pieces have finished (max 5.5s)
+    setTimeout(function(){ if (layer && layer.parentNode) layer.parentNode.removeChild(layer); }, 5800);
+  }
+
+  function check(){
+    var activated = document.querySelector('.tm-cart__offer--activated');
+    var flag = 'tm_cart_celebrated';
+    if (activated) {
+      try {
+        var already = sessionStorage.getItem(flag);
+        if (!already) {
+          sessionStorage.setItem(flag, '1');
+          // Defer slightly so the page has painted
+          setTimeout(fire, 250);
+        }
+      } catch(e) { fire(); }
+    } else {
+      try { sessionStorage.removeItem(flag); } catch(e) {}
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', check);
+  } else {
+    check();
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TMolecule cart",
+  "tag": "section",
+  "class": "tm-cart-section",
+  "settings": [
+    { "type":"text", "id":"eyebrow", "label":"Eyebrow", "default":"Your order" },
+    { "type":"text", "id":"heading", "label":"Heading", "default":"Cart" },
+    { "type":"header", "content":"Free shipping bar" },
+    { "type":"checkbox", "id":"show_shipping_bar", "label":"Show free-shipping progress bar", "default":true },
+    { "type":"number", "id":"shipping_threshold", "label":"Free shipping threshold ($)", "default":35, "info":"Whole dollars. E.g. 35 = free shipping over $35." },
+    { "type":"header", "content":"Empty cart state" },
+    { "type":"text", "id":"empty_heading", "label":"Empty heading", "default":"Your cart is empty" },
+    { "type":"textarea", "id":"empty_body", "label":"Empty body", "default":"Looks like you haven’t added anything yet. Start your daily wellness ritual with Spice Rush." },
+    { "type":"text", "id":"empty_cta_label", "label":"Empty CTA label", "default":"Start your ritual" },
+    { "type":"text", "id":"empty_cta_url", "label":"Empty CTA URL", "default":"/collections/all" },
+    { "type":"header", "content":"Offer banner · urgency nudge" },
+    { "type":"paragraph", "content":"Pairs with a Shopify Automatic Discount ('Buy any 2+, save 10%'). Rule is simple: any cart with 2+ distinct products = activated celebration; any cart with 1 product = unlock prompt." },
+    { "type":"checkbox", "id":"offer_enabled", "label":"Show offer banner", "default":true },
+
+    { "type":"header", "content":"Unlock prompt (1 product)" },
+    { "type":"text", "id":"offer_icon", "label":"Icon (emoji)", "default":"🎁" },
+    { "type":"text", "id":"offer_eyebrow", "label":"Eyebrow", "default":"Unlocked · applies at checkout" },
+    { "type":"text", "id":"offer_headline", "label":"Headline", "default":"Add another product, save 10%" },
+    { "type":"textarea", "id":"offer_body", "label":"Body copy", "default":"Add any second product to unlock 10% off. Empty your cart and the offer resets — so don't linger." },
+    { "type":"text", "id":"offer_cta_label", "label":"CTA button label", "default":"Shop more" },
+    { "type":"text", "id":"offer_cta_url", "label":"CTA URL", "default":"/collections/all" },
+
+    { "type":"header", "content":"Activated state (2+ products)" },
+    { "type":"text", "id":"offer_activated_icon", "label":"Icon (emoji)", "default":"🎉" },
+    { "type":"text", "id":"offer_activated_eyebrow", "label":"Eyebrow", "default":"Applied at checkout" },
+    { "type":"text", "id":"offer_activated_headline", "label":"Headline", "default":"Yay! 10% discount applied" },
+    { "type":"textarea", "id":"offer_activated_body", "label":"Body copy", "default":"Nicely done — your bundle bonus is locked in and will apply when you check out." }
+  ],
+  "presets": [{ "name":"TMolecule cart" }]
+}
+{% endschema %}

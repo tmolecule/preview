@@ -1,0 +1,71 @@
+/* TMolecule global accessibility helpers */
+
+/* Respect prefers-reduced-motion — disable animations and motion-based transitions
+   site-wide. Decorative static rotations (polaroid tilts, card scatters) are reset
+   to 0° so vestibular-sensitive users don't experience off-axis layouts. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* neutralize decorative tilts and lifts */
+  .tm-about-hero__photo,
+  .tm-about-narrative__media,
+  .tm-about-values__card,
+  .tm-about-hero__stamp,
+  .tm-popup__panel {
+    transform: none !important;
+  }
+
+  /* disable hover lift transforms */
+  .tm-btn:hover,
+  .tm-cart__checkout:hover,
+  .tm-popup__submit:hover,
+  .tm-sticky-cta__btn:hover,
+  .tm-buybox__cta:hover,
+  .tm-facts__card:hover,
+  .tm-facts__chip:hover,
+  .product-card-wrapper:hover .card,
+  .tm-about-hero__photo:hover,
+  .tm-about-values__card:hover {
+    transform: none !important;
+  }
+
+  /* sticky CTA — no slide animation */
+  .tm-sticky-cta {
+    transition: none !important;
+  }
+
+  /* marquee / trust strip — stop the scrolling announcement / trust row */
+  .tm-ann__track,
+  .tm-home-trust__track {
+    animation: none !important;
+  }
+}
+
+/* ensure focus indicators are always visible, even when default outline is overridden by resets */
+:focus-visible {
+  outline: 2px solid #1a1816 !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 4px rgba(250, 247, 240, 0.7) !important;
+}
+
+/* visually-hidden utility — text for screen readers only */
+.tm-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}

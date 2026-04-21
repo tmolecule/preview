@@ -8,6 +8,29 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "TMolecule seasonal preset",
+    "settings": [
+      {
+        "type": "select",
+        "id": "tm_seasonal_preset",
+        "label": "Seasonal theme",
+        "info": "Swaps band / CTA colors across the site. Default = year-round earth tones.",
+        "options": [
+          { "value": "default",       "label": "Default (year-round earth tones)" },
+          { "value": "valentines",    "label": "Valentine's (Feb 1–15)" },
+          { "value": "spring",        "label": "Spring (Mar–May)" },
+          { "value": "july4",         "label": "July 4th (Jun 25–Jul 10)" },
+          { "value": "fall",          "label": "Fall (Sep–Oct)" },
+          { "value": "halloween",     "label": "Halloween (Oct 15–31)" },
+          { "value": "thanksgiving",  "label": "Thanksgiving (Nov 1–28)" },
+          { "value": "holiday",       "label": "Holiday (Dec 1–31)" },
+          { "value": "newyear",       "label": "New Year (Dec 28–Jan 5)" }
+        ],
+        "default": "default"
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {

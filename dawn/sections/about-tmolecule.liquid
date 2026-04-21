@@ -1,58 +1,207 @@
 <style>
-  .tm-about { --ink:#1a1816; --cream:#f8f4eb; --sand:#e9dfcf; --warm:#d7ceb2; --terra:#c87040; --terra-dark:#a85830; --espresso:#1a1610; color:var(--ink); font-family:'Fraunces', Georgia, serif; }
+  .tm-about { --ink:#1a1816; --cream:#f8f4eb; --sand:#e9dfcf; --warm:#d7ceb2; --terra:#c87040; --terra-dark:#a85830; --espresso:#1a1610; --paper:#f2e6cf; --ink-faded:#4a3a2a; --rule:rgba(168,88,48,.18); color:var(--ink); font-family:'Fraunces', Georgia, serif; }
   .tm-about img { max-width:100%; display:block; }
-  .tm-section { padding:100px 24px; overflow:hidden; }
-  .tm-section__inner { max-width:1200px; margin:0 auto; }
-  .tm-section--cream { background:linear-gradient(135deg,#faf6ec 0%,#ede0c4 60%,#d7ceb2 100%); }
-  .tm-section--sand { background:var(--sand); }
-  .tm-section--dark { background:var(--espresso); color:#f5ecd8; }
+  .tm-section { padding:100px 24px; overflow:hidden; position:relative; }
+  .tm-section__inner { max-width:1200px; margin:0 auto; position:relative; z-index:2; }
+
+  /* corduroy — thin horizontal stripes behind every section */
+  .tm-section::before {
+    content:"";
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, rgba(74,55,24,.08) 0 1px, transparent 1px 3px);
+    pointer-events:none;
+    z-index:0;
+  }
+  .tm-section--dark::before, .tm-section--terra::before { background:repeating-linear-gradient(0deg, rgba(245,236,216,.1) 0 1px, transparent 1px 3px); }
+
+  /* torn edges — SVG path as decorative overlay, no masking */
+  .tm-section--torn::after,
+  .tm-section--torn-bottom::after {
+    content:"";
+    position:absolute; left:0; right:0; bottom:-1px;
+    height:20px;
+    background-color:var(--tear-to, #ede0c4);
+    -webkit-clip-path:polygon(0 100%, 100% 100%, 100% 30%, 95% 80%, 90% 20%, 85% 70%, 80% 10%, 75% 60%, 70% 25%, 65% 75%, 60% 15%, 55% 65%, 50% 30%, 45% 80%, 40% 15%, 35% 70%, 30% 25%, 25% 75%, 20% 20%, 15% 60%, 10% 30%, 5% 70%, 0 40%);
+    clip-path:polygon(0 100%, 100% 100%, 100% 30%, 95% 80%, 90% 20%, 85% 70%, 80% 10%, 75% 60%, 70% 25%, 65% 75%, 60% 15%, 55% 65%, 50% 30%, 45% 80%, 40% 15%, 35% 70%, 30% 25%, 25% 75%, 20% 20%, 15% 60%, 10% 30%, 5% 70%, 0 40%);
+    pointer-events:none;
+    z-index:3;
+  }
+
+  .tm-section--paper {
+    background:
+      radial-gradient(ellipse at 20% 10%, rgba(168,88,48,.08), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(74,55,24,.1), transparent 55%),
+      linear-gradient(180deg, #f5e9d0 0%, #ecdcba 100%);
+  }
+  .tm-section--sand { background:linear-gradient(180deg,#ede0c4 0%, #d7ceb2 100%); }
+  .tm-section--dark { background:#2a1f14; color:#f5ecd8; }
   .tm-section--terra { background:linear-gradient(135deg,#c87040 0%,#a85830 50%,#884020 100%); color:#faf3e0; }
-  .tm-h1 { font-size:clamp(42px,6vw,80px); line-height:1.0; letter-spacing:-.03em; font-weight:700; margin:0 0 20px; }
-  .tm-h2 { font-size:clamp(32px,4.5vw,56px); line-height:1.05; letter-spacing:-.02em; font-weight:700; margin:0 0 16px; }
-  .tm-eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:11px; color:var(--terra); margin:0 0 12px; font-family:'Inter'; font-weight:700; }
+
+  /* vintage headings */
+  .tm-h1 { font-size:clamp(40px,5.5vw,72px); line-height:1.05; letter-spacing:-.035em; font-weight:900; margin:0 0 20px; font-variation-settings:'opsz' 144; text-transform:none; text-wrap:balance; }
+  .tm-h2 { font-size:clamp(32px,4.5vw,56px); line-height:1.02; letter-spacing:-.02em; font-weight:800; margin:0 0 16px; }
+  .tm-eyebrow { text-transform:uppercase; letter-spacing:.3em; font-size:11px; color:var(--terra-dark); margin:0 0 16px; font-family:'Inter'; font-weight:700; position:relative; display:inline-block; padding:0 14px; }
+  .tm-eyebrow::before, .tm-eyebrow::after { content:""; position:absolute; top:50%; width:22px; height:1px; background:var(--terra-dark); }
+  .tm-eyebrow::before { right:100%; }
+  .tm-eyebrow::after { left:100%; }
   .tm-body { font-family:'Inter'; font-size:17px; line-height:1.65; opacity:.9; max-width:60ch; }
   .tm-section--dark .tm-eyebrow { color:#d4a060; }
+  .tm-section--dark .tm-eyebrow::before, .tm-section--dark .tm-eyebrow::after { background:#d4a060; }
   .tm-section--dark .tm-h2 { color:#f5ecd8; }
   .tm-section--terra .tm-eyebrow { color:#fce8d0; }
-  .tm-btn { display:inline-flex; align-items:center; gap:8px; padding:18px 44px; background:var(--terra); color:#fff; border:0; border-radius:14px; font-family:'Inter'; font-size:15px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:0 6px 20px rgba(200,112,64,.35); transition:all .2s ease; }
-  .tm-btn:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(200,112,64,.45); background:var(--terra-dark); }
-  .tm-btn__sub { display:block; font-size:11px; font-weight:500; opacity:.8; margin-top:2px; letter-spacing:.08em; }
-  .tm-section--terra .tm-btn { background:var(--espresso); box-shadow:0 6px 20px rgba(26,22,16,.4); }
+  .tm-section--terra .tm-eyebrow::before, .tm-section--terra .tm-eyebrow::after { background:#fce8d0; }
 
-  /* HERO */
-  .tm-about-hero { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1.05fr; gap:64px; align-items:center; padding:100px 24px; }
-  .tm-about-hero__media { position:relative; overflow:hidden; border-radius:16px; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); background:radial-gradient(circle at 30% 20%,#f8ebd0 0%,#e8d6b0 55%,#c8b48a 100%); }
-  .tm-about-hero__media img { width:100%; height:auto; display:block; mix-blend-mode:multiply; }
+  .tm-btn {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:22px 52px;
+    background:var(--terra); color:#fff;
+    border:0;
+    font-family:'Inter'; font-size:14px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; text-decoration:none;
+    cursor:pointer;
+    filter:drop-shadow(0 8px 20px rgba(200,112,64,.35));
+    transition:filter .2s ease, transform .2s ease, background .2s ease;
+    -webkit-mask-image:
+      radial-gradient(circle 3px at 9px 0,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 9px 100%,  transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 0 9px,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 100% 9px,  transparent 3px, #000 3.5px);
+    -webkit-mask-size:18px 100%, 18px 100%, 100% 18px, 100% 18px;
+    -webkit-mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-mask-position:top, bottom, left, right;
+    -webkit-mask-composite:source-in;
+    mask-image:
+      radial-gradient(circle 3px at 9px 0,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 9px 100%,  transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 0 9px,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 100% 9px,  transparent 3px, #000 3.5px);
+    mask-size:18px 100%, 18px 100%, 100% 18px, 100% 18px;
+    mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    mask-position:top, bottom, left, right;
+    mask-composite:intersect;
+  }
+  .tm-btn:hover { transform:translateY(-2px); filter:drop-shadow(0 12px 28px rgba(200,112,64,.5)); background:var(--terra-dark); }
+  .tm-btn__sub { display:block; font-size:10px; font-weight:600; opacity:.95; margin-top:2px; letter-spacing:.12em; }
+  .tm-section--terra .tm-btn { background:var(--espresso); filter:drop-shadow(0 8px 20px rgba(26,22,16,.45)); }
 
-  /* VALUES GRID */
+  /* ornamental divider */
+  .tm-ornament { text-align:center; margin:32px 0; color:var(--terra-dark); font-size:20px; letter-spacing:8px; opacity:.6; }
+  .tm-ornament::before, .tm-ornament::after { content:"—"; margin:0 12px; opacity:.5; }
+
+  /* HERO — vintage newspaper layout */
+  .tm-about-hero { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; padding:100px 24px; position:relative; z-index:2; }
+  .tm-about-hero__stamp { display:block; width:max-content; padding:6px 16px; border:2px solid var(--terra-dark); color:var(--terra-dark); font-family:'Inter'; font-size:11px; letter-spacing:.3em; text-transform:uppercase; font-weight:700; transform:rotate(-2deg); transform-origin:left center; margin:0 0 36px; background:rgba(250,243,224,.6); }
+  .tm-about-hero__rule { width:64px; height:3px; background:var(--terra-dark); margin:24px 0; }
+  .tm-about-hero__rule--double { border-top:1px solid var(--terra-dark); border-bottom:1px solid var(--terra-dark); height:5px; background:transparent; }
+  .tm-about-hero__photo {
+    position:relative;
+    padding:30px;
+    background:linear-gradient(180deg, #fefaf0 0%, #f5e9d0 100%);
+    filter:drop-shadow(0 30px 40px rgba(74,55,24,.55)) drop-shadow(0 12px 20px rgba(74,55,24,.38)) drop-shadow(0 3px 6px rgba(26,22,16,.22));
+    transform:rotate(1.5deg);
+    transition:transform .3s ease;
+    -webkit-mask-image:
+      radial-gradient(circle 5px at 14px 0,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 14px 100%, transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 0 14px,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 100% 14px, transparent 5px, #000 5.5px);
+    -webkit-mask-size:28px 100%, 28px 100%, 100% 28px, 100% 28px;
+    -webkit-mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-mask-position:top, bottom, left, right;
+    -webkit-mask-composite:source-in;
+    mask-image:
+      radial-gradient(circle 5px at 14px 0,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 14px 100%, transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 0 14px,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 100% 14px, transparent 5px, #000 5.5px);
+    mask-size:28px 100%, 28px 100%, 100% 28px, 100% 28px;
+    mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    mask-position:top, bottom, left, right;
+    mask-composite:intersect;
+  }
+  .tm-about-hero__photo:hover { transform:rotate(0deg); }
+  .tm-about-hero__photo img {
+    width:100%; height:auto; display:block;
+    aspect-ratio:1074/1286;
+    object-fit:contain;
+    filter:sepia(.2) contrast(1.05);
+    box-shadow:0 0 0 1px rgba(74,55,24,.45), 0 0 0 3px #fefaf0, 0 0 0 4px rgba(74,55,24,.25);
+  }
+  .tm-about-hero__tape {
+    position:absolute;
+    width:80px; height:24px;
+    background:rgba(216,197,158,.7);
+    top:-10px; left:50%;
+    transform:translateX(-50%) rotate(-2deg);
+    box-shadow:0 2px 4px rgba(26,22,16,.1);
+  }
+
+  /* VALUES GRID — polaroid cards */
   .tm-about-values { text-align:center; }
-  .tm-about-values__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:48px; }
-  .tm-about-values__card { background:var(--cream); border-radius:16px; padding:40px 24px 32px; text-align:center; box-shadow:0 30px 60px -20px rgba(74,55,24,.3), 0 8px 24px -4px rgba(74,55,24,.2); }
-  .tm-about-values__icon { font-size:40px; margin-bottom:16px; }
-  .tm-about-values__card h3 { font-size:19px; font-weight:700; margin:0 0 10px; }
-  .tm-about-values__card p { font-family:'Inter'; font-size:14px; line-height:1.55; opacity:.8; margin:0; }
+  .tm-about-values__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; margin-top:48px; }
+  .tm-about-values__card { background:#faf3e0; border:1px solid rgba(74,55,24,.15); padding:36px 22px 28px; text-align:center; box-shadow:0 36px 72px -20px rgba(74,55,24,.5), 0 16px 32px -8px rgba(74,55,24,.35), 0 4px 10px rgba(26,22,16,.15); position:relative; transition:transform .25s ease, box-shadow .25s ease; z-index:2; }
+  .tm-about-values__card:nth-child(odd) { transform:rotate(-.8deg); }
+  .tm-about-values__card:nth-child(even) { transform:rotate(.8deg); }
+  .tm-about-values__card:hover { transform:rotate(0deg) translateY(-6px); box-shadow:0 48px 96px -24px rgba(74,55,24,.6), 0 20px 40px -8px rgba(74,55,24,.45), 0 6px 14px rgba(26,22,16,.2); }
+  .tm-about-values__icon { font-size:42px; margin-bottom:14px; filter:sepia(.3); }
+  .tm-about-values__card h3 { font-size:18px; font-weight:800; margin:0 0 10px; letter-spacing:-.01em; }
+  .tm-about-values__card p { font-family:'Inter'; font-size:13.5px; line-height:1.55; opacity:.82; margin:0; }
 
-  /* TIMELINE */
+  /* TIMELINE — vintage ledger */
   .tm-about-timeline { max-width:900px; margin:0 auto; }
-  .tm-about-timeline__list { list-style:none; padding:0; margin:40px 0 0; display:grid; gap:16px; }
-  .tm-about-timeline__list li { display:grid; grid-template-columns:120px 1fr; gap:32px; padding:24px 0; border-top:1px solid rgba(74,55,24,.15); font-family:'Inter'; align-items:baseline; }
-  .tm-about-timeline__year { font-family:'Fraunces', Georgia, serif; font-size:36px; font-weight:700; color:var(--terra); line-height:1; }
-  .tm-about-timeline__list p { margin:0; font-size:16px; line-height:1.6; }
+  .tm-about-timeline__list { list-style:none; padding:0; margin:40px 0 0; }
+  .tm-about-timeline__list li {
+    display:grid; grid-template-columns:120px 1fr; gap:32px;
+    padding:24px 0; font-family:'Inter'; align-items:baseline;
+    border-top:1px solid rgba(74,55,24,.18);
+  }
+  .tm-about-timeline__list li::marker { content:none; }
+  .tm-about-timeline__year {
+    font-family:'Fraunces', Georgia, serif;
+    font-size:36px; font-weight:900; color:var(--terra-dark); line-height:1;
+    letter-spacing:-.03em;
+    font-variation-settings:'opsz' 144;
+  }
+  .tm-about-timeline__list p { margin:0; font-size:15.5px; line-height:1.6; }
 
   /* QUOTE / SIGNATURE */
   .tm-about-signature { text-align:center; max-width:900px; margin:0 auto; padding:80px 24px; }
-  .tm-about-signature blockquote { font-family:'Fraunces', Georgia, serif; font-size:clamp(24px,3.5vw,40px); line-height:1.25; margin:0 0 24px; font-style:italic; color:#f5ecd8; }
-  .tm-about-signature cite { font-family:'Inter'; font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:#d4a060; font-style:normal; font-weight:600; }
+  .tm-about-signature blockquote { font-family:'Fraunces', Georgia, serif; font-size:clamp(24px,3.5vw,42px); line-height:1.25; margin:0 0 24px; font-style:italic; color:#f5ecd8; position:relative; }
+  .tm-about-signature blockquote::before, .tm-about-signature blockquote::after { font-family:'Fraunces'; color:#d4a060; font-size:64px; opacity:.5; position:relative; top:.2em; line-height:0; }
+  .tm-about-signature blockquote::before { content:"“"; margin-right:10px; }
+  .tm-about-signature blockquote::after { content:"”"; margin-left:10px; }
+  .tm-about-signature cite { font-family:'Inter'; font-size:12px; letter-spacing:.2em; text-transform:uppercase; color:#d4a060; font-style:normal; font-weight:600; }
 
   /* NARRATIVE BLOCK */
-  .tm-about-narrative { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
-  .tm-about-narrative--reverse .tm-about-narrative__media { order:2; }
-  .tm-about-narrative__media { position:relative; overflow:hidden; border-radius:16px; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); background:radial-gradient(circle at 30% 20%,#f8ebd0 0%,#e8d6b0 55%,#c8b48a 100%); }
-  .tm-about-narrative__media img { width:100%; height:auto; display:block; mix-blend-mode:multiply; }
+  .tm-about-narrative { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
+  .tm-about-narrative__media {
+    position:relative; padding:30px;
+    background:linear-gradient(180deg, #fefaf0 0%, #f5e9d0 100%);
+    filter:drop-shadow(0 30px 40px rgba(74,55,24,.5)) drop-shadow(0 12px 20px rgba(74,55,24,.32)) drop-shadow(0 3px 6px rgba(26,22,16,.2));
+    transform:rotate(-1deg);
+    -webkit-mask-image:
+      radial-gradient(circle 5px at 14px 0,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 14px 100%, transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 0 14px,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 100% 14px, transparent 5px, #000 5.5px);
+    -webkit-mask-size:28px 100%, 28px 100%, 100% 28px, 100% 28px;
+    -webkit-mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-mask-position:top, bottom, left, right;
+    -webkit-mask-composite:source-in;
+    mask-image:
+      radial-gradient(circle 5px at 14px 0,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 14px 100%, transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 0 14px,    transparent 5px, #000 5.5px),
+      radial-gradient(circle 5px at 100% 14px, transparent 5px, #000 5.5px);
+    mask-size:28px 100%, 28px 100%, 100% 28px, 100% 28px;
+    mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    mask-position:top, bottom, left, right;
+    mask-composite:intersect;
+  }
+  .tm-about-narrative__media img { width:100%; display:block; filter:sepia(.15) contrast(1.05); box-shadow:0 0 0 1px rgba(74,55,24,.4), 0 0 0 3px #fefaf0, 0 0 0 4px rgba(74,55,24,.22); }
 
   @media (max-width:860px) {
     .tm-about-hero, .tm-about-narrative { grid-template-columns:1fr; gap:32px; padding:64px 16px; }
-    .tm-about-values__grid { grid-template-columns:1fr 1fr; }
+    .tm-about-values__grid { grid-template-columns:1fr 1fr; gap:20px; }
     .tm-about-timeline__list li { grid-template-columns:1fr; gap:4px; }
     .tm-section { padding:64px 16px; }
   }
@@ -60,33 +209,47 @@
 </style>
 
 <div class="tm-about">
+  {%- assign fp = section.settings.featured_product -%}
+  {%- if fp -%}
+    {%- assign product_url = fp.url -%}
+    {%- assign live_price = fp.price | money -%}
+    {%- assign live_price_from = 'From ' | append: live_price -%}
+  {%- else -%}
+    {%- assign product_url = section.settings.product_url | default: '/collections/all' -%}
+    {%- assign live_price = section.settings.fallback_price | default: '$9.99' -%}
+    {%- assign live_price_from = 'From ' | append: live_price -%}
+  {%- endif -%}
+  {%- assign shipping_sub = section.settings.shipping_text | default: 'Fast shipping' -%}
+
   <!-- HERO -->
-  <section class="tm-section--cream" style="padding:0;">
+  <section class="tm-section tm-section--paper tm-section--torn-bottom" style="padding:60px 24px 80px;">
     <div class="tm-about-hero">
       <div>
+        <div class="tm-about-hero__stamp">Est. 1935 · PGP</div>
         <p class="tm-eyebrow">Our story</p>
-        <h1 class="tm-h1">Four generations.<br>One leaf.</h1>
-        <p class="tm-body">In 1935, our great-grandfather started sourcing tea — tin by tin, estate by estate, refusing anything that didn't meet the nose test. Ninety-one years later, we're still doing it — crafting wellness rituals worth protecting.</p>
-        <div style="margin-top:32px;"><a href="/products/premium-collagen-spice-rush-black-tea-blend-revitalizing-energy-with-ginger-cinnamon-cardamom-keto-paleo-friendly-made-in-usa-milled-product-for-smoother-flow" class="tm-btn">Shop Spice Rush<span class="tm-btn__sub">From $6.99</span></a></div>
+        <h1 class="tm-h1">Four generations. One leaf.</h1>
+        <div class="tm-about-hero__rule tm-about-hero__rule--double"></div>
+        <p class="tm-body">In 1935, our forefathers founded a family of tea tasters under the banner <em>PGP</em> — selecting, procuring, and curating the finest leaf, tin by tin, estate by estate. Ninety-one years later, we're still doing it — weaving <strong>Ayurvedic wisdom</strong> into a daily ritual of warming spices, real tea, and modern peptides.</p>
+        <div style="margin-top:32px;"><a href="{{ product_url }}" class="tm-btn">Shop Spice Rush<span class="tm-btn__sub">{{ live_price_from }}</span></a></div>
       </div>
-      <div class="tm-about-hero__media">
-        <img src="https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400/Copy_of_M1_rdmzmf.jpg" alt="TMolecule heritage">
+      <div class="tm-about-hero__photo">
+        <img src="{{ 'tmolecule-heritage-1935.jpg' | asset_url }}" alt="The TMolecule family — tea tasters, circa 1935" width="1074" height="1286">
       </div>
     </div>
   </section>
 
   <!-- VALUES GRID -->
-  <section class="tm-section tm-section--sand">
+  <section class="tm-section tm-section--sand tm-section--torn">
     <div class="tm-section__inner">
       <div class="tm-about-values">
         <p class="tm-eyebrow">What we believe</p>
-        <h2 class="tm-h2">Wellness with purpose</h2>
-        <p class="tm-body" style="margin:0 auto;">We didn't set out to build another tea brand. We set out to re-engineer a daily ritual that respects your time and your body.</p>
+        <h2 class="tm-h2">Ayurveda, reimagined for today</h2>
+        <p class="tm-body" style="margin:0 auto;">We didn't set out to build another tea brand. We set out to re-engineer a daily ritual that honors three thousand years of Ayurvedic wisdom — warming spices for balance, real tea for presence, peptides for the body that carries you.</p>
         <div class="tm-about-values__grid">
           <div class="tm-about-values__card">
             <div class="tm-about-values__icon">🍃</div>
-            <h3>Real ingredients</h3>
-            <p>Whole spices, real tea leaves, hydrolyzed peptides. No "natural flavors" mystery blend. No fillers.</p>
+            <h3>Ayurvedic roots</h3>
+            <p>Cardamom, ginger, cinnamon — the three warming spices Ayurveda has used for millennia to kindle <em>agni</em>, the body's digestive fire.</p>
           </div>
           <div class="tm-about-values__card">
             <div class="tm-about-values__icon">👨‍👩‍👧</div>
@@ -96,12 +259,12 @@
           <div class="tm-about-values__card">
             <div class="tm-about-values__icon">⚡</div>
             <h3>Honest energy</h3>
-            <p>Real caffeine from real tea leaves. Sustained, not jittery. Wellness, not marketing.</p>
+            <p>Real caffeine from real tea leaves. Sustained, not jittery. The clarity Ayurveda calls <em>sattva</em> — not a crash.</p>
           </div>
           <div class="tm-about-values__card">
             <div class="tm-about-values__icon">🌱</div>
             <h3>Keep it clean</h3>
-            <p>Zero sugar, zero starch, zero additives. Keto and paleo friendly by default, not by accident.</p>
+            <p>Zero sugar, zero starch, zero additives. Keto and paleo friendly — and true to Ayurveda's principle of <em>sattvic</em> purity.</p>
           </div>
         </div>
       </div>
@@ -109,7 +272,7 @@
   </section>
 
   <!-- NARRATIVE — passion for tea -->
-  <section class="tm-section tm-section--cream">
+  <section class="tm-section tm-section--paper tm-section--torn">
     <div class="tm-section__inner">
       <div class="tm-about-narrative">
         <div class="tm-about-narrative__media">
@@ -117,47 +280,50 @@
         </div>
         <div>
           <p class="tm-eyebrow">Our passion</p>
-          <h2 class="tm-h2">Helping you battle the day with a little support</h2>
-          <p class="tm-body">At TMolecule we want to share our passion for tea. Our goal is to make you re-discover this centuries-old drink with our modern take on timeless classics. We are committed to offering you a premium-tasting tea and the best aromas with every sip.</p>
-          <p class="tm-body" style="margin-top:16px;">Spice Rush is what happens when four generations of tea obsession meet a modern life. We take a classic spiced black-tea ritual, mill the leaf so you can actually drink it in under a minute, and add collagen peptides so one cup earns its keep.</p>
+          <h2 class="tm-h2">Ancient wisdom, modern ritual</h2>
+          <div class="tm-ornament">✦</div>
+          <p class="tm-body">Spice Rush is what happens when four generations of tea obsession meet a modern life. We take the classic Ayurvedic <em>masala chai</em> ritual — cardamom, ginger, cinnamon, black tea — mill the leaf so you can actually drink it in under a minute, and add collagen peptides so one cup earns its keep.</p>
+          <p class="tm-body" style="margin-top:16px;">Ayurveda has known for three thousand years what modern science is just catching up to: warming spices support digestion, circulation, and clarity. We're not reinventing that wisdom — we're honoring it, in a format that fits a thirty-second morning.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- TIMELINE -->
-  <section class="tm-section tm-section--sand">
+  <section class="tm-section tm-section--sand tm-section--torn">
     <div class="tm-section__inner">
       <div class="tm-about-timeline">
-        <p class="tm-eyebrow" style="text-align:center;">The long arc</p>
+        <p class="tm-eyebrow" style="text-align:center; display:block;">The long arc</p>
         <h2 class="tm-h2" style="text-align:center;">Ninety-one years in the making</h2>
         <ol class="tm-about-timeline__list">
-          <li><span class="tm-about-timeline__year">1935</span><p>Great-grandfather sources his first tin of Assam black tea — tin by tin, estate by estate, refusing anything that didn't meet the nose test.</p></li>
-          <li><span class="tm-about-timeline__year">1962</span><p>Second generation expands the family sourcing to Ceylon and Darjeeling estates. The tasting protocol becomes a written standard.</p></li>
-          <li><span class="tm-about-timeline__year">1989</span><p>Third generation formalizes the family tasting protocol — every new lot tested against the same three-century-old benchmarks.</p></li>
-          <li><span class="tm-about-timeline__year">2023</span><p>Fourth generation begins experimenting with milled-leaf blends — the idea of a wellness ritual in thirty seconds takes shape.</p></li>
-          <li><span class="tm-about-timeline__year">2025</span><p>Spice Rush formula finalized — bold milled black tea, collagen peptides, three warming spices. Ready for the modern morning.</p></li>
-          <li><span class="tm-about-timeline__year">2026</span><p>TMolecule launches direct-to-consumer. The ritual is now yours.</p></li>
+          <li><span class="tm-about-timeline__year">1935</span><p>Founders begin sourcing tea under the PGP banner — tin by tin, estate by estate, refusing anything that didn't meet the nose test. The spice pairings follow the Ayurvedic <em>masala chai</em> tradition.</p></li>
+          <li><span class="tm-about-timeline__year">1962</span><p>Second generation expands family sourcing to Ceylon and Darjeeling. The Ayurvedic tasting protocol becomes a written standard — warming spices for winter, cooling herbs for summer.</p></li>
+          <li><span class="tm-about-timeline__year">1989</span><p>Third generation formalizes the family tasting protocol, grounded in Ayurvedic principles of <em>dosha</em> balance — every lot tested against the same century-old benchmarks.</p></li>
+          <li><span class="tm-about-timeline__year">2023</span><p>Fourth generation begins experimenting with milled-leaf blends. The idea of a classical Ayurvedic ritual in thirty seconds takes shape.</p></li>
+          <li><span class="tm-about-timeline__year">2025</span><p>Spice Rush formula finalized — bold milled black tea, collagen peptides, three warming Ayurvedic spices. Ready for the modern morning.</p></li>
+          <li><span class="tm-about-timeline__year">2026</span><p>TMolecule launches direct-to-consumer. The ritual — ancient and new — is now yours.</p></li>
         </ol>
       </div>
     </div>
   </section>
 
   <!-- PHILOSOPHY -->
-  <section class="tm-section tm-section--terra">
+  <section class="tm-section tm-section--terra tm-section--torn">
     <div class="tm-section__inner" style="text-align:center; max-width:800px;">
       <p class="tm-eyebrow">The TMolecule Philosophy</p>
       <h2 class="tm-h2">Be Well.<br>Naturally.</h2>
-      <p class="tm-body" style="color:#faf3e0; margin:0 auto;">TMolecule teas are crafted for wellness so you can supply your body with the feel-good stuff it needs to keep you happy and healthy, naturally. Black tea blended with adaptogens, antioxidants, polyphenols and other nutraceuticals.</p>
+      <p class="tm-body" style="color:#faf3e0; margin:0 auto;">TMolecule products are crafted in the Ayurvedic tradition — curated blends with adaptogens, antioxidants, and polyphenols that classical texts prescribed long before the word "wellness" existed. Ancient wisdom, evidence-backed, daily.</p>
     </div>
   </section>
 
   <!-- SIGNATURE QUOTE -->
-  <section class="tm-section tm-section--dark">
+  <section class="tm-section tm-section--dark tm-section--torn">
     <div class="tm-about-signature">
-      <blockquote>"Good tea shouldn't need a strainer, a timer, and a degree in horology. It should need you."</blockquote>
-      <cite>— The TMolecule family</cite>
-      <div style="margin-top:48px;"><a href="/products/premium-collagen-spice-rush-black-tea-blend-revitalizing-energy-with-ginger-cinnamon-cardamom-keto-paleo-friendly-made-in-usa-milled-product-for-smoother-flow" class="tm-btn">Start Your Ritual<span class="tm-btn__sub">$6.99 · free shipping over $35</span></a></div>
+      <p class="tm-eyebrow">Our manifesto</p>
+      <h2 class="tm-h2" style="color:#f5ecd8; margin:0 0 40px;">Food with Benefits</h2>
+      <blockquote>Ayurveda discovered the molecule. Science measured it. We put it back in our product.</blockquote>
+      <cite>— The TMolecule manifesto</cite>
+      <div style="margin-top:48px;"><a href="{{ product_url }}" class="tm-btn">Start Your Ritual<span class="tm-btn__sub">{{ live_price }}{% if shipping_sub != blank %} · {{ shipping_sub }}{% endif %}</span></a></div>
     </div>
   </section>
 </div>
@@ -167,7 +333,14 @@
   "name": "TMolecule about",
   "tag": "section",
   "class": "tm-about-section",
-  "settings": [],
+  "settings": [
+    { "type":"header", "content":"Live product wiring" },
+    { "type":"product", "id":"featured_product", "label":"Featured product", "info":"When set, CTA prices and URL pull live from this product." },
+    { "type":"text", "id":"product_url", "label":"Fallback product URL", "info":"Used only when Featured product is not set." },
+    { "type":"text", "id":"fallback_price", "label":"Fallback price text", "default":"$9.99", "info":"Used only when Featured product is not set." },
+    { "type":"header", "content":"CTA sublabel" },
+    { "type":"text", "id":"shipping_text", "label":"Shipping / offer text", "default":"Fast shipping", "info":"Shown after the price on the bottom CTA. Leave blank to hide." }
+  ],
   "presets": [{ "name":"TMolecule about" }]
 }
 {% endschema %}

@@ -1,0 +1,193 @@
+<style>
+  .tm-popup {
+    --ink:#1a1816; --cream:#faf7f0; --sand:#f5e9d0; --warm:#ede0c4; --terra:#c87040; --terra-dark:#a85830; --espresso:#1a1610;
+    position:fixed; inset:0; z-index:9998;
+    background:rgba(26,22,16,.55); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+    opacity:0; pointer-events:none;
+    transition:opacity .35s ease;
+    font-family:'Fraunces', Georgia, serif; color:var(--ink);
+  }
+  .tm-popup.is-open { opacity:1; pointer-events:auto; }
+  .tm-popup__panel {
+    position:relative;
+    max-width:480px; width:100%;
+    background:linear-gradient(180deg, #fefaf0 0%, #f5e9d0 100%);
+    border-radius:16px; padding:44px 36px 36px;
+    box-shadow:0 40px 80px -16px rgba(26,22,16,.5), 0 16px 40px -8px rgba(74,55,24,.35), 0 4px 12px rgba(26,22,16,.18);
+    transform:scale(.94) translateY(10px);
+    transition:transform .4s cubic-bezier(.34,1.3,.64,1);
+  }
+  .tm-popup.is-open .tm-popup__panel { transform:scale(1) translateY(0); }
+  .tm-popup__close { position:absolute; top:12px; right:14px; width:32px; height:32px; border:0; background:transparent; cursor:pointer; font-size:22px; color:var(--ink); opacity:.5; transition:opacity .15s ease; line-height:1; padding:0; }
+  .tm-popup__close:hover { opacity:1; }
+
+  .tm-popup__eyebrow { text-transform:uppercase; letter-spacing:.22em; font-size:10px; color:var(--terra-dark); margin:0 0 10px; font-family:'Inter'; font-weight:800; text-align:center; }
+  .tm-popup__heading { font-size:clamp(26px,3.4vw,34px); line-height:1.1; font-weight:800; letter-spacing:-.02em; margin:0 0 8px; text-align:center; }
+  .tm-popup__body { font-family:'Inter'; font-size:14.5px; line-height:1.5; opacity:.85; text-align:center; margin:0 0 24px; }
+
+  .tm-popup__form { display:grid; gap:12px; }
+  .tm-popup__form label { display:grid; gap:6px; font-family:'Inter'; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--terra-dark); font-weight:700; }
+  .tm-popup__form input { padding:14px 16px; border:1.5px solid #e3dbc9; border-radius:10px; font-family:'Inter'; font-size:15px; background:#fff; color:var(--ink); transition:border-color .15s ease, box-shadow .15s ease; }
+  .tm-popup__form input:focus { outline:0; border-color:var(--terra); box-shadow:0 0 0 3px rgba(200,112,64,.15); }
+
+  .tm-popup__submit {
+    margin-top:10px; padding:18px 28px;
+    background:var(--terra); color:#fff; border:0;
+    font-family:'Inter'; font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase;
+    cursor:pointer;
+    filter:drop-shadow(0 8px 20px rgba(200,112,64,.4));
+    transition:filter .2s ease, transform .2s ease, background .2s ease;
+    -webkit-mask-image:
+      radial-gradient(circle 3px at 9px 0,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 9px 100%,  transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 0 9px,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 100% 9px,  transparent 3px, #000 3.5px);
+    -webkit-mask-size:18px 100%, 18px 100%, 100% 18px, 100% 18px;
+    -webkit-mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    -webkit-mask-position:top, bottom, left, right;
+    -webkit-mask-composite:source-in;
+    mask-image:
+      radial-gradient(circle 3px at 9px 0,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 9px 100%,  transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 0 9px,     transparent 3px, #000 3.5px),
+      radial-gradient(circle 3px at 100% 9px,  transparent 3px, #000 3.5px);
+    mask-size:18px 100%, 18px 100%, 100% 18px, 100% 18px;
+    mask-repeat:repeat-x, repeat-x, repeat-y, repeat-y;
+    mask-position:top, bottom, left, right;
+    mask-composite:intersect;
+  }
+  .tm-popup__submit:hover { background:var(--terra-dark); transform:translateY(-1px); filter:drop-shadow(0 12px 26px rgba(200,112,64,.55)); }
+
+  .tm-popup__fineprint { font-family:'Inter'; font-size:11px; opacity:.6; margin:16px 0 0; text-align:center; line-height:1.5; }
+  .tm-popup__no-thanks { display:block; margin-top:14px; font-family:'Inter'; font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:transparent; border:0; color:var(--ink); opacity:.55; cursor:pointer; text-align:center; width:100%; padding:4px; }
+  .tm-popup__no-thanks:hover { opacity:.9; text-decoration:underline; }
+
+  .tm-popup__success { text-align:center; padding:16px; background:#e8f5e0; border:1px solid #a0c880; border-radius:10px; font-family:'Inter'; font-size:14px; color:#3a5a28; margin-bottom:12px; }
+  .tm-popup__errors { text-align:left; padding:14px; background:#fce8e8; border:1px solid #f0a0a0; border-radius:10px; font-family:'Inter'; font-size:13px; color:#8a1515; margin-bottom:12px; }
+  .tm-popup__errors ul { margin:6px 0 0 18px; padding:0; }
+
+  @media (max-width:520px) {
+    .tm-popup__panel { padding:36px 24px 28px; }
+  }
+</style>
+
+<div class="tm-popup"
+     data-tm-popup
+     data-delay="{{ section.settings.delay_seconds | default: 5 }}"
+     data-cooldown-days="{{ section.settings.cooldown_days | default: 7 }}"
+     role="dialog" aria-modal="true" aria-labelledby="tm-popup-heading" aria-hidden="true" inert>
+  <div class="tm-popup__panel">
+    <button type="button" class="tm-popup__close" data-tm-popup-close aria-label="Close">×</button>
+
+    {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
+      <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
+
+      {%- if form.posted_successfully? -%}
+        <div class="tm-popup__success">
+          {{ section.settings.success_text | default: "You're in. Welcome to the ritual." }}
+        </div>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <div class="tm-popup__errors">
+          <p>Please correct:</p>
+          <ul>
+            {%- for error in form.errors -%}
+              <li>{{ form.errors.messages[error] }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <p class="tm-popup__eyebrow">{{ section.settings.eyebrow | default: 'Join the ritual' }}</p>
+      <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.heading | default: "Get 10% off your first order" }}</h2>
+      <p class="tm-popup__body">{{ section.settings.body | default: "Join our email & SMS list for early access, seasonal blends, and a discount on your first order." }}</p>
+
+      <label>Email
+        <input type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
+      </label>
+      <label>Mobile number
+        <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
+      </label>
+
+      <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
+      <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
+      <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
+    {%- endform -%}
+  </div>
+</div>
+
+<script>
+(function(){
+  var popup = document.querySelector('[data-tm-popup]');
+  if (!popup) return;
+  var form = popup.querySelector('form');
+  var delay = parseInt(popup.dataset.delay || '5', 10) * 1000;
+  var cooldown = parseInt(popup.dataset.cooldownDays || '7', 10) * 86400000;
+  var key = 'tm_popup_dismissed_at';
+
+  function shouldShow(){
+    try {
+      var dismissed = parseInt(localStorage.getItem(key) || '0', 10);
+      return !dismissed || (Date.now() - dismissed) > cooldown;
+    } catch(e) { return true; }
+  }
+  function open(){
+    popup.classList.add('is-open');
+    popup.setAttribute('aria-hidden', 'false');
+    popup.removeAttribute('inert');
+    document.body.style.overflow = 'hidden';
+    var input = popup.querySelector('input[type="email"], input[type="tel"]');
+    if (input) setTimeout(function(){ input.focus(); }, 100);
+  }
+  function close(){
+    popup.classList.remove('is-open');
+    popup.setAttribute('aria-hidden', 'true');
+    popup.setAttribute('inert', '');
+    document.body.style.overflow = '';
+    try { localStorage.setItem(key, Date.now().toString()); } catch(e) {}
+  }
+
+  // open after delay on first eligible load
+  if (shouldShow()) {
+    setTimeout(open, delay);
+  }
+  // if form just posted successfully, show it so user sees the confirmation
+  if (form && form.dataset.posted === 'true') open();
+
+  popup.querySelectorAll('[data-tm-popup-close]').forEach(function(b){
+    b.addEventListener('click', close);
+  });
+  popup.addEventListener('click', function(e){
+    if (e.target === popup) close();
+  });
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape') close();
+  });
+})();
+</script>
+
+{%- if form.posted_successfully? -%}
+  <script>document.querySelector('[data-tm-popup] form')?.setAttribute('data-posted','true');</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "TMolecule popup",
+  "tag": "section",
+  "class": "tm-popup-section",
+  "settings": [
+    { "type":"text", "id":"eyebrow", "label":"Eyebrow", "default":"Join the ritual" },
+    { "type":"text", "id":"heading", "label":"Heading", "default":"Get 10% off your first order" },
+    { "type":"textarea", "id":"body", "label":"Body", "default":"Join our email & SMS list for early access, seasonal blends, and a discount on your first order." },
+    { "type":"text", "id":"button_label", "label":"Button label", "default":"Send me the code" },
+    { "type":"textarea", "id":"fineprint", "label":"Fine print / consent", "default":"By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." },
+    { "type":"text", "id":"success_text", "label":"Success message", "default":"You're in. Welcome to the ritual." },
+    { "type":"header", "content":"Timing" },
+    { "type":"range", "id":"delay_seconds", "label":"Delay before showing (s)", "min":0, "max":60, "step":1, "default":5, "unit":"s" },
+    { "type":"range", "id":"cooldown_days", "label":"Re-show cooldown after dismiss (days)", "min":1, "max":60, "step":1, "default":7, "unit":"d" }
+  ],
+  "presets": [{ "name":"TMolecule popup" }]
+}
+{% endschema %}

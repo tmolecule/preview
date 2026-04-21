@@ -1,0 +1,81 @@
+/* SEASONAL OVERRIDE — fall: Burnt orange, amber, rust — Sep–Oct */
+
+/* 1. legacy product-story band overrides */
+.tm-band--cream { background:linear-gradient(180deg,#fdf0d8 0%,#e8c890 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#f0d8a8 0%,#d4a860 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#d8ba78 0%,#f0d8a8 100%); }
+.tm-band--deep-sand { background:linear-gradient(135deg,#c85a1a 0%,#8a3a0a 50%,#5a2000 100%); color:#fdf6e8; }
+.tm-band--espresso { background:#3a1e00; color:#fdf6e8; }
+.tm-inline-cta { background:linear-gradient(135deg,#c85a1a 0%,#8a3a0a 100%); box-shadow:0 4px 14px rgba(0,0,0,.25); }
+
+/* 2. section-scoped custom property overrides */
+.tm-home, .tm-about, .tm-cart, .tm-contact, .tm-popup, .tm-page, .tm-main-product, .tm-about-section, .tm-cart-section, .tm-popup-section {
+  --terra: #c85a1a !important;
+  --terra-dark: #8a3a0a !important;
+  --cream: #fdf6e8 !important;
+  --sand: #f0d8a8 !important;
+  --warm: #d8ba78 !important;
+  --paper: #ede0b8 !important;
+  --rule: rgba(138,58,10,.18) !important;
+  --tm-accent: #c85a1a !important;
+  --tm-accent-dark: #8a3a0a !important;
+  --tm-warm: #d8ba78 !important;
+  --tm-rule: rgba(138,58,10,.18) !important;
+}
+
+/* 3. body + header backgrounds */
+body { background:linear-gradient(180deg,#fdf6e8 0%,#dcb880 100%) !important; }
+.tm-header { background:linear-gradient(180deg,#fdf5e0 0%,#e8c890 100%) !important; border-bottom-color:#c85a1a !important; }
+.tm-header.is-scrolled { background:linear-gradient(180deg,#fdf5e0 0%,#e8c890 100%) !important; }
+.tm-header__nav a:hover, .tm-header__icon:hover { color:#c85a1a !important; }
+.tm-header__logo sup { color:#c85a1a !important; }
+.tm-header__cart-count { background:#c85a1a !important; }
+
+/* 4. section backgrounds */
+.tm-cart { background:linear-gradient(180deg,#fdf6e8 0%,#dcb880 100%) !important; }
+.tm-contact { background:linear-gradient(180deg,#fdf6e8 0%,#dcb880 100%) !important; }
+.tm-home { background:linear-gradient(180deg,#fdf6e8 0%,#dcb880 100%) !important; }
+.tm-buybox__hero, .tm-about-hero__media, .tm-about-narrative__media, .tm-home-heritage__media, .tm-home-featured__media, .product-card-wrapper .card {
+  background:radial-gradient(circle at 30% 20%,#f5deb0 0%,#d8a860 55%,#a06820 100%) !important;
+}
+.tm-section--paper { background:linear-gradient(180deg,#fdf0d8 0%,#e8c890 100%) !important; }
+.tm-section--sand { background:linear-gradient(180deg,#f0d8a8 0%,#d4a860 100%) !important; }
+.tm-section--terra { background:linear-gradient(135deg,#c85a1a 0%,#8a3a0a 50%,#5a2000 100%) !important; }
+.tm-section--dark { background:#3a1e00 !important; }
+
+/* 5. buttons */
+.tm-btn, .tm-cart__checkout, .tm-popup__submit, .tm-sticky-cta__btn, .tm-buybox__cta {
+  background:#c85a1a !important;
+  color:#fff !important;
+}
+.tm-btn:hover, .tm-cart__checkout:hover, .tm-popup__submit:hover, .tm-sticky-cta__btn:hover { background:#8a3a0a !important; }
+.tm-about-hero__stamp { color:#8a3a0a !important; border-color:#8a3a0a !important; }
+
+/* 6. text accents */
+.tm-about-timeline__year, .tm-eyebrow, .tm-cart__eyebrow, .tm-home-featured__price { color:#8a3a0a !important; }
+.tm-eyebrow::before, .tm-eyebrow::after { background:#8a3a0a !important; }
+
+/* 7. card borders */
+.tm-cart__item, .tm-cart__summary, .tm-popup__panel, .tm-about-values__card { border-color:rgba(138,58,10,.18) !important; }
+
+/* 8. seasonal ornaments flanking the logo (compact, no nav overlap) */
+.tm-header__logo { position:relative; }
+.tm-header__logo::before, .tm-header__logo::after {
+  content:"";
+  position:absolute;
+  top:50%; transform:translateY(-50%);
+  width:84px; height:26px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 32'><g transform='translate(0,3) scale(0.8) rotate(-18 16 16)'><path d='M16 3 L19 7 L22 5 L21 10 L26 9 L23 14 L28 17 L22 18 L24 24 L19 22 L16 28 L13 22 L8 24 L10 18 L4 17 L9 14 L6 9 L11 10 L10 5 L13 7 Z' fill='%23c85a1a' stroke='%238a3a0a' stroke-width='0.5' stroke-linejoin='round'/></g><g transform='translate(40,0)'><path d='M16 4 C10 6 7 12 7 18 C7 24 11 28 16 28 C21 28 25 24 25 18 C25 12 22 6 16 4 Z' fill='%23d47b2a' stroke='%238a3a0a' stroke-width='0.8' stroke-linejoin='round'/><path d='M16 6 L16 27 M16 12 L12 16 M16 12 L20 16 M16 18 L13 21 M16 18 L19 21' stroke='%238a3a0a' stroke-width='0.7' fill='none' stroke-linecap='round'/></g><g transform='translate(80,3) scale(0.8) rotate(16 16 16)'><path d='M16 3 C14 7 12 8 12 12 C10 12 10 14 12 15 C10 15 10 18 13 18 C11 19 12 22 14 22 C13 24 14 27 16 27 C18 27 19 24 18 22 C20 22 21 19 19 18 C22 18 22 15 20 15 C22 14 22 12 20 12 C20 8 18 7 16 3 Z' fill='%23a06020' stroke='%238a3a0a' stroke-width='0.5'/></g></svg>") no-repeat center/contain;
+  pointer-events:none;
+  opacity:.9;
+}
+.tm-header__logo::before { right:calc(100% + 12px); }
+.tm-header__logo::after  { left:calc(100% + 12px); }
+@media (max-width:1000px) {
+  .tm-header__logo::before, .tm-header__logo::after { width:60px; height:20px; }
+  .tm-header__logo::before { right:calc(100% + 8px); }
+  .tm-header__logo::after  { left:calc(100% + 8px); }
+}
+@media (max-width:720px) {
+  .tm-header__logo::before, .tm-header__logo::after { display:none; }
+}

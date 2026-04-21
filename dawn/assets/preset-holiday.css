@@ -1,0 +1,81 @@
+/* SEASONAL OVERRIDE — holiday: Forest green, cranberry, gold — Dec 1–31 */
+
+/* 1. legacy product-story band overrides */
+.tm-band--cream { background:linear-gradient(180deg,#f0f7ea 0%,#c0d8b0 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#dcead4 0%,#a0c090 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#c0d8b0 0%,#e8f0e0 100%); }
+.tm-band--deep-sand { background:linear-gradient(135deg,#a6282d 0%,#6a1418 50%,#400808 100%); color:#f4faf5; }
+.tm-band--espresso { background:#0a2810; color:#f4faf5; }
+.tm-inline-cta { background:linear-gradient(135deg,#a6282d 0%,#6a1418 100%); box-shadow:0 4px 14px rgba(0,0,0,.25); }
+
+/* 2. section-scoped custom property overrides */
+.tm-home, .tm-about, .tm-cart, .tm-contact, .tm-popup, .tm-page, .tm-main-product, .tm-about-section, .tm-cart-section, .tm-popup-section {
+  --terra: #a6282d !important;
+  --terra-dark: #6a1418 !important;
+  --cream: #f4faf5 !important;
+  --sand: #e8f0e0 !important;
+  --warm: #c0d8b0 !important;
+  --paper: #dceadc !important;
+  --rule: rgba(106,20,24,.2) !important;
+  --tm-accent: #a6282d !important;
+  --tm-accent-dark: #6a1418 !important;
+  --tm-warm: #c0d8b0 !important;
+  --tm-rule: rgba(106,20,24,.2) !important;
+}
+
+/* 3. body + header backgrounds */
+body { background:linear-gradient(180deg,#f4faf5 0%,#c0d8b0 100%) !important; }
+.tm-header { background:linear-gradient(180deg,#f4faf5 0%,#d4e4cc 100%) !important; border-bottom-color:#a6282d !important; }
+.tm-header.is-scrolled { background:linear-gradient(180deg,#f4faf5 0%,#d4e4cc 100%) !important; }
+.tm-header__nav a:hover, .tm-header__icon:hover { color:#a6282d !important; }
+.tm-header__logo sup { color:#a6282d !important; }
+.tm-header__cart-count { background:#a6282d !important; }
+
+/* 4. section backgrounds */
+.tm-cart { background:linear-gradient(180deg,#f4faf5 0%,#c0d8b0 100%) !important; }
+.tm-contact { background:linear-gradient(180deg,#f4faf5 0%,#c0d8b0 100%) !important; }
+.tm-home { background:linear-gradient(180deg,#f4faf5 0%,#c0d8b0 100%) !important; }
+.tm-buybox__hero, .tm-about-hero__media, .tm-about-narrative__media, .tm-home-heritage__media, .tm-home-featured__media, .product-card-wrapper .card {
+  background:radial-gradient(circle at 30% 20%,#e8f0dc 0%,#b8d0a0 55%,#608050 100%) !important;
+}
+.tm-section--paper { background:linear-gradient(180deg,#f0f7ea 0%,#c0d8b0 100%) !important; }
+.tm-section--sand { background:linear-gradient(180deg,#dcead4 0%,#a0c090 100%) !important; }
+.tm-section--terra { background:linear-gradient(135deg,#a6282d 0%,#6a1418 50%,#400808 100%) !important; }
+.tm-section--dark { background:#0a2810 !important; }
+
+/* 5. buttons */
+.tm-btn, .tm-cart__checkout, .tm-popup__submit, .tm-sticky-cta__btn, .tm-buybox__cta {
+  background:#a6282d !important;
+  color:#fff !important;
+}
+.tm-btn:hover, .tm-cart__checkout:hover, .tm-popup__submit:hover, .tm-sticky-cta__btn:hover { background:#6a1418 !important; }
+.tm-about-hero__stamp { color:#6a1418 !important; border-color:#6a1418 !important; }
+
+/* 6. text accents */
+.tm-about-timeline__year, .tm-eyebrow, .tm-cart__eyebrow, .tm-home-featured__price { color:#6a1418 !important; }
+.tm-eyebrow::before, .tm-eyebrow::after { background:#6a1418 !important; }
+
+/* 7. card borders */
+.tm-cart__item, .tm-cart__summary, .tm-popup__panel, .tm-about-values__card { border-color:rgba(106,20,24,.2) !important; }
+
+/* 8. seasonal ornaments flanking the logo (compact, no nav overlap) */
+.tm-header__logo { position:relative; }
+.tm-header__logo::before, .tm-header__logo::after {
+  content:"";
+  position:absolute;
+  top:50%; transform:translateY(-50%);
+  width:84px; height:26px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 32'><g transform='translate(0,3) scale(0.8) rotate(-18 16 16)'><path d='M16 3 L11 10 L13 10 L9 16 L12 16 L7 22 L14 22 L14 28 L18 28 L18 22 L25 22 L20 16 L23 16 L19 10 L21 10 Z' fill='%23306830' stroke='%23a6282d' stroke-width='0.4'/></g><g transform='translate(40,0)'><g stroke='%23a0c8e0' stroke-width='1.6' stroke-linecap='round' fill='none'><line x1='16' y1='4' x2='16' y2='28'/><line x1='4' y1='16' x2='28' y2='16'/><line x1='7.5' y1='7.5' x2='24.5' y2='24.5'/><line x1='7.5' y1='24.5' x2='24.5' y2='7.5'/><path d='M12 8 L16 12 L20 8 M12 24 L16 20 L20 24'/><path d='M8 12 L12 16 L8 20 M24 12 L20 16 L24 20'/></g></g><g transform='translate(80,3) scale(0.8) rotate(16 16 16)'><circle cx='16' cy='17' r='10' fill='none' stroke='%23306830' stroke-width='4'/><path d='M10 12 L12 14 M22 12 L20 14 M10 22 L12 20 M22 22 L20 20' stroke='%231a4a18' stroke-width='1.2' fill='none'/><path d='M13 7 L16 10 L19 7 L16 9 Z' fill='%23a6282d'/><circle cx='11' cy='18' r='1.4' fill='%23a6282d'/><circle cx='21' cy='18' r='1.4' fill='%23a6282d'/><circle cx='16' cy='25' r='1.4' fill='%23a6282d'/></g></svg>") no-repeat center/contain;
+  pointer-events:none;
+  opacity:.9;
+}
+.tm-header__logo::before { right:calc(100% + 12px); }
+.tm-header__logo::after  { left:calc(100% + 12px); }
+@media (max-width:1000px) {
+  .tm-header__logo::before, .tm-header__logo::after { width:60px; height:20px; }
+  .tm-header__logo::before { right:calc(100% + 8px); }
+  .tm-header__logo::after  { left:calc(100% + 8px); }
+}
+@media (max-width:720px) {
+  .tm-header__logo::before, .tm-header__logo::after { display:none; }
+}

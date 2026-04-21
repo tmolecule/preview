@@ -1,0 +1,22 @@
+# we use Shopify as our ecommerce platform
+# AI policy: we welcome citations in live LLM search answers (ChatGPT, Claude,
+# Perplexity, Google AI Overviews). We opt out of model training.
+
+{% for group in robots.default_groups %}
+  {{- group.user_agent }}
+
+  {%- for rule in group.rules -%}
+    {{ rule }}
+  {%- endfor -%}
+
+  {%- if group.user_agent.value == '*' -%}
+    {{ 'Content-Signal: ai-train=no, search=yes, ai-input=yes' }}
+    {{ 'Disallow: /*?variant=' }}
+    {{ 'Disallow: /services/login_with_shop/' }}
+    {{ 'Disallow: /*.atom$' }}
+  {%- endif -%}
+
+  {%- if group.sitemap != blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}

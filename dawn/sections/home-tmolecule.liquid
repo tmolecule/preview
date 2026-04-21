@@ -11,16 +11,16 @@
   .tm-section--hero { background:linear-gradient(135deg,#faf6ec 0%,#ede0c4 60%,#d7ceb2 100%); padding:0; }
   .tm-h1 { font-size:clamp(42px,6vw,80px); line-height:1.0; letter-spacing:-.03em; font-weight:700; margin:0 0 20px; }
   .tm-h2 { font-size:clamp(32px,4.5vw,56px); line-height:1.05; letter-spacing:-.02em; font-weight:700; margin:0 0 16px; }
-  .tm-eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:11px; color:var(--terra); margin:0 0 12px; font-family:'Inter'; font-weight:700; }
+  .tm-eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:11px; color:#7a3a1a; margin:0 0 12px; font-family:'Inter'; font-weight:700; }
   .tm-body { font-family:'Inter'; font-size:17px; line-height:1.65; opacity:.85; max-width:55ch; }
   .tm-section--dark .tm-eyebrow { color:#d4a060; }
   .tm-section--terra .tm-eyebrow { color:#fce8d0; }
   .tm-section--dark .tm-h2 { color:#f5ecd8; }
-  .tm-btn { display:inline-flex; align-items:center; gap:8px; padding:18px 44px; background:var(--terra); color:#fff; border:0; border-radius:14px; font-family:'Inter'; font-size:15px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:0 6px 20px rgba(200,112,64,.35); transition:all .2s ease; }
+  .tm-btn { display:inline-flex; align-items:center; gap:8px; padding:18px 44px; background:var(--terra-dark); color:#fff; border:0; border-radius:14px; font-family:'Inter'; font-size:15px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; text-decoration:none; cursor:pointer; box-shadow:0 6px 20px rgba(200,112,64,.35); transition:all .2s ease; }
   .tm-btn:hover { transform:translateY(-2px); box-shadow:0 10px 30px rgba(200,112,64,.45); background:var(--terra-dark); }
   .tm-btn--dark { background:var(--espresso); box-shadow:0 6px 20px rgba(26,22,16,.3); }
-  .tm-btn__sub { display:block; font-size:11px; font-weight:500; opacity:.8; margin-top:2px; letter-spacing:.08em; }
-  .tm-section--dark .tm-btn { background:var(--terra); }
+  .tm-btn__sub { display:block; font-size:11px; font-weight:600; opacity:.95; margin-top:2px; letter-spacing:.08em; }
+  .tm-section--dark .tm-btn { background:var(--terra-dark); }
   .tm-section--terra .tm-btn { background:var(--espresso); box-shadow:0 6px 20px rgba(26,22,16,.4); }
   .tm-home-hero { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1.05fr 1fr; gap:64px; align-items:center; padding:80px 24px; }
   .tm-home-hero__copy { display:flex; flex-direction:column; justify-content:center; }
@@ -50,13 +50,13 @@
   .tm-facts__card--featured { background:linear-gradient(160deg,#fdf4dc 0%,#f5e2b8 100%); border:2px solid var(--terra); box-shadow:0 50px 100px -20px rgba(200,112,64,.45), 0 20px 48px -8px rgba(200,112,64,.3), 0 4px 12px rgba(26,22,16,.15); }
   .tm-facts__card--featured img { height:80px; padding:14px; background:linear-gradient(135deg,#ffd89c 0%,#e8a860 100%); border-radius:12px; box-shadow:0 8px 20px rgba(200,112,64,.35); margin-top:8px; }
   .tm-facts__card--featured h3 { color:var(--terra-dark); }
-  .tm-facts__card__badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--terra); color:#fff; font-family:'Inter'; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 16px; border-radius:100px; box-shadow:0 4px 12px rgba(200,112,64,.4); white-space:nowrap; z-index:2; }
+  .tm-facts__card__badge { position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:var(--terra-dark); color:#fff; font-family:'Inter'; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; padding:6px 16px; border-radius:100px; box-shadow:0 4px 12px rgba(200,112,64,.4); white-space:nowrap; z-index:2; }
   .tm-facts__card h3 { font-size:20px; font-weight:700; margin:0 0 10px; font-family:'Fraunces',Georgia,serif; }
   .tm-facts__card p { font-family:'Inter'; font-size:15px; line-height:1.6; opacity:.8; margin:0; }
   .tm-home-heritage { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; padding:100px 24px; }
   .tm-home-heritage__media { position:relative; overflow:hidden; border-radius:16px; box-shadow:0 40px 80px -20px rgba(74,55,24,.45), 0 16px 40px -8px rgba(74,55,24,.3), 0 4px 12px rgba(26,22,16,.12); background:radial-gradient(circle at 30% 20%,#f8ebd0 0%,#e8d6b0 55%,#c8b48a 100%); }
   .tm-home-heritage__media img { width:100%; height:auto; display:block; mix-blend-mode:multiply; filter:drop-shadow(0 8px 16px rgba(26,22,16,.25)); }
-  .tm-home-heritage__sig { font-style:italic; margin-top:20px; opacity:.7; color:var(--terra); font-family:'Inter'; }
+  .tm-home-heritage__sig { font-style:italic; margin-top:20px; color:var(--terra-dark); font-family:'Inter'; }
   .tm-home-philosophy { text-align:center; padding:120px 24px; max-width:1200px; margin:0 auto; }
   .tm-home-philosophy .tm-h2 { max-width:16ch; margin:0 auto 24px; }
   .tm-home-philosophy .tm-body { max-width:60ch; margin:0 auto; }
@@ -76,7 +76,16 @@
 </style>
 
 <div class="tm-home">
-  {%- assign product_url = section.settings.product_url | default: '/collections/all' -%}
+  {%- assign fp = section.settings.featured_product -%}
+  {%- if fp -%}
+    {%- assign product_url = fp.url -%}
+    {%- assign live_price = fp.price | money -%}
+    {%- assign live_price_from = 'From ' | append: live_price -%}
+  {%- else -%}
+    {%- assign product_url = section.settings.product_url | default: '/collections/all' -%}
+    {%- assign live_price = section.settings.fallback_price | default: '$9.99' -%}
+    {%- assign live_price_from = section.settings.hero_cta_sub | default: 'From $9.99' -%}
+  {%- endif -%}
   {%- assign hero_image = section.settings.hero_image_url | default: 'https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400/Copy_of_Artboard_1_ldyjej.jpg' -%}
 
   <!-- HERO -->
@@ -87,8 +96,7 @@
         <h1 class="tm-h1">{{ section.settings.hero_heading | default: 'Your Daily Wellness Ritual Starts Here' }}</h1>
         <p class="tm-body">{{ section.settings.hero_body | default: 'Builds A Stronger YOU. Wellness-first teas crafted with collagen peptides, adaptogens, and real spices — designed to support your immune system, joints, and energy, naturally.' }}</p>
         <div class="tm-home-hero__cta">
-          <a href="{{ product_url }}" class="tm-btn">{{ section.settings.hero_cta | default: 'Shop Spice Rush' }}<span class="tm-btn__sub">{{ section.settings.hero_cta_sub | default: 'From $6.99' }}</span></a>
-          <a href="/pages/about" class="tm-btn tm-btn--dark">Our Story →</a>
+          <a href="{{ product_url }}" class="tm-btn">{{ section.settings.hero_cta | default: 'Shop Spice Rush' }}<span class="tm-btn__sub">{{ live_price_from }}</span></a>
         </div>
       </div>
       <div class="tm-home-hero__media">
@@ -122,7 +130,7 @@
           <p class="tm-eyebrow">Our bestseller</p>
           <h2 class="tm-h2">Get your body back on track!</h2>
           <p class="tm-body">Your daily wellness upgrade. Bold black tea blended with collagen peptides, ginger, cinnamon, and cardamom. Supports skin, joints, immunity, and sustained energy — in thirty seconds.</p>
-          <p class="tm-home-featured__price">$6.99</p>
+          <p class="tm-home-featured__price">{{ live_price }}</p>
           <a href="{{ product_url }}" class="tm-btn">Try Spice Rush</a>
         </div>
       </div>
@@ -208,7 +216,7 @@
           <div class="tm-home-reviews__card"><p>"Tastes like real chai, not a sugar bomb. My daily cup. The cardamom is so bright."</p><cite>— David R.</cite></div>
           <div class="tm-home-reviews__card"><p>"30 seconds to brew, no strainer, no mess. Finally a clean-label collagen drink I actually enjoy."</p><cite>— Aisha K.</cite></div>
         </div>
-        <div style="margin-top:48px;"><a href="{{ product_url }}" class="tm-btn">Join the Ritual<span class="tm-btn__sub">$6.99 · free shipping over $35</span></a></div>
+        <div style="margin-top:48px;"><a href="{{ product_url }}" class="tm-btn">Join the Ritual<span class="tm-btn__sub">{{ live_price }} · free shipping over $35</span></a></div>
       </div>
     </div>
   </section>
@@ -218,8 +226,8 @@
     <div class="tm-section__inner">
       <div class="tm-home-science">
         <p class="tm-eyebrow">TMolecule Difference</p>
-        <h2 class="tm-h2">Wellness ingredients backed by science</h2>
-        <p class="tm-body" style="margin:0 auto;">Every ingredient is chosen for its wellness benefits. Protected by patents and scientific research from our nutraceutical providers. Curated blend of Turmeric, Postbiotics, Gooseberry and Terminalia Bellerica.</p>
+        <h2 class="tm-h2">Ancient Ayurveda, modern science</h2>
+        <p class="tm-body" style="margin:0 auto;">We take the blends Ayurveda has trusted for three thousand years — turmeric, postbiotics, gooseberry, Terminalia Bellerica, warming spices — and validate each one with modern clinical research and patented nutraceutical partners. The result: healthy, curated blends where traditional wisdom and measurable science meet in every cup.</p>
       </div>
     </div>
   </section>
@@ -235,10 +243,13 @@
     { "type":"text", "id":"hero_heading", "label":"Hero heading", "default":"Your Daily Wellness Ritual Starts Here" },
     { "type":"textarea", "id":"hero_body", "label":"Hero body", "default":"Builds A Stronger YOU. Wellness-first teas crafted with collagen peptides, adaptogens, and real spices — designed to support your immune system, joints, and energy, naturally." },
     { "type":"text", "id":"hero_cta", "label":"Hero CTA label", "default":"Shop Spice Rush" },
-    { "type":"text", "id":"hero_cta_sub", "label":"Hero CTA sublabel", "default":"From $6.99" },
+    { "type":"text", "id":"hero_cta_sub", "label":"Hero CTA sublabel", "default":"From $9.99" },
     { "type":"text", "id":"hero_image_url", "label":"Hero image URL" },
     { "type":"text", "id":"featured_image_url", "label":"Featured product image URL" },
-    { "type":"text", "id":"product_url", "label":"Product URL (for CTAs)", "default":"/products/premium-collagen-spice-rush-black-tea-blend-revitalizing-energy-with-ginger-cinnamon-cardamom-keto-paleo-friendly-made-in-usa-milled-product-for-smoother-flow" }
+    { "type":"text", "id":"product_url", "label":"Product URL (for CTAs)", "default":"/products/premium-collagen-spice-rush-black-tea-blend-revitalizing-energy-with-ginger-cinnamon-cardamom-keto-paleo-friendly-made-in-usa-milled-product-for-smoother-flow", "info":"Used only if Featured product is not set." },
+    { "type":"header", "content":"Featured product (live price)" },
+    { "type":"product", "id":"featured_product", "label":"Featured product", "info":"When set, the home page pulls the live price and URL from this product. Overrides the fallback CTA sublabel and hardcoded price." },
+    { "type":"text", "id":"fallback_price", "label":"Fallback price text", "default":"$9.99", "info":"Shown only when Featured product is not set." }
   ],
   "presets": [{ "name":"TMolecule home" }]
 }

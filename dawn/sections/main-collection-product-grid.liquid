@@ -2,6 +2,61 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .product-card-wrapper { background:transparent !important; }
+  .product-card-wrapper .card {
+    background:radial-gradient(circle at 30% 20%,#f8ebd0 0%,#e8d6b0 55%,#c8b48a 100%) !important;
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 20px 40px -12px rgba(74,55,24,.35), 0 8px 20px -4px rgba(74,55,24,.2), 0 2px 6px rgba(26,22,16,.08);
+    border:1px solid rgba(200,112,64,.12);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .product-card-wrapper:hover .card {
+    transform:translateY(-4px);
+    box-shadow:0 30px 60px -16px rgba(74,55,24,.45), 0 12px 28px -6px rgba(74,55,24,.28), 0 4px 10px rgba(26,22,16,.12);
+  }
+  .product-card-wrapper .card__inner,
+  .product-card-wrapper .card__inner.color-scheme-1,
+  .product-card-wrapper .card__inner.gradient,
+  .product-card-wrapper .card__media,
+  .product-card-wrapper .media,
+  .product-card-wrapper .media.media--transparent,
+  .product-card-wrapper .card__content,
+  .product-card-wrapper .card__information { background:transparent !important; }
+  .product-card-wrapper .card__inner:after,
+  .product-card-wrapper .card--standard .card__inner:after { display:none !important; }
+  .product-card-wrapper .card__media .media img { mix-blend-mode:multiply; }
+  .product-card-wrapper .card__content { padding:14px 18px 18px; }
+  .product-card-wrapper .card__heading a,
+  .product-card-wrapper .card__heading { color:#1a1610 !important; }
+  .product-card-wrapper .price__regular .price-item,
+  .product-card-wrapper .price .price-item { color:#1a1610 !important; }
+
+  /* Quick-add cart icon overlay */
+  .product-card-wrapper { position:relative; }
+  .tm-quick-add {
+    position:absolute; bottom:12px; right:12px; z-index:5;
+    width:42px; height:42px; border-radius:50%;
+    background:#a85830; color:#faf3e0;
+    border:0; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 6px 16px rgba(26,22,16,.28), 0 2px 4px rgba(26,22,16,.15);
+    transition:background .15s ease, transform .15s ease, box-shadow .15s ease;
+  }
+  .tm-quick-add:hover { background:#1a1816; transform:scale(1.08); box-shadow:0 8px 20px rgba(26,22,16,.38); }
+  .tm-quick-add:focus-visible { outline:2px solid #1a1816; outline-offset:3px; }
+  .tm-quick-add.is-loading { pointer-events:none; opacity:.65; }
+  .tm-quick-add.is-added { background:#4a7a3a; }
+  .tm-quick-add svg { width:20px; height:20px; }
+  @media (max-width:720px) {
+    .tm-quick-add { width:36px; height:36px; bottom:8px; right:8px; }
+    .tm-quick-add svg { width:17px; height:17px; }
+  }
+  @keyframes tm-qa-pop { 0%{transform:scale(.8);} 60%{transform:scale(1.15);} 100%{transform:scale(1);} }
+  .tm-quick-add.is-added { animation:tm-qa-pop .35s ease-out; }
+</style>
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -194,6 +249,91 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
+
+<script>
+(function(){
+  var cartSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>';
+  var checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  function updateCartCount(n){
+    document.querySelectorAll('.tm-header__cart-count').forEach(function(el){
+      el.textContent = n;
+      el.setAttribute('data-count', n);
+    });
+  }
+
+  function addViaHandle(handle, btn){
+    btn.classList.add('is-loading');
+    fetch('/products/' + handle + '.js')
+      .then(function(r){ return r.json(); })
+      .then(function(product){
+        var variant = (product.variants || []).filter(function(v){ return v.available; })[0] || product.variants[0];
+        if (!variant) throw new Error('no variant');
+        return fetch('/cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ id: variant.id, quantity: 1 })
+        });
+      })
+      .then(function(r){ if (!r.ok) throw new Error('add failed'); return fetch('/cart.js'); })
+      .then(function(r){ return r.json(); })
+      .then(function(cart){
+        updateCartCount(cart.item_count);
+        btn.classList.remove('is-loading');
+        btn.classList.add('is-added');
+        btn.setAttribute('aria-label', 'Added to cart');
+        btn.innerHTML = checkSvg;
+        setTimeout(function(){
+          btn.classList.remove('is-added');
+          btn.setAttribute('aria-label', 'Add to cart');
+          btn.innerHTML = cartSvg;
+        }, 1800);
+      })
+      .catch(function(err){
+        btn.classList.remove('is-loading');
+        btn.style.background = '#b84a3a';
+        console.error('quick-add failed', err);
+      });
+  }
+
+  function inject(){
+    document.querySelectorAll('.product-card-wrapper').forEach(function(card){
+      if (card.querySelector('.tm-quick-add')) return;
+      var link = card.querySelector('a[href*="/products/"]');
+      if (!link) return;
+      var href = link.getAttribute('href') || '';
+      var match = href.match(/\/products\/([^\/?#]+)/);
+      if (!match) return;
+      var handle = match[1];
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'tm-quick-add';
+      btn.setAttribute('aria-label', 'Add to cart');
+      btn.dataset.handle = handle;
+      btn.innerHTML = cartSvg;
+      btn.addEventListener('click', function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        addViaHandle(handle, btn);
+      });
+      card.appendChild(btn);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', inject);
+  } else {
+    inject();
+  }
+  // Handle Shopify section re-renders (customizer / filters)
+  document.addEventListener('shopify:section:load', inject);
+  // MutationObserver for dynamic re-renders (e.g. filter/sort updates)
+  var grid = document.querySelector('#product-grid, .product-grid, [id^="product-grid"]');
+  if (grid && 'MutationObserver' in window) {
+    new MutationObserver(inject).observe(grid, { childList: true, subtree: false });
+  }
+})();
+</script>
 
 {% schema %}
 {
