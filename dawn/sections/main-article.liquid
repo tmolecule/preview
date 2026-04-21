@@ -68,7 +68,15 @@
           class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {{ block.shopify_attributes }}
         >
-          {{ article.content }}
+          {%- comment -%}
+            Add loading="lazy" + decoding="async" to every <img> in article body
+            so off-screen images don't block initial render. Avoids Core Web Vitals
+            penalty from bare <img> tags inserted via the editor.
+          {%- endcomment -%}
+          {%- assign body = article.content
+            | replace: '<img ', '<img loading="lazy" decoding="async" '
+          -%}
+          {{ body }}
         </div>
 
       {%- when 'share' -%}
