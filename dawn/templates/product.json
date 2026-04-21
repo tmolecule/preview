@@ -1,27 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "main-product-tmolecule",
-      "settings": {
-        "label": "🔥 BESTSELLER",
-        "subheadline": "A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.",
-        "show_rating": true,
-        "rating_text": "4.8 · 216 reviews",
-        "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
-        "show_subscribe_toggle": true
-      },
       "blocks": {
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "vp": {
-          "type": "variant_picker"
+          "type": "variant_picker",
+          "settings": {}
         },
         "bb": {
-          "type": "buy_buttons"
+          "type": "buy_buttons",
+          "settings": {}
         },
         "b1": {
           "type": "badge",
@@ -93,7 +98,15 @@
         "b6",
         "b7",
         "b8"
-      ]
+      ],
+      "settings": {
+        "label": "🔥 BESTSELLER",
+        "subheadline": "A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.",
+        "show_rating": true,
+        "rating_text": "4.8 · 216 reviews",
+        "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
+        "show_subscribe_toggle": true
+      }
     },
     "announcement": {
       "type": "announcement-bar-tmolecule",
@@ -114,13 +127,15 @@
       "block_order": [
         "m1",
         "m2"
-      ]
+      ],
+      "settings": {}
     },
     "story": {
       "type": "product-story-tmolecule",
       "blocks": {
         "trust": {
-          "type": "trust_marquee"
+          "type": "trust_marquee",
+          "settings": {}
         },
         "tabs": {
           "type": "tabs",
@@ -140,38 +155,38 @@
           "settings": {
             "heading": "What's in the scoop",
             "subhead": "Five ingredients. Nothing else.",
+            "img_1_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_2_fipmg1.jpg",
             "title_1": "Bold Black Tea",
             "body_1": "Full-bodied Assam-style black tea, milled fine so every particle brews in seconds. No steeping, no strainer.",
+            "img_2_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_3_oi7fln.jpg",
             "title_2": "Collagen Peptides",
             "body_2": "Hydrolyzed collagen peptides — supports skin, joints, and post-workout recovery. Unflavored and completely soluble.",
+            "img_3_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_4_ygmqbi.jpg",
             "title_3": "Real Ginger",
             "body_3": "Warming, digestive, alive. Dried and milled from whole root — not a \"ginger flavor\" compound.",
+            "img_4_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_5_vymyzw.jpg",
             "title_4": "Ceylon Cinnamon",
             "body_4": "True cinnamon — sweet, delicate, lower coumarin than cassia. The cinnamon your grandmother used.",
+            "img_5_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_6_hdjegg.jpg",
             "title_5": "Green Cardamom",
             "body_5": "Whole pods ground for the bright, floral lift that turns a chai from flat to alive. Never pre-ground.",
+            "img_6_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_7_pwb57m.jpg",
             "title_6": "Milled",
             "body_6": "The tea leaves are milled to an ultra-fine powder, then blended evenly with the spices and collagen peptides. Every scoop delivers the same balanced mix — tea, spice, and protein in one consistent cup.",
             "cta_label": "Try Spice Rush",
-            "cta_sub": "Starting at $6.99",
-            "img_1_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_2_fipmg1.jpg",
-            "img_2_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_3_oi7fln.jpg",
-            "img_3_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_4_ygmqbi.jpg",
-            "img_4_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_5_vymyzw.jpg",
-            "img_5_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_6_hdjegg.jpg",
-            "img_6_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_7_pwb57m.jpg"
+            "cta_sub": "Starting at $6.99"
           }
         },
         "heritage": {
           "type": "heritage",
           "settings": {
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,c_fill/Copy_of_M1_rdmzmf.jpg",
             "eyebrow": "Heritage since 1935",
             "heading": "Four generations. One leaf.",
             "body": "<p>In 1935, my great-grandfather started sourcing tea tin by tin, estate by estate.</p><p>Spice Rush is what happens when four generations meet a modern life.</p>",
             "signature": "— The TMolecule family",
             "cta_label": "Taste the heritage",
-            "cta_sub": "$6.99 · ships today",
-            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1400,c_fill/Copy_of_M1_rdmzmf.jpg"
+            "cta_sub": "$6.99 · ships today"
           }
         },
         "video": {
@@ -225,22 +240,22 @@
           "type": "editorial",
           "settings": {
             "band": "deep-sand",
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M2_cqojf2.jpg",
             "eyebrow": "The ritual",
             "heading": "One scoop. Near-boiling. Done.",
             "body": "<p>Good tea shouldn't need a strainer, a timer, and a degree in horology. Add one scoop, stir fifteen seconds, drink.</p>",
-            "reverse": false,
-            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M2_cqojf2.jpg"
+            "reverse": false
           }
         },
         "ed2": {
           "type": "editorial",
           "settings": {
             "band": "honey",
+            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M3_vylqxm.jpg",
             "eyebrow": "Why collagen",
             "heading": "The most useful tea you'll drink all day",
             "body": "<p>Every scoop delivers collagen peptides for skin, joints, and recovery. Habit-friendly.</p>",
-            "reverse": true,
-            "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M3_vylqxm.jpg"
+            "reverse": true
           }
         },
         "reviews": {
@@ -275,13 +290,13 @@
         "ed2",
         "reviews",
         "disclaimer"
-      ]
+      ],
+      "settings": {}
     },
     "sticky": {
       "type": "sticky-cta-tmolecule",
       "settings": {
-        "cta_label": "Add to cart",
-        "ship_note": "free ship over $35"
+        "cta_label": "Add to cart"
       }
     }
   },

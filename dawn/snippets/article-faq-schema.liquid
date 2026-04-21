@@ -1,0 +1,23 @@
+{%- if template contains 'article' and article.metafields.custom.faq -%}                                                 
+    {%- assign faqs = article.metafields.custom.faq.value -%}                                                              
+    {%- if faqs and faqs.size > 0 -%}                                                                                      
+  <script type="application/ld+json">                                                                                      
+  {                                                                                                                        
+    "@context": "https://schema.org",                                                                                      
+    "@type": "FAQPage",
+    "mainEntity": [                                                                                                        
+      {%- for f in faqs -%}               
+      {
+        "@type": "Question",                                                                                               
+        "name": {{ f.question | json }},
+        "acceptedAnswer": {                                                                                                
+          "@type": "Answer",                                                                                               
+          "text": {{ f.answer | json }}
+        }                                                                                                                  
+      }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}                                                                                                       
+    ]
+  }                                                                                                                        
+  </script>                               
+    {%- endif -%}
+  {%- endif -%}

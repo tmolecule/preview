@@ -1,9 +1,8 @@
+<script type="application/ld+json">                                                                                      
+    {{ product | structured_data }}                                                                                        
+  </script>
 {{ 'tmolecule-product.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'tmolecule-product.js' | asset_url }}" defer></script>
-
-<script type="application/ld+json">
-  {{ product | structured_data }}
-</script>
 
 <div class="tm-page">
   <div class="tm-buybox-wrap">
