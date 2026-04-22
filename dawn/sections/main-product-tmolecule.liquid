@@ -36,9 +36,11 @@
         <h1>{{ product.title }}</h1>
         {%- if section.settings.subheadline != blank -%}<p class="tm-sub">{{ section.settings.subheadline }}</p>{%- endif -%}
 
-        {%- if section.settings.show_rating -%}
-          <div class="tm-rating"><span class="tm-stars">★★★★★</span> {{ section.settings.rating_text | default: '4.8 · 216 reviews' }}</div>
-        {%- endif -%}
+        {%- comment -%}
+          Hardcoded rating block removed — real ratings now come from Judge.me
+          star rating app block placed in the customizer. Schema setting
+          retained below for backwards compatibility but not rendered.
+        {%- endcomment -%}
 
         {%- assign bullets = section.settings.bullets | split: '|' -%}
         {%- if bullets.size > 0 -%}
