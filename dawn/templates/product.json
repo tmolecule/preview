@@ -101,10 +101,10 @@
       ],
       "settings": {
         "label": "🔥 BESTSELLER",
-        "subheadline": "A revitalizing daily ritual from a family who has been curating tea blends since 1935. Black tea milled to powder, blended with collagen peptides, ginger, cinnamon, and cardamom.",
+        "subheadline": "The collagen tea built for your morning ritual. Premium black tea milled to powder, blended with hydrolyzed collagen peptides, cardamom, ginger, and cinnamon. A real chai tea, not a sugar bomb. Family-blended since 1935.",
         "show_rating": true,
         "rating_text": "4.8 · 216 reviews",
-        "bullets": "💪 Collagen peptides in every cup — skin, joints, recovery|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
+        "bullets": "💪 The collagen tea you can actually taste — peptides built into the blend, not sprinkled on top|🌶️ Warming spice blend: ginger, cinnamon, cardamom|🥥 Keto & paleo friendly — zero sugar, zero fillers|👨‍👩‍👧 Family tea heritage since 1935|☕ Milled powder — brews smoother, no bitter edge|🇺🇸 Made in USA",
         "show_subscribe_toggle": true
       }
     },
@@ -154,7 +154,7 @@
           "type": "ingredient_grid",
           "settings": {
             "heading": "What's in the scoop",
-            "subhead": "Five ingredients. Nothing else.",
+            "subhead": "Five ingredients. Nothing else. Spice Rush is collagen chai done right — the peptides are milled into the blend, so every scoop delivers a clean cup with no separate powder to stir in.",
             "img_1_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_600,h_600,c_fill/Copy_of_Artboard_2_fipmg1.jpg",
             "title_1": "Bold Black Tea",
             "body_1": "Full-bodied Assam-style black tea, milled fine so every particle brews in seconds. No steeping, no strainer.",
@@ -206,6 +206,7 @@
           "type": "compare",
           "settings": {
             "heading": "Spice Rush vs. the chai you've been buying",
+            "intro": "Most \"chai tea\" on the shelf is a sugar-loaded latte mix that uses natural flavors instead of real spices. Spice Rush is the chai tea you'd make yourself if you had four generations of tea blending experience and a kitchen at 5am.",
             "us_label": "TMolecule Spice Rush",
             "them_label": "Typical Chai Latte Mix",
             "ico_1": "🍬",
@@ -254,7 +255,7 @@
             "image_url": "https://res.cloudinary.com/dcwxmxfau/image/upload/f_auto,q_auto,w_1200,c_fill/Copy_of_M3_vylqxm.jpg",
             "eyebrow": "Why collagen",
             "heading": "The most useful tea you'll drink all day",
-            "body": "<p>Every scoop delivers collagen peptides for skin, joints, and recovery. Habit-friendly.</p>",
+            "body": "<p>A collagen tea is only useful if you actually drink it. Every scoop of Spice Rush delivers hydrolyzed collagen peptides for skin elasticity, joint cushioning, and post-workout recovery — wrapped in a chai you'll want to make every morning.</p>",
             "reverse": true
           }
         },
