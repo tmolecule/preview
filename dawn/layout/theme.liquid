@@ -310,6 +310,7 @@
       {{ 'preset-' | append: tm_preset | append: '.css' | asset_url | stylesheet_tag }}
     {%- endif -%}
     {% render 'article-faq-schema' %}
+    {% render 'article-recipe-schema' %}
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}" data-tm-preset="{{ tm_preset }}">

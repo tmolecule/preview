@@ -1,0 +1,8 @@
+{%- if template contains 'article' and article.metafields.custom.recipe_schema -%}
+  {%- assign recipe = article.metafields.custom.recipe_schema.value -%}
+  {%- if recipe -%}
+  <script type="application/ld+json">
+  {{ recipe | json }}
+  </script>
+  {%- endif -%}
+{%- endif -%}
