@@ -1,0 +1,85 @@
+/* SEASONAL OVERRIDE — halloween: Black, orange, purple — Oct 15–31 */
+
+/* 1. legacy product-story band overrides */
+.tm-band--cream { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%); }
+.tm-band--sand { background:linear-gradient(180deg,#2a1030 0%,#10001a 100%); }
+.tm-band--honey { background:linear-gradient(180deg,#3a1a5a 0%,#4a2a6a 100%); }
+.tm-band--deep-sand { background:linear-gradient(135deg,#ff6600 0%,#c04000 50%,#802000 100%); color:#fff0e0; }
+.tm-band--espresso { background:#000000; color:#fff0e0; }
+.tm-inline-cta { background:linear-gradient(135deg,#ff6600 0%,#c04000 100%); box-shadow:0 4px 14px rgba(0,0,0,.25); }
+
+/* 2. section-scoped custom property overrides */
+.tm-home, .tm-about, .tm-cart, .tm-contact, .tm-popup, .tm-page, .tm-main-product, .tm-about-section, .tm-cart-section, .tm-popup-section {
+  --terra: #ff6600 !important;
+  --terra-dark: #c04000 !important;
+  --cream: #fff0e0 !important;
+  --sand: #4a2a6a !important;
+  --warm: #3a1a5a !important;
+  --paper: #2a1040 !important;
+  --rule: rgba(255,102,0,.25) !important;
+  --tm-accent: #ff6600 !important;
+  --tm-accent-dark: #c04000 !important;
+  --tm-warm: #3a1a5a !important;
+  --tm-rule: rgba(255,102,0,.25) !important;
+}
+
+/* 3. body + header backgrounds */
+body { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; }
+.tm-header { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; border-bottom-color:#ff6600 !important; }
+.tm-header.is-scrolled { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; }
+.tm-header__nav a:hover, .tm-header__icon:hover { color:#ff6600 !important; }
+.tm-header__logo sup { color:#ff6600 !important; }
+.tm-header__cart-count { background:#ff6600 !important; }
+
+/* 4. section backgrounds */
+.tm-cart { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; }
+.tm-contact { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; }
+.tm-home { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; }
+.tm-buybox__hero, .tm-about-hero__media, .tm-about-narrative__media, .tm-home-heritage__media, .tm-home-featured__media, .product-card-wrapper .card {
+  background:radial-gradient(circle at 30% 20%,#3a1a4a 0%,#1a0a20 55%,#000000 100%) !important;
+}
+.tm-section--paper { background:linear-gradient(180deg,#1a0a20 0%,#0a0010 100%) !important; }
+.tm-section--sand { background:linear-gradient(180deg,#2a1030 0%,#10001a 100%) !important; }
+.tm-section--terra { background:linear-gradient(135deg,#ff6600 0%,#c04000 50%,#802000 100%) !important; }
+.tm-section--dark { background:#000000 !important; }
+
+/* 5. buttons */
+.tm-btn, .tm-cart__checkout, .tm-popup__submit, .tm-sticky-cta__btn, .tm-buybox__cta {
+  background:#ff6600 !important;
+  color:#fff !important;
+}
+.tm-btn:hover, .tm-cart__checkout:hover, .tm-popup__submit:hover, .tm-sticky-cta__btn:hover { background:#c04000 !important; }
+.tm-about-hero__stamp { color:#c04000 !important; border-color:#c04000 !important; }
+
+/* 6. text accents */
+.tm-about-timeline__year, .tm-eyebrow, .tm-cart__eyebrow, .tm-home-featured__price { color:#c04000 !important; }
+.tm-eyebrow::before, .tm-eyebrow::after { background:#c04000 !important; }
+
+/* 7. card borders */
+.tm-cart__item, .tm-cart__summary, .tm-popup__panel, .tm-about-values__card { border-color:rgba(255,102,0,.25) !important; }
+
+/* 8. seasonal ornaments flanking the logo (compact, no nav overlap) */
+.tm-header__logo { position:relative; }
+.tm-header__logo::before, .tm-header__logo::after {
+  content:"";
+  position:absolute;
+  top:50%; transform:translateY(-50%);
+  width:84px; height:26px;
+  background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 32'><g transform='translate(0,3) scale(0.8) rotate(-18 16 16)'><path d='M2 14 Q5 10 8 14 Q10 10 12 14 Q14 12 16 14 Q18 12 20 14 Q22 10 24 14 Q27 10 30 14 Q28 18 22 18 Q18 18 16 20 Q14 18 10 18 Q4 18 2 14 Z' fill='%23ff6600' stroke='%23802000' stroke-width='0.5' stroke-linejoin='round'/></g><g transform='translate(40,0)'><path d='M8 18 Q8 12 12 12 Q13 10 16 10 Q19 10 20 12 Q24 12 24 18 Q24 26 16 26 Q8 26 8 18 Z' fill='%23ff7518' stroke='%23802000' stroke-width='0.6'/><path d='M14 12 L14 24 M18 12 L18 24 M12 14 L12 22 M20 14 L20 22' stroke='%23802000' stroke-width='0.4' fill='none'/><path d='M15 9 L15 11 Q14 8 17 8 L17 11' fill='%23306830'/><polygon points='13,17 15,17 14,19' fill='%23402008'/><polygon points='17,17 19,17 18,19' fill='%23402008'/><path d='M13 22 L19 22 L18 20 L16 22 L14 20 Z' fill='%23402008'/></g><g transform='translate(80,3) scale(0.8) rotate(16 16 16)'><path d='M8 14 Q8 6 16 6 Q24 6 24 14 L24 27 L21 24 L18 27 L16 24 L14 27 L11 24 L8 27 Z' fill='%23f5ecd8' stroke='%23400050' stroke-width='0.6'/><circle cx='13' cy='13' r='1.5' fill='%23400050'/><circle cx='19' cy='13' r='1.5' fill='%23400050'/><path d='M14 18 Q16 20 18 18' stroke='%23400050' stroke-width='0.8' fill='none'/></g></svg>") no-repeat center/contain;
+  pointer-events:none;
+  opacity:.9;
+}
+.tm-header__logo::before { right:calc(100% + 12px); }
+.tm-header__logo::after  { left:calc(100% + 12px); }
+@media (max-width:1000px) {
+  .tm-header__logo::before, .tm-header__logo::after { width:60px; height:20px; }
+  .tm-header__logo::before { right:calc(100% + 8px); }
+  .tm-header__logo::after  { left:calc(100% + 8px); }
+}
+@media (max-width:720px) {
+  .tm-header__logo::before, .tm-header__logo::after { display:none; }
+}
+
+/* 9. dark preset — ensure header text stays visible */
+.tm-header__nav a, .tm-header__icon { color:#f5ecd8 !important; }
+.tm-header__nav a:hover, .tm-header__icon:hover { color:#ffa040 !important; background:rgba(255,255,255,.08) !important; }

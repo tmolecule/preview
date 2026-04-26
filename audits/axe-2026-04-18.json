@@ -1,0 +1,82 @@
+{
+  "date": "2026-04-18",
+  "base": "https://tmolecule.com",
+  "pages": {
+    "Home": {
+      "url": "https://tmolecule.com/",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    },
+    "Shop": {
+      "url": "https://tmolecule.com/collections/all",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    },
+    "Product": {
+      "url": "https://tmolecule.com/products/spice-rush-collagen-black-tea",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    },
+    "Cart": {
+      "url": "https://tmolecule.com/cart",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    },
+    "About": {
+      "url": "https://tmolecule.com/pages/about",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    },
+    "Contact": {
+      "url": "https://tmolecule.com/pages/contact",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    },
+    "Accessibility": {
+      "url": "https://tmolecule.com/pages/accessibility",
+      "totals": {
+        "critical": 0,
+        "serious": 0,
+        "moderate": 0,
+        "minor": 0
+      },
+      "violations": []
+    }
+  },
+  "totals": {
+    "critical": 0,
+    "serious": 0,
+    "moderate": 0,
+    "minor": 0
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "cart": { "type": "cart-tmolecule", "settings": {} }
+  },
+  "order": ["cart"]
+}

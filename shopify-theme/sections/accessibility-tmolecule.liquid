@@ -1,0 +1,79 @@
+<style>
+  .tm-a11y { --ink:#1a1816; --cream:#faf7f0; --sand:#f5e9d0; --terra:#c87040; --terra-dark:#a85830; --rule:rgba(74,55,24,.15); color:var(--ink); font-family:'Fraunces', Georgia, serif; background:linear-gradient(180deg,#faf6ec 0%,#ede0c4 100%); padding:80px 24px; min-height:70vh; }
+  .tm-a11y__wrap { max-width:760px; margin:0 auto; }
+  .tm-a11y__eyebrow { text-transform:uppercase; letter-spacing:.18em; font-size:11px; color:var(--terra-dark); margin:0 0 10px; font-family:'Inter'; font-weight:700; }
+  .tm-a11y__title { font-size:clamp(40px,5vw,64px); line-height:1.05; letter-spacing:-.03em; font-weight:800; margin:0 0 16px; }
+  .tm-a11y__lede { font-family:'Inter'; font-size:18px; line-height:1.6; opacity:.9; margin:0 0 48px; padding-bottom:40px; border-bottom:1px solid var(--rule); }
+  .tm-a11y h2 { font-size:clamp(22px,2.5vw,30px); font-weight:800; letter-spacing:-.015em; margin:40px 0 12px; }
+  .tm-a11y p, .tm-a11y li { font-family:'Inter'; font-size:16px; line-height:1.65; margin:0 0 14px; }
+  .tm-a11y ul { padding-left:22px; margin:0 0 20px; }
+  .tm-a11y a { color:var(--terra-dark); text-decoration:underline; text-underline-offset:3px; }
+  .tm-a11y a:hover { color:var(--ink); }
+  .tm-a11y strong { font-weight:700; }
+  .tm-a11y__card { background:#fefaf0; border:1px solid var(--rule); border-radius:12px; padding:24px 28px; margin:24px 0 40px; box-shadow:0 4px 14px rgba(74,55,24,.08); }
+  .tm-a11y__card p:last-child { margin-bottom:0; }
+  .tm-a11y__meta { font-family:'Inter'; font-size:13px; color:rgba(26,22,16,.6); margin-top:40px; padding-top:24px; border-top:1px solid var(--rule); }
+  @media (max-width:720px) { .tm-a11y { padding:48px 16px; } }
+</style>
+
+<div class="tm-a11y">
+  <div class="tm-a11y__wrap">
+    <p class="tm-a11y__eyebrow">{{ section.settings.eyebrow | default: 'Commitment' }}</p>
+    <h1 class="tm-a11y__title">{{ section.settings.heading | default: 'Accessibility at TMolecule' }}</h1>
+    <p class="tm-a11y__lede">{{ section.settings.lede | default: "We want every person to be able to learn about, shop, and enjoy our products — regardless of ability or the assistive technology they use. This page describes the standard we hold ourselves to and how to let us know when we fall short." }}</p>
+
+    <h2>Our standard</h2>
+    <p>TMolecule aims to conform to <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong>, the international standard set by the World Wide Web Consortium (W3C). WCAG 2.1 AA is widely recognized as the operative benchmark for the <strong>Americans with Disabilities Act (ADA)</strong>, <strong>Section 508</strong>, and similar regulations in other jurisdictions.</p>
+
+    <h2>What we do</h2>
+    <ul>
+      <li>Maintain color contrast of at least 4.5:1 for normal text and 3:1 for large text</li>
+      <li>Provide visible focus indicators on every interactive element</li>
+      <li>Ensure all content is reachable via keyboard alone, without a mouse</li>
+      <li>Write meaningful alternative text for informative images</li>
+      <li>Honor the operating system's <strong>reduced motion</strong> preference so we never force animation on users with vestibular sensitivity</li>
+      <li>Use semantic HTML and ARIA only where semantics can't express the behavior</li>
+      <li>Label every form control with text read by screen readers</li>
+      <li>Run automated and manual accessibility audits before each major release</li>
+    </ul>
+
+    <h2>Known limitations</h2>
+    <p>We use Shopify's native checkout, which we cannot fully customize on our current plan. Any accessibility gaps in Shopify's checkout are outside our direct control; we rely on Shopify to maintain its conformance.</p>
+    <p>Third-party content — embedded videos, product reviews from other shoppers, or tools provided by our logistics partners — may not always meet the same standard. We review every vendor and replace those that fall significantly short.</p>
+
+    <h2>Tell us when we miss the mark</h2>
+    <div class="tm-a11y__card">
+      <p>If any part of this site is hard to use with your screen reader, keyboard, or other assistive technology — or if you notice a page that doesn't meet the standards above — please let us know. We take every report seriously and aim to respond within two business days.</p>
+      <p><strong>Email:</strong> <a href="mailto:{{ section.settings.contact_email | default: 'support@tmolecule.com' }}?subject=Accessibility%20feedback">{{ section.settings.contact_email | default: 'support@tmolecule.com' }}</a></p>
+      <p>Please include the page URL, the device + browser you're using, and a description of what didn't work — that helps us reproduce and fix the issue quickly.</p>
+    </div>
+
+    <h2>How we test</h2>
+    <p>We combine automated scanning (axe-core, following the WCAG 2.1 AA ruleset), keyboard-only walkthroughs of every critical user flow, and manual spot-checks with VoiceOver and NVDA screen readers. Our most recent audit was run on <strong>{{ section.settings.last_audit | default: 'April 18, 2026' }}</strong>.</p>
+
+    <p class="tm-a11y__meta">
+      This statement was last updated on {{ section.settings.updated | default: 'April 18, 2026' }}.
+      {% if section.settings.wcag_version_link != blank %}
+        <br><a href="{{ section.settings.wcag_version_link }}">Read the WCAG 2.1 guidelines →</a>
+      {% endif %}
+    </p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TMolecule accessibility",
+  "tag": "section",
+  "class": "tm-a11y-section",
+  "settings": [
+    { "type":"text", "id":"eyebrow", "label":"Eyebrow", "default":"Commitment" },
+    { "type":"text", "id":"heading", "label":"Heading", "default":"Accessibility at TMolecule" },
+    { "type":"textarea", "id":"lede", "label":"Intro paragraph", "default":"We want every person to be able to learn about, shop, and enjoy our products — regardless of ability or the assistive technology they use." },
+    { "type":"text", "id":"contact_email", "label":"Feedback email", "default":"support@tmolecule.com" },
+    { "type":"text", "id":"last_audit", "label":"Last audit date", "default":"April 18, 2026" },
+    { "type":"text", "id":"updated", "label":"Statement last updated", "default":"April 18, 2026" },
+    { "type":"text", "id":"wcag_version_link", "label":"Link to WCAG guidelines (external URL)", "default":"https://www.w3.org/WAI/WCAG21/quickref/" }
+  ],
+  "presets": [{ "name":"TMolecule accessibility" }]
+}
+{% endschema %}

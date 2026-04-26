@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "accessibility": { "type": "accessibility-tmolecule", "settings": {} }
+  },
+  "order": ["accessibility"]
+}
