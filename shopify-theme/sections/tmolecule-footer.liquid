@@ -19,6 +19,7 @@
   .tm-footer__form input::placeholder { color:rgba(250,247,240,.5); }
   .tm-footer__form button { width:100%; padding:10px 20px; background:linear-gradient(135deg,#d4b97a,#a8852a); color:#2a1f10; border:0; border-radius:4px; font-weight:700; letter-spacing:.04em; cursor:pointer; font-family:'Inter'; font-size:13px; text-transform:uppercase; }
   .tm-footer__form-fineprint { font-size:11px; line-height:1.5; opacity:.55; margin:0; }
+  .tm-footer .tm-honeypot { position:absolute !important; left:-9999px !important; width:1px !important; height:1px !important; opacity:0 !important; pointer-events:none !important; border:0 !important; }
   .tm-footer__form-success { font-size:13px; color:#a8d8a8; margin:8px 0 0; }
   .tm-footer__form-error { font-size:13px; color:#e8a888; margin:8px 0 0; }
   .tm-footer__sms-cta { font-size:14px; line-height:1.55; margin:0 0 6px; }
@@ -93,21 +94,54 @@
     <div class="tm-footer__newsletter">
       <h4>Subscribe</h4>
       <p>{{ section.settings.newsletter_text | default: "Join the ritual. Early access, new drops, and the occasional brewing tip." }}</p>
-      {%- form 'customer', class: 'tm-footer__form' -%}
-        <input type="hidden" name="contact[tags]" value="newsletter">
-        <input type="hidden" name="contact[accepts_marketing]" value="1">
+      <form id="tm-brevo-form"
+            class="tm-footer__form"
+            action="https://e7dedec4.sibforms.com/serve/MUIFAKhcKEYJNpH6yFLTTyyw6dsaJyRzRDJOtJMZUozCx96gJSvDx05z9KdeIZ2VNVd7ljRA0_TQapbeJLXnLOhf6UdMN0OKo4l9HMQA_jINgVU-hxwQb5WAc2CYH-UTHXWDfg0tOHfNyQGWbpRiotdwR4iSdPMm8drYD6Adt7EsuUj5mJpvY5dAndmrqGPieFmEW949eoKfmtysGw=="
+            method="POST"
+            target="tm-brevo-target">
         <div class="tm-footer__form-row">
-          <input type="email" name="contact[email]" placeholder="your@email.com" autocomplete="email" required>
+          <input type="email" name="EMAIL" placeholder="your@email.com" autocomplete="email" required>
           <button type="submit">Join</button>
         </div>
-        {%- if form.posted_successfully? -%}
-          <p class="tm-footer__form-success" data-tm-footer-signup-success>You're on the list. Welcome to the ritual.</p>
-          <script>try{sessionStorage.setItem('tm_signup_success',String(Date.now()));}catch(e){}</script>
-        {%- endif -%}
-        {%- if form.errors -%}
-          <p class="tm-footer__form-error">{{ form.errors | default_errors }}</p>
-        {%- endif -%}
-      {%- endform -%}
+        <input type="text" name="email_address_check" value="" class="tm-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="locale" value="en">
+        <input type="hidden" name="html_type" value="simple">
+        <p class="tm-footer__form-error" data-tm-brevo-error hidden></p>
+      </form>
+      <iframe name="tm-brevo-target" id="tm-brevo-target" title="Newsletter signup target" tabindex="-1" aria-hidden="true" class="tm-honeypot"></iframe>
+      <script>
+        (function(){
+          var f = document.getElementById('tm-brevo-form');
+          var iframe = document.getElementById('tm-brevo-target');
+          if (!f || !iframe) return;
+          var btn = f.querySelector('button[type="submit"]');
+          var err = f.querySelector('[data-tm-brevo-error]');
+          var origText = btn ? btn.textContent : 'Join';
+          var pendingFallback = null;
+
+          var onResponse = function(){
+            iframe.removeEventListener('load', onResponse);
+            if (pendingFallback) { clearTimeout(pendingFallback); pendingFallback = null; }
+            try { sessionStorage.setItem('tm_signup_success', String(Date.now())); } catch(e){}
+            window.location.reload();
+          };
+
+          f.addEventListener('submit', function(){
+            // Honeypot — silently drop bot submissions
+            var hp = f.elements['email_address_check'];
+            if (hp && hp.value) return;
+            if (err) { err.hidden = true; err.textContent = ''; }
+            if (btn) { btn.disabled = true; btn.textContent = 'Joining…'; }
+            iframe.addEventListener('load', onResponse);
+            // Fallback: if iframe load never fires, reload after 6s anyway
+            pendingFallback = setTimeout(function(){
+              iframe.removeEventListener('load', onResponse);
+              try { sessionStorage.setItem('tm_signup_success', String(Date.now())); } catch(e){}
+              window.location.reload();
+            }, 6000);
+          });
+        })();
+      </script>
 
     </div>
     {%- if section.settings.sms_keyword != blank and section.settings.sms_shortcode != blank -%}
