@@ -102,7 +102,8 @@
         </div>
         <p class="tm-footer__form-fineprint">Confirm in your inbox to start receiving emails. Unsubscribe anytime.</p>
         {%- if form.posted_successfully? -%}
-          <p class="tm-footer__form-success">You're on the list. Welcome to the ritual.</p>
+          <p class="tm-footer__form-success" data-tm-footer-signup-success>You're on the list. Welcome to the ritual.</p>
+          <script>try{sessionStorage.setItem('tm_signup_success',String(Date.now()));}catch(e){}</script>
         {%- endif -%}
         {%- if form.errors -%}
           <p class="tm-footer__form-error">{{ form.errors | default_errors }}</p>
@@ -146,7 +147,7 @@
     { "type":"textarea", "id":"newsletter_text", "label":"Newsletter text", "default":"Join the ritual. Early access, new drops, and the occasional brewing tip." },
     { "type":"header", "content":"SMS opt-in (Postscript)" },
     { "type":"text", "id":"sms_keyword", "label":"SMS keyword", "default":"RITUAL", "info":"Both keyword and shortcode must be set for the SMS line to appear." },
-    { "type":"text", "id":"sms_shortcode", "label":"SMS shortcode / number", "info":"Your Postscript shortcode. Find it in Postscript → Subscribers → Acquisition → Keywords." },
+    { "type":"text", "id":"sms_shortcode", "label":"SMS shortcode / number", "default":"(866) 708-4991", "info":"Your Postscript shortcode. Find it in Postscript → Subscribers → Acquisition → Keywords." },
     { "type":"text", "id":"sms_offer", "label":"SMS offer text", "default":"10% off your first order" },
     { "type":"header", "content":"Contact" },
     { "type":"text", "id":"contact_email", "label":"Customer care email", "default":"support@tmolecule.com" },

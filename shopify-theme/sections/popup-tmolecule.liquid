@@ -74,9 +74,12 @@
   .tm-popup.is-paused .tm-popup__progress > span { animation-play-state: paused; }
   @keyframes tm-popup-shrink { from { transform:scaleX(1); } to { transform:scaleX(0); } }
 
-  .tm-popup__confirm { text-align:center; padding-top:6px; }
+  .tm-popup__confirm { display:none; text-align:center; padding-top:6px; }
+  .tm-popup.is-success .tm-popup__confirm { display:block; }
+  .tm-popup.is-success .tm-popup__form { display:none; }
   .tm-popup__check { display:flex; justify-content:center; margin:0 0 18px; }
-  .tm-popup__check svg { display:block; filter:drop-shadow(0 8px 20px rgba(200,112,64,.35)); animation: tm-popup-pop .55s cubic-bezier(.34,1.5,.64,1) both; }
+  .tm-popup__check svg { display:block; filter:drop-shadow(0 8px 20px rgba(200,112,64,.35)); }
+  .tm-popup.is-success .tm-popup__check svg { animation: tm-popup-pop .55s cubic-bezier(.34,1.5,.64,1) both; }
   @keyframes tm-popup-pop { 0% { transform:scale(.4); opacity:0; } 60% { transform:scale(1.08); opacity:1; } 100% { transform:scale(1); } }
   .tm-popup__confirm .tm-popup__heading { margin-bottom:10px; }
   .tm-popup__confirm .tm-popup__body { margin-bottom:8px; opacity:.85; }
@@ -101,51 +104,49 @@
     <div class="tm-popup__progress" aria-hidden="true"><span></span></div>
     <button type="button" class="tm-popup__close" data-tm-popup-close aria-label="Close">×</button>
 
-    {%- if form.posted_successfully? -%}
-      <div class="tm-popup__confirm">
-        <div class="tm-popup__check" aria-hidden="true">
-          <svg viewBox="0 0 60 60" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="30" cy="30" r="27" fill="#c87040"/>
-            <path d="M18 31 L26 39 L43 22" stroke="#faf3e0" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <p class="tm-popup__eyebrow">{{ section.settings.success_eyebrow | default: 'Welcome to the ritual' }}</p>
-        <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.success_heading | default: "You're in." }}</h2>
-        <p class="tm-popup__body">{{ section.settings.success_text | default: "Check your inbox in the next few minutes — your code is on its way. Watch for an email + SMS from TMolecule." }}</p>
-        <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
+    <div class="tm-popup__confirm">
+      <div class="tm-popup__check" aria-hidden="true">
+        <svg viewBox="0 0 60 60" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="30" cy="30" r="27" fill="#c87040"/>
+          <path d="M18 31 L26 39 L43 22" stroke="#faf3e0" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
-    {%- else -%}
-      {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
-        <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
-        <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
+      <p class="tm-popup__eyebrow">{{ section.settings.success_eyebrow | default: 'Welcome to the ritual' }}</p>
+      <h2 class="tm-popup__heading">{{ section.settings.success_heading | default: "You're in." }}</h2>
+      <p class="tm-popup__body">{{ section.settings.success_text | default: "Check your inbox in the next few minutes — your code is on its way. Watch for an email + SMS from TMolecule." }}</p>
+      <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
+    </div>
 
-        {%- if form.errors -%}
-          <div class="tm-popup__errors">
-            <p>Please correct:</p>
-            <ul>
-              {%- for error in form.errors -%}
-                <li>{{ form.errors.messages[error] }}</li>
-              {%- endfor -%}
-            </ul>
-          </div>
-        {%- endif -%}
+    {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
+      <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
 
-        <p class="tm-popup__eyebrow">{{ section.settings.eyebrow | default: 'Join the ritual' }}</p>
-        <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.heading | default: "Get 10% off your first order" }}</h2>
-        <p class="tm-popup__body">{{ section.settings.body | default: "Join our email & SMS list for early access, seasonal blends, and a discount on your first order." }}</p>
+      {%- if form.errors -%}
+        <div class="tm-popup__errors">
+          <p>Please correct:</p>
+          <ul>
+            {%- for error in form.errors -%}
+              <li>{{ form.errors.messages[error] }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
 
-        <label>Email
-          <input type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
-        </label>
-        <label>Mobile number
-          <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
-        </label>
+      <p class="tm-popup__eyebrow">{{ section.settings.eyebrow | default: 'Join the ritual' }}</p>
+      <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.heading | default: "Get 10% off your first order" }}</h2>
+      <p class="tm-popup__body">{{ section.settings.body | default: "Join our email & SMS list for early access, seasonal blends, and a discount on your first order." }}</p>
 
-        <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
-        <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
-        <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
-      {%- endform -%}
-    {%- endif -%}
+      <label>Email
+        <input type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
+      </label>
+      <label>Mobile number
+        <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
+      </label>
+
+      <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
+      <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
+      <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
+    {%- endform -%}
   </div>
 </div>
 
@@ -159,8 +160,24 @@
   var timeDelay = (popup.dataset.timeDelay || 'false') === 'true';
   var posted = (popup.dataset.posted || 'false') === 'true';
   var key = 'tm_popup_dismissed_at';
+  var signupKey = 'tm_signup_success';
   var fired = false;
   var closed = false;
+
+  // If a sibling signup form (e.g. footer newsletter) just posted successfully,
+  // it leaves a timestamp in sessionStorage. Honor it only if recent (<15s).
+  try {
+    var sig = sessionStorage.getItem(signupKey);
+    if (sig) {
+      sessionStorage.removeItem(signupKey);
+      var t = parseInt(sig, 10);
+      if (!isNaN(t) && (Date.now() - t) < 15000) {
+        posted = true;
+        popup.classList.add('is-success');
+        popup.dataset.posted = 'true';
+      }
+    }
+  } catch(e) {}
 
   function shouldShow(){
     try {
