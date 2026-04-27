@@ -63,60 +63,89 @@
   .tm-popup__no-thanks { display:block; margin-top:14px; font-family:'Inter'; font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:transparent; border:0; color:var(--ink); opacity:.55; cursor:pointer; text-align:center; width:100%; padding:4px; }
   .tm-popup__no-thanks:hover { opacity:.9; text-decoration:underline; }
 
-  .tm-popup__success { text-align:center; padding:16px; background:#e8f5e0; border:1px solid #a0c880; border-radius:10px; font-family:'Inter'; font-size:14px; color:#3a5a28; margin-bottom:12px; }
   .tm-popup__errors { text-align:left; padding:14px; background:#fce8e8; border:1px solid #f0a0a0; border-radius:10px; font-family:'Inter'; font-size:13px; color:#8a1515; margin-bottom:12px; }
   .tm-popup__errors ul { margin:6px 0 0 18px; padding:0; }
+
+  /* Success state */
+  .tm-popup__progress { position:absolute; top:0; left:0; right:0; height:4px; background:rgba(200,112,64,.15); border-radius:16px 16px 0 0; overflow:hidden; opacity:0; pointer-events:none; }
+  .tm-popup__progress > span { display:block; height:100%; background:linear-gradient(90deg,var(--terra),var(--terra-dark)); transform-origin:left; transform:scaleX(1); }
+  .tm-popup.is-success .tm-popup__progress { opacity:1; }
+  .tm-popup.is-success.is-open .tm-popup__progress > span { animation: tm-popup-shrink var(--tm-popup-autoclose,5s) linear forwards; }
+  .tm-popup.is-paused .tm-popup__progress > span { animation-play-state: paused; }
+  @keyframes tm-popup-shrink { from { transform:scaleX(1); } to { transform:scaleX(0); } }
+
+  .tm-popup__confirm { text-align:center; padding-top:6px; }
+  .tm-popup__check { display:flex; justify-content:center; margin:0 0 18px; }
+  .tm-popup__check svg { display:block; filter:drop-shadow(0 8px 20px rgba(200,112,64,.35)); animation: tm-popup-pop .55s cubic-bezier(.34,1.5,.64,1) both; }
+  @keyframes tm-popup-pop { 0% { transform:scale(.4); opacity:0; } 60% { transform:scale(1.08); opacity:1; } 100% { transform:scale(1); } }
+  .tm-popup__confirm .tm-popup__heading { margin-bottom:10px; }
+  .tm-popup__confirm .tm-popup__body { margin-bottom:8px; opacity:.85; }
+  .tm-popup__confirm-hint { font-family:'Inter'; font-size:11px; opacity:.55; margin:18px 0 0; text-align:center; letter-spacing:.06em; }
 
   @media (max-width:520px) {
     .tm-popup__panel { padding:36px 24px 28px; }
   }
 </style>
 
-<div class="tm-popup"
+{%- assign tm_autoclose = section.settings.success_autoclose_seconds | default: 5 -%}
+<div class="tm-popup{% if form.posted_successfully? %} is-success{% endif %}"
      data-tm-popup
+     data-posted="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
      data-time-delay="{% if section.settings.enable_time_delay %}true{% else %}false{% endif %}"
      data-exit-intent="{% if section.settings.enable_exit_intent %}true{% else %}false{% endif %}"
      data-delay="{{ section.settings.delay_seconds | default: 15 }}"
      data-cooldown-days="{{ section.settings.cooldown_days | default: 7 }}"
+     style="--tm-popup-autoclose:{{ tm_autoclose }}s;"
      role="dialog" aria-modal="true" aria-labelledby="tm-popup-heading" aria-hidden="true" inert>
   <div class="tm-popup__panel">
+    <div class="tm-popup__progress" aria-hidden="true"><span></span></div>
     <button type="button" class="tm-popup__close" data-tm-popup-close aria-label="Close">×</button>
 
-    {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
-      <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
-      <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
-
-      {%- if form.posted_successfully? -%}
-        <div class="tm-popup__success">
-          {{ section.settings.success_text | default: "You're in. Welcome to the ritual." }}
+    {%- if form.posted_successfully? -%}
+      <div class="tm-popup__confirm">
+        <div class="tm-popup__check" aria-hidden="true">
+          <svg viewBox="0 0 60 60" width="64" height="64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="27" fill="#c87040"/>
+            <path d="M18 31 L26 39 L43 22" stroke="#faf3e0" stroke-width="4.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
-      {%- endif -%}
-      {%- if form.errors -%}
-        <div class="tm-popup__errors">
-          <p>Please correct:</p>
-          <ul>
-            {%- for error in form.errors -%}
-              <li>{{ form.errors.messages[error] }}</li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- endif -%}
+        <p class="tm-popup__eyebrow">{{ section.settings.success_eyebrow | default: 'Welcome to the ritual' }}</p>
+        <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.success_heading | default: "You're in." }}</h2>
+        <p class="tm-popup__body">{{ section.settings.success_text | default: "Check your inbox in the next few minutes — your code is on its way. Watch for an email + SMS from TMolecule." }}</p>
+        <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
+      </div>
+    {%- else -%}
+      {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
+        <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
 
-      <p class="tm-popup__eyebrow">{{ section.settings.eyebrow | default: 'Join the ritual' }}</p>
-      <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.heading | default: "Get 10% off your first order" }}</h2>
-      <p class="tm-popup__body">{{ section.settings.body | default: "Join our email & SMS list for early access, seasonal blends, and a discount on your first order." }}</p>
+        {%- if form.errors -%}
+          <div class="tm-popup__errors">
+            <p>Please correct:</p>
+            <ul>
+              {%- for error in form.errors -%}
+                <li>{{ form.errors.messages[error] }}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
 
-      <label>Email
-        <input type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
-      </label>
-      <label>Mobile number
-        <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
-      </label>
+        <p class="tm-popup__eyebrow">{{ section.settings.eyebrow | default: 'Join the ritual' }}</p>
+        <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.heading | default: "Get 10% off your first order" }}</h2>
+        <p class="tm-popup__body">{{ section.settings.body | default: "Join our email & SMS list for early access, seasonal blends, and a discount on your first order." }}</p>
 
-      <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
-      <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
-      <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
-    {%- endform -%}
+        <label>Email
+          <input type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
+        </label>
+        <label>Mobile number
+          <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
+        </label>
+
+        <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
+        <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
+        <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
+      {%- endform -%}
+    {%- endif -%}
   </div>
 </div>
 
@@ -124,13 +153,14 @@
 (function(){
   var popup = document.querySelector('[data-tm-popup]');
   if (!popup) return;
-  var form = popup.querySelector('form');
   var delay = parseInt(popup.dataset.delay || '15', 10) * 1000;
   var cooldown = parseInt(popup.dataset.cooldownDays || '7', 10) * 86400000;
   var exitIntent = (popup.dataset.exitIntent || 'false') === 'true';
   var timeDelay = (popup.dataset.timeDelay || 'false') === 'true';
+  var posted = (popup.dataset.posted || 'false') === 'true';
   var key = 'tm_popup_dismissed_at';
   var fired = false;
+  var closed = false;
 
   function shouldShow(){
     try {
@@ -145,19 +175,41 @@
     popup.setAttribute('aria-hidden', 'false');
     popup.removeAttribute('inert');
     document.body.style.overflow = 'hidden';
-    var input = popup.querySelector('input[type="email"], input[type="tel"]');
-    if (input) setTimeout(function(){ input.focus(); }, 100);
+    if (!posted) {
+      var input = popup.querySelector('input[type="email"], input[type="tel"]');
+      if (input) setTimeout(function(){ input.focus(); }, 100);
+    }
   }
   function close(){
+    if (closed) return;
+    closed = true;
     popup.classList.remove('is-open');
     popup.setAttribute('aria-hidden', 'true');
     popup.setAttribute('inert', '');
     document.body.style.overflow = '';
-    try { localStorage.setItem(key, Date.now().toString()); } catch(e) {}
+    if (!posted) {
+      try { localStorage.setItem(key, Date.now().toString()); } catch(e) {}
+    }
   }
   function trigger(){ if (shouldShow()) open(); }
 
-  if (shouldShow()) {
+  if (posted) {
+    // Success state — open immediately and auto-close when the progress bar finishes
+    open();
+    var bar = popup.querySelector('.tm-popup__progress > span');
+    if (bar) {
+      bar.addEventListener('animationend', close, { once: true });
+    } else {
+      setTimeout(close, 5000);
+    }
+    // Pause auto-close while hovering or focused inside
+    var pause = function(){ popup.classList.add('is-paused'); };
+    var resume = function(){ popup.classList.remove('is-paused'); };
+    popup.addEventListener('mouseenter', pause);
+    popup.addEventListener('mouseleave', resume);
+    popup.addEventListener('focusin', pause);
+    popup.addEventListener('focusout', resume);
+  } else if (shouldShow()) {
     if (timeDelay) {
       setTimeout(trigger, delay);
     }
@@ -172,9 +224,6 @@
     }
   }
 
-  // if form just posted successfully, show it so user sees the confirmation
-  if (form && form.dataset.posted === 'true') open();
-
   popup.querySelectorAll('[data-tm-popup-close]').forEach(function(b){
     b.addEventListener('click', close);
   });
@@ -187,10 +236,6 @@
 })();
 </script>
 
-{%- if form.posted_successfully? -%}
-  <script>document.querySelector('[data-tm-popup] form')?.setAttribute('data-posted','true');</script>
-{%- endif -%}
-
 {% schema %}
 {
   "name": "TMolecule popup",
@@ -202,7 +247,11 @@
     { "type":"textarea", "id":"body", "label":"Body", "default":"Join our email & SMS list for early access, seasonal blends, and a discount on your first order." },
     { "type":"text", "id":"button_label", "label":"Button label", "default":"Send me the code" },
     { "type":"textarea", "id":"fineprint", "label":"Fine print / consent", "default":"By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." },
-    { "type":"text", "id":"success_text", "label":"Success message", "default":"You're in. Welcome to the ritual." },
+    { "type":"header", "content":"Success state" },
+    { "type":"text", "id":"success_eyebrow", "label":"Success eyebrow", "default":"Welcome to the ritual" },
+    { "type":"text", "id":"success_heading", "label":"Success heading", "default":"You're in." },
+    { "type":"textarea", "id":"success_text", "label":"Success body", "default":"Check your inbox in the next few minutes — your code is on its way. Watch for an email + SMS from TMolecule." },
+    { "type":"range", "id":"success_autoclose_seconds", "label":"Auto-close after (s)", "min":3, "max":15, "step":1, "default":5, "unit":"s", "info":"How long the success window stays open before auto-closing. Visitors can keep it open by hovering, click the X, press Esc, or click the dim background." },
     { "type":"header", "content":"Triggers" },
     { "type":"paragraph", "content":"Choose how the popup opens. Exit-intent fires only when a desktop visitor moves the cursor to leave, so visitors can read and copy text freely first. Time-delay blocks the page until dismissed — leave it OFF unless you want that." },
     { "type":"checkbox", "id":"enable_exit_intent", "label":"Show on exit intent (desktop only)", "default":true, "info":"Opens when a desktop visitor moves the cursor toward the top of the window to leave." },
