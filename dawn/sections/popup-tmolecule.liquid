@@ -96,7 +96,7 @@
      data-posted="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
      data-time-delay="{% if section.settings.enable_time_delay %}true{% else %}false{% endif %}"
      data-exit-intent="{% if section.settings.enable_exit_intent %}true{% else %}false{% endif %}"
-     data-delay="{{ section.settings.delay_seconds | default: 15 }}"
+     data-delay="{{ section.settings.delay_seconds | default: 8 }}"
      data-cooldown-days="{{ section.settings.cooldown_days | default: 7 }}"
      style="--tm-popup-autoclose:{{ tm_autoclose }}s;"
      role="dialog" aria-modal="true" aria-labelledby="tm-popup-heading" aria-hidden="true" inert>
@@ -154,7 +154,7 @@
 (function(){
   var popup = document.querySelector('[data-tm-popup]');
   if (!popup) return;
-  var delay = parseInt(popup.dataset.delay || '15', 10) * 1000;
+  var delay = parseInt(popup.dataset.delay || '8', 10) * 1000;
   var cooldown = parseInt(popup.dataset.cooldownDays || '7', 10) * 86400000;
   var exitIntent = (popup.dataset.exitIntent || 'false') === 'true';
   var timeDelay = (popup.dataset.timeDelay || 'false') === 'true';
@@ -272,9 +272,9 @@
     { "type":"header", "content":"Triggers" },
     { "type":"paragraph", "content":"Choose how the popup opens. Exit-intent fires only when a desktop visitor moves the cursor to leave, so visitors can read and copy text freely first. Time-delay blocks the page until dismissed — leave it OFF unless you want that." },
     { "type":"checkbox", "id":"enable_exit_intent", "label":"Show on exit intent (desktop only)", "default":true, "info":"Opens when a desktop visitor moves the cursor toward the top of the window to leave." },
-    { "type":"checkbox", "id":"enable_time_delay", "label":"Show after time delay", "default":false, "info":"Opens automatically after the delay below. Blocks page interaction (text selection) until dismissed — usually leave OFF." },
+    { "type":"checkbox", "id":"enable_time_delay", "label":"Show after time delay", "default":true, "info":"Opens automatically after the delay below — the classic 'show after a few seconds' behavior." },
     { "type":"header", "content":"Timing" },
-    { "type":"range", "id":"delay_seconds", "label":"Time delay (s)", "min":0, "max":60, "step":1, "default":15, "unit":"s" },
+    { "type":"range", "id":"delay_seconds", "label":"Time delay (s)", "min":0, "max":60, "step":1, "default":8, "unit":"s" },
     { "type":"range", "id":"cooldown_days", "label":"Re-show cooldown after dismiss (days)", "min":1, "max":60, "step":1, "default":7, "unit":"d" }
   ],
   "presets": [{ "name":"TMolecule popup" }]

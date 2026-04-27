@@ -100,7 +100,6 @@
           <input type="email" name="contact[email]" placeholder="your@email.com" autocomplete="email" required>
           <button type="submit">Join</button>
         </div>
-        <p class="tm-footer__form-fineprint">Confirm in your inbox to start receiving emails. Unsubscribe anytime.</p>
         {%- if form.posted_successfully? -%}
           <p class="tm-footer__form-success" data-tm-footer-signup-success>You're on the list. Welcome to the ritual.</p>
           <script>try{sessionStorage.setItem('tm_signup_success',String(Date.now()));}catch(e){}</script>
