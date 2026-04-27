@@ -91,9 +91,9 @@
 </style>
 
 {%- assign tm_autoclose = section.settings.success_autoclose_seconds | default: 5 -%}
-<div class="tm-popup{% if form.posted_successfully? %} is-success{% endif %}"
+<div class="tm-popup"
      data-tm-popup
-     data-posted="{% if form.posted_successfully? %}true{% else %}false{% endif %}"
+     data-posted="false"
      data-time-delay="{% if section.settings.enable_time_delay %}true{% else %}false{% endif %}"
      data-exit-intent="{% if section.settings.enable_exit_intent %}true{% else %}false{% endif %}"
      data-delay="{{ section.settings.delay_seconds | default: 8 }}"
@@ -120,6 +120,16 @@
     {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
       <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
       <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
+
+      {%- if form.posted_successfully? -%}
+        <script>
+          (function(){
+            try { sessionStorage.setItem('tm_signup_success', String(Date.now())); } catch(e){}
+            var p = document.querySelector('[data-tm-popup]');
+            if (p) { p.dataset.posted = 'true'; p.classList.add('is-success'); }
+          })();
+        </script>
+      {%- endif -%}
 
       {%- if form.errors -%}
         <div class="tm-popup__errors">
