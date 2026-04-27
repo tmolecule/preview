@@ -93,7 +93,7 @@
     <div class="tm-footer__newsletter">
       <h4>Subscribe</h4>
       <p>{{ section.settings.newsletter_text | default: "Join the ritual. Early access, new drops, and the occasional brewing tip." }}</p>
-      {%- form 'customer', class: 'tm-footer__form' -%}
+      {%- form 'customer', class: 'tm-footer__form', data-shopify-captcha: 'true' -%}
         <input type="hidden" name="contact[tags]" value="newsletter">
         <input type="hidden" name="contact[accepts_marketing]" value="1">
         <div class="tm-footer__form-row">

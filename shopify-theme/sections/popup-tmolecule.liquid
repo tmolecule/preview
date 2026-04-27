@@ -117,7 +117,7 @@
       <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
     </div>
 
-    {%- form 'customer', id: 'tm-popup-form', class: 'tm-popup__form' -%}
+    {%- form 'customer', id: 'tm-popup-form', class: 'tm-popup__form', data-shopify-captcha: 'true' -%}
       <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
       <input type="hidden" name="contact[accepts_marketing]" value="1">
 
