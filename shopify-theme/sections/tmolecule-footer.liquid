@@ -111,7 +111,29 @@
       <script>
         (function(){
           var f = document.querySelector('.tm-footer__form');
-          if (f) f.setAttribute('data-shopify-captcha', 'true');
+          if (!f) return;
+          f.setAttribute('data-shopify-captcha', 'true');
+          var btn = f.querySelector('button[type="submit"]');
+          var origText = btn ? btn.textContent : '';
+          var bound = function(){ return f.dataset.hcaptchaBound === 'true' || f.dataset.recaptchaBound === 'true'; };
+          // capture-phase listener runs before Shopify's submit handler on document.
+          // If captcha isn't bound yet, hold the submit, show "Securing…", poll up to 6s,
+          // then re-fire the submit so Shopify's flow proceeds normally.
+          f.addEventListener('submit', function(e){
+            if (bound()) return;
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            if (btn) { btn.disabled = true; btn.textContent = 'Securing…'; }
+            var attempts = 0;
+            (function tryAgain(){
+              if (bound() || ++attempts > 60) {
+                if (btn) { btn.disabled = false; btn.textContent = origText; }
+                if (typeof f.requestSubmit === 'function') f.requestSubmit(); else f.submit();
+              } else {
+                setTimeout(tryAgain, 100);
+              }
+            })();
+          }, true);
         })();
       </script>
 
