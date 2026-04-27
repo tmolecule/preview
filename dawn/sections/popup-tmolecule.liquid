@@ -27,7 +27,6 @@
   .tm-popup__body { font-family:'Inter'; font-size:14.5px; line-height:1.5; opacity:.85; text-align:center; margin:0 0 24px; }
 
   .tm-popup__form { display:grid; gap:12px; }
-  .tm-popup__captcha { display:flex; justify-content:center; margin:6px 0 2px; }
   .tm-popup__form label { display:grid; gap:6px; font-family:'Inter'; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--terra-dark); font-weight:700; }
   .tm-popup__form input { padding:14px 16px; border:1.5px solid #e3dbc9; border-radius:10px; font-family:'Inter'; font-size:15px; background:#fff; color:var(--ink); transition:border-color .15s ease, box-shadow .15s ease; }
   .tm-popup__form input:focus { outline:0; border-color:var(--terra); box-shadow:0 0 0 3px rgba(200,112,64,.15); }
@@ -154,18 +153,10 @@
         <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
       </label>
 
-      <div class="h-captcha tm-popup__captcha" data-sitekey="f06e6c50-85a8-45c8-87d0-21a2b65856fe" data-theme="light"></div>
-
       <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
       <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
       <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
     {%- endform -%}
-    <script>
-      (function(){
-        var f = document.getElementById('tm-popup-form');
-        if (f) f.setAttribute('data-nocaptcha', 'true');
-      })();
-    </script>
   </div>
 </div>
 

@@ -19,7 +19,6 @@
   .tm-footer__form input::placeholder { color:rgba(250,247,240,.5); }
   .tm-footer__form button { width:100%; padding:10px 20px; background:linear-gradient(135deg,#d4b97a,#a8852a); color:#2a1f10; border:0; border-radius:4px; font-weight:700; letter-spacing:.04em; cursor:pointer; font-family:'Inter'; font-size:13px; text-transform:uppercase; }
   .tm-footer__form-fineprint { font-size:11px; line-height:1.5; opacity:.55; margin:0; }
-  .tm-footer__captcha { margin:10px 0 4px; }
   .tm-footer__form-success { font-size:13px; color:#a8d8a8; margin:8px 0 0; }
   .tm-footer__form-error { font-size:13px; color:#e8a888; margin:8px 0 0; }
   .tm-footer__sms-cta { font-size:14px; line-height:1.55; margin:0 0 6px; }
@@ -99,9 +98,8 @@
         <input type="hidden" name="contact[accepts_marketing]" value="1">
         <div class="tm-footer__form-row">
           <input type="email" name="contact[email]" placeholder="your@email.com" autocomplete="email" required>
+          <button type="submit">Join</button>
         </div>
-        <div class="h-captcha tm-footer__captcha" data-sitekey="f06e6c50-85a8-45c8-87d0-21a2b65856fe" data-theme="dark" data-size="compact"></div>
-        <button type="submit">Join</button>
         {%- if form.posted_successfully? -%}
           <p class="tm-footer__form-success" data-tm-footer-signup-success>You're on the list. Welcome to the ritual.</p>
           <script>try{sessionStorage.setItem('tm_signup_success',String(Date.now()));}catch(e){}</script>
@@ -110,12 +108,6 @@
           <p class="tm-footer__form-error">{{ form.errors | default_errors }}</p>
         {%- endif -%}
       {%- endform -%}
-      <script>
-        (function(){
-          var f = document.querySelector('.tm-footer__form');
-          if (f) f.setAttribute('data-nocaptcha', 'true');
-        })();
-      </script>
 
     </div>
     {%- if section.settings.sms_keyword != blank and section.settings.sms_shortcode != blank -%}
@@ -142,8 +134,6 @@
     </div>
   </div>
 </footer>
-
-<script src="https://js.hcaptcha.com/1/api.js" async defer></script>
 
 {% schema %}
 {
