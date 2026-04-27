@@ -74,7 +74,9 @@
 
 <div class="tm-popup"
      data-tm-popup
-     data-delay="{{ section.settings.delay_seconds | default: 5 }}"
+     data-time-delay="{% if section.settings.enable_time_delay %}true{% else %}false{% endif %}"
+     data-exit-intent="{% if section.settings.enable_exit_intent %}true{% else %}false{% endif %}"
+     data-delay="{{ section.settings.delay_seconds | default: 15 }}"
      data-cooldown-days="{{ section.settings.cooldown_days | default: 7 }}"
      role="dialog" aria-modal="true" aria-labelledby="tm-popup-heading" aria-hidden="true" inert>
   <div class="tm-popup__panel">
@@ -123,9 +125,12 @@
   var popup = document.querySelector('[data-tm-popup]');
   if (!popup) return;
   var form = popup.querySelector('form');
-  var delay = parseInt(popup.dataset.delay || '5', 10) * 1000;
+  var delay = parseInt(popup.dataset.delay || '15', 10) * 1000;
   var cooldown = parseInt(popup.dataset.cooldownDays || '7', 10) * 86400000;
+  var exitIntent = (popup.dataset.exitIntent || 'false') === 'true';
+  var timeDelay = (popup.dataset.timeDelay || 'false') === 'true';
   var key = 'tm_popup_dismissed_at';
+  var fired = false;
 
   function shouldShow(){
     try {
@@ -134,6 +139,8 @@
     } catch(e) { return true; }
   }
   function open(){
+    if (fired) return;
+    fired = true;
     popup.classList.add('is-open');
     popup.setAttribute('aria-hidden', 'false');
     popup.removeAttribute('inert');
@@ -148,11 +155,23 @@
     document.body.style.overflow = '';
     try { localStorage.setItem(key, Date.now().toString()); } catch(e) {}
   }
+  function trigger(){ if (shouldShow()) open(); }
 
-  // open after delay on first eligible load
   if (shouldShow()) {
-    setTimeout(open, delay);
+    if (timeDelay) {
+      setTimeout(trigger, delay);
+    }
+    if (exitIntent && window.matchMedia('(min-width: 901px) and (pointer: fine)').matches) {
+      var onExit = function(e){
+        if (e.clientY <= 0 && !e.relatedTarget) {
+          document.removeEventListener('mouseout', onExit);
+          trigger();
+        }
+      };
+      document.addEventListener('mouseout', onExit);
+    }
   }
+
   // if form just posted successfully, show it so user sees the confirmation
   if (form && form.dataset.posted === 'true') open();
 
@@ -184,8 +203,12 @@
     { "type":"text", "id":"button_label", "label":"Button label", "default":"Send me the code" },
     { "type":"textarea", "id":"fineprint", "label":"Fine print / consent", "default":"By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." },
     { "type":"text", "id":"success_text", "label":"Success message", "default":"You're in. Welcome to the ritual." },
+    { "type":"header", "content":"Triggers" },
+    { "type":"paragraph", "content":"Choose how the popup opens. Exit-intent fires only when a desktop visitor moves the cursor to leave, so visitors can read and copy text freely first. Time-delay blocks the page until dismissed — leave it OFF unless you want that." },
+    { "type":"checkbox", "id":"enable_exit_intent", "label":"Show on exit intent (desktop only)", "default":true, "info":"Opens when a desktop visitor moves the cursor toward the top of the window to leave." },
+    { "type":"checkbox", "id":"enable_time_delay", "label":"Show after time delay", "default":false, "info":"Opens automatically after the delay below. Blocks page interaction (text selection) until dismissed — usually leave OFF." },
     { "type":"header", "content":"Timing" },
-    { "type":"range", "id":"delay_seconds", "label":"Delay before showing (s)", "min":0, "max":60, "step":1, "default":5, "unit":"s" },
+    { "type":"range", "id":"delay_seconds", "label":"Time delay (s)", "min":0, "max":60, "step":1, "default":15, "unit":"s" },
     { "type":"range", "id":"cooldown_days", "label":"Re-show cooldown after dismiss (days)", "min":1, "max":60, "step":1, "default":7, "unit":"d" }
   ],
   "presets": [{ "name":"TMolecule popup" }]
