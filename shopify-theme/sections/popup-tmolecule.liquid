@@ -117,9 +117,9 @@
       <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
     </div>
 
-    {%- form 'contact', id: 'tm-popup-form', class: 'tm-popup__form' -%}
+    {%- form 'customer', id: 'tm-popup-form', class: 'tm-popup__form' -%}
       <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
-      <input type="hidden" name="contact[body]" value="Popup signup — email + SMS opt-in">
+      <input type="hidden" name="contact[accepts_marketing]" value="1">
 
       {%- if form.posted_successfully? -%}
         <script>
