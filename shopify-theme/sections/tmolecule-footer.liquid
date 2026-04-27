@@ -108,54 +108,6 @@
           <p class="tm-footer__form-error">{{ form.errors | default_errors }}</p>
         {%- endif -%}
       {%- endform -%}
-      <script>
-        (function(){
-          var f = document.querySelector('.tm-footer__form');
-          if (!f) return;
-          f.setAttribute('data-shopify-captcha', 'true');
-          var btn = f.querySelector('button[type="submit"]');
-          var origText = btn ? btn.textContent : '';
-          var bound = function(){ return f.dataset.hcaptchaBound === 'true' || f.dataset.recaptchaBound === 'true'; };
-
-          // Wait for binding then submit (handles fast clickers + auto-resubmit after /challenge).
-          var pendingPoll = null;
-          var holdAndSubmit = function(){
-            if (pendingPoll) return;
-            if (btn) { btn.disabled = true; btn.textContent = 'Securing…'; }
-            var attempts = 0;
-            pendingPoll = setInterval(function(){
-              if (bound() || ++attempts > 60) {
-                clearInterval(pendingPoll); pendingPoll = null;
-                if (btn) { btn.disabled = false; btn.textContent = origText; }
-                if (typeof f.requestSubmit === 'function') f.requestSubmit(); else f.submit();
-              }
-            }, 100);
-          };
-
-          // Capture-phase: intercept early submits before captcha binding has finished.
-          f.addEventListener('submit', function(e){
-            if (bound()) return;
-            e.preventDefault();
-            e.stopImmediatePropagation();
-            holdAndSubmit();
-          }, true);
-
-          // After /challenge redirect: URL carries form_key + form_type=customer. Shopify's
-          // bootstrap repopulates the form on DOMContentLoaded. Auto-resubmit once so the
-          // user doesn't have to click Join twice. Guard with sessionStorage so we don't loop.
-          window.addEventListener('DOMContentLoaded', function(){
-            var url; try { url = new URL(window.location.href); } catch(e){ return; }
-            var formKey = url.searchParams.get('form_key');
-            var formType = url.searchParams.get('form_type');
-            if (!formKey || formType !== 'customer') return;
-            var keyEl = f.elements && f.elements['form_key'];
-            if (!keyEl || keyEl.value !== formKey) return;
-            var retried = 'tm_form_retried_' + formKey;
-            try { if (sessionStorage.getItem(retried)) return; sessionStorage.setItem(retried, '1'); } catch(e){}
-            holdAndSubmit();
-          });
-        })();
-      </script>
 
     </div>
     {%- if section.settings.sms_keyword != blank and section.settings.sms_shortcode != blank -%}
