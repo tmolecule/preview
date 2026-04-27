@@ -117,7 +117,7 @@
       <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
     </div>
 
-    {%- form 'customer', id: 'tm-popup-form', class: 'tm-popup__form', data-shopify-captcha: 'true' -%}
+    {%- form 'customer', id: 'tm-popup-form', class: 'tm-popup__form' -%}
       <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
       <input type="hidden" name="contact[accepts_marketing]" value="1">
 
@@ -157,6 +157,12 @@
       <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
       <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
     {%- endform -%}
+    <script>
+      (function(){
+        var f = document.getElementById('tm-popup-form');
+        if (f) f.setAttribute('data-shopify-captcha', 'true');
+      })();
+    </script>
   </div>
 </div>
 

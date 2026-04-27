@@ -93,7 +93,7 @@
     <div class="tm-footer__newsletter">
       <h4>Subscribe</h4>
       <p>{{ section.settings.newsletter_text | default: "Join the ritual. Early access, new drops, and the occasional brewing tip." }}</p>
-      {%- form 'customer', class: 'tm-footer__form', data-shopify-captcha: 'true' -%}
+      {%- form 'customer', class: 'tm-footer__form' -%}
         <input type="hidden" name="contact[tags]" value="newsletter">
         <input type="hidden" name="contact[accepts_marketing]" value="1">
         <div class="tm-footer__form-row">
@@ -108,6 +108,12 @@
           <p class="tm-footer__form-error">{{ form.errors | default_errors }}</p>
         {%- endif -%}
       {%- endform -%}
+      <script>
+        (function(){
+          var f = document.querySelector('.tm-footer__form');
+          if (f) f.setAttribute('data-shopify-captcha', 'true');
+        })();
+      </script>
 
     </div>
     {%- if section.settings.sms_keyword != blank and section.settings.sms_shortcode != blank -%}
