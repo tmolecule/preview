@@ -164,6 +164,19 @@
   var fired = false;
   var closed = false;
 
+  // Dev override via URL query — never trip the cooldown so testing stays fast.
+  // ?tm_popup=force   → open immediately, ignore cooldown
+  // ?tm_popup=success → open immediately in success state (preview the confirm panel)
+  var forceMode = '';
+  try {
+    forceMode = (new URL(window.location.href)).searchParams.get('tm_popup') || '';
+  } catch(e) {}
+  if (forceMode === 'success') {
+    posted = true;
+    popup.classList.add('is-success');
+    popup.dataset.posted = 'true';
+  }
+
   // If a sibling signup form (e.g. footer newsletter) just posted successfully,
   // it leaves a timestamp in sessionStorage. Honor it only if recent (<15s).
   try {
@@ -180,6 +193,7 @@
   } catch(e) {}
 
   function shouldShow(){
+    if (forceMode) return true;
     try {
       var dismissed = parseInt(localStorage.getItem(key) || '0', 10);
       return !dismissed || (Date.now() - dismissed) > cooldown;
@@ -204,7 +218,7 @@
     popup.setAttribute('aria-hidden', 'true');
     popup.setAttribute('inert', '');
     document.body.style.overflow = '';
-    if (!posted) {
+    if (!posted && !forceMode) {
       try { localStorage.setItem(key, Date.now().toString()); } catch(e) {}
     }
   }
@@ -226,6 +240,8 @@
     popup.addEventListener('mouseleave', resume);
     popup.addEventListener('focusin', pause);
     popup.addEventListener('focusout', resume);
+  } else if (forceMode === 'force') {
+    open();
   } else if (shouldShow()) {
     if (timeDelay) {
       setTimeout(trigger, delay);
