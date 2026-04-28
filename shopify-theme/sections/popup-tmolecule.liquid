@@ -27,6 +27,7 @@
   .tm-popup__body { font-family:'Inter'; font-size:14.5px; line-height:1.5; opacity:.85; text-align:center; margin:0 0 24px; }
 
   .tm-popup__form { display:grid; gap:12px; }
+  .tm-popup-section .tm-honeypot, .tm-popup .tm-honeypot { position:absolute !important; left:-9999px !important; top:-9999px !important; width:1px !important; height:1px !important; opacity:0 !important; pointer-events:none !important; border:0 !important; }
   .tm-popup__form label { display:grid; gap:6px; font-family:'Inter'; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--terra-dark); font-weight:700; }
   .tm-popup__form input { padding:14px 16px; border:1.5px solid #e3dbc9; border-radius:10px; font-family:'Inter'; font-size:15px; background:#fff; color:var(--ink); transition:border-color .15s ease, box-shadow .15s ease; }
   .tm-popup__form input:focus { outline:0; border-color:var(--terra); box-shadow:0 0 0 3px rgba(200,112,64,.15); }
@@ -151,6 +152,7 @@
 
       <input type="hidden" name="SMS__COUNTRY_CODE" value="+1">
       <input type="hidden" name="locale" value="en">
+      <input type="hidden" name="html_type" value="simple">
       <input type="text" name="email_address_check" value="" class="tm-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
