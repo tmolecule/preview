@@ -11,12 +11,20 @@
 
   {%- assign threshold_cents = section.settings.shipping_threshold | times: 100 -%}
   {%- assign remaining_cents = threshold_cents | minus: cart.total_price -%}
-  {%- if cart.item_count > 0 and remaining_cents > 0 -%}
-    {%- capture ship_line -%}You're <strong>{{ remaining_cents | money }}</strong> away from free shipping within the US{%- endcapture -%}
-  {%- elsif cart.item_count > 0 -%}
-    {%- capture ship_line -%}<strong>Free shipping within the US unlocked</strong>{%- endcapture -%}
+  {%- assign product_price_cents = product.selected_or_first_available_variant.price -%}
+
+  {%- if product_in_cart -%}
+    {%- if remaining_cents > 0 -%}
+      {%- capture ship_line -%}You're <strong>{{ remaining_cents | money }}</strong> away from free shipping within the US{%- endcapture -%}
+    {%- else -%}
+      {%- capture ship_line -%}<strong>Free shipping within the US unlocked</strong>{%- endcapture -%}
+    {%- endif -%}
   {%- else -%}
-    {%- capture ship_line -%}Free shipping within the US over {{ threshold_cents | money }}{%- endcapture -%}
+    {%- if product_price_cents >= threshold_cents -%}
+      {%- capture ship_line -%}<strong>This product ships free in the US</strong>{%- endcapture -%}
+    {%- else -%}
+      {%- capture ship_line -%}Free shipping within the US over {{ threshold_cents | money }}{%- endcapture -%}
+    {%- endif -%}
   {%- endif -%}
 
 <div class="tm-page">

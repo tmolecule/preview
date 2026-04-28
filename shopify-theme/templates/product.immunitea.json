@@ -1,0 +1,215 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "announcement-bar-tmolecule",
+      "blocks": {
+        "m1": {
+          "type": "message",
+          "settings": {
+            "message": "🚚 Free shipping on orders over $35"
+          }
+        },
+        "m2": {
+          "type": "message",
+          "settings": {
+            "message": "⚡ Same-day shipping for orders before 12pm ET"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2"
+      ]
+    },
+    "main": {
+      "type": "main-product-tmolecule",
+      "settings": {
+        "label": "🌿 IMMUNITY · CLINICAL-GRADE EXTRACTS",
+        "subheadline": "A black tea blend built around four research-backed botanicals — turmeric, gooseberry, a vegan postbiotic, and terminalia bellerica. Adaptogens, antioxidants, and polyphenols in one cup.",
+        "show_rating": true,
+        "rating_text": "4.9 · 47 reviews",
+        "bullets": "🌱 Four standardized botanical extracts — not flavorings|🛡️ Daily immune + gut-health support*|🍃 Vegan postbiotics — heat-stable, shelf-stable|🌿 Caffeine from real black tea, not isolates|👨‍👩‍👧 TMolecule heritage since 1935|🇺🇸 Made in USA",
+        "show_subscribe_toggle": true
+      },
+      "blocks": {
+        "title": { "type": "title" },
+        "price": { "type": "price" },
+        "vp": { "type": "variant_picker" },
+        "bb": { "type": "buy_buttons" },
+        "b1": { "type": "badge", "settings": { "icon": "🌿", "label": "Plant-<br>Based" } },
+        "b2": { "type": "badge", "settings": { "icon": "🇺🇸", "label": "Made in<br>USA" } },
+        "b3": { "type": "badge", "settings": { "icon": "🚫", "label": "No<br>Sugar" } },
+        "b4": { "type": "badge", "settings": { "icon": "🌱", "label": "Vegan" } },
+        "b5": { "type": "badge", "settings": { "icon": "🌾", "label": "Gluten<br>Free" } },
+        "b6": { "type": "badge", "settings": { "icon": "🧬", "label": "Non<br>GMO" } },
+        "b7": { "type": "badge", "settings": { "icon": "🔬", "label": "Standardized<br>Extracts" } },
+        "b8": { "type": "badge", "settings": { "icon": "🚚", "label": "Fast<br>Shipping" } }
+      },
+      "block_order": [
+        "title",
+        "price",
+        "vp",
+        "bb",
+        "b1",
+        "b2",
+        "b3",
+        "b4",
+        "b5",
+        "b6",
+        "b7",
+        "b8"
+      ]
+    },
+    "story": {
+      "type": "product-story-tmolecule",
+      "blocks": {
+        "trust": {
+          "type": "trust_marquee"
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+            "tab1_title": "Overview",
+            "tab1_body": "<p>Immunitea Defense Tea is built around four research-backed botanicals layered on a bold black tea base — turmeric, gooseberry, vegan postbiotics, and terminalia bellerica. Each one is a standardized extract, not a powdered flavoring, so the actives in your cup match the dose on the label.</p><p>One cup a day is the ritual. Steep it hot, drink it warm, let the polyphenols and adaptogens do quiet work in the background. A daily defense for the body, in the form of a tea you'd want to drink anyway.</p>",
+            "tab2_title": "Tasting Notes",
+            "tab2_body": "<p>A bold, malty black tea base meets earthy turmeric and a soft, fruit-tart finish from gooseberry. Lightly aromatic, smooth, never grassy. Drinks beautifully black; pairs naturally with a squeeze of lemon and a teaspoon of honey if you want to lean into the citrus side of the cup.</p>",
+            "tab3_title": "Brewing",
+            "tab3_body": "<p><strong>Hot:</strong> Add one teaspoon (≈5g) to 8oz water at 200–212°F. Steep 3–5 minutes, then stir. The actives are heat-stable — long steeps don't degrade them.</p><p><strong>Iced:</strong> Brew double-strength hot, then pour over ice with a slice of lemon.</p><p><strong>With honey:</strong> Stir in raw honey after steeping, not before — protects the enzymes.</p>",
+            "tab4_title": "FAQs",
+            "tab4_body": "<h3>What's actually in this versus a regular immunity tea?</h3><p>Most immunity teas use crude herbs — dried ginger, dried elderberry, dried turmeric. Immunitea uses standardized extracts of turmeric, gooseberry, a vegan postbiotic, and terminalia bellerica. Each delivers a documented level of the active compound, not a guess.</p><h3>Is the postbiotic actually viable in hot water?</h3><p>Yes — the postbiotic is heat-inactivated and specifically designed to remain stable in hot beverages. Unlike live probiotics, it doesn't need refrigeration and isn't destroyed by brewing temperatures.</p><h3>How much caffeine?</h3><p>About 30–45mg per cup from the real black tea base — roughly half a cup of coffee. Sustained, gentle.</p><h3>Can I drink this every day?</h3><p>It's designed for daily use. Most people drink one cup in the morning or early afternoon. Listen to your body and consult your healthcare provider if you're pregnant, nursing, or on medication.</p><h3>How long does a pack last?</h3><p>Each 100g pack contains roughly 20 servings. At one cup a day, that's about three weeks.</p><h3>How should I store it?</h3><p>Keep the pack sealed at room temperature, away from direct sunlight and humidity. Use by the expiration date on the package.</p>"
+          }
+        },
+        "ingredients": {
+          "type": "ingredient_grid",
+          "settings": {
+            "heading": "What's actually in the cup",
+            "subhead": "Five ingredients. Four of them are standardized botanical extracts. No fillers, no flavorings, no proprietary mystery blends.",
+            "title_1": "Turmeric (Standardized Extract)",
+            "body_1": "A standardized curcumin extract delivering consistent curcuminoid content cup after cup — not just dried turmeric powder.",
+            "title_2": "Gooseberry (Standardized Extract)",
+            "body_2": "An extract of Emblica officinalis (Indian gooseberry). Delivers a documented level of polyphenols and natural vitamin C. Bright, fruit-tart, antioxidant-dense.",
+            "title_3": "Vegan Postbiotic",
+            "body_3": "Heat-inactivated Bacillus coagulans MTCC5856 — the modern, shelf-stable answer to live probiotics. Survives hot water, no refrigeration needed.",
+            "title_4": "Terminalia Bellerica",
+            "body_4": "A traditional Ayurvedic fruit, modern-extracted for adaptogenic + antioxidant compounds. Used for centuries; finally formulated with intent.",
+            "title_5": "Bold Black Tea",
+            "body_5": "Full-bodied, malty black tea — a delivery vehicle worth drinking on its own. Caffeine, polyphenols, body. The base everything else builds on.",
+            "title_6": "Standardized, Not Sprinkled",
+            "body_6": "Every active ingredient is a standardized extract, not a flavoring or a dusting. The dose on the label is the dose in the cup — every cup, every brew.",
+            "cta_label": "Try Immunitea",
+            "cta_sub": "$39.99 · 20 servings"
+          }
+        },
+        "heritage": {
+          "type": "heritage",
+          "settings": {
+            "eyebrow": "Heritage since 1935",
+            "heading": "Four generations. One leaf.",
+            "body": "<p>In 1935, my great-grandfather started sourcing tea — tin by tin, estate by estate, refusing anything that didn't meet his nose test. Ninety-one years later, we're still doing it.</p><p>Immunitea is what happens when four generations of tea know-how meet modern wellness science. We took a defensive ritual — the daily cup — and built it around clinical-grade botanicals. Tea you'd already drink, doing more than just warming your hands.</p>",
+            "signature": "— The TMolecule family",
+            "cta_label": "Make it your daily cup",
+            "cta_sub": "$39.99 · ships today"
+          }
+        },
+        "compare": {
+          "type": "compare",
+          "settings": {
+            "heading": "Immunitea vs. typical immunity tea",
+            "us_label": "TMolecule Immunitea",
+            "them_label": "Typical Immunity Tea",
+            "ico_1": "🔬",
+            "row_1": "Active ingredients",
+            "us_1": "Standardized clinical-grade extracts",
+            "them_1": "Crude dried herbs",
+            "ico_2": "🍬",
+            "row_2": "Sugar",
+            "us_2": "Zero",
+            "them_2": "Often sweetened or flavored",
+            "ico_3": "🦠",
+            "row_3": "Probiotic / postbiotic",
+            "us_3": "Vegan postbiotic, heat-stable",
+            "them_3": "None — or live probiotic that dies in hot water",
+            "ico_4": "🍃",
+            "row_4": "Tea grade",
+            "us_4": "Full-leaf bold black tea",
+            "them_4": "Dust, fannings, or no tea base",
+            "ico_5": "🌱",
+            "row_5": "Diet fit",
+            "us_5": "Vegan, gluten-free, no fillers",
+            "them_5": "Often contains sweeteners, gluten",
+            "ico_6": "👨‍👩‍👧",
+            "row_6": "Heritage",
+            "us_6": "Heritage since 1935",
+            "them_6": "A marketing department",
+            "cta_label": "Try the daily defense",
+            "cta_sub": "$39.99 · 20 servings"
+          }
+        },
+        "ed1": {
+          "type": "editorial",
+          "settings": {
+            "band": "deep-sand",
+            "eyebrow": "The ritual",
+            "heading": "One cup. Hot water. Ten minutes for yourself.",
+            "body": "<p>Defense isn't a supplement aisle. It's the cup you make every morning while the kettle hums. Steep one teaspoon, stir, let the polyphenols, postbiotics, and adaptogens do quiet, daily work. Habit-friendly. Bottle-free. The least dramatic part of your wellness routine.</p>",
+            "reverse": false
+          }
+        },
+        "ed2": {
+          "type": "editorial",
+          "settings": {
+            "band": "honey",
+            "eyebrow": "Why standardized matters",
+            "heading": "A teaspoon of dried turmeric is not a dose.",
+            "body": "<p>Most \"immunity\" teas list ingredients without standardization — meaning the actual active compound varies cup to cup, batch to batch. Immunitea uses standardized extracts of turmeric, gooseberry, and a vegan postbiotic — each delivering a guaranteed potency. The label and the cup tell the same story.</p>",
+            "reverse": true
+          }
+        },
+        "reviews": {
+          "type": "reviews",
+          "settings": {
+            "heading": "What sippers say",
+            "quote_1": "Immunitea Defense is a delicious, easy and convenient way to boost your immunity. I use about 2 grams per cup. I drink it after work and in the morning to calm my nerves — a one-of-a-kind ayurvedic blend for a calm mind.",
+            "author_1": "Verified buyer · April 12, 2026",
+            "quote_2": "I'm a sucker for clinical-grade ingredients. A standardized turmeric extract in a daily cup of tea is exactly the upgrade my routine needed.",
+            "author_2": "Verified buyer",
+            "quote_3": "The gooseberry note is what makes this drinkable every day. Tart, bright, balances the turmeric perfectly.",
+            "author_3": "Verified buyer",
+            "cta_label": "Join the daily ritual",
+            "cta_sub": "$39.99 · free shipping over $35"
+          }
+        },
+        "disclaimer": {
+          "type": "disclaimer",
+          "settings": {
+            "body": "* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary.<br><br>Trademarks: The standardized turmeric extract (Curcumin C3 Complex®), gooseberry extract (Saberry®), and vegan postbiotic (Immunospore®) used in Immunitea are registered trademarks of Sabinsa Corporation, USA."
+          }
+        }
+      },
+      "block_order": [
+        "trust",
+        "tabs",
+        "ingredients",
+        "heritage",
+        "compare",
+        "ed1",
+        "ed2",
+        "reviews",
+        "disclaimer"
+      ]
+    },
+    "sticky": {
+      "type": "sticky-cta-tmolecule",
+      "settings": {
+        "cta_label": "Add to cart",
+        "ship_note": "free ship over $35"
+      }
+    }
+  },
+  "order": [
+    "announcement",
+    "main",
+    "story",
+    "sticky"
+  ]
+}

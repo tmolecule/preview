@@ -5,7 +5,7 @@
   <div class="tm-buybox-wrap">
     <section class="tm-buybox">
       {%- assign featured = product.featured_media -%}
-      <div class="tm-buybox__gallery" data-tm-gallery>
+      <div class="tm-buybox__gallery {% if product.media.size <= 1 %}tm-buybox__gallery--single{% endif %}" data-tm-gallery>
         {%- if product.media.size > 1 -%}
           <div class="tm-buybox__thumbs">
             {%- for media in product.media limit: 5 -%}
@@ -49,16 +49,18 @@
         {% form 'product', product, class: 'sans', novalidate: 'novalidate' %}
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
 
-          <div class="tm-buybox__opts">
-            {%- for variant in product.variants -%}
-              <button type="button" class="{% if forloop.first %}is-active{% endif %}"
-                      data-tm-variant
-                      data-variant-id="{{ variant.id }}"
-                      data-variant-price="{{ variant.price | money }}">
-                {{ variant.title }} — {{ variant.price | money }}
-              </button>
-            {%- endfor -%}
-          </div>
+          {%- unless product.has_only_default_variant -%}
+            <div class="tm-buybox__opts">
+              {%- for variant in product.variants -%}
+                <button type="button" class="{% if forloop.first %}is-active{% endif %}"
+                        data-tm-variant
+                        data-variant-id="{{ variant.id }}"
+                        data-variant-price="{{ variant.price | money }}">
+                  {{ variant.title }} — {{ variant.price | money }}
+                </button>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
 
           {%- if section.settings.show_subscribe_toggle -%}
             <div class="tm-buybox__opts tm-buybox__opts--purchase">
@@ -68,11 +70,49 @@
           {%- endif -%}
 
           <p class="tm-buybox__price" data-tm-price>{{ product.selected_or_first_available_variant.price | money }}</p>
-          <button type="submit" name="add" class="tm-buybox__cta"
-                  {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Add to cart{% else %}Sold out{% endif %}
-          </button>
+          {%- if product.available -%}
+            <button type="submit" name="add" class="tm-buybox__cta">Add to cart</button>
+          {%- else -%}
+            <button type="button" class="tm-buybox__cta tm-buybox__cta--soldout" disabled aria-disabled="true">Sold out</button>
+          {%- endif -%}
         {% endform %}
+
+        {%- unless product.available -%}
+          <div class="tm-notify" data-tm-notify>
+            <p class="tm-notify__heading">Notify me when it's back</p>
+            {%- form 'customer', id: 'tm-notify-form', class: 'tm-notify__form' -%}
+              <input type="hidden" name="contact[tags]" value="back-in-stock,bis-{{ product.handle }}">
+              <div class="tm-notify__row">
+                <input type="email"
+                       name="contact[email]"
+                       required
+                       placeholder="you@email.com"
+                       class="tm-notify__input"
+                       aria-label="Email address for restock notification"
+                       {% if form.errors %}aria-invalid="true"{% endif %}>
+                <button type="submit" class="tm-notify__cta">Notify me</button>
+              </div>
+              {%- if form.posted_successfully? -%}
+                <p class="tm-notify__msg tm-notify__msg--ok" role="status">✓ Thanks — we'll email you the moment it's back.</p>
+                <script>
+                  (function(){
+                    var h = (window.location.hash || '');
+                    if (h !== '#tm-notify-form') return;
+                    try {
+                      sessionStorage.setItem('tm_signup_success', String(Date.now()));
+                      sessionStorage.setItem('tm_signup_kind', 'bis');
+                    } catch(e){}
+                  })();
+                </script>
+              {%- elsif form.errors -%}
+                <p class="tm-notify__msg tm-notify__msg--err" role="alert">
+                  {%- if form.errors contains 'email' -%}Please enter a valid email address.{%- else -%}Couldn't submit — please try again.{%- endif -%}
+                </p>
+              {%- endif -%}
+            {%- endform -%}
+            <p class="tm-notify__legal">No spam. One email when it's back in stock.</p>
+          </div>
+        {%- endunless -%}
 
         {%- if section.blocks.size > 0 -%}
           <div class="tm-buybox__badges">
