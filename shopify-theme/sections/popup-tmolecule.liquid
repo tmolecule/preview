@@ -133,51 +133,71 @@
       <p class="tm-popup__confirm-hint">This window closes automatically — hover to keep it open.</p>
     </div>
 
-    {%- form 'customer', id: 'tm-popup-form', class: 'tm-popup__form' -%}
-      <input type="hidden" name="contact[tags]" value="newsletter,sms-list">
-      <input type="hidden" name="contact[accepts_marketing]" value="1">
-
-      {%- if form.posted_successfully? -%}
-        <script>
-          (function(){
-            var h = (window.location.hash || '');
-            if (h && h !== '#tm-popup-form') return;
-            try {
-              sessionStorage.setItem('tm_signup_success', String(Date.now()));
-              sessionStorage.setItem('tm_signup_kind', 'newsletter');
-            } catch(e){}
-            var p = document.querySelector('[data-tm-popup]');
-            if (p) { p.dataset.posted = 'true'; p.classList.add('is-success'); }
-          })();
-        </script>
-      {%- endif -%}
-
-      {%- if form.errors -%}
-        <div class="tm-popup__errors">
-          <p>Please correct:</p>
-          <ul>
-            {%- for error in form.errors -%}
-              <li>{{ form.errors.messages[error] }}</li>
-            {%- endfor -%}
-          </ul>
-        </div>
-      {%- endif -%}
-
+    <form id="tm-popup-form"
+          class="tm-popup__form"
+          action="https://e7dedec4.sibforms.com/serve/MUIFAKhcKEYJNpH6yFLTTyyw6dsaJyRzRDJOtJMZUozCx96gJSvDx05z9KdeIZ2VNVd7ljRA0_TQapbeJLXnLOhf6UdMN0OKo4l9HMQA_jINgVU-hxwQb5WAc2CYH-UTHXWDfg0tOHfNyQGWbpRiotdwR4iSdPMm8drYD6Adt7EsuUj5mJpvY5dAndmrqGPieFmEW949eoKfmtysGw=="
+          method="POST"
+          target="tm-popup-brevo-target">
       <p class="tm-popup__eyebrow">{{ section.settings.eyebrow | default: 'Join the ritual' }}</p>
       <h2 id="tm-popup-heading" class="tm-popup__heading">{{ section.settings.heading | default: "Get 10% off your first order" }}</h2>
       <p class="tm-popup__body">{{ section.settings.body | default: "Join our email & SMS list for early access, seasonal blends, and a discount on your first order." }}</p>
 
       <label>Email
-        <input type="email" name="contact[email]" autocomplete="email" required placeholder="you@example.com">
+        <input type="email" name="EMAIL" autocomplete="email" required placeholder="you@example.com">
       </label>
       <label>Mobile number
-        <input type="tel" name="contact[phone]" autocomplete="tel" required placeholder="(555) 123-4567">
+        <input type="tel" name="SMS" autocomplete="tel" required placeholder="(555) 123-4567">
       </label>
+
+      <input type="hidden" name="SMS__COUNTRY_CODE" value="+1">
+      <input type="hidden" name="locale" value="en">
+      <input type="text" name="email_address_check" value="" class="tm-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
 
       <button type="submit" class="tm-popup__submit">{{ section.settings.button_label | default: "Send me the code" }}</button>
       <p class="tm-popup__fineprint">{{ section.settings.fineprint | default: "By submitting, you agree to receive email and SMS marketing from TMolecule. Message & data rates may apply. Unsubscribe any time." }}</p>
       <button type="button" class="tm-popup__no-thanks" data-tm-popup-close>No thanks</button>
-    {%- endform -%}
+      <p class="tm-popup__errors" data-tm-popup-error hidden></p>
+    </form>
+    <iframe name="tm-popup-brevo-target" id="tm-popup-brevo-target" title="Popup signup target" tabindex="-1" aria-hidden="true" class="tm-honeypot"></iframe>
+    <script>
+      (function(){
+        var f = document.getElementById('tm-popup-form');
+        var iframe = document.getElementById('tm-popup-brevo-target');
+        if (!f || !iframe) return;
+        var btn = f.querySelector('button[type="submit"]');
+        var origText = btn ? btn.textContent : '';
+
+        var onResponse = function(){
+          iframe.removeEventListener('load', onResponse);
+          try { sessionStorage.setItem('tm_signup_success', String(Date.now())); } catch(e){}
+          window.location.reload();
+        };
+
+        f.addEventListener('submit', function(e){
+          // Honeypot — bot detected, silently no-op
+          var hp = f.elements['email_address_check'];
+          if (hp && hp.value) { e.preventDefault(); return; }
+
+          // Brevo SMS validation: digits-only, country code embedded in number.
+          // Strip non-digits and prepend "1" if user didn't (US default).
+          var smsField = f.elements['SMS'];
+          if (smsField) {
+            var digits = (smsField.value || '').replace(/\D/g, '');
+            if (digits.length === 10) digits = '1' + digits;
+            smsField.value = digits;
+          }
+
+          if (btn) { btn.disabled = true; btn.textContent = 'Joining…'; }
+          iframe.addEventListener('load', onResponse);
+          // Fallback if iframe load doesn't fire within 6s
+          setTimeout(function(){
+            iframe.removeEventListener('load', onResponse);
+            try { sessionStorage.setItem('tm_signup_success', String(Date.now())); } catch(e){}
+            window.location.reload();
+          }, 6000);
+        });
+      })();
+    </script>
   </div>
 </div>
 
