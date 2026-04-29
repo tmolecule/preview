@@ -141,10 +141,16 @@
             }, 6000);
           });
 
-          // Robust hash-anchor scroll for #tm-brevo-form (mobile-friendly).
-          // Browser-native hash scroll lands wrong on mobile when the page is tall and
-          // assets load progressively. Re-scroll after load, center the form, focus email.
-          if (window.location.hash === '#tm-brevo-form') {
+          // Robust scroll-to-signup for direct links (mobile-friendly).
+          // Triggers on either URL hash #tm-brevo-form OR query param ?scrollto=tm-brevo-form.
+          // Query-param form is preferred for email links because email trackers
+          // (e.g., Brevo's sendibt3.com redirect) strip URL fragments.
+          var shouldScrollToForm = window.location.hash === '#tm-brevo-form';
+          try {
+            var sp = new URL(window.location.href).searchParams;
+            if (sp.get('scrollto') === 'tm-brevo-form') shouldScrollToForm = true;
+          } catch(e) {}
+          if (shouldScrollToForm) {
             window.addEventListener('load', function(){
               setTimeout(function(){
                 f.scrollIntoView({ behavior: 'smooth', block: 'center' });
