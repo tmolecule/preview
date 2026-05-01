@@ -1,0 +1,22 @@
+name = "tmolecule-lead-magnets"
+compatibility_date = "2026-04-01"
+pages_build_output_dir = "public"
+# account_id intentionally omitted — Pages config does not support it.
+# Wrangler uses the OAuth-authed account from `wrangler whoami`.
+
+[vars]
+SITE_NAME = "TMolecule"
+SHOP_ORIGIN = "https://tmolecule.com"
+LOGO_URL = "https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257"
+BREVO_LIST_ID_COLLAGEN_CALC = "10"
+BREVO_DOI_TEMPLATE_ID = "14"
+BREVO_REDIRECT_URL = "https://wellness.tmolecule.com/confirmed/collagen-protocol/"
+
+# Secrets (set via wrangler pages secret put):
+#   BREVO_API_KEY
+#   R2_SIGNING_KEY (optional, if using signed URLs)
+
+[[r2_buckets]]
+binding = "LEAD_MAGNETS"
+bucket_name = "tmolecule-lead-magnets"
+preview_bucket_name = "tmolecule-lead-magnets-preview"

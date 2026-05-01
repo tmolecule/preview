@@ -1,0 +1,138 @@
+{
+  "schema_version": "1.0",
+  "goals": [
+    {
+      "slug": "glowing-skin",
+      "title": "The Glowing Skin Tea Stack",
+      "h1": "Glowing skin from the inside — the tea ritual",
+      "lede": "Ancient Ayurveda paired collagen-supporting spices with warm tea long before peptides had a name. Modern science measured what worked.",
+      "primary_ingredient": "collagen_peptides",
+      "supporting_ingredients": ["turmeric", "ginger", "rose_hip"],
+      "morning_blend": {
+        "base": "black",
+        "spices": ["cinnamon", "cardamom"],
+        "add_in": "10g collagen peptides + 1/4 lemon (vitamin C)",
+        "brew_temp_c": 80,
+        "steep_minutes": 4
+      },
+      "evening_blend": {
+        "base": "rooibos",
+        "spices": ["rose_hip", "hibiscus"],
+        "add_in": "5g collagen peptides",
+        "brew_temp_c": 95,
+        "steep_minutes": 6
+      },
+      "avoid": ["coffee right before or after collagen (tannins)", "stirring collagen into very hot brews (poor mixing)"],
+      "funnel_product": "spice-rush-collagen-black-tea",
+      "faq": [
+        { "q": "Why pair collagen with tea?", "a": "Tea provides hydration plus polyphenols that support collagen synthesis. Time it right and you avoid tannin interference." },
+        { "q": "Can the tea denature collagen peptides?", "a": "Hydrolyzed peptides are stable at brewing temperatures. The bigger issue is tannins binding protein - space your collagen and your strongest cup of tea by 30 minutes if you can." },
+        { "q": "How long until I see results?", "a": "Skin endpoints in clinical studies typically appear at 8-12 weeks of daily 10g+ collagen intake." }
+      ]
+    },
+    {
+      "slug": "better-sleep",
+      "title": "The Better Sleep Tea Stack",
+      "h1": "Sleep ritual: warming spices that quiet the nervous system",
+      "lede": "Ancient Ayurveda used warming spices to settle agni at dusk. Modern science calls them adaptogens.",
+      "primary_ingredient": "ashwagandha",
+      "supporting_ingredients": ["tulsi", "chamomile_not_tea"],
+      "morning_blend": null,
+      "evening_blend": {
+        "base": "herbal",
+        "spices": ["ashwagandha", "tulsi", "cardamom"],
+        "add_in": "1 tsp warm milk or oat milk",
+        "brew_temp_c": 95,
+        "steep_minutes": 8
+      },
+      "avoid": ["caffeinated tea after 2pm", "ginger after 6pm (warming)"],
+      "funnel_product": "immunitea-defense-tea",
+      "faq": [
+        { "q": "Why ashwagandha at night?", "a": "Ashwagandha is a calming adaptogen shown to reduce cortisol when taken consistently for 60+ days." },
+        { "q": "Is this caffeine free?", "a": "Yes - the evening blend uses an herbal base with zero caffeine." },
+        { "q": "Can I drink this with sleep medication?", "a": "Check with your doctor. Adaptogens can interact with sedatives." }
+      ]
+    },
+    {
+      "slug": "sustained-energy",
+      "title": "The Sustained Energy Tea Stack",
+      "h1": "Energy without the crash - real caffeine, real ritual",
+      "lede": "Real caffeine from real tea leaves - sustained, not jittery. The ancient form had this right.",
+      "primary_ingredient": "black_tea",
+      "supporting_ingredients": ["cinnamon", "ginger", "cardamom"],
+      "morning_blend": {
+        "base": "black",
+        "spices": ["cinnamon", "cardamom", "ginger"],
+        "add_in": "1 tsp ghee or coconut oil for sustained release",
+        "brew_temp_c": 95,
+        "steep_minutes": 5
+      },
+      "evening_blend": null,
+      "avoid": ["second cup after 2pm", "L-theanine pairing if seeking alertness"],
+      "funnel_product": "spice-rush-collagen-black-tea",
+      "faq": [
+        { "q": "How is this different from coffee energy?", "a": "Tea L-theanine smooths caffeine release - alert without the spike-and-crash." },
+        { "q": "Why add fat?", "a": "Lipids slow caffeine absorption, extending the alert window from 2 hours to 4-5." },
+        { "q": "Can I add collagen?", "a": "Yes - 10g collagen peptides pair well with this blend if added after the brew cools to 80 deg C." }
+      ]
+    },
+    {
+      "slug": "daily-immunity",
+      "title": "The Daily Immunity Tea Stack",
+      "h1": "Daily immunity - the adaptogen ritual",
+      "lede": "Tradition meets evidence: ginger, turmeric, and tulsi. Three molecules. One ritual.",
+      "primary_ingredient": "tulsi",
+      "supporting_ingredients": ["turmeric", "ginger", "elderberry"],
+      "morning_blend": {
+        "base": "green",
+        "spices": ["ginger", "turmeric", "black_pepper"],
+        "add_in": "1 tsp raw honey (added off heat)",
+        "brew_temp_c": 80,
+        "steep_minutes": 3
+      },
+      "evening_blend": {
+        "base": "herbal",
+        "spices": ["tulsi", "elderberry", "cinnamon"],
+        "add_in": "1 squeeze lemon",
+        "brew_temp_c": 95,
+        "steep_minutes": 6
+      },
+      "avoid": ["sugar dumps", "boiling honey (destroys enzymes)"],
+      "funnel_product": "immunitea-defense-tea",
+      "faq": [
+        { "q": "How does turmeric activate?", "a": "Curcumin needs piperine (black pepper) to multiply bioavailability ~20x. Always pair them." },
+        { "q": "Daily or only when sick?", "a": "Daily - adaptogens work on consistency, not crisis dosing." },
+        { "q": "Can children drink this?", "a": "Reduce dose by half for ages 8+. Skip for under 8." }
+      ]
+    },
+    {
+      "slug": "stress-relief",
+      "title": "The Stress Relief Tea Stack",
+      "h1": "Stress ritual - adaptogens, breath, warmth",
+      "lede": "Ayurveda discovered the molecule. Science measured the cortisol drop. We put the ritual back.",
+      "primary_ingredient": "ashwagandha",
+      "supporting_ingredients": ["tulsi", "rhodiola", "lemon_balm"],
+      "morning_blend": {
+        "base": "green",
+        "spices": ["tulsi", "rhodiola"],
+        "add_in": "1 tsp honey",
+        "brew_temp_c": 80,
+        "steep_minutes": 3
+      },
+      "evening_blend": {
+        "base": "herbal",
+        "spices": ["ashwagandha", "lemon_balm", "cardamom"],
+        "add_in": "warm oat milk",
+        "brew_temp_c": 95,
+        "steep_minutes": 8
+      },
+      "avoid": ["caffeine spikes during stress", "alcohol pairing"],
+      "funnel_product": "immunitea-defense-tea",
+      "faq": [
+        { "q": "How long until adaptogens work?", "a": "Cortisol shifts take 4-8 weeks of daily intake to measure clinically." },
+        { "q": "Stack with meditation?", "a": "Yes - the warm cup is itself a transition cue. Pair with 4-7-8 breathing." },
+        { "q": "Safe with antidepressants?", "a": "Tulsi and rhodiola can interact with SSRIs. Ask your doctor first." }
+      ]
+    }
+  ]
+}

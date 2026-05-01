@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Collagen Bioavailability Calculator - TMolecule</title>
+<meta name="description" content="See how well your body absorbs collagen with your current routine. Get a personalized tea pairing protocol - free.">
+<link rel="canonical" href="https://wellness.tmolecule.com/collagen-calculator/">
+<meta property="og:title" content="Collagen Bioavailability Calculator">
+<meta property="og:description" content="Personalized tea + spice pairing for maximum collagen absorption.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+<style>
+  :root {
+    --color-background: 250, 247, 240;
+    --color-foreground: 43, 42, 40;
+    --color-button: 122, 90, 43;
+    --color-button-text: 250, 247, 240;
+    --color-contrast: 218, 196, 144;
+    --color-rule: 232, 222, 200;
+    --color-mute: 122, 112, 96;
+    --color-card: 255, 252, 246;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);background:rgb(var(--color-background));color:rgb(var(--color-foreground));line-height:1.6}
+  .wrap{max-width:680px;margin:0 auto;padding:48px 24px}
+  h1{font-family:var(--serif);font-size:2.4rem;line-height:1.15;margin:0 0 .5rem;font-weight:600}
+  .lede{font-family:var(--serif);font-style:italic;color:rgb(var(--color-mute));font-size:1.15rem;margin:0 0 2.5rem}
+  .card{background:rgb(var(--color-card));border:1px solid rgb(var(--color-rule));border-radius:8px;padding:28px;margin-bottom:20px}
+  label{display:block;font-weight:500;font-size:.95rem;margin-bottom:.45rem;margin-top:1.15rem}
+  label:first-child{margin-top:0}
+  select,input[type=number],input[type=email]{
+    width:100%;padding:.7rem .85rem;border:1px solid rgb(var(--color-rule));border-radius:4px;
+    font-family:var(--sans);font-size:1rem;background:white
+  }
+  .checkbox-row{display:flex;align-items:center;gap:10px;margin-top:1.15rem}
+  .checkbox-row input{width:auto}
+  .checkbox-row label{margin:0}
+  .btn{
+    display:inline-block;background:rgb(var(--color-button));color:rgb(var(--color-button-text));
+    padding:.85rem 1.5rem;border-radius:4px;border:0;font-weight:600;font-size:.95rem;
+    text-transform:uppercase;letter-spacing:.04em;cursor:pointer;font-family:var(--sans);
+    margin-top:1.5rem;width:100%
+  }
+  .btn:hover{background:rgba(var(--color-button),.9)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .result{display:none}
+  .result.visible{display:block}
+  .score-row{display:flex;align-items:baseline;gap:14px;margin-bottom:1rem}
+  .score-num{font-family:var(--serif);font-size:3.5rem;font-weight:600;color:rgb(var(--color-button));line-height:1}
+  .score-grade{font-family:var(--serif);font-size:1.4rem;color:rgb(var(--color-mute))}
+  .pairing{font-family:var(--serif);font-size:1.1rem;font-style:italic;color:rgb(var(--color-foreground));margin:1rem 0;padding:1rem;background:rgba(var(--color-contrast),.18);border-left:3px solid rgb(var(--color-button))}
+  .tips{margin:1.5rem 0;padding-left:1.25rem}
+  .tips li{margin-bottom:.55rem}
+  .gate-msg{font-size:.95rem;color:rgb(var(--color-mute));margin-bottom:.75rem}
+  .err{color:#a23;font-size:.9rem;margin-top:.5rem;min-height:1.2em}
+  .small{font-size:.85rem;color:rgb(var(--color-mute));margin-top:1rem}
+  .funnel{display:block;text-align:center;margin-top:1.5rem;text-decoration:none;color:rgb(var(--color-button));font-weight:600;text-transform:uppercase;letter-spacing:.04em;font-size:.9rem}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <h1>Collagen Bioavailability Calculator</h1>
+  <p class="lede">Ancient Ayurveda discovered the molecule. Modern science measures the routine. See how yours scores - free.</p>
+  <p style="font-size:.82rem;color:rgb(122,112,96);margin-top:-1.5rem;margin-bottom:2rem">Educational tool, not medical advice. Talk to your doctor before changing supplements - especially if pregnant, nursing, or taking medication.</p>
+
+  <form id="calc-form" class="card">
+    <label for="collagen_type">Collagen type</label>
+    <select id="collagen_type" name="collagen_type" required>
+      <option value="peptides">Hydrolyzed peptides</option>
+      <option value="gelatin">Gelatin</option>
+      <option value="undenatured_type_ii">Undenatured type II</option>
+    </select>
+
+    <label for="daily_dose_g">Daily dose (grams)</label>
+    <input type="number" id="daily_dose_g" name="daily_dose_g" min="1" max="50" value="10" required>
+
+    <label for="time_of_day">When you take it</label>
+    <select id="time_of_day" name="time_of_day" required>
+      <option value="morning">Morning</option>
+      <option value="afternoon">Afternoon</option>
+      <option value="evening">Evening</option>
+    </select>
+
+    <label for="current_beverage">What you mix it with</label>
+    <select id="current_beverage" name="current_beverage" required>
+      <option value="coffee">Coffee</option>
+      <option value="tea_black">Black tea</option>
+      <option value="tea_green">Green tea</option>
+      <option value="water">Water</option>
+      <option value="juice">Juice</option>
+      <option value="none">Nothing - dry/capsule</option>
+    </select>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="vitamin_c_source" name="vitamin_c_source">
+      <label for="vitamin_c_source">I take it with a vitamin C source (citrus, hibiscus, supplement)</label>
+    </div>
+
+    <button type="submit" class="btn" id="calc-btn">See my score</button>
+    <p class="err" id="calc-err"></p>
+  </form>
+
+  <section class="card result" id="result">
+    <div class="score-row">
+      <span class="score-num" id="score-num">--</span>
+      <span class="score-grade" id="score-grade">Grade --</span>
+    </div>
+    <p class="pairing" id="pairing">--</p>
+    <h3 style="font-family:var(--serif);font-weight:600;margin-bottom:.5rem">How to improve</h3>
+    <ul class="tips" id="tips"></ul>
+    <a class="funnel" id="funnel" href="#">Try Spice Rush - Collagen Black Tea Blend ></a>
+  </section>
+
+  <section class="card result" id="gate">
+    <h3 style="font-family:var(--serif);font-weight:600;margin:0 0 .5rem">Get the 7-day printable protocol</h3>
+    <p class="gate-msg">Personalized to your score. We'll email a one-time confirmation link, then deliver the PDF.</p>
+    <form id="gate-form">
+      <label for="email" style="margin-top:0">Email</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+      <button type="submit" class="btn" id="gate-btn">Send me the protocol</button>
+      <p class="err" id="gate-err"></p>
+      <p class="small">No spam. Unsubscribe anytime. Confirmation required (double opt-in).</p>
+    </form>
+  </section>
+
+  <section class="card result" id="gate-done" style="display:none">
+    <h3 style="font-family:var(--serif);font-weight:600;margin:0 0 .5rem">Check your inbox</h3>
+    <p>Click the confirmation link to unlock your protocol.</p>
+  </section>
+</main>
+
+<script>
+(function () {
+  var calcForm = document.getElementById('calc-form');
+  var calcBtn = document.getElementById('calc-btn');
+  var calcErr = document.getElementById('calc-err');
+  var result = document.getElementById('result');
+  var gate = document.getElementById('gate');
+  var gateDone = document.getElementById('gate-done');
+  var snapshot = null;
+
+  calcForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    calcErr.textContent = '';
+    calcBtn.disabled = true;
+
+    var payload = {
+      collagen_type: calcForm.collagen_type.value,
+      daily_dose_g: Number(calcForm.daily_dose_g.value),
+      time_of_day: calcForm.time_of_day.value,
+      current_beverage: calcForm.current_beverage.value,
+      vitamin_c_source: calcForm.vitamin_c_source.checked
+    };
+
+    fetch('/api/calculate', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        calcBtn.disabled = false;
+        if (!json.success) { calcErr.textContent = json.error || 'Something went wrong'; return; }
+        snapshot = json.data;
+        document.getElementById('score-num').textContent = json.data.score;
+        document.getElementById('score-grade').textContent = 'Grade ' + json.data.grade;
+        document.getElementById('pairing').textContent = json.data.pairing_summary;
+        var tipsUl = document.getElementById('tips');
+        tipsUl.innerHTML = '';
+        (json.data.tips || []).forEach(function (t) {
+          var li = document.createElement('li');
+          li.textContent = t;
+          tipsUl.appendChild(li);
+        });
+        document.getElementById('funnel').href = json.data.funnel_product_url;
+        result.classList.add('visible');
+        gate.classList.add('visible');
+        result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+      .catch(function () {
+        calcBtn.disabled = false;
+        calcErr.textContent = 'Network error - try again';
+      });
+  });
+
+  document.getElementById('gate-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('gate-btn');
+    var err = document.getElementById('gate-err');
+    err.textContent = '';
+    btn.disabled = true;
+
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        email: document.getElementById('email').value,
+        result_snapshot: snapshot,
+        source: 'collagen-calculator'
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        btn.disabled = false;
+        if (!json.success) { err.textContent = json.error || 'Could not subscribe'; return; }
+        gate.style.display = 'none';
+        gateDone.style.display = 'block';
+        gateDone.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      })
+      .catch(function () {
+        btn.disabled = false;
+        err.textContent = 'Network error - try again';
+      });
+  });
+})();
+</script>
+</body>
+</html>

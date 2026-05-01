@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your 7-Day Collagen Protocol — TMolecule</title>
+<meta name="description" content="A 7-day collagen + tea ritual protocol from TMolecule.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+<style>
+  :root {
+    /* Official TMolecule theme schemes */
+    --s1-bg: #faf7f0;       /* scheme-1 cream — page background */
+    --s2-bg: #f6ead0;       /* scheme-2 warm parchment — cards */
+    --s3-bg: #2a1f10;       /* scheme-3 espresso dark — CTA, footer accents */
+    --s4-bg: #d4b97a;       /* scheme-4 gold — decorative accent */
+    --s5-bg: #bfa870;       /* scheme-5 muted gold */
+    --text: #2b2a28;        /* primary text */
+    --button: #7a5a2b;      /* primary brown button */
+    --button-deep: #4a3718; /* dark brown for emphasis */
+    --button-label: #faf7f0;
+    --gold: #d4b97a;        /* gold accent line */
+    --rule: #e8dec8;        /* hairline borders (derived from parchment) */
+    --mute: #7a7060;        /* muted text (derived from brown) */
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:#ddd}
+  body{font-family:var(--sans);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+
+  /* Page sizing for print — textures applied directly to page background (no blend modes, print-safe) */
+  .page{
+    width:8.5in; min-height:11in; padding:0.75in 0.85in;
+    margin:0.4in auto;
+    box-shadow:0 2px 12px rgba(0,0,0,.08);
+    page-break-after:always; position:relative;
+    display:flex; flex-direction:column;
+    background-color: var(--s1-bg);
+    background-image:
+      /* corner warm glow (top-left) */
+      radial-gradient(circle at 0% 0%, rgba(255,247,224,.55) 0%, transparent 30%),
+      /* corner darken (bottom-right) */
+      radial-gradient(circle at 100% 100%, rgba(74,55,24,.14) 0%, transparent 32%),
+      /* age-spot radials */
+      radial-gradient(circle at 18% 22%, rgba(122,90,43,.10) 0%, transparent 26%),
+      radial-gradient(circle at 82% 78%, rgba(74,55,24,.12) 0%, transparent 30%),
+      radial-gradient(circle at 78% 20%, rgba(212,185,122,.20) 0%, transparent 34%),
+      radial-gradient(circle at 22% 82%, rgba(212,185,122,.16) 0%, transparent 32%),
+      /* central highlight */
+      radial-gradient(ellipse 65% 50% at 50% 40%, rgba(255,250,232,.40) 0%, transparent 70%),
+      /* edge vignette */
+      radial-gradient(ellipse at center, transparent 55%, rgba(74,55,24,.14) 100%),
+      /* diagonal warm wash */
+      linear-gradient(135deg, rgba(246,234,208,.45) 0%, rgba(250,247,240,0) 45%, rgba(212,185,122,.18) 100%),
+      /* coarse stains (paper mottling) */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='800'><filter id='b'><feTurbulence type='fractalNoise' baseFrequency='0.012' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55 0 0 0 0 0.42 0 0 0 0 0.22 0 0 0 0.04 0'/></filter><rect width='100%' height='100%' filter='url(%23b)'/></svg>"),
+      /* fine grain (paper fiber) */
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='320' height='320'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.42 0 0 0 0 0.32 0 0 0 0 0.18 0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: cover, cover, cover, cover, cover, cover, cover, cover, cover, 800px 800px, 320px 320px;
+    background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat;
+  }
+  .page:last-child{page-break-after:auto}
+
+  /* Header on every page (except cover) */
+  .ph{display:flex; justify-content:space-between; align-items:center;
+    border-bottom:1px solid var(--rule); padding-bottom:10px; margin-bottom:24px;
+    font-size:11px; color:var(--mute); letter-spacing:.06em; text-transform:uppercase}
+  .ph .logo{position:relative; display:inline-block; line-height:0}
+  .ph .logo img{height:22px; width:auto; display:block}
+  .ph .logo sup{position:absolute; top:-2px; right:-9px; font-family:var(--sans); font-size:8px; font-weight:700; color:var(--button); letter-spacing:0}
+
+  /* Footer on every page */
+  .pf{margin-top:auto; padding-top:14px; border-top:1px solid var(--rule);
+    font-size:10px; color:var(--mute); display:flex; justify-content:space-between}
+  .pf em{font-style:italic; color:var(--button)}
+
+  /* Cover — 3-zone layout: top heritage, dead-center logo, bottom title block */
+  .cover{justify-content:space-between; text-align:center; padding-top:0.85in; padding-bottom:0.85in}
+  .cover-top{flex:0 0 auto}
+  .cover-mid{flex:1 1 auto; display:flex; align-items:center; justify-content:center}
+  .cover-bot{flex:0 0 auto}
+  .cover .brand{position:relative; display:inline-block; margin:0; line-height:0}
+  .cover .brand img{height:88px; width:auto; display:block}
+  .cover .brand sup{position:absolute; top:-5px; right:-8px; font-family:var(--sans); font-size:18px; font-weight:700; color:var(--button); line-height:1}
+  .cover .heritage{font-family:var(--serif); font-style:italic; color:var(--mute); font-size:15px; margin:0; letter-spacing:.06em}
+  .cover h1{font-family:var(--serif); font-size:48px; font-weight:600; line-height:1.1; margin:0 0 14px; color:var(--text); letter-spacing:-.015em}
+  .cover .sub{font-family:var(--serif); font-style:italic; font-size:18px; color:var(--mute); margin:0 0 22px}
+  .cover .ornament{font-family:var(--serif); font-size:18px; color:var(--gold); letter-spacing:.4em; margin:18px 0 24px}
+  .cover .gold-rule{height:2px; width:80px; background:var(--gold); margin:0 auto 22px}
+  .cover .tagline{font-family:var(--serif); font-style:italic; font-size:14px; color:var(--mute); margin:14px 0 6px}
+  .cover .url{font-family:var(--sans); font-size:12px; letter-spacing:.18em; color:var(--button-deep); text-transform:uppercase}
+
+  /* Headings */
+  h2{font-family:var(--serif); font-size:28px; font-weight:600; margin:0 0 8px; line-height:1.15; letter-spacing:-.005em}
+  h3{font-family:var(--serif); font-size:18px; font-weight:600; margin:24px 0 8px}
+  .lede{font-family:var(--serif); font-style:italic; font-size:16px; color:var(--mute); margin:0 0 28px; line-height:1.5}
+
+  p{margin:0 0 14px; font-size:14px}
+  ul,ol{padding-left:20px; margin:0 0 14px}
+  li{margin-bottom:6px; font-size:14px}
+  strong{font-weight:600; color:var(--text)}
+
+  /* Recipe cards — warm parchment scheme-2 */
+  .recipe{background:var(--s2-bg); border:1px solid var(--rule); border-radius:8px; padding:22px 24px; margin-bottom:18px}
+  .recipe h3{margin-top:0; color:var(--button-deep)}
+  .recipe-grid{display:grid; grid-template-columns:120px 1fr; gap:8px 18px; font-size:13px; margin:14px 0}
+  .recipe-grid dt{font-weight:600; color:var(--mute); text-transform:uppercase; font-size:11px; letter-spacing:.05em; padding-top:2px}
+  .recipe-grid dd{margin:0; color:var(--text)}
+
+  /* The 4 levers — warm parchment with gold numerals */
+  .levers{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0}
+  .lever{background:var(--s2-bg); border:1px solid var(--rule); border-radius:6px; padding:16px}
+  .lever-num{font-family:var(--serif); font-size:32px; font-weight:600; color:var(--gold); line-height:1; margin-bottom:4px}
+  .lever-name{font-family:var(--serif); font-size:15px; font-weight:600; margin-bottom:4px; color:var(--button-deep)}
+  .lever-desc{font-size:12px; color:var(--mute); line-height:1.5}
+
+  /* 7-day table */
+  table{width:100%; border-collapse:collapse; margin:14px 0; font-size:12px}
+  th,td{padding:10px 8px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top}
+  th{background:var(--s2-bg); font-family:var(--serif); font-weight:600; color:var(--button-deep); font-size:11px; text-transform:uppercase; letter-spacing:.05em}
+  td.day{font-family:var(--serif); font-weight:600; width:60px; color:var(--button)}
+  td.notes{color:var(--mute); font-style:italic; font-size:11px}
+
+  /* Add / avoid two-col */
+  .twocol{display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:18px 0}
+  .twocol h3{margin-top:0}
+  .add li{color:var(--text)}
+  .avoid li{color:var(--mute)}
+
+  /* Tracker grid — tightened for last-page fit */
+  .tracker{margin:10px 0}
+  .tracker-row{display:grid; grid-template-columns:80px repeat(7, 1fr); gap:5px; margin-bottom:4px; align-items:center}
+  .tracker-label{font-family:var(--serif); font-size:11px; font-weight:600; color:var(--button-deep); text-transform:uppercase; letter-spacing:.05em}
+  .tracker-cell{height:22px; border:1px solid var(--rule); border-radius:3px; background:var(--s2-bg)}
+  .tracker-head{display:grid; grid-template-columns:80px repeat(7, 1fr); gap:5px; margin-bottom:6px; font-size:10px; color:var(--mute); text-transform:uppercase; letter-spacing:.05em}
+  .tracker-head span{text-align:center; padding:2px 0}
+
+  /* Timeline — tightened */
+  .timeline{margin:12px 0}
+  .timeline-item{display:grid; grid-template-columns:80px 1fr; gap:14px; padding:9px 0; border-bottom:1px solid var(--rule)}
+  .timeline-item:last-child{border-bottom:0}
+  .timeline-week{font-family:var(--serif); font-weight:600; color:var(--button); font-size:13px}
+  .timeline-text{font-size:12.5px; color:var(--text); line-height:1.5}
+
+  /* CTA — full scheme-3 dark espresso, kept together at all costs */
+  .cta{background:var(--s3-bg); color:#f5ecd8; padding:18px 24px; border-radius:8px; text-align:center; margin:16px 0 0; break-inside:avoid; page-break-inside:avoid}
+  .cta h3{color:#f5ecd8; margin:0 0 6px; font-size:18px}
+  .cta p{color:#f5ecd8; opacity:.85; margin:0 0 12px; font-size:12.5px}
+  .cta a{display:inline-block; background:var(--gold); color:var(--s3-bg); padding:9px 20px; border-radius:4px; text-decoration:none; font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.04em}
+
+  .pull{font-family:var(--serif); font-style:italic; font-size:17px; color:var(--button-deep); padding:14px 0 14px 18px; border-left:3px solid var(--gold); margin:18px 0}
+
+  /* Socials row */
+  .socials{display:flex; justify-content:center; align-items:center; gap:14px; margin:14px 0 0; padding:12px 0; border-top:1px solid var(--rule); border-bottom:1px solid var(--rule); break-inside:avoid; page-break-inside:avoid}
+  .socials-label{font-family:var(--serif); font-size:12px; font-weight:600; color:var(--button-deep); text-transform:uppercase; letter-spacing:.1em; margin-right:8px}
+  .socials a.icon{display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:var(--s2-bg); color:var(--button-deep); text-decoration:none}
+  .socials a.icon svg{display:block}
+  .socials .handle{font-family:var(--serif); font-size:12px; color:var(--mute); margin-left:14px; font-style:italic}
+
+  /* SMS + URL stack below socials */
+  .connect-meta{text-align:center; margin:10px 0 0; font-family:var(--serif); font-size:12.5px; color:var(--button-deep); break-inside:avoid; page-break-inside:avoid}
+  .connect-meta .sms{display:block; margin-bottom:4px}
+  .connect-meta .sms strong{color:var(--button); font-weight:600; letter-spacing:.04em}
+  .connect-meta .url{display:block; font-family:var(--sans); font-size:10.5px; letter-spacing:.18em; color:var(--mute); text-transform:uppercase}
+
+  /* Print rules */
+  @media print {
+    @page { size: letter; margin:0 }
+    html,body{background:#fff}
+    .page{box-shadow:none; margin:0; width:auto; min-height:auto; height:11in; padding:0.75in 0.85in}
+  }
+</style>
+</head>
+<body>
+
+<!-- Cover -->
+<section class="page cover">
+  <div class="cover-top">
+    <div class="heritage">HERITAGE SINCE 1935</div>
+  </div>
+
+  <div class="cover-mid">
+    <a class="brand" href="https://tmolecule.com" aria-label="TMolecule">
+      <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=800" alt="TMolecule">
+      <sup>&reg;</sup>
+    </a>
+  </div>
+
+  <div class="cover-bot">
+    <h1>Your 7-Day<br>Collagen Protocol</h1>
+    <div class="sub">Ancient Ayurveda &middot; Modern Science</div>
+    <div class="gold-rule"></div>
+    <div class="ornament">&middot; &middot; &middot;</div>
+    <div class="tagline">Food with benefits. Real health benefits.</div>
+    <div class="url">tmolecule.com</div>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="page">
+  <header class="ph"><span class="logo"><img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=300" alt="TMolecule"><sup>&reg;</sup></span><span>The Protocol &middot; 1 of 6</span></header>
+
+  <h2>Why this protocol works</h2>
+  <p class="lede">Ayurveda discovered the molecule. Science measured it. We put it back into the daily ritual.</p>
+
+  <p>Most people who take collagen treat it like a vitamin — one scoop, one moment, one chance per day. The research suggests something different: <strong>the supporting routine matters more than the dose alone</strong>.</p>
+
+  <p>Four levers move the needle. This protocol orchestrates all four.</p>
+
+  <div class="levers">
+    <div class="lever">
+      <div class="lever-num">1</div>
+      <div class="lever-name">Cofactor</div>
+      <div class="lever-desc">Vitamin C is required for the body to assemble collagen. A citrus or hibiscus pairing is non-negotiable.</div>
+    </div>
+    <div class="lever">
+      <div class="lever-num">2</div>
+      <div class="lever-name">Timing</div>
+      <div class="lever-desc">Split the dose between morning (empty stomach) and evening (sleep window). Avoid coffee in the same window.</div>
+    </div>
+    <div class="lever">
+      <div class="lever-num">3</div>
+      <div class="lever-name">Pairing</div>
+      <div class="lever-desc">Tea polyphenols and warming spices support circulation and absorption. The ritual is the routine.</div>
+    </div>
+    <div class="lever">
+      <div class="lever-num">4</div>
+      <div class="lever-name">Consistency</div>
+      <div class="lever-desc">Skin endpoints in the studies appear at 8–12 weeks of daily use. 10g every day beats 20g three times a week.</div>
+    </div>
+  </div>
+
+  <div class="pull">Three thousand years of ritual. Ninety-one years of family tea. One protocol that brings them together.</div>
+
+  <footer class="pf"><span>TMolecule &middot; Your 7-Day Collagen Protocol</span><span><em>Be Well. Naturally.</em></span></footer>
+</section>
+
+<!-- Morning recipe -->
+<section class="page">
+  <header class="ph"><span class="logo"><img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=300" alt="TMolecule"><sup>&reg;</sup></span><span>The Protocol &middot; 2 of 6</span></header>
+
+  <h2>The Morning Ritual</h2>
+  <p class="lede">Real caffeine, real spice, real cofactor — sustained, not jittery.</p>
+
+  <div class="recipe">
+    <h3>Spiced Chai &middot; Collagen Blend</h3>
+    <dl class="recipe-grid">
+      <dt>Tea base</dt><dd>Black tea (Assam or Darjeeling), 1 heaping tsp milled leaf or 1 tea bag</dd>
+      <dt>Spices</dt><dd>Cardamom (2–3 pods crushed), cinnamon (1/4 tsp), ginger (1 thin slice fresh)</dd>
+      <dt>Water</dt><dd>8–10 oz, just off the boil</dd>
+      <dt>Steep</dt><dd>4–5 minutes, covered</dd>
+      <dt>Add</dt><dd><strong>10g collagen peptides</strong> + 1/4 lemon (or 1 tsp camu camu / acerola powder)</dd>
+      <dt>Optional</dt><dd>1 tsp ghee or coconut oil for sustained energy curve</dd>
+    </dl>
+  </div>
+
+  <h3>Why this combination</h3>
+  <ul>
+    <li><strong>Black tea</strong> brings the L-theanine that smooths caffeine release — alert without the spike.</li>
+    <li><strong>Cardamom and cinnamon</strong> support digestive fire (agni) and have shown blood-sugar steadying effects.</li>
+    <li><strong>Lemon</strong> is the vitamin C cofactor that lets the collagen do its work.</li>
+    <li><strong>Ginger</strong> warms circulation — Ayurveda recommends it before noon, not after.</li>
+  </ul>
+
+  <p style="font-size:12px; color:var(--mute); font-style:italic">Tip: stir the collagen in last, after the brew has rested 60–90 seconds. It mixes more cleanly and the taste blends in.</p>
+
+  <footer class="pf"><span>TMolecule &middot; Your 7-Day Collagen Protocol</span><span><em>Be Well. Naturally.</em></span></footer>
+</section>
+
+<!-- Evening recipe -->
+<section class="page">
+  <header class="ph"><span class="logo"><img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=300" alt="TMolecule"><sup>&reg;</sup></span><span>The Protocol &middot; 3 of 6</span></header>
+
+  <h2>The Evening Ritual</h2>
+  <p class="lede">A second dose, a quieter cup — designed for the sleep window.</p>
+
+  <div class="recipe">
+    <h3>Rooibos &middot; Rose Hip &middot; Collagen</h3>
+    <dl class="recipe-grid">
+      <dt>Tea base</dt><dd>Rooibos (caffeine-free), 1 heaping tsp</dd>
+      <dt>Botanicals</dt><dd>Rose hip (1 tsp dried) and a pinch of hibiscus for vitamin C</dd>
+      <dt>Water</dt><dd>8–10 oz, freshly boiled</dd>
+      <dt>Steep</dt><dd>5–7 minutes</dd>
+      <dt>Add</dt><dd><strong>5g collagen peptides</strong>, stirred in once the brew has cooled slightly</dd>
+      <dt>Optional</dt><dd>1 tsp raw honey (added off heat) for taste and a small glycine boost</dd>
+    </dl>
+  </div>
+
+  <h3>Why this combination</h3>
+  <ul>
+    <li><strong>Rooibos</strong> contains aspalathin, an antioxidant that does not interfere with sleep.</li>
+    <li><strong>Rose hip and hibiscus</strong> are two of the most concentrated plant sources of vitamin C — your evening cofactor.</li>
+    <li><strong>Honey + glycine pairing</strong> may support deeper, more restorative sleep stages (anecdotal but well-loved).</li>
+    <li><strong>The split dose</strong> keeps blood amino acid levels topped up overnight, when growth hormone naturally pulses.</li>
+  </ul>
+
+  <div class="pull">Tin by tin. Estate by estate. Cup by cup.</div>
+
+  <footer class="pf"><span>TMolecule &middot; Your 7-Day Collagen Protocol</span><span><em>Be Well. Naturally.</em></span></footer>
+</section>
+
+<!-- 7-day plan -->
+<section class="page">
+  <header class="ph"><span class="logo"><img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=300" alt="TMolecule"><sup>&reg;</sup></span><span>The Protocol &middot; 4 of 6</span></header>
+
+  <h2>The 7-Day Plan</h2>
+  <p class="lede">One week. Two cups a day. Same time, every day.</p>
+
+  <table>
+    <thead>
+      <tr><th>Day</th><th>Morning ritual</th><th>Evening ritual</th><th>Notes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="day">Mon</td><td>Spiced chai + 10g collagen + lemon</td><td>Rooibos + rose hip + 5g collagen</td><td class="notes">Drink water before each cup</td></tr>
+      <tr><td class="day">Tue</td><td>Spiced chai + 10g collagen + lemon</td><td>Rooibos + rose hip + 5g collagen</td><td class="notes">Note any energy shift</td></tr>
+      <tr><td class="day">Wed</td><td>Spiced chai + 10g collagen + lemon</td><td>Rooibos + rose hip + 5g collagen</td><td class="notes">Skip coffee within 30 min</td></tr>
+      <tr><td class="day">Thu</td><td>Add 1/2 tsp turmeric + pinch black pepper</td><td>Rooibos + rose hip + 5g collagen</td><td class="notes">Anti-inflammatory boost day</td></tr>
+      <tr><td class="day">Fri</td><td>Spiced chai + 10g collagen + lemon</td><td>Add 1 tsp ashwagandha to rooibos</td><td class="notes">Stress support, end-of-week</td></tr>
+      <tr><td class="day">Sat</td><td>Spiced chai + 1 tsp ghee + 10g collagen</td><td>Rooibos + rose hip + 5g collagen</td><td class="notes">Sustained energy variation</td></tr>
+      <tr><td class="day">Sun</td><td>Spiced chai + 10g collagen + lemon</td><td>Rooibos + honey + 5g collagen</td><td class="notes">Reflect: how does the skin feel?</td></tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:12px; color:var(--mute); margin-top:18px"><strong>The principle:</strong> the same backbone seven days running, with small variations to test what your body responds to. Keep the collagen dose constant (15g/day total) — that is the controlled variable.</p>
+
+  <footer class="pf"><span>TMolecule &middot; Your 7-Day Collagen Protocol</span><span><em>Be Well. Naturally.</em></span></footer>
+</section>
+
+<!-- Add / avoid -->
+<section class="page">
+  <header class="ph"><span class="logo"><img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=300" alt="TMolecule"><sup>&reg;</sup></span><span>The Protocol &middot; 5 of 6</span></header>
+
+  <h2>What to add. What to avoid.</h2>
+  <p class="lede">The small adjustments that move the score from a B to an A.</p>
+
+  <div class="twocol">
+    <div class="add">
+      <h3>Add</h3>
+      <ul>
+        <li><strong>A vitamin C source</strong> with every dose — citrus, hibiscus, rose hip, camu camu, or a 250mg supplement.</li>
+        <li><strong>A fat source</strong> when pairing with curcumin or fat-soluble actives — ghee, coconut oil, full-fat milk.</li>
+        <li><strong>Black pepper</strong> any time turmeric is on the table — piperine multiplies curcumin bioavailability.</li>
+        <li><strong>Sleep, sun, and protein.</strong> Collagen is a building block — it cannot work in isolation.</li>
+        <li><strong>One extra glass of water</strong> per cup of tea — hydration carries everything.</li>
+      </ul>
+    </div>
+    <div class="avoid">
+      <h3>Avoid</h3>
+      <ul>
+        <li><strong>Coffee within 30 minutes</strong> of your collagen dose — tannins bind protein.</li>
+        <li><strong>Stirring collagen into a freshly boiled brew</strong> — let it rest a minute. Better mix, better taste.</li>
+        <li><strong>Sugar bombs.</strong> Spiking insulin alongside collagen blunts the routine. Honey off-heat is fine.</li>
+        <li><strong>Ginger after 6 PM.</strong> Warming spices belong in the morning half.</li>
+        <li><strong>Skipping days.</strong> Two weeks of consistency beats four weeks of "when I remember."</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3 style="margin-top:30px">A word on patience</h3>
+  <p>The clinical studies that measured skin elasticity at 10g/day saw measurable change at <strong>8 to 12 weeks</strong>. Joint comfort endpoints take similar time. You are building, not patching.</p>
+
+  <footer class="pf"><span>TMolecule &middot; Your 7-Day Collagen Protocol</span><span><em>Be Well. Naturally.</em></span></footer>
+</section>
+
+<!-- Tracker + timeline + CTA -->
+<section class="page">
+  <header class="ph"><span class="logo"><img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=300" alt="TMolecule"><sup>&reg;</sup></span><span>The Protocol &middot; 6 of 6</span></header>
+
+  <h2>Track 4 weeks. Print this page.</h2>
+  <p class="lede">Check the box each time you complete the morning or evening ritual. Visible streaks beat invisible promises.</p>
+
+  <div class="tracker">
+    <div class="tracker-head"><span></span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 1 AM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 1 PM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 2 AM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 2 PM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 3 AM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 3 PM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 4 AM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+    <div class="tracker-row"><div class="tracker-label">Wk 4 PM</div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div><div class="tracker-cell"></div></div>
+  </div>
+
+  <h3>What to expect</h3>
+  <div class="timeline">
+    <div class="timeline-item"><div class="timeline-week">Week 1–2</div><div class="timeline-text">The ritual settles in. Energy curve smooths. Digestion shifts subtly with the warming spices.</div></div>
+    <div class="timeline-item"><div class="timeline-week">Week 4</div><div class="timeline-text">Hair and nail changes are typically the first to appear — the keratin pathway turns over fastest.</div></div>
+    <div class="timeline-item"><div class="timeline-week">Week 8–12</div><div class="timeline-text">The skin endpoints from clinical research — elasticity, hydration — appear in this window.</div></div>
+  </div>
+
+  <div class="cta">
+    <h3>Skip the guesswork. Get the chai built for this.</h3>
+    <p>Spice Rush — milled-leaf chai designed to take a daily collagen scoop without making it taste like one.</p>
+    <a href="https://tmolecule.com/products/spice-rush-collagen-black-tea">Try Spice Rush &rsaquo;</a>
+  </div>
+
+  <div class="socials">
+    <span class="socials-label">Join the ritual</span>
+    <a class="icon" href="https://instagram.com/tmolecule.official" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a class="icon" href="https://tiktok.com/@tmolecule" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M19.3 8.6c-1.6 0-3-.6-4-1.6-.7-.7-1.2-1.7-1.4-2.8h-3v11.3c0 1.3-1.1 2.4-2.4 2.4-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4c.3 0 .5 0 .8.1v-3c-.3 0-.5-.1-.8-.1-3 0-5.4 2.4-5.4 5.4s2.4 5.4 5.4 5.4 5.4-2.4 5.4-5.4V10c1.1.7 2.4 1.1 3.8 1.1h.7v-2.5h-.1z"/></svg>
+    </a>
+    <a class="icon" href="https://facebook.com/GetTMolecule" aria-label="Facebook">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.5-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7V13h2.6v8h3.2z"/></svg>
+    </a>
+    <a class="icon" href="https://twitter.com/GetTMolecule" aria-label="X">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3l-6.6 7.5L22 21h-6.2l-4.8-6.3L5.3 21H2.3l7-8L2 3h6.3l4.4 5.8L17.5 3z"/></svg>
+    </a>
+  </div>
+
+  <div class="connect-meta">
+    <span class="sms">Text <strong>RITUAL</strong> to <strong>(866) 708-4991</strong> for launches and offers</span>
+    <span class="url">tmolecule.com</span>
+  </div>
+
+  <footer class="pf" style="margin-top:14px">
+    <span>Educational tool, not medical advice. Talk to your doctor before changing supplements.</span>
+    <span><em>Be Well. Naturally.</em></span>
+  </footer>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "ingredients": [
+    {
+      "slug": "collagen_peptides",
+      "display": "Collagen Peptides",
+      "category": "nutraceutical",
+      "primary_benefits": ["skin", "joints", "hair", "nails"],
+      "best_tea_pairings": ["black", "rooibos"],
+      "best_spice_pairings": ["cinnamon", "rose_hip", "hibiscus"],
+      "synergies": ["vitamin_c", "biotin", "hyaluronic_acid"],
+      "interactions": ["coffee_tannins"],
+      "typical_dose": "10-20g/day",
+      "best_timing": "morning empty stomach OR pre-sleep",
+      "funnel_product": "spice-rush-collagen-black-tea"
+    },
+    {
+      "slug": "ashwagandha",
+      "display": "Ashwagandha",
+      "category": "adaptogen",
+      "primary_benefits": ["stress", "sleep", "cortisol_regulation"],
+      "best_tea_pairings": ["herbal", "rooibos"],
+      "best_spice_pairings": ["cardamom", "cinnamon", "ginger"],
+      "synergies": ["magnesium", "l_theanine"],
+      "interactions": ["sedatives", "thyroid_medication"],
+      "typical_dose": "300-600mg KSM-66 extract/day",
+      "best_timing": "evening with warm beverage",
+      "funnel_product": "immunitea-defense-tea"
+    },
+    {
+      "slug": "turmeric",
+      "display": "Turmeric (curcumin)",
+      "category": "spice_anti_inflammatory",
+      "primary_benefits": ["joint_comfort", "immunity", "skin"],
+      "best_tea_pairings": ["green", "black"],
+      "best_spice_pairings": ["black_pepper", "ginger", "cinnamon"],
+      "synergies": ["piperine_required", "fat", "vitamin_c"],
+      "interactions": ["blood_thinners", "iron_absorption"],
+      "typical_dose": "500-1500mg curcuminoids/day with piperine",
+      "best_timing": "with meals containing fat",
+      "funnel_product": "immunitea-defense-tea"
+    },
+    {
+      "slug": "ginger",
+      "display": "Ginger",
+      "category": "spice_warming",
+      "primary_benefits": ["digestion", "nausea", "circulation", "immunity"],
+      "best_tea_pairings": ["black", "green", "herbal"],
+      "best_spice_pairings": ["turmeric", "cinnamon", "cardamom", "lemon"],
+      "synergies": ["honey_off_heat", "lemon"],
+      "interactions": ["blood_thinners", "before_sleep_warming"],
+      "typical_dose": "1-3g fresh root or 250mg-1g extract",
+      "best_timing": "morning to early afternoon",
+      "funnel_product": "spice-rush-collagen-black-tea"
+    },
+    {
+      "slug": "tulsi",
+      "display": "Tulsi (Holy Basil)",
+      "category": "adaptogen",
+      "primary_benefits": ["stress", "immunity", "respiratory", "blood_sugar"],
+      "best_tea_pairings": ["green", "herbal"],
+      "best_spice_pairings": ["ginger", "cardamom", "lemon"],
+      "synergies": ["honey", "ashwagandha"],
+      "interactions": ["blood_thinners"],
+      "typical_dose": "300-600mg extract or 1-2 tsp dried leaf",
+      "best_timing": "morning or afternoon",
+      "funnel_product": "immunitea-defense-tea"
+    }
+  ]
+}

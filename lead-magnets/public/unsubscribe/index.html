@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unsubscribe — TMolecule</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap">
+<style>
+  :root {
+    --s1-bg:#faf7f0; --s2-bg:#f6ead0; --s3-bg:#2a1f10; --text:#2b2a28;
+    --button:#7a5a2b; --button-deep:#4a3718; --gold:#d4b97a;
+    --rule:#e8dec8; --mute:#7a7060;
+    --serif:'Fraunces',Georgia,serif; --sans:'Inter',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--sans);background:var(--s1-bg);color:var(--text);line-height:1.6}
+  .wrap{max-width:520px;margin:0 auto;padding:80px 24px;text-align:center}
+  .brand{position:relative;display:inline-block;line-height:0;margin-bottom:14px}
+  .brand img{height:42px;width:auto;display:block}
+  .brand sup{position:absolute;top:-3px;right:-7px;font-family:var(--sans);font-size:11px;font-weight:700;color:var(--button);line-height:1}
+  h1{font-family:var(--serif);font-size:1.9rem;font-weight:600;margin:32px 0 8px;line-height:1.2}
+  p{margin:0 0 18px;color:var(--text)}
+  .email{font-family:var(--serif);font-style:italic;color:var(--button-deep);font-size:1.05rem;margin:0 0 24px;word-break:break-all}
+  input[type=email]{width:100%;padding:.7rem .85rem;border:1px solid var(--rule);border-radius:4px;font-family:var(--sans);font-size:1rem;background:white;margin-bottom:14px}
+  .btn{display:inline-block;background:var(--button);color:var(--s1-bg);padding:.85rem 1.5rem;border-radius:4px;font-weight:600;font-size:.92rem;text-transform:uppercase;letter-spacing:.04em;border:0;cursor:pointer;font-family:var(--sans);text-decoration:none}
+  .btn:hover{background:var(--button-deep)}
+  .btn[disabled]{opacity:.5;cursor:not-allowed}
+  .err{color:#a23;font-size:.9rem;margin-top:12px;min-height:1.2em}
+  .small{font-size:.86rem;color:var(--mute);margin-top:24px;line-height:1.5}
+  .done{display:none}
+  .done.visible{display:block}
+  .done h1{color:var(--button-deep)}
+  .checkmark{display:inline-block;width:60px;height:60px;border-radius:50%;background:var(--button);color:var(--s1-bg);font-size:32px;line-height:60px;margin-bottom:16px;font-weight:700}
+  .socials-row{margin-top:36px;padding:28px 24px;background:var(--s2-bg);border-radius:8px;text-align:center}
+  .socials-row .socials-label{font-family:var(--serif);font-style:italic;color:var(--button-deep);font-size:1rem;margin:0 0 14px;letter-spacing:.02em}
+  .socials-row .icons{display:flex;justify-content:center;align-items:center;gap:12px}
+  .socials-row .icons a{display:inline-block;line-height:0}
+  .socials-row .icons img{display:block;border:0}
+  /* Be Well footer — dark espresso block */
+  .footer{margin-top:18px;padding:32px 24px;background:var(--s3-bg);color:#f5ecd8;border-radius:8px;text-align:center;font-family:var(--serif)}
+  .footer p{margin:0;color:#f5ecd8}
+  .footer .tagline{font-style:italic;font-size:1.15rem;color:var(--gold);margin-bottom:8px}
+  .footer a{color:var(--gold);text-decoration:none;font-style:normal;font-size:.88rem;letter-spacing:.06em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <a href="https://tmolecule.com" class="brand" aria-label="TMolecule">
+    <img src="https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257&width=400" alt="TMolecule">
+    <sup>&reg;</sup>
+  </a>
+
+  <section id="confirm">
+    <h1>Unsubscribe?</h1>
+    <p>Confirm the email address you want to remove from all TMolecule lists.</p>
+    <form id="unsub-form">
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
+      <button type="submit" class="btn" id="unsub-btn">Unsubscribe me</button>
+      <p class="err" id="unsub-err"></p>
+    </form>
+    <p class="small">You will no longer receive marketing or transactional emails from TMolecule. This takes effect immediately.</p>
+  </section>
+
+  <section id="done" class="done">
+    <div class="checkmark">&check;</div>
+    <h1>You're unsubscribed.</h1>
+    <p>We've removed <span id="done-email" class="email"></span> from all our lists.</p>
+    <p class="small">Sorry to see you go. If this was a mistake, you can resubscribe anytime at <a href="https://tmolecule.com" style="color:var(--button)">tmolecule.com</a>.</p>
+  </section>
+
+  <div class="socials-row">
+    <p class="socials-label">Still curious? Find us here.</p>
+    <div class="icons">
+      <a href="https://instagram.com/tmolecule.official" aria-label="Instagram"><img src="/email-assets/social-instagram.png" width="32" height="32" alt="Instagram"></a>
+      <a href="https://tiktok.com/@tmolecule" aria-label="TikTok"><img src="/email-assets/social-tiktok.png" width="32" height="32" alt="TikTok"></a>
+      <a href="https://facebook.com/GetTMolecule" aria-label="Facebook"><img src="/email-assets/social-facebook.png" width="32" height="32" alt="Facebook"></a>
+      <a href="https://twitter.com/GetTMolecule" aria-label="X"><img src="/email-assets/social-x.png" width="32" height="32" alt="X"></a>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="tagline">Be Well. Naturally.</p>
+    <p><a href="https://tmolecule.com">tmolecule.com</a></p>
+  </div>
+</main>
+
+<script>
+(function () {
+  // Pre-fill email: try ?email=, then Brevo's tracker-injected ?_se=<base64>
+  var params = new URLSearchParams(location.search);
+  var emailParam = params.get('email');
+  // Reject literal merge-tag values that Brevo failed to substitute
+  if (emailParam && /^\{[^}]+\}$/.test(emailParam)) emailParam = null;
+  if (!emailParam) {
+    var se = params.get('_se');
+    if (se) {
+      try { emailParam = atob(se); } catch (e) {}
+    }
+  }
+  if (emailParam) document.getElementById('email').value = emailParam;
+
+  document.getElementById('unsub-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = document.getElementById('unsub-btn');
+    var err = document.getElementById('unsub-err');
+    var email = document.getElementById('email').value.trim();
+    err.textContent = '';
+    btn.disabled = true;
+
+    fetch('/api/unsubscribe', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email: email })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        btn.disabled = false;
+        if (!json.success) { err.textContent = json.error || 'Could not unsubscribe'; return; }
+        document.getElementById('done-email').textContent = email;
+        document.getElementById('confirm').style.display = 'none';
+        document.getElementById('done').classList.add('visible');
+      })
+      .catch(function () {
+        btn.disabled = false;
+        err.textContent = 'Network error - try again';
+      });
+  });
+})();
+</script>
+</body>
+</html>

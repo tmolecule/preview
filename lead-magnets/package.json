@@ -1,0 +1,14 @@
+{
+  "name": "tmolecule-lead-magnets",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev public",
+    "deploy": "wrangler pages deploy public --project-name=tmolecule-lead-magnets",
+    "tail": "wrangler pages deployment tail --project-name=tmolecule-lead-magnets"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}
