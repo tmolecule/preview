@@ -1,0 +1,27 @@
+name = "tmolecule-seo"
+main = "src/index.js"
+compatibility_date = "2026-04-01"
+account_id = "6766841fb403fe06a6e2c1f2ea3b5ea0"
+workers_dev = true
+
+# Worker runs on the learn.tmolecule.com subdomain only.
+# Shopify owns tmolecule.com and www.tmolecule.com via Cloudflare for SaaS,
+# so a subdomain is the only place our Worker can intercept traffic.
+[[routes]]
+pattern = "learn.tmolecule.com/*"
+zone_name = "tmolecule.com"
+
+# KV namespace for page content.
+[[kv_namespaces]]
+binding = "LEARN_PAGES"
+id = "8103e78f27d14611baa93bd0d367293c"
+preview_id = "6619209e0aaf4870aa03c9f0119fbf82"
+
+[vars]
+SITE_NAME = "TMolecule"
+SHOP_ORIGIN = "https://tmolecule.com"
+LOGO_URL = "https://tmolecule.com/cdn/shop/files/tmolecule-logo.png"
+GSC_VERIFICATION = "SFYPUwnKraRF0kqkMv8AoCoVAO5O_AU8LZTJ5uBrHN4"
+
+[observability]
+enabled = true

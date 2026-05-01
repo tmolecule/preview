@@ -1,0 +1,24 @@
+{
+  "title": "Green Tea vs Black Tea: Differences, Caffeine, and Health Benefits",
+  "h1": "Green tea vs black tea: what's actually different?",
+  "meta_description": "Green tea and black tea come from the same plant but are processed differently. Compare caffeine, flavor, antioxidants, and brewing technique for both.",
+  "image_url": "https://tmolecule.com/cdn/shop/files/green-vs-black-tea.jpg",
+  "published_at": "2026-04-30T08:00:00Z",
+  "updated_at": "2026-04-30T08:00:00Z",
+  "keywords": ["green tea vs black tea", "green tea caffeine", "black tea benefits", "tea processing"],
+  "body_html": "<p>Every cup of green tea and black tea begins with the same plant: <em>Camellia sinensis</em>. The difference is what happens after the leaves are picked.</p><h2>Processing: oxidation is the dividing line</h2><p>Black tea is fully oxidized &mdash; leaves are bruised, exposed to oxygen, and allowed to turn dark before drying. The reaction develops the malty, robust flavors and the deeper amber color in your cup.</p><p>Green tea skips oxidation entirely. Leaves are heated soon after picking (steamed in Japan, pan-fired in China) to deactivate the enzymes that would otherwise turn them brown. The result: a fresher, vegetal cup that retains more of the leaf's original chlorophyll and catechins.</p><h2>Caffeine</h2><ul><li>Green tea: ~25&ndash;45 mg per 8oz cup</li><li>Black tea: ~40&ndash;70 mg per 8oz cup</li><li>Coffee (for reference): ~95 mg per 8oz cup</li></ul><h2>Flavor profile</h2><p>Green tea ranges from grassy and oceanic (Japanese sencha) to nutty and toasty (Chinese longjing). Black tea ranges from malty (Assam) to floral (Darjeeling) to brisk and citrusy (Ceylon).</p><h2>Health benefits</h2><p>Both teas contain polyphenols. Green tea is highest in EGCG, a catechin studied for cardiovascular and metabolic effects. Black tea's oxidation converts catechins into theaflavins and thearubigins &mdash; different compounds with their own studied benefits, particularly for cholesterol.</p><h2>How to brew each</h2><h3>Green tea</h3><ul><li>Water: 70&ndash;80&deg;C (160&ndash;176&deg;F)</li><li>Time: 1&ndash;2 minutes</li><li>Why lower temp: prevents the catechins from turning bitter</li></ul><h3>Black tea</h3><ul><li>Water: 95&ndash;100&deg;C (203&ndash;212&deg;F)</li><li>Time: 3&ndash;5 minutes</li><li>Why hotter: needed to fully extract the oxidized compounds</li></ul>",
+  "faqs": [
+    {
+      "q": "Which has more caffeine, green tea or black tea?",
+      "a": "Black tea typically has more caffeine per cup (40&ndash;70mg vs 25&ndash;45mg), but matcha &mdash; a powdered green tea where you consume the whole leaf &mdash; can exceed both at 60&ndash;80mg."
+    },
+    {
+      "q": "Is green tea healthier than black tea?",
+      "a": "Both are healthy. Green tea has more EGCG; black tea has more theaflavins. The 'best' tea is the one you'll actually drink consistently."
+    },
+    {
+      "q": "Can you make black tea from green tea leaves?",
+      "a": "Not at home. Once green tea is heat-fixed, the enzymes needed for oxidation are destroyed. Black tea must be made from fresh, unprocessed leaves."
+    }
+  ]
+}
