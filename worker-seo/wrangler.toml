@@ -20,7 +20,7 @@ preview_id = "6619209e0aaf4870aa03c9f0119fbf82"
 [vars]
 SITE_NAME = "TMolecule"
 SHOP_ORIGIN = "https://tmolecule.com"
-LOGO_URL = "https://tmolecule.com/cdn/shop/files/tmolecule-logo.png"
+LOGO_URL = "https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257"
 GSC_VERIFICATION = "SFYPUwnKraRF0kqkMv8AoCoVAO5O_AU8LZTJ5uBrHN4"
 
 [observability]
