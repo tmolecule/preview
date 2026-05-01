@@ -1,0 +1,14 @@
+{
+  "name": "tmolecule-uptime-monitor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "trigger": "curl -X POST $(wrangler whoami 2>/dev/null && echo manual-test) || echo 'Use: wrangler dev for local'"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}

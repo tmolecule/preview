@@ -1,0 +1,30 @@
+name = "tmolecule-uptime-monitor"
+main = "src/index.js"
+compatibility_date = "2026-04-01"
+account_id = "6766841fb403fe06a6e2c1f2ea3b5ea0"
+workers_dev = true
+
+# Every 15 minutes - true 24/7 monitoring, ~96 invocations/day per site (well under free-tier limits).
+[triggers]
+crons = ["*/15 * * * *"]
+
+[vars]
+WELLNESS_BASE = "https://wellness.tmolecule.com"
+LEARN_BASE = "https://learn.tmolecule.com"
+PDF_PATH = "/protocols/collagen-protocol-v1.pdf"
+PDF_MIN_BYTES = "1000000"
+RESEND_FROM = "TMolecule Monitor <audits@tmolecule.com>"
+# Cooldown so a sustained outage doesn't email every 15 min — only every N hours.
+ALERT_COOLDOWN_HOURS = "2"
+# RESEND_TO is set via secret to keep recipient out of source
+
+# Secrets to set after first deploy:
+#   wrangler secret put RESEND_API_KEY
+#   wrangler secret put RESEND_TO
+
+[[kv_namespaces]]
+binding = "MONITOR_STATE"
+id = "906c863507b84dc8abed68568a3b9869"
+
+[observability]
+enabled = true
