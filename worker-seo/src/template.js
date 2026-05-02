@@ -485,12 +485,9 @@ ${schemaTags.join('\n')}
   .faq-a{margin-top:.7rem;color:rgba(var(--color-foreground),.88);font-size:.98rem;line-height:1.65}
 
   /* Tradition + Science callout — paired two-column block.
-     Authors mark up in body_html as:
-     <aside class="trad-sci">
-       <div class="trad-sci__trad"><h4>Ayurveda says</h4><p>...</p></div>
-       <div class="trad-sci__sci"><h4>Studies show</h4><p>... <a href="...">PMC</a></p></div>
-     </aside>
-  */
+     Authors mark up via aside.trad-sci with two child divs
+     (.trad-sci__trad and .trad-sci__sci). See seed/_README.md
+     for the full markup pattern. */
   .trad-sci{
     display:grid;
     grid-template-columns:1fr 1fr;
