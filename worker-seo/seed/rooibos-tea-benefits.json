@@ -5,12 +5,18 @@
   "image_url": "",
   "published_at": "2026-04-30T20:00:00Z",
   "updated_at": "2026-04-30T20:00:00Z",
-  "keywords": ["rooibos tea benefits", "rooibos health benefits", "red bush tea", "caffeine-free tea", "rooibos antioxidants"],
+  "keywords": [
+    "rooibos tea benefits",
+    "rooibos health benefits",
+    "red bush tea",
+    "caffeine-free tea",
+    "rooibos antioxidants"
+  ],
   "body_html": "<p>Rooibos (pronounced ROY-bos) is a herbal infusion from South Africa, made from the leaves of <em>Aspalathus linearis</em>. It's not technically tea &mdash; it doesn't come from <em>Camellia sinensis</em> &mdash; but it brews like one, drinks like one, and delivers a unique antioxidant profile no actual tea contains.</p><h2>The headline benefits</h2><h3>Naturally caffeine-free</h3><p>Unlike green or black tea, rooibos has zero caffeine. That makes it the rare hot drink you can have at 9pm without affecting sleep, or during pregnancy without medical concern. It's also low in tannins, so it doesn't trigger acid reflux the way black tea can.</p><h3>Two antioxidants you can't get elsewhere</h3><p>Rooibos is the only known source of <strong>aspalathin</strong> and <strong>nothofagin</strong>, two flavonoids studied for their effects on blood sugar and oxidative stress. Aspalathin in particular has shown promising results in animal studies for glucose regulation, though human evidence is still emerging.</p><h3>Heart health</h3><p>A 2011 South African study (Marnewick et al.) found that drinking 6 cups of rooibos daily for 6 weeks lowered LDL cholesterol and raised HDL cholesterol in adults with elevated lipid levels. The mechanism appears to be flavonoid-driven reduction in oxidized LDL.</p><h3>Skin support</h3><p>Topical rooibos extract has been shown to reduce UV-induced skin damage in mouse models. Drinking it doesn't replicate this effect directly, but the antioxidants do contribute to systemic inflammatory reduction that benefits skin from the inside.</p><h3>Easy on the stomach</h3><p>Low tannin and zero caffeine means rooibos doesn't irritate ulcers, IBS, or sensitive digestion. Many people who can't tolerate other teas drink rooibos comfortably.</p><h2>What rooibos is NOT</h2><p>Some marketing claims oversell what rooibos can do. The honest list:</p><ul><li>It does <strong>not</strong> cure diabetes (animal studies show glucose effects; human trials are inconclusive)</li><li>It is <strong>not</strong> a weight-loss tea (no caffeine, no thermogenic effect)</li><li>It does <strong>not</strong> have more antioxidants than green tea (it has different ones, but green tea wins on total polyphenol content)</li></ul><h2>How to brew it</h2><p>Rooibos is the most forgiving infusion you'll meet:</p><ul><li><strong>Water:</strong> 95&deg;C / 200&deg;F &mdash; or just off the boil</li><li><strong>Ratio:</strong> 1 teaspoon (2&ndash;3g) per 8oz cup</li><li><strong>Steep:</strong> 5&ndash;7 minutes (it doesn't go bitter, so longer is fine)</li><li><strong>Re-steep:</strong> 1&ndash;2 more times</li></ul><p>Drink it plain to taste the natural sweetness, or add a splash of milk for a creamy late-night substitute for chai. It also makes excellent iced tea &mdash; brew double-strength, then ice.</p><h2>Red rooibos vs green rooibos</h2><p>Standard rooibos is oxidized, giving it the russet color and slightly woody-sweet taste. Green (unfermented) rooibos retains more aspalathin and antioxidants but tastes grassier and is harder to find. Both are caffeine-free.</p><h2>Who should drink it</h2><ul><li>Anyone trying to cut caffeine without giving up the ritual of hot tea</li><li>People with reflux, IBS, or tannin sensitivity</li><li>Pregnant or nursing women looking for a safe daily warm drink</li><li>Late-night drinkers (it pairs surprisingly well with desserts)</li></ul><p>For more on caffeine-free options and the differences between actual teas and herbal infusions, see <a href=\"/green-tea-vs-black-tea\">green tea vs black tea</a> or our <a href=\"/what-is-matcha\">matcha guide</a>.</p>",
   "faqs": [
     {
       "q": "Is rooibos tea safe during pregnancy?",
-      "a": "Yes &mdash; rooibos is one of the few hot drinks generally considered safe throughout pregnancy because it contains no caffeine, very low tannins, and no compounds known to affect fetal development. Always confirm with your provider."
+      "a": "Yes — rooibos is one of the few hot drinks generally considered safe throughout pregnancy because it contains no caffeine, very low tannins, and no compounds known to affect fetal development. Always confirm with your provider."
     },
     {
       "q": "Does rooibos help you sleep?",
@@ -18,11 +24,11 @@
     },
     {
       "q": "How many cups of rooibos can I drink per day?",
-      "a": "Studies showing health benefits used 6 cups daily for 6 weeks, with no adverse effects reported. Most casual drinkers do 2&ndash;4 cups without issue."
+      "a": "Studies showing health benefits used 6 cups daily for 6 weeks, with no adverse effects reported. Most casual drinkers do 2–4 cups without issue."
     },
     {
       "q": "Does rooibos have any side effects?",
-      "a": "Rare. Some people report estrogen-like effects (rooibos contains weak phytoestrogens) at very high intake. If you have hormone-sensitive conditions, keep intake to 2&ndash;3 cups daily and check with your doctor."
+      "a": "Rare. Some people report estrogen-like effects (rooibos contains weak phytoestrogens) at very high intake. If you have hormone-sensitive conditions, keep intake to 2–3 cups daily and check with your doctor."
     }
   ]
 }

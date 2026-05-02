@@ -5,16 +5,21 @@
   "image_url": "https://tmolecule.com/cdn/shop/files/how-to-brew-oolong.jpg",
   "published_at": "2026-04-30T08:00:00Z",
   "updated_at": "2026-04-30T08:00:00Z",
-  "keywords": ["how to brew oolong", "gongfu brewing", "oolong tea", "oolong water temperature"],
+  "keywords": [
+    "how to brew oolong",
+    "gongfu brewing",
+    "oolong tea",
+    "oolong water temperature"
+  ],
   "body_html": "<p>Oolong sits between green and black tea on the oxidation spectrum &mdash; anywhere from 15% to 80% oxidized. That range is why brewing parameters vary more for oolong than any other tea category.</p><h2>Two main methods</h2><h3>Gongfu (multiple short steeps)</h3><p>The traditional Chinese approach. You use a small vessel (60&ndash;120ml) and a high leaf-to-water ratio, then re-steep the same leaves 5&ndash;8 times. Each infusion brings out a different flavor layer.</p><ul><li>Vessel: gaiwan or small clay teapot</li><li>Leaves: 5g per 100ml of water</li><li>Water temp: 90&deg;C (light oolongs), 95&deg;C (dark oolongs)</li><li>Steep times: 15s, 20s, 25s, 35s, 50s, 70s&hellip;</li><li>Always rinse first: 5-second flash steep, discard.</li></ul><h3>Western (single long steep)</h3><p>Better for daily drinking when you don't want to manage multiple infusions.</p><ul><li>Vessel: standard mug or teapot, 250&ndash;500ml</li><li>Leaves: 3g per 250ml of water</li><li>Water temp: 85&deg;C (light), 95&deg;C (dark)</li><li>Steep time: 3 minutes for first infusion, +1 minute for each subsequent steep (oolong leaves are good for 2&ndash;3 Western steeps).</li></ul><h2>Light vs dark oolongs</h2><p>Light oolongs (Tieguanyin, Ali Shan, Baozhong) are 15&ndash;30% oxidized. They taste floral, buttery, sometimes creamy. Use cooler water and shorter steeps.</p><p>Dark oolongs (Da Hong Pao, roasted Tieguanyin, oriental beauty) are 50&ndash;80% oxidized and often roasted. They taste toasty, woody, sometimes chocolatey. Use hotter water; they tolerate longer steeps.</p><h2>Reading the leaves</h2><p>Quality oolong unfurls dramatically. Spent leaves should look almost like fresh leaves &mdash; whole, unbroken, supple. Fragmented or stiff leaves point to lower quality or storage damage.</p>",
   "faqs": [
     {
       "q": "How many times can I re-steep oolong tea?",
-      "a": "High-quality oolong holds up to 5&ndash;8 gongfu steeps or 2&ndash;3 Western steeps. The first steep is rarely the best &mdash; flavors usually peak around the 2nd or 3rd infusion."
+      "a": "High-quality oolong holds up to 5–8 gongfu steeps or 2–3 Western steeps. The first steep is rarely the best — flavors usually peak around the 2nd or 3rd infusion."
     },
     {
       "q": "What's the right water temperature for oolong?",
-      "a": "85&ndash;90&deg;C (185&ndash;194&deg;F) for light oolongs, 95&ndash;100&deg;C (203&ndash;212&deg;F) for dark roasted oolongs. When in doubt, start cooler &mdash; you can always re-steep hotter."
+      "a": "85–90°C (185–194°F) for light oolongs, 95–100°C (203–212°F) for dark roasted oolongs. When in doubt, start cooler — you can always re-steep hotter."
     },
     {
       "q": "Why does my oolong taste bitter?",

@@ -5,7 +5,13 @@
   "image_url": "",
   "published_at": "2026-04-30T20:00:00Z",
   "updated_at": "2026-04-30T20:00:00Z",
-  "keywords": ["what is chai latte", "chai latte vs masala chai", "chai latte definition", "what's in a chai latte", "starbucks chai latte"],
+  "keywords": [
+    "what is chai latte",
+    "chai latte vs masala chai",
+    "chai latte definition",
+    "what's in a chai latte",
+    "starbucks chai latte"
+  ],
   "body_html": "<p>A chai latte is a coffee-shop interpretation of Indian masala chai: a sweetened, spiced black tea concentrate combined with steamed milk and topped with foam. It was popularized in North American cafes in the 1990s and has very little in common with how chai is actually drunk in India.</p><h2>What's in a chai latte</h2><p>The standard cafe chai latte has three components:</p><ol><li><strong>Chai concentrate</strong> &mdash; pre-made syrup of black tea, spices (cardamom, cinnamon, ginger, cloves, black pepper), sugar, and sometimes vanilla. Brands like Tazo, Oregon Chai, and Starbucks Classic Chai are concentrate-based.</li><li><strong>Steamed milk</strong> &mdash; whole, oat, or almond, frothed to a microfoam.</li><li><strong>Concentrate-to-milk ratio:</strong> typically 1:1 or 1:2.</li></ol><p>The drink is poured concentrate-first, then milk, with the foam settling on top. No additional spices, no fresh ginger, no separate brewing.</p><h2>How a chai latte differs from masala chai</h2><table><thead><tr><th>Property</th><th>Chai latte (cafe)</th><th>Masala chai (traditional)</th></tr></thead><tbody><tr><td>Tea</td><td>Concentrate (pre-extracted)</td><td>Loose-leaf Assam, freshly brewed</td></tr><tr><td>Spices</td><td>Pre-ground, in concentrate</td><td>Whole, bloomed in water</td></tr><tr><td>Milk</td><td>Steamed and added</td><td>Boiled with the tea</td></tr><tr><td>Sugar</td><td>Pre-sweetened concentrate (high)</td><td>Added at end, to taste (low)</td></tr><tr><td>Prep time</td><td>30 seconds</td><td>10&ndash;15 minutes</td></tr><tr><td>Sugar per 12oz</td><td>32&ndash;42g</td><td>4&ndash;8g</td></tr><tr><td>Caffeine</td><td>30&ndash;50mg</td><td>40&ndash;70mg</td></tr></tbody></table><p>Two big practical takeaways: cafe chai lattes are <strong>much sweeter</strong> than traditional masala chai (often 3&ndash;5&times; the sugar), and they have <strong>different flavor balance</strong> because pre-ground spices in syrup taste flatter than fresh-bloomed whole spices in milk.</p><h2>What's a dirty chai?</h2><p>A chai latte with a shot of espresso added. Boosts the caffeine to ~100&ndash;120mg per cup and gives a coffee-forward edge to the spice. Common variants:</p><ul><li><strong>Dirty chai:</strong> single shot espresso + chai latte</li><li><strong>Filthy chai:</strong> double shot espresso + chai latte</li><li><strong>Clean chai:</strong> regular chai latte, no espresso</li></ul><p>Dirty chai works because the espresso's bitterness balances the chai concentrate's sweetness. Most coffee shops add it for $0.50&ndash;1.00 extra.</p><h2>How to make a chai latte at home</h2><p>If you have chai concentrate:</p><ol><li>Heat 6oz of milk to about 65&deg;C / 150&deg;F</li><li>Pour 4oz of concentrate into a 12oz mug</li><li>Top with milk, leaving space for foam</li><li>Optionally dust with cinnamon</li></ol><p>If you don't have concentrate but want the flavor faster than full masala chai, see our <a href=\"/chai-concentrate-recipe\">chai concentrate recipe</a> &mdash; makes 2 weeks of concentrate in 30 minutes.</p><p>For the real, traditional version with whole spices and the proper milk technique, see our <a href=\"/masala-chai-recipe\">masala chai recipe</a>.</p><h2>Is chai latte healthier than coffee?</h2><p>Caffeine-wise, comparable to a small coffee. Calorie- and sugar-wise, much worse than black coffee:</p><ul><li>16oz cafe chai latte (whole milk): 240&ndash;320 calories, 36&ndash;48g sugar</li><li>16oz black coffee: 5 calories, 0g sugar</li><li>16oz traditional masala chai: 80&ndash;120 calories, 6&ndash;10g sugar</li></ul><p>If you're drinking chai for the spice benefits (anti-inflammatory cardamom, cinnamon for blood sugar, ginger for digestion), the cafe latte version largely defeats the purpose because of the sugar load. Make the real thing &mdash; it's not hard.</p>",
   "faqs": [
     {
@@ -14,11 +20,11 @@
     },
     {
       "q": "Does chai latte have caffeine?",
-      "a": "Yes &mdash; about 30&ndash;50mg per 12oz, depending on the concentrate. That's about half of a regular coffee. A dirty chai (with an espresso shot) bumps it to 100&ndash;120mg."
+      "a": "Yes — about 30–50mg per 12oz, depending on the concentrate. That's about half of a regular coffee. A dirty chai (with an espresso shot) bumps it to 100–120mg."
     },
     {
       "q": "Why is the cafe chai so sweet?",
-      "a": "The concentrate is pre-sweetened so it can ship and store as a single bottle. A standard 12oz cafe chai latte has 32&ndash;42g of sugar &mdash; close to a soda."
+      "a": "The concentrate is pre-sweetened so it can ship and store as a single bottle. A standard 12oz cafe chai latte has 32–42g of sugar — close to a soda."
     },
     {
       "q": "Can I make chai latte without sugar?",
@@ -26,7 +32,7 @@
     },
     {
       "q": "What's the difference between a chai tea latte and a chai latte?",
-      "a": "Nothing &mdash; they're the same drink. &lsquo;Chai latte&rsquo; is technically redundant (chai means tea in Hindi, so &lsquo;chai latte&rsquo; literally is &lsquo;tea latte&rsquo;), but the name stuck."
+      "a": "Nothing — they're the same drink. ‘Chai latte’ is technically redundant (chai means tea in Hindi, so ‘chai latte’ literally is ‘tea latte’), but the name stuck."
     }
   ]
 }

@@ -5,7 +5,12 @@
   "image_url": "https://tmolecule.com/cdn/shop/files/what-is-matcha-hero.jpg",
   "published_at": "2026-04-30T08:00:00Z",
   "updated_at": "2026-04-30T08:00:00Z",
-  "keywords": ["matcha", "japanese green tea", "matcha vs green tea", "ceremonial matcha"],
+  "keywords": [
+    "matcha",
+    "japanese green tea",
+    "matcha vs green tea",
+    "ceremonial matcha"
+  ],
   "body_html": "<p>Matcha is a stone-ground powder made from shade-grown Japanese green tea leaves. Unlike steeped tea, you whisk the entire leaf into water and drink it &mdash; meaning every cup delivers the full nutritional profile of the plant.</p><h2>How matcha is made</h2><p>Three to four weeks before harvest, tea farmers cover the tea bushes with shade cloth. The lack of sunlight forces the plant to produce more chlorophyll and L-theanine, giving matcha its bright green color and characteristic umami sweetness.</p><p>After harvest, leaves are steamed to halt oxidation, dried, de-stemmed, and stone-ground into a powder so fine it floats on water.</p><h2>Matcha grades</h2><ul><li><strong>Ceremonial grade</strong> &mdash; first-harvest leaves, brightest color, most delicate flavor. Whisk with water only.</li><li><strong>Premium grade</strong> &mdash; second harvest, slightly more astringent. Daily-drinking matcha.</li><li><strong>Culinary grade</strong> &mdash; later harvest, stronger flavor, holds up in lattes and baking.</li></ul><h2>How to brew matcha</h2><ol><li>Sift 1&ndash;2 grams (about &frac12; tsp) of matcha into a warm bowl.</li><li>Add 60ml of water heated to 70&deg;C / 160&deg;F.</li><li>Whisk in a rapid W or M motion until a fine foam forms (~15 seconds).</li><li>Drink immediately &mdash; matcha settles fast.</li></ol><h2>Matcha vs. regular green tea</h2><p>Regular green tea is steeped and discarded. Matcha is consumed in full, so the caffeine, L-theanine, and antioxidant content per cup is roughly 3&ndash;4&times; higher. The L-theanine balances the caffeine, producing the calm-alert state matcha is known for.</p>",
   "faqs": [
     {
@@ -14,11 +19,11 @@
     },
     {
       "q": "How much matcha can I drink per day?",
-      "a": "Up to 2 servings (2&ndash;4g) per day is widely considered safe for most adults. Higher amounts can deliver too much caffeine and, in rare cases, lead-exposure concerns."
+      "a": "Up to 2 servings (2–4g) per day is widely considered safe for most adults. Higher amounts can deliver too much caffeine and, in rare cases, lead-exposure concerns."
     },
     {
       "q": "Does matcha go bad?",
-      "a": "Matcha doesn't spoil but it does fade. Sealed tins keep peak flavor for about 6 months in a cool, dark place; once opened, finish within 4&ndash;6 weeks."
+      "a": "Matcha doesn't spoil but it does fade. Sealed tins keep peak flavor for about 6 months in a cool, dark place; once opened, finish within 4–6 weeks."
     }
   ]
 }

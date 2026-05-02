@@ -21,6 +21,12 @@ const FOOTER_LINKS = {
   ]
 };
 
+const TOLL_FREE_NUMBER = '866-708-4991';
+const TOLL_FREE_DISPLAY = '(866) 708-4991';
+const TOLL_FREE_TEL = `+1${TOLL_FREE_NUMBER.replace(/[^\d]/g, '')}`;
+const SMS_KEYWORD = 'RITUAL';
+const SMS_OFFER = '10% off your first order';
+
 const SOCIAL_LINKS = [
   { href: 'https://facebook.com/GetTMolecule', label: 'Facebook', icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.3-1.5 1.5-1.5h1.6V3.6c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.3H7.7V13h2.6v8h3.2z"/></svg>' },
   { href: 'https://instagram.com/tmolecule.official', label: 'Instagram', icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>' },
@@ -47,6 +53,7 @@ export function renderArticle(data, slug, origin, env) {
   const sources = Array.isArray(data.sources) ? data.sources.filter(s => s && s.url) : [];
   const heroImage = image_url || env.LOGO_URL;
   const dateStr = formatDate(published_at);
+  const readMins = readingTime(body_html);
 
   const articleSchema = {
     '@context': 'https://schema.org',
@@ -123,7 +130,7 @@ export function renderArticle(data, slug, origin, env) {
       ).join('')}</ol></section>`
     : '';
 
-  const bylineHtml = `<p class="byline">By <span class="author-name">${esc(env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time></p>`;
+  const bylineHtml = `<p class="byline">By <span class="author-name">${esc(env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time> &middot; ${readMins} min read</p>`;
 
   return baseHtml({
     title: safeTitle,
@@ -139,6 +146,10 @@ export function renderArticle(data, slug, origin, env) {
         <h1>${esc(h1 || title)}</h1>
         ${meta_description ? `<p class="lede">${safeDesc}</p>` : ''}
         ${bylineHtml}
+        <div class="read-progress" aria-live="polite" aria-label="Reading progress" data-total-mins="${readMins}">
+          <span class="rp-bar-track"><span class="rp-bar"></span></span>
+          <span class="rp-text">${readMins} min left</span>
+        </div>
         ${body_html}
         ${faqHtml}
         ${sourcesHtml}
@@ -255,22 +266,29 @@ ${schemaTags.join('\n')}
   body{
     font-family:var(--sans);
     color:rgb(var(--color-foreground));
-    background:rgb(var(--color-background));
+    background:linear-gradient(180deg, #faf7f0 0%, #f1e6c8 100%);
+    background-attachment:fixed;
+    min-height:100vh;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
   }
   a{color:rgb(var(--color-button));text-decoration:none}
   a:hover{text-decoration:underline}
 
-  /* Header */
+  /* Header — sticky on scroll, translucent background */
   .tm-header{
-    background:rgb(var(--color-background));
+    background:rgba(250,247,240,.92);
     border-bottom:1px solid rgb(var(--color-rule));
     padding:18px 28px;
     display:grid;
     grid-template-columns:1fr auto 1fr;
     align-items:center;
     gap:24px;
+    position:sticky;
+    top:0;
+    z-index:50;
+    backdrop-filter:saturate(140%) blur(8px);
+    -webkit-backdrop-filter:saturate(140%) blur(8px);
   }
   .tm-header__nav{
     display:flex;
@@ -342,6 +360,21 @@ ${schemaTags.join('\n')}
     font-weight:600;
     color:rgb(var(--color-foreground));
   }
+
+  /* Colored section markers — each body H2 cycles through the brand palette */
+  article > h2{
+    padding:.45rem 0 .45rem 1rem;
+    margin-left:-1rem;
+    border-left:4px solid rgb(var(--color-button));
+    border-radius:0 4px 4px 0;
+    background:rgba(122,90,43,.04);
+  }
+  article > h2:nth-of-type(6n+1){border-left-color:#7a5a2b;background:rgba(122,90,43,.06)}
+  article > h2:nth-of-type(6n+2){border-left-color:#b08544;background:rgba(176,133,68,.07)}
+  article > h2:nth-of-type(6n+3){border-left-color:#c89e57;background:rgba(200,158,87,.08)}
+  article > h2:nth-of-type(6n+4){border-left-color:#d4b97a;background:rgba(212,185,122,.10)}
+  article > h2:nth-of-type(6n+5){border-left-color:#5d4520;background:rgba(93,69,32,.05)}
+  article > h2:nth-of-type(6n){border-left-color:#dac490;background:rgba(218,196,144,.10)}
   article h3{
     font-family:var(--serif);
     font-size:1.18rem;
@@ -361,21 +394,191 @@ ${schemaTags.join('\n')}
   }
   article strong{color:rgb(var(--color-foreground));font-weight:600}
 
-  /* FAQ */
-  .faq{margin-top:3rem;padding-top:2rem;border-top:1px solid rgb(var(--color-rule))}
+  /* Byline (author + date + read time) */
+  .byline{
+    font-family:var(--sans);
+    font-size:.85rem;
+    color:rgb(var(--color-mute));
+    margin:0 0 2rem;
+    padding-bottom:1.4rem;
+    border-bottom:1px solid rgb(var(--color-rule));
+  }
+  .byline .author-name{color:rgb(var(--color-foreground));font-weight:600}
+
+  /* Tables — clean, borderless, with bottom rules */
+  article table{
+    width:100%;
+    border-collapse:separate;
+    border-spacing:0;
+    margin:1.8rem 0;
+    font-size:.97rem;
+    font-family:var(--sans);
+    line-height:1.55;
+  }
+  article thead th{
+    text-align:left;
+    padding:.65rem .25rem .55rem;
+    font-weight:600;
+    color:rgb(var(--color-foreground));
+    border-bottom:2px solid rgb(var(--color-foreground));
+    font-size:.82rem;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+  article tbody td{
+    padding:.7rem .25rem;
+    border-bottom:1px solid rgb(var(--color-rule));
+    vertical-align:top;
+    color:rgba(var(--color-foreground),.85);
+  }
+  article tbody td:first-child{
+    font-weight:600;
+    color:rgb(var(--color-foreground));
+    width:38%;
+  }
+  article tbody tr.hl{background:rgba(var(--color-contrast),.18)}
+  article tbody tr.hl td:first-child{color:rgb(var(--color-button))}
+
+  /* First table after H2 — themed Quick-Facts callout */
+  article h2 + table{
+    background:linear-gradient(135deg, #fdf8e8 0%, #f1e6c8 100%);
+    padding:.6rem 1.1rem .9rem;
+    border-radius:12px;
+    border-top:1px solid #e8d9b2;
+    border-right:1px solid #e8d9b2;
+    border-bottom:1px solid #e8d9b2;
+    border-left:3px solid rgb(var(--color-button));
+    box-shadow:0 2px 6px rgba(122,90,43,.06), 0 8px 24px rgba(122,90,43,.05);
+    overflow:hidden;
+  }
+  article h2 + table thead th:first-child{padding-left:.85rem}
+  article h2 + table tbody tr:first-child td{padding-top:.85rem}
+  article h2 + table tbody tr:last-child td{border-bottom:0}
+  article h2 + table thead th{border-bottom-color:rgb(var(--color-button))}
+
+  /* FAQ — blush gradient block matching site palette */
+  .faq{
+    margin-top:3rem;
+    padding:1.9rem 1.7rem 1.2rem;
+    background:linear-gradient(135deg, #f7ecd1 0%, #ecdab0 100%);
+    border-radius:12px;
+    border-top:1px solid #e2cf99;
+    border-right:1px solid #e2cf99;
+    border-bottom:1px solid #e2cf99;
+    border-left:3px solid rgb(var(--color-button));
+    box-shadow:0 3px 8px rgba(122,90,43,.07), 0 12px 32px rgba(122,90,43,.05);
+  }
   .faq h2{margin-top:0}
   .faq details{
-    border:1px solid rgb(var(--color-rule));
-    border-radius:6px;
-    padding:.95rem 1.1rem;
-    margin-bottom:.65rem;
-    background:rgb(var(--color-card));
+    border:0;
+    border-bottom:1px solid rgba(122,90,43,.18);
+    border-radius:0;
+    padding:1rem .25rem;
+    margin-bottom:0;
+    background:transparent;
   }
-  .faq summary{cursor:pointer;font-weight:600;list-style:none}
+  .faq details:first-of-type{border-top:1px solid rgba(122,90,43,.18)}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none;font-family:var(--serif);font-size:1.08rem;color:rgb(var(--color-foreground))}
   .faq summary::-webkit-details-marker{display:none}
-  .faq summary::after{content:'+';float:right;color:rgb(var(--color-mute));font-weight:400;font-size:1.2em;line-height:1}
+  .faq summary::after{content:'+';float:right;color:rgb(var(--color-mute));font-weight:400;font-size:1.25em;line-height:1}
   .faq details[open] summary::after{content:'\\2013'}
-  .faq-a{margin-top:.7rem;color:rgba(var(--color-foreground),.88)}
+  .faq-a{margin-top:.7rem;color:rgba(var(--color-foreground),.88);font-size:.98rem;line-height:1.65}
+
+  /* Sources — restrained cream gradient (functional, not decorative) */
+  .sources{
+    margin-top:2.5rem;
+    padding:1.6rem 1.7rem 1.3rem;
+    background:linear-gradient(135deg, #fbf6e8 0%, #f3eccd 100%);
+    border-radius:12px;
+    border-top:1px solid rgba(122,90,43,.16);
+    border-right:1px solid rgba(122,90,43,.16);
+    border-bottom:1px solid rgba(122,90,43,.16);
+    border-left:3px solid rgb(var(--color-button));
+    box-shadow:0 2px 6px rgba(122,90,43,.05), 0 8px 24px rgba(122,90,43,.04);
+    font-size:.92rem;
+  }
+  .sources h2{margin:0 0 .8rem;font-size:1.2rem}
+  .sources ol{padding-left:1.3rem;margin:0}
+  .sources li{margin-bottom:.5rem;line-height:1.5}
+  .sources .src-pub{color:rgb(var(--color-mute));font-size:.85rem}
+
+  /* Read-progress capsule — vertical pill, right side, sticky */
+  .read-progress{
+    position:fixed;
+    right:24px;
+    top:50%;
+    transform:translateY(-50%);
+    z-index:60;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.7rem;
+    padding:14px 9px;
+    background:linear-gradient(180deg, #f6ead0 0%, #ecd9a8 50%, #efe2c5 100%);
+    border:1px solid #d4ba80;
+    border-radius:999px;
+    font-family:var(--sans);
+    box-shadow:0 2px 8px rgba(122,90,43,.10), 0 12px 28px rgba(122,90,43,.08);
+    min-height:140px;
+    max-height:60vh;
+  }
+  .rp-bar-track{
+    width:5px;
+    flex:1;
+    background:rgba(122,90,43,.18);
+    border-radius:3px;
+    overflow:hidden;
+    position:relative;
+    min-height:80px;
+  }
+  .rp-bar{
+    display:block;
+    width:100%;
+    height:0;
+    background:linear-gradient(180deg, rgb(var(--color-button)) 0%, #b08544 100%);
+    border-radius:3px;
+    position:absolute;
+    top:0;
+    left:0;
+    transition:height .12s linear;
+  }
+  .rp-text{
+    font-variant-numeric:tabular-nums;
+    color:rgb(var(--color-button));
+    font-weight:700;
+    font-size:.62rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    white-space:nowrap;
+    line-height:1;
+  }
+  .read-progress.done{
+    background:linear-gradient(180deg, #d4b97a 0%, #e8d4a3 100%);
+    border-color:rgb(var(--color-button));
+  }
+  .read-progress.done .rp-bar{background:rgb(var(--color-button))}
+  .read-progress.done .rp-text{color:#5d4520}
+  @media (max-width:880px){
+    .read-progress{
+      right:14px;
+      padding:11px 7px;
+      min-height:110px;
+    }
+    .rp-text{font-size:.58rem}
+  }
+  @media (max-width:520px){
+    .read-progress{
+      right:8px;
+      padding:9px 5px;
+      min-height:88px;
+      gap:.5rem;
+    }
+    .rp-bar-track{width:4px;min-height:55px}
+    .rp-text{font-size:.55rem;letter-spacing:.06em}
+  }
+  @media print{.read-progress{display:none!important}}
 
   /* Buttons */
   .btn{
@@ -427,6 +630,48 @@ ${schemaTags.join('\n')}
     color:var(--footer-fg);
     padding:64px 40px 32px;
     margin-top:5rem;
+  }
+  .tm-footer__sms-banner{
+    max-width:560px;
+    margin:0 auto 48px;
+    text-align:center;
+    padding:28px 32px;
+    background:linear-gradient(135deg, rgba(212,185,122,.18) 0%, rgba(218,196,144,.10) 100%);
+    border:1px solid rgba(212,185,122,.32);
+    border-radius:12px;
+  }
+  .tm-footer__sms-banner h4{
+    font-family:var(--serif);
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--footer-accent);
+    margin:0 0 12px;
+  }
+  .tm-footer__sms-banner p{
+    margin:0 0 8px;
+    font-size:15px;
+    line-height:1.55;
+    color:var(--footer-fg);
+  }
+  .tm-footer__sms-banner strong{
+    color:var(--footer-accent);
+    font-weight:700;
+    letter-spacing:.04em;
+  }
+  .tm-footer__sms-banner a{
+    color:var(--footer-accent);
+    font-weight:600;
+    font-variant-numeric:tabular-nums;
+    border-bottom:1px solid rgba(212,185,122,.4);
+  }
+  .tm-footer__sms-banner a:hover{color:#faf7f0;border-bottom-color:#faf7f0;text-decoration:none}
+  .tm-footer__sms-fineprint{
+    font-size:11px !important;
+    line-height:1.5 !important;
+    opacity:.55;
+    margin:10px 0 0 !important;
   }
   .tm-footer a{color:var(--footer-accent);text-decoration:none}
   .tm-footer a:hover{color:#faf7f0}
@@ -540,7 +785,55 @@ ${schemaTags.join('\n')}
 
 <main class="wrap">${bodyInner}</main>
 
+<script>
+(function(){
+  var pill = document.querySelector('.read-progress');
+  var article = document.querySelector('article');
+  if (!pill || !article) return;
+  var totalMins = parseInt(pill.getAttribute('data-total-mins') || '5', 10);
+  var bar = pill.querySelector('.rp-bar');
+  var text = pill.querySelector('.rp-text');
+  var raf = null;
+  function update(){
+    raf = null;
+    var rect = article.getBoundingClientRect();
+    var winH = window.innerHeight;
+    var top = rect.top;
+    var height = rect.height;
+    var scrolled;
+    if (top >= 0) scrolled = 0;
+    else if (top + height <= winH) scrolled = 1;
+    else scrolled = Math.max(0, Math.min(1, -top / (height - winH)));
+    var pct = Math.round(scrolled * 100);
+    bar.style.height = pct + '%';
+    var left = Math.max(0, Math.round(totalMins * (1 - scrolled)));
+    if (scrolled >= 0.995) {
+      text.textContent = 'Done';
+      pill.classList.add('done');
+    } else if (left === 0) {
+      text.textContent = '< 1 min left';
+      pill.classList.remove('done');
+    } else {
+      text.textContent = left + ' min left';
+      pill.classList.remove('done');
+    }
+  }
+  function onScroll(){
+    if (raf) return;
+    raf = requestAnimationFrame(update);
+  }
+  update();
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+})();
+</script>
+
 <footer class="tm-footer">
+  <div class="tm-footer__sms-banner">
+    <h4>Get discounts</h4>
+    <p>Text <strong>${SMS_KEYWORD}</strong> to <a href="sms:${TOLL_FREE_TEL}?body=${SMS_KEYWORD}">${TOLL_FREE_DISPLAY}</a> for ${SMS_OFFER}.</p>
+    <p class="tm-footer__sms-fineprint">Recurring msgs. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help.</p>
+  </div>
   <div class="tm-footer__brand">
     <div class="tm-footer__brand-logo">
       <img src="${logoLo}" alt="${esc(env.SITE_NAME)}" width="240" height="60">
@@ -561,7 +854,9 @@ ${schemaTags.join('\n')}
       <h4>Connect</h4>
       <div class="tm-footer__social">${SOCIAL_LINKS.map(s => `<a href="${s.href}" aria-label="${esc(s.label)}" target="_blank" rel="noopener">${s.icon}</a>`).join('')}</div>
       <div class="tm-footer__contact">
-        <span class="label">Customer Care</span>
+        <span class="label">Toll Free</span>
+        <a href="tel:${TOLL_FREE_TEL}">${TOLL_FREE_NUMBER}</a>
+        <span class="label" style="margin-top:14px;">Customer Care</span>
         <a href="mailto:support@tmolecule.com">support@tmolecule.com</a>
         <span class="label" style="margin-top:14px;">Hours</span>
         <span>Mon–Fri, 9am–5pm ET</span>
@@ -593,4 +888,10 @@ function formatDate(iso) {
   } catch {
     return '';
   }
+}
+
+function readingTime(html) {
+  const text = String(html || '').replace(/<[^>]+>/g, ' ');
+  const words = (text.match(/\S+/g) || []).length;
+  return Math.max(1, Math.round(words / 220));
 }
