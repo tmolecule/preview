@@ -1,4 +1,4 @@
-import { handleArticle, handleIndex } from './learn.js';
+import { handleArticle, handleArticleMarkdown, handleIndex, handleLlmsTxt } from './learn.js';
 import { handleSitemap, handleRobots } from './sitemap.js';
 import { renderNotFound } from './template.js';
 
@@ -53,6 +53,18 @@ export default {
 
     if (path === '/health') {
       return handleHealth(env);
+    }
+
+    if (path === '/llms.txt') {
+      return handleLlmsTxt(env, url.origin);
+    }
+
+    if (path.endsWith('.md')) {
+      const mdSlug = path.slice(1, -3);
+      if (/^[a-z0-9][a-z0-9-]{0,80}$/.test(mdSlug)) {
+        const md = await handleArticleMarkdown(mdSlug, env, url.origin);
+        if (md) return md;
+      }
     }
 
     const slug = path.slice(1);

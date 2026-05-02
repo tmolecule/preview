@@ -33,6 +33,43 @@ export function handleRobots(origin) {
   const body = `User-agent: *
 Allow: /
 
+# AI search and discovery — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# IETF Content-Signal: opt in to AI search and RAG, opt out of training
+Content-Signal: ai-train=no, search=yes, ai-input=yes
+
 Sitemap: ${origin}/sitemap.xml
 `;
   return new Response(body, {

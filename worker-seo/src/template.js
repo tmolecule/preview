@@ -44,23 +44,39 @@ export function renderArticle(data, slug, origin, env) {
   const canonical = `${origin}/${slug}`;
   const safeTitle = esc(title);
   const safeDesc = esc(meta_description);
+  const sources = Array.isArray(data.sources) ? data.sources.filter(s => s && s.url) : [];
+  const heroImage = image_url || env.LOGO_URL;
+  const dateStr = formatDate(published_at);
 
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: h1 || title,
     description: meta_description,
-    image: image_url || undefined,
+    image: heroImage,
     datePublished: published_at,
     dateModified: updated_at,
     mainEntityOfPage: canonical,
     keywords: keywords.length ? keywords.join(', ') : undefined,
-    author: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN },
+    author: {
+      '@type': 'Person',
+      name: env.AUTHOR_NAME || env.SITE_NAME,
+      url: env.SHOP_ORIGIN,
+      worksFor: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+    },
     publisher: {
       '@type': 'Organization',
       name: env.SITE_NAME,
       logo: { '@type': 'ImageObject', url: env.LOGO_URL }
-    }
+    },
+    citation: sources.length
+      ? sources.map(s => ({
+          '@type': 'CreativeWork',
+          name: s.title,
+          url: s.url,
+          publisher: s.publisher ? { '@type': 'Organization', name: s.publisher } : undefined
+        }))
+      : undefined
   };
 
   const breadcrumbSchema = {
@@ -82,6 +98,10 @@ export function renderArticle(data, slug, origin, env) {
     const faqSchema = {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.faq summary', '.faq-a']
+      },
       mainEntity: faqs.map(f => ({
         '@type': 'Question',
         name: f.q,
@@ -97,11 +117,19 @@ export function renderArticle(data, slug, origin, env) {
       ).join('')}</section>`
     : '';
 
+  const sourcesHtml = sources.length
+    ? `<section class="sources"><h2>Sources</h2><ol>${sources.map(s =>
+        `<li><a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.title)}</a>${s.publisher ? ` &middot; <span class="src-pub">${esc(s.publisher)}</span>` : ''}</li>`
+      ).join('')}</ol></section>`
+    : '';
+
+  const bylineHtml = `<p class="byline">By <span class="author-name">${esc(env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time></p>`;
+
   return baseHtml({
     title: safeTitle,
     description: safeDesc,
     canonical,
-    ogImage: image_url,
+    ogImage: heroImage,
     ogType: 'article',
     schemaTags,
     env,
@@ -110,8 +138,10 @@ export function renderArticle(data, slug, origin, env) {
       <article>
         <h1>${esc(h1 || title)}</h1>
         ${meta_description ? `<p class="lede">${safeDesc}</p>` : ''}
+        ${bylineHtml}
         ${body_html}
         ${faqHtml}
+        ${sourcesHtml}
       </article>
     `
   });
@@ -555,4 +585,12 @@ function esc(s = '') {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#39;');
+}
+
+function formatDate(iso) {
+  try {
+    return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  } catch {
+    return '';
+  }
 }
