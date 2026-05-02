@@ -12,6 +12,23 @@
     "tea processing"
   ],
   "body_html": "<p>Every cup of green tea and black tea begins with the same plant: <em>Camellia sinensis</em>. The difference is what happens after the leaves are picked.</p><h2>Processing: oxidation is the dividing line</h2><p>Black tea is fully oxidized &mdash; leaves are bruised, exposed to oxygen, and allowed to turn dark before drying. The reaction develops the malty, robust flavors and the deeper amber color in your cup.</p><p>Green tea skips oxidation entirely. Leaves are heated soon after picking (steamed in Japan, pan-fired in China) to deactivate the enzymes that would otherwise turn them brown. The result: a fresher, vegetal cup that retains more of the leaf's original chlorophyll and catechins.</p><h2>Caffeine</h2><ul><li>Green tea: ~25&ndash;45 mg per 8oz cup</li><li>Black tea: ~40&ndash;70 mg per 8oz cup</li><li>Coffee (for reference): ~95 mg per 8oz cup</li></ul><h2>Flavor profile</h2><p>Green tea ranges from grassy and oceanic (Japanese sencha) to nutty and toasty (Chinese longjing). Black tea ranges from malty (Assam) to floral (Darjeeling) to brisk and citrusy (Ceylon).</p><h2>Health benefits</h2><p>Both teas contain polyphenols. Green tea is highest in EGCG, a catechin studied for cardiovascular and metabolic effects. Black tea's oxidation converts catechins into theaflavins and thearubigins &mdash; different compounds with their own studied benefits, particularly for cholesterol.</p><h2>How to brew each</h2><h3>Green tea</h3><ul><li>Water: 70&ndash;80&deg;C (160&ndash;176&deg;F)</li><li>Time: 1&ndash;2 minutes</li><li>Why lower temp: prevents the catechins from turning bitter</li></ul><h3>Black tea</h3><ul><li>Water: 95&ndash;100&deg;C (203&ndash;212&deg;F)</li><li>Time: 3&ndash;5 minutes</li><li>Why hotter: needed to fully extract the oxidized compounds</li></ul>",
+  "sources": [
+    {
+      "title": "The effects of green tea supplementation on cardiovascular risk factors: A systematic review and meta-analysis",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9871939/",
+      "publisher": "PMC / Frontiers in Nutrition"
+    },
+    {
+      "title": "Cholesterol-Lowering Effect of a Theaflavin-Enriched Green Tea Extract: A Randomized Controlled Trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12824094/",
+      "publisher": "JAMA Internal Medicine (Arch Intern Med)"
+    },
+    {
+      "title": "Effect of Black Tea Consumption on Blood Cholesterol: A Meta-Analysis of 15 Randomized Controlled Trials",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4169558/",
+      "publisher": "PMC / PLOS One"
+    }
+  ],
   "faqs": [
     {
       "q": "Which has more caffeine, green tea or black tea?",
