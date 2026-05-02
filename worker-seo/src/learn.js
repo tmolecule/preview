@@ -102,6 +102,17 @@ function htmlToMarkdown(html) {
   if (!html) return '';
   let s = html;
 
+  // Tradition + Science callout — render as a labeled blockquote pair
+  s = s.replace(/<aside class="trad-sci">([\s\S]*?)<\/aside>/gi, (_, inner) => {
+    const trad = (inner.match(/<div class="trad-sci__trad">([\s\S]*?)<\/div>/i) || [])[1] || '';
+    const sci = (inner.match(/<div class="trad-sci__sci">([\s\S]*?)<\/div>/i) || [])[1] || '';
+    const tradTitle = (trad.match(/<h4[^>]*>([\s\S]*?)<\/h4>/i) || [, 'Ayurveda says'])[1];
+    const sciTitle = (sci.match(/<h4[^>]*>([\s\S]*?)<\/h4>/i) || [, 'Studies show'])[1];
+    const tradBody = stripTags(trad.replace(/<h4[^>]*>[\s\S]*?<\/h4>/i, '')).trim();
+    const sciBody = stripTags(sci.replace(/<h4[^>]*>[\s\S]*?<\/h4>/i, '')).trim();
+    return `\n\n> **${stripTags(tradTitle)}.** ${tradBody}\n>\n> **${stripTags(sciTitle)}.** ${sciBody}\n\n`;
+  });
+
   s = s.replace(/<table[^>]*>([\s\S]*?)<\/table>/gi, (_, tableHtml) => {
     const headers = [...tableHtml.matchAll(/<th[^>]*>([\s\S]*?)<\/th>/gi)].map(m => stripTags(m[1]).trim());
     const rows = [...tableHtml.matchAll(/<tr[^>]*>([\s\S]*?)<\/tr>/gi)]

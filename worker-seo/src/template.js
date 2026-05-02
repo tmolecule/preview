@@ -484,6 +484,62 @@ ${schemaTags.join('\n')}
   .faq details[open] summary::after{content:'\\2013'}
   .faq-a{margin-top:.7rem;color:rgba(var(--color-foreground),.88);font-size:.98rem;line-height:1.65}
 
+  /* Tradition + Science callout — paired two-column block.
+     Authors mark up in body_html as:
+     <aside class="trad-sci">
+       <div class="trad-sci__trad"><h4>Ayurveda says</h4><p>...</p></div>
+       <div class="trad-sci__sci"><h4>Studies show</h4><p>... <a href="...">PMC</a></p></div>
+     </aside>
+  */
+  .trad-sci{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    margin:2rem 0;
+    border-radius:12px;
+    overflow:hidden;
+    border:1px solid rgba(122,90,43,.16);
+    border-left:3px solid rgb(var(--color-button));
+    box-shadow:0 3px 8px rgba(122,90,43,.07), 0 12px 32px rgba(122,90,43,.05);
+  }
+  .trad-sci__trad,
+  .trad-sci__sci{
+    padding:1.4rem 1.5rem 1.2rem;
+    font-size:.95rem;
+    line-height:1.6;
+  }
+  .trad-sci__trad{
+    background:linear-gradient(135deg, #f7ecd1 0%, #ecdab0 100%);
+    border-right:1px solid rgba(122,90,43,.14);
+  }
+  .trad-sci__sci{
+    background:linear-gradient(135deg, #fbf6e8 0%, #f3eccd 100%);
+  }
+  .trad-sci h4{
+    font-family:var(--sans);
+    font-size:.72rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.16em;
+    color:rgb(var(--color-button));
+    margin:0 0 .65rem;
+  }
+  .trad-sci__trad h4::before{content:'\\2756  '}  /* small ornamental glyph */
+  .trad-sci__sci h4::before{content:'\\25E6  '}    /* small ring glyph */
+  .trad-sci p{margin:0 0 .7rem;font-size:.95rem;line-height:1.6;color:rgba(var(--color-foreground),.92)}
+  .trad-sci p:last-child{margin-bottom:0}
+  .trad-sci em,
+  .trad-sci i{
+    font-style:italic;
+    color:rgb(var(--color-button));
+  }
+  .trad-sci a{color:rgb(var(--color-button));text-decoration:underline;text-decoration-color:rgba(122,90,43,.4);text-underline-offset:2px}
+  .trad-sci a:hover{text-decoration-color:rgb(var(--color-button))}
+  @media (max-width:680px){
+    .trad-sci{grid-template-columns:1fr}
+    .trad-sci__trad{border-right:0;border-bottom:1px solid rgba(122,90,43,.14)}
+  }
+
   /* Sources — restrained cream gradient (functional, not decorative) */
   .sources{
     margin-top:2.5rem;
