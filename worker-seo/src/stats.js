@@ -184,17 +184,21 @@ function commonHead() {
 }
 
 function renderStatsPage(slug, results, env) {
-  const { totals, daily, funnel, geo, uniques, recent } = results;
+  const { totals, daily, funnel, geo, uniques, recent, device, os, browser, city } = results;
 
   const totalDeckViews = (totals.data.find(r => r.event === 'deck_view') || {}).n || 0;
   const totalSlideViews = (totals.data.find(r => r.event === 'slide_view') || {}).n || 0;
   const uniqueVisitors = (uniques.data[0] || {}).uniques || 0;
 
-  const errors = [totals, daily, funnel, geo, uniques, recent].filter(r => r.error).map(r => `${r.error}${r.message ? ': ' + r.message : ''}`);
+  const errors = [totals, daily, funnel, geo, uniques, recent, device, os, browser, city].filter(r => r.error).map(r => `${r.error}${r.message ? ': ' + r.message : ''}`);
 
   const dailyMax = Math.max(1, ...daily.data.map(r => r.views));
   const funnelMax = Math.max(1, ...funnel.data.map(r => r.views));
   const geoMax = Math.max(1, ...geo.data.map(r => r.views));
+  const deviceMax = Math.max(1, ...device.data.map(r => r.views));
+  const osMax = Math.max(1, ...os.data.map(r => r.views));
+  const browserMax = Math.max(1, ...browser.data.map(r => r.views));
+  const cityMax = Math.max(1, ...city.data.map(r => r.views));
 
   return `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -251,8 +255,44 @@ ${commonHead()}
         </tr>`).join('')}</tbody></table>` : '<p class="empty">No daily data yet.</p>'}
   </section>
 
-  <section class="tile">
-    <h2>Geography</h2>
+  <section class="grid-3">
+    <div class="tile">
+      <h3>Device</h3>
+      ${device.data.length ? `<table>
+        <thead><tr><th>Type</th><th>Loads</th><th>Uniques</th></tr></thead>
+        <tbody>${device.data.map(r => `
+          <tr>
+            <td class="label">${ESC(r.device || '—')}</td>
+            <td class="r"><span class="pri">${(r.views || 0).toLocaleString()}</span></td>
+            <td class="r">${(r.uniques || 0).toLocaleString()}</td>
+          </tr>`).join('')}</tbody></table>` : '<p class="empty">Awaiting data.</p>'}
+    </div>
+    <div class="tile alt">
+      <h3>OS</h3>
+      ${os.data.length ? `<table>
+        <thead><tr><th>OS</th><th>Loads</th><th>Uniques</th></tr></thead>
+        <tbody>${os.data.map(r => `
+          <tr>
+            <td class="label">${ESC(r.os || '—')}</td>
+            <td class="r"><span class="pri">${(r.views || 0).toLocaleString()}</span></td>
+            <td class="r">${(r.uniques || 0).toLocaleString()}</td>
+          </tr>`).join('')}</tbody></table>` : '<p class="empty">Awaiting data.</p>'}
+    </div>
+    <div class="tile">
+      <h3>Browser</h3>
+      ${browser.data.length ? `<table>
+        <thead><tr><th>Browser</th><th>Loads</th><th>Uniques</th></tr></thead>
+        <tbody>${browser.data.map(r => `
+          <tr>
+            <td class="label">${ESC(r.browser || '—')}</td>
+            <td class="r"><span class="pri">${(r.views || 0).toLocaleString()}</span></td>
+            <td class="r">${(r.uniques || 0).toLocaleString()}</td>
+          </tr>`).join('')}</tbody></table>` : '<p class="empty">Awaiting data.</p>'}
+    </div>
+  </section>
+
+  <section class="tile alt">
+    <h2>Country</h2>
     ${geo.data.length ? `<table>
       <thead><tr><th>Country</th><th>Loads</th><th></th></tr></thead>
       <tbody>${geo.data.map(r => `
@@ -263,16 +303,32 @@ ${commonHead()}
         </tr>`).join('')}</tbody></table>` : '<p class="empty">No geographic data yet.</p>'}
   </section>
 
+  <section class="tile">
+    <h2>City</h2>
+    ${city.data.length ? `<table>
+      <thead><tr><th>City</th><th>Region</th><th>Country</th><th>Loads</th><th></th></tr></thead>
+      <tbody>${city.data.map(r => `
+        <tr>
+          <td class="label">${ESC(r.city || '—')}</td>
+          <td>${ESC(r.region || '—')}</td>
+          <td>${ESC(r.country || '—')}</td>
+          <td class="r"><span class="pri">${(r.views || 0).toLocaleString()}</span></td>
+          <td>${bar(r.views, cityMax)}</td>
+        </tr>`).join('')}</tbody></table>` : '<p class="empty">No city-level data yet (CF\'s city field requires HTTPS + may be empty for some IPs).</p>'}
+  </section>
+
   <section class="tile alt recent">
     <h2>Recent activity (last 7 days)</h2>
     ${recent.data.length ? `<table>
-      <thead><tr><th>When</th><th>Event</th><th>Slide</th><th>Country</th></tr></thead>
+      <thead><tr><th>When</th><th>Event</th><th>Slide</th><th>Country</th><th>Device</th><th>OS</th></tr></thead>
       <tbody>${recent.data.slice(0, 50).map(r => `
         <tr>
           <td>${fmtTimestamp(r.timestamp)}</td>
           <td><span class="badge${r.event === 'slide_view' ? ' slide' : ''}">${ESC(r.event)}</span></td>
           <td class="r">${r.slide ? '#' + ESC(r.slide) : '—'}</td>
           <td>${ESC(r.country || '—')}</td>
+          <td>${ESC(r.device || '—')}</td>
+          <td>${ESC(r.os || '—')}</td>
         </tr>`).join('')}</tbody></table>` : '<p class="empty">No recent events.</p>'}
   </section>
 
@@ -290,16 +346,20 @@ export async function handleStats(request, env, slug) {
   const w = `WHERE index1 = '${slug}' AND timestamp > now() - INTERVAL '30' DAY`;
   const w7 = `WHERE index1 = '${slug}' AND timestamp > now() - INTERVAL '7' DAY`;
 
-  const [totals, daily, funnel, geo, uniques, recent] = await Promise.all([
+  const [totals, daily, funnel, geo, uniques, recent, device, os, browser, city] = await Promise.all([
     querySQL(env, `SELECT blob1 AS event, count() AS n FROM ${dataset} ${w} GROUP BY event`),
     querySQL(env, `SELECT toStartOfDay(timestamp) AS day, count() AS views FROM ${dataset} ${w} AND blob1 = 'deck_view' GROUP BY day ORDER BY day DESC`),
     querySQL(env, `SELECT double1 AS slide, count() AS views, count(DISTINCT blob5) AS uniques, avg(double2) AS avg_dwell FROM ${dataset} ${w} AND blob1 = 'slide_view' AND double1 > 0 GROUP BY slide ORDER BY slide`),
     querySQL(env, `SELECT blob3 AS country, count() AS views FROM ${dataset} ${w} AND blob1 = 'deck_view' GROUP BY country ORDER BY views DESC LIMIT 25`),
     querySQL(env, `SELECT count(DISTINCT blob5) AS uniques FROM ${dataset} ${w}`),
-    querySQL(env, `SELECT timestamp, blob1 AS event, double1 AS slide, blob3 AS country FROM ${dataset} ${w7} ORDER BY timestamp DESC LIMIT 50`)
+    querySQL(env, `SELECT timestamp, blob1 AS event, double1 AS slide, blob3 AS country, blob7 AS device, blob8 AS os FROM ${dataset} ${w7} ORDER BY timestamp DESC LIMIT 50`),
+    querySQL(env, `SELECT blob7 AS device, count() AS views, count(DISTINCT blob5) AS uniques FROM ${dataset} ${w} AND blob1 = 'deck_view' AND blob7 != '' GROUP BY device ORDER BY views DESC`),
+    querySQL(env, `SELECT blob8 AS os, count() AS views, count(DISTINCT blob5) AS uniques FROM ${dataset} ${w} AND blob1 = 'deck_view' AND blob8 != '' GROUP BY os ORDER BY views DESC`),
+    querySQL(env, `SELECT blob9 AS browser, count() AS views, count(DISTINCT blob5) AS uniques FROM ${dataset} ${w} AND blob1 = 'deck_view' AND blob9 != '' GROUP BY browser ORDER BY views DESC`),
+    querySQL(env, `SELECT blob10 AS city, blob11 AS region, blob3 AS country, count() AS views FROM ${dataset} ${w} AND blob1 = 'deck_view' AND blob10 != '' GROUP BY city, region, country ORDER BY views DESC LIMIT 25`)
   ]);
 
-  return new Response(renderStatsPage(slug, { totals, daily, funnel, geo, uniques, recent }, env), {
+  return new Response(renderStatsPage(slug, { totals, daily, funnel, geo, uniques, recent, device, os, browser, city }, env), {
     headers: {
       'content-type': 'text/html; charset=utf-8',
       'cache-control': 'private, no-store, max-age=0',

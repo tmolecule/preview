@@ -72,12 +72,45 @@ function shortHash(s) {
   return (h >>> 0).toString(36);
 }
 
+/**
+ * Lightweight UA bucketing. Returns coarse device/os/browser categories
+ * suitable for funnel analysis. iPad on iPadOS 13+ reports as macOS in
+ * Safari ("Request Desktop Site"), so iPads can leak into desktop —
+ * tradeoff worth accepting for UA-only detection without client hints.
+ */
+function parseUA(ua) {
+  const u = (ua || '').toLowerCase();
+  if (!u) return { device: 'other', os: 'other', browser: 'other' };
+
+  let device = 'desktop';
+  if (/ipad|tablet|kindle|playbook/.test(u)) device = 'tablet';
+  else if (/mobile|android|iphone|ipod|opera mini|iemobile|webos/.test(u)) device = 'mobile';
+
+  let os = 'other';
+  if (/ipad|iphone|ipod/.test(u)) os = 'ios';
+  else if (/android/.test(u)) os = 'android';
+  else if (/mac os x|macintosh/.test(u)) os = 'macos';
+  else if (/windows/.test(u)) os = 'windows';
+  else if (/linux/.test(u)) os = 'linux';
+  else if (/cros\b/.test(u)) os = 'chromeos';
+
+  let browser = 'other';
+  if (/edg\//.test(u)) browser = 'edge';
+  else if (/opr\/|opera/.test(u)) browser = 'opera';
+  else if (/firefox|fxios/.test(u)) browser = 'firefox';
+  else if (/chrome\/|crios/.test(u)) browser = 'chrome';
+  else if (/safari/.test(u)) browser = 'safari';
+
+  return { device, os, browser };
+}
+
 function trackEvent(env, request, eventName, slug, slideNum, dwellMs) {
   if (!env.DECK_ANALYTICS) return;
   try {
     const cf = request.cf || {};
     const ua = request.headers.get('user-agent') || '';
     const referrer = request.headers.get('referer') || '';
+    const { device, os, browser } = parseUA(ua);
     env.DECK_ANALYTICS.writeDataPoint({
       blobs: [
         eventName,                     // blob1: 'deck_view' | 'slide_view'
@@ -85,7 +118,13 @@ function trackEvent(env, request, eventName, slug, slideNum, dwellMs) {
         cf.country || '',              // blob3: ISO country code
         cf.colo || '',                 // blob4: CF data center
         shortHash(ua),                 // blob5: anonymized UA hash
-        referrer.slice(0, 200)         // blob6: referrer (truncated)
+        (referrer || '').slice(0, 200),// blob6: referrer (truncated)
+        device,                        // blob7: mobile | tablet | desktop | other
+        os,                            // blob8: ios | android | macos | windows | linux | chromeos | other
+        browser,                       // blob9: chrome | safari | firefox | edge | opera | other
+        (cf.city || '').slice(0, 80),  // blob10: city
+        (cf.region || '').slice(0, 80),// blob11: region/state
+        (cf.timezone || '').slice(0, 60) // blob12: IANA timezone
       ],
       doubles: [
         slideNum || 0,                 // double1: slide number (0 for deck_view)
