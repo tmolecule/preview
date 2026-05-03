@@ -350,7 +350,7 @@ ${schemaTags.join('\n')}
     display:flex;
     align-items:center;
     gap:8px;
-    padding:7px 12px 7px 34px;
+    padding:7px 38px 7px 34px;
     background:rgba(255,250,225,.78);
     border:1px solid rgba(122,90,43,.3);
     border-radius:999px;
@@ -384,6 +384,27 @@ ${schemaTags.join('\n')}
     line-height:1.4;
   }
   .tm-search input::placeholder{color:rgb(var(--color-mute))}
+  .tm-search input::-webkit-search-cancel-button{display:none}
+  .tm-search__clear{
+    position:absolute;
+    right:8px;
+    top:50%;
+    transform:translateY(-50%);
+    width:22px;
+    height:22px;
+    border:0;
+    padding:0;
+    background:rgba(122,90,43,.14);
+    color:rgb(var(--color-foreground));
+    border-radius:50%;
+    cursor:pointer;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    transition:background .12s ease;
+  }
+  .tm-search__clear:hover{background:rgba(122,90,43,.28)}
+  .tm-search.has-query .tm-search__clear{display:inline-flex}
   .tm-search__dropdown{
     position:absolute;
     top:calc(100% + 8px);
@@ -981,6 +1002,9 @@ ${schemaTags.join('\n')}
   <div class="tm-search" role="search">
     <svg class="tm-search__icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
     <input type="search" placeholder="Search articles…" aria-label="Search articles" autocomplete="off" spellcheck="false">
+    <button class="tm-search__clear" type="button" aria-label="Clear search" tabindex="-1">
+      <svg viewBox="0 0 24 24" width="12" height="12" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
     <div class="tm-search__dropdown" role="listbox" hidden></div>
   </div>
 </header>
@@ -1036,8 +1060,16 @@ ${schemaTags.join('\n')}
   if (!box) return;
   var input = box.querySelector('input');
   var dropdown = box.querySelector('.tm-search__dropdown');
+  var clearBtn = box.querySelector('.tm-search__clear');
   var articles = null;
   var activeIdx = -1;
+  function syncClearBtn(){box.classList.toggle('has-query', !!input.value);}
+  if (clearBtn) clearBtn.addEventListener('click', function(){
+    input.value = '';
+    syncClearBtn();
+    dropdown.hidden = true;
+    input.focus();
+  });
   function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function loadManifest(){
     if (articles) return Promise.resolve();
@@ -1072,7 +1104,7 @@ ${schemaTags.join('\n')}
     hits[activeIdx].scrollIntoView({block:'nearest'});
   }
   input.addEventListener('focus', function(){loadManifest().then(function(){if (input.value) render(input.value);});});
-  input.addEventListener('input', function(){render(input.value);});
+  input.addEventListener('input', function(){syncClearBtn(); render(input.value);});
   input.addEventListener('keydown', function(e){
     if (dropdown.hidden) return;
     var hits = dropdown.querySelectorAll('.tm-search__hit');
