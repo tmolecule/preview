@@ -954,9 +954,7 @@ ${schemaTags.join('\n')}
       <h4>Connect</h4>
       <div class="tm-footer__social">${SOCIAL_LINKS.map(s => `<a href="${s.href}" aria-label="${esc(s.label)}" target="_blank" rel="noopener">${s.icon}</a>`).join('')}</div>
       <div class="tm-footer__contact">
-        <span class="label">Toll Free</span>
-        <a href="tel:${TOLL_FREE_TEL}">${TOLL_FREE_NUMBER}</a>
-        <span class="label" style="margin-top:14px;">Customer Care</span>
+        <span class="label">Customer Care</span>
         <a href="mailto:support@tmolecule.com">support@tmolecule.com</a>
         <span class="label" style="margin-top:14px;">Hours</span>
         <span>Mon–Fri, 9am–5pm ET</span>
