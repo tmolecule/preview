@@ -266,16 +266,15 @@ ${schemaTags.join('\n')}
   body{
     font-family:var(--sans);
     color:rgb(var(--color-foreground));
-    background-color:#e8d4a3;
+    background-color:#ecdcb0;
     background-image:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
-      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(253,244,212,.85) 0%, transparent 60%),
-      radial-gradient(ellipse 65% 45% at 100% 100%, rgba(125,90,45,.20) 0%, transparent 55%),
-      radial-gradient(ellipse 65% 45% at 0% 100%, rgba(125,90,45,.16) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 35% at 100% 0%, rgba(180,140,80,.12) 0%, transparent 50%),
-      linear-gradient(180deg, #f5e8b8 0%, #e8d09e 50%, #d4b574 100%);
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(253,246,220,.7) 0%, transparent 60%),
+      radial-gradient(ellipse 65% 45% at 100% 100%, rgba(140,100,55,.13) 0%, transparent 55%),
+      radial-gradient(ellipse 65% 45% at 0% 100%, rgba(140,100,55,.09) 0%, transparent 55%),
+      linear-gradient(180deg, #f6ecc8 0%, #eedcae 55%, #e0c896 100%);
     background-attachment:fixed;
-    background-size:240px 240px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    background-size:240px 240px, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     min-height:100vh;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
@@ -338,8 +337,19 @@ ${schemaTags.join('\n')}
     .tm-header__spacer{display:none}
   }
 
-  /* Main content */
-  .wrap{max-width:740px;margin:0 auto;padding:48px 24px 64px}
+  /* Main content — sits on a slightly lighter "fresh page" panel
+     so body copy stays readable against the deeper parchment body */
+  .wrap{
+    max-width:740px;
+    margin:0 auto;
+    padding:48px 32px 64px;
+    background:linear-gradient(180deg, rgba(253,247,225,.78) 0%, rgba(248,237,200,.72) 100%);
+    box-shadow:0 1px 2px rgba(80,50,20,.04), 0 8px 32px rgba(80,50,20,.08), 0 0 0 1px rgba(122,90,43,.06);
+    border-radius:0 0 4px 4px;
+  }
+  @media (max-width:760px){
+    .wrap{padding:36px 22px 48px}
+  }
   .crumbs{font-size:.85rem;color:rgb(var(--color-mute));margin-bottom:14px}
   .crumbs a{color:rgb(var(--color-mute))}
   h1{
