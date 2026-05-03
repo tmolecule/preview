@@ -761,6 +761,25 @@
 
   totalEl.textContent = total;
 
+  // Analytics — fires per slide change to /decks/<slug>/track
+  // No-op when the deck is opened via file:// or any path other
+  // than /decks/<slug> (e.g. local preview).
+  var pathSegs = location.pathname.split('/').filter(Boolean);
+  var deckSlug = (pathSegs.length >= 2 && pathSegs[0] === 'decks') ? pathSegs[1] : null;
+  var lastSlideTime = Date.now();
+  function track(slideNum) {
+    if (!deckSlug) return;
+    var dwell = Math.max(0, Date.now() - lastSlideTime);
+    lastSlideTime = Date.now();
+    try {
+      fetch('/decks/' + deckSlug + '/track?slide=' + slideNum + '&dwell=' + dwell, {
+        method: 'POST',
+        keepalive: true,
+        credentials: 'include'
+      }).catch(function(){});
+    } catch (e) {}
+  }
+
   // Build dots
   for (var i = 0; i < total; i++) {
     var dot = document.createElement('button');
@@ -784,6 +803,7 @@
     prevBtn.disabled = (current === 0);
     nextBtn.disabled = (current === total - 1);
     history.replaceState(null, '', '#' + (current + 1));
+    track(current + 1);
   }
 
   prevBtn.addEventListener('click', function(){ goTo(current - 1); });

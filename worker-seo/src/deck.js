@@ -1,18 +1,25 @@
 /**
- * Password-gated R2-backed deck serving.
+ * Password-gated R2-backed deck serving + Analytics Engine tracking.
  *
  * GET /decks/<slug>
- *   Reads <slug>.html from the R2 DECKS bucket and serves it.
- *   Gated by HTTP Basic Auth — username is ignored, password must
- *   match env.DECK_PASSWORD (timing-safe comparison).
+ *   Reads <slug>.html from R2 DECKS, serves with hardened headers.
+ *   Logs a 'deck_view' event to Analytics Engine on auth success.
+ *
+ * POST /decks/<slug>/track?slide=N&dwell=ms
+ *   Logs a 'slide_view' event with the slide number and dwell time
+ *   (ms spent on the previous slide). Auth-gated. Returns 204.
+ *
+ * All endpoints gated by HTTP Basic Auth — username is ignored,
+ * password must match env.DECK_PASSWORD (timing-safe comparison).
  *
  * Hardened against:
- *   - Path traversal (slug regex restricts to [a-z0-9-]).
+ *   - Path traversal (slug regex).
  *   - Edge caching of authenticated bytes (cache-control: private, no-store).
  *   - Iframe embedding (X-Frame-Options: DENY).
  */
 
 const REALM = 'TMolecule Decks';
+const SLUG_RE = /^[a-z0-9][a-z0-9-]{0,80}$/;
 
 function challenge(message) {
   return new Response(message || 'Authentication required', {
@@ -52,11 +59,65 @@ function checkAuth(request, env) {
   return safeEqual(password, expected);
 }
 
+/**
+ * djb2 hash, base36-encoded. Not cryptographic — just a stable
+ * compact identifier for User-Agent strings so we can estimate
+ * unique visitors without storing the raw UA.
+ */
+function shortHash(s) {
+  let h = 5381;
+  for (let i = 0; i < s.length; i++) {
+    h = ((h << 5) + h + s.charCodeAt(i)) | 0;
+  }
+  return (h >>> 0).toString(36);
+}
+
+function trackEvent(env, request, eventName, slug, slideNum, dwellMs) {
+  if (!env.DECK_ANALYTICS) return;
+  try {
+    const cf = request.cf || {};
+    const ua = request.headers.get('user-agent') || '';
+    const referrer = request.headers.get('referer') || '';
+    env.DECK_ANALYTICS.writeDataPoint({
+      blobs: [
+        eventName,                     // blob1: 'deck_view' | 'slide_view'
+        slug,                          // blob2: deck slug
+        cf.country || '',              // blob3: ISO country code
+        cf.colo || '',                 // blob4: CF data center
+        shortHash(ua),                 // blob5: anonymized UA hash
+        referrer.slice(0, 200)         // blob6: referrer (truncated)
+      ],
+      doubles: [
+        slideNum || 0,                 // double1: slide number (0 for deck_view)
+        dwellMs || 0                   // double2: dwell on previous slide (ms)
+      ],
+      indexes: [slug]                  // index1: slug (for fast lookups)
+    });
+  } catch (err) {
+    // Never let analytics failures break the response
+  }
+}
+
 export async function handleDeck(request, env, path) {
   if (!checkAuth(request, env)) return challenge();
 
+  // /decks/<slug>/track — analytics endpoint for slide_view events
+  const trackMatch = path.match(/^\/decks\/([a-z0-9][a-z0-9-]{0,80})\/track\/?$/);
+  if (trackMatch) {
+    const slug = trackMatch[1];
+    const url = new URL(request.url);
+    const slideNum = Math.max(0, Math.min(999, parseInt(url.searchParams.get('slide') || '0', 10) || 0));
+    const dwellMs = Math.max(0, Math.min(86400000, parseInt(url.searchParams.get('dwell') || '0', 10) || 0));
+    trackEvent(env, request, 'slide_view', slug, slideNum, dwellMs);
+    return new Response('', {
+      status: 204,
+      headers: { 'cache-control': 'no-store' }
+    });
+  }
+
+  // /decks/<slug> — serve HTML
   const slug = path.replace(/^\/decks\//, '').replace(/\/$/, '');
-  if (!slug || !/^[a-z0-9][a-z0-9-]{0,80}$/.test(slug)) {
+  if (!slug || !SLUG_RE.test(slug)) {
     return new Response('Not found', { status: 404, headers: { 'cache-control': 'no-store' } });
   }
 
@@ -64,6 +125,8 @@ export async function handleDeck(request, env, path) {
   if (!obj) {
     return new Response('Deck not found', { status: 404, headers: { 'cache-control': 'no-store' } });
   }
+
+  trackEvent(env, request, 'deck_view', slug, 1, 0);
 
   return new Response(obj.body, {
     headers: {

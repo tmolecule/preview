@@ -22,6 +22,12 @@ preview_id = "6619209e0aaf4870aa03c9f0119fbf82"
 binding = "DECKS"
 bucket_name = "tmolecule-decks"
 
+# Analytics Engine dataset for deck view + per-slide tracking.
+# Auto-created on first writeDataPoint() call.
+[[analytics_engine_datasets]]
+binding = "DECK_ANALYTICS"
+dataset = "tmolecule_deck_analytics"
+
 [vars]
 SITE_NAME = "TMolecule"
 SHOP_ORIGIN = "https://tmolecule.com"
