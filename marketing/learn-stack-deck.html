@@ -60,7 +60,7 @@
   .slide {
     position: absolute;
     inset: 0;
-    padding: 7vh 9vw;
+    padding: max(7vh, 88px) 9vw 9vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,7 +71,8 @@
   }
   .slide.active { opacity: 1; pointer-events: auto; }
 
-  /* Header bar */
+  /* Header bar — translucent parchment so slide content scrolling
+     under it stays legible and doesn't blend with the brand text */
   .deck-header {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -84,8 +85,10 @@
     color: var(--mute);
     z-index: 60;
     pointer-events: none;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
+    background: linear-gradient(180deg, rgba(246,236,200,.94) 0%, rgba(246,236,200,.78) 80%, rgba(246,236,200,0) 100%);
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+    border-bottom: 1px solid rgba(122,90,43,.10);
   }
   .deck-header__brand {
     font-family: var(--serif);
@@ -154,12 +157,12 @@
     .deck-nav { padding: 12px 16px 16px; }
     .deck-nav__dots { gap: 4px; }
     .deck-nav__dots button { width: 8px; height: 8px; }
-    .slide { padding: 6vh 6vw 9vh; }
+    .slide { padding: max(6vh, 76px) 6vw 11vh; }
     .deck-header { padding: 14px 18px; font-size: 11px; }
     .deck-header__brand { font-size: 13px; }
   }
   @media (max-width: 480px) {
-    .slide { padding: 5vh 5vw 12vh; }
+    .slide { padding: max(5vh, 72px) 5vw 14vh; }
     .pull { padding-left: 1rem; }
     .grid-2, .grid-3, .grid-4 { gap: .9rem; }
     .tile { padding: 1.1rem 1.2rem; }
