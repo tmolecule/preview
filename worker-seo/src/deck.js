@@ -98,8 +98,16 @@ function trackEvent(env, request, eventName, slug, slideNum, dwellMs) {
   }
 }
 
+import { handleStats } from './stats.js';
+
 export async function handleDeck(request, env, path) {
   if (!checkAuth(request, env)) return challenge();
+
+  // /decks/<slug>/stats — parchment-themed analytics dashboard
+  const statsMatch = path.match(/^\/decks\/([a-z0-9][a-z0-9-]{0,80})\/stats\/?$/);
+  if (statsMatch) {
+    return handleStats(request, env, statsMatch[1]);
+  }
 
   // /decks/<slug>/track — analytics endpoint for slide_view events
   const trackMatch = path.match(/^\/decks\/([a-z0-9][a-z0-9-]{0,80})\/track\/?$/);
