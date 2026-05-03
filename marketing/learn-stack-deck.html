@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TMolecule Learn — what we built and why</title>
+<meta name="description" content="A walkthrough of the AI-SEO infrastructure powering learn.tmolecule.com — Ayurveda meets modern science, in a manuscript that AI engines can cite.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+  :root {
+    --bg-cream: #f6ecc8;
+    --bg-mid: #eedcae;
+    --bg-deep: #e0c896;
+    --ink: #2b2a28;
+    --ink-soft: #4a443a;
+    --mute: #7a7060;
+    --brown: #7a5a2b;
+    --brown-deep: #5d4520;
+    --gold: #b08544;
+    --champagne: #dac490;
+    --rule: #d4b97a;
+    --char: rgba(38,20,5,.55);
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+  body {
+    font-family: var(--sans);
+    color: var(--ink);
+    background-color: #ecdcb0;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(253,246,220,.7) 0%, transparent 60%),
+      radial-gradient(ellipse 65% 45% at 100% 100%, rgba(140,100,55,.13) 0%, transparent 55%),
+      radial-gradient(ellipse 65% 45% at 0% 100%, rgba(140,100,55,.09) 0%, transparent 55%),
+      linear-gradient(to right,
+        rgba(35,18,5,.55) 0%,
+        rgba(80,42,16,.40) 1%,
+        rgba(140,90,45,.22) 3%,
+        rgba(180,130,70,.10) 6%,
+        transparent 9%,
+        transparent 91%,
+        rgba(180,130,70,.10) 94%,
+        rgba(140,90,45,.22) 97%,
+        rgba(80,42,16,.40) 99%,
+        rgba(35,18,5,.55) 100%
+      ),
+      linear-gradient(180deg, var(--bg-cream) 0%, var(--bg-mid) 55%, var(--bg-deep) 100%);
+    background-attachment: fixed;
+    background-size: 240px 240px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Deck container */
+  .deck { position: fixed; inset: 0; }
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 7vh 9vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    overflow-y: auto;
+  }
+  .slide.active { opacity: 1; pointer-events: auto; }
+
+  /* Header bar */
+  .deck-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    padding: 18px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--mute);
+    z-index: 60;
+    pointer-events: none;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+  }
+  .deck-header__brand {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--brown);
+  }
+  .deck-header__brand sup { font-size: 9px; vertical-align: super; }
+  .deck-header__num {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mute);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Footer / nav */
+  .deck-nav {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    padding: 16px 28px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 60;
+  }
+  .deck-nav__dots {
+    display: flex;
+    gap: 6px;
+    margin: 0 auto;
+  }
+  .deck-nav__dots button {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: 1px solid var(--brown);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .deck-nav__dots button:hover { transform: scale(1.3); }
+  .deck-nav__dots button.active { background: var(--brown); }
+  .deck-nav__arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(122,90,43,.3);
+    background: rgba(255,250,225,.8);
+    color: var(--brown);
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .deck-nav__arrow:hover { background: rgba(255,253,238,.95); transform: scale(1.05); }
+  .deck-nav__arrow:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* Typography */
+  h1, h2, h3 { margin: 0; }
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--brown);
+    font-weight: 600;
+    margin: 0 0 1.4rem;
+  }
+  .title-xl {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 6vw, 4.8rem);
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+    margin: 0 0 1rem;
+  }
+  .title-lg {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    line-height: 1.1;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+    margin: 0 0 1.4rem;
+  }
+  .title-md {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 1rem;
+  }
+  .lede {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.15rem, 2vw, 1.6rem);
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 38em;
+    margin: 0 0 2rem;
+    font-weight: 400;
+  }
+  .body {
+    font-family: var(--sans);
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 56em;
+  }
+  .body p { margin: 0 0 1rem; }
+  .body p:last-child { margin: 0; }
+  .body strong { color: var(--ink); font-weight: 600; }
+
+  /* Tile cards (illuminated manuscript style) */
+  .tile {
+    background: linear-gradient(135deg, #f7ecd1 0%, #ecdab0 100%);
+    border-top: 1px solid #e2cf99;
+    border-right: 1px solid #e2cf99;
+    border-bottom: 1px solid #e2cf99;
+    border-left: 3px solid var(--brown);
+    border-radius: 12px;
+    padding: 1.4rem 1.6rem;
+    box-shadow:
+      0 1px 2px rgba(80,50,20,.10),
+      0 4px 14px rgba(80,50,20,.12),
+      0 22px 50px rgba(80,50,20,.10);
+  }
+  .tile h3 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 1.18rem;
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+  }
+  .tile p, .tile li {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* Trad-sci preview */
+  .tradsci {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(122,90,43,.16);
+    border-left: 3px solid var(--brown);
+    box-shadow:
+      0 1px 2px rgba(80,50,20,.10),
+      0 4px 14px rgba(80,50,20,.12),
+      0 22px 50px rgba(80,50,20,.10);
+    margin: 1.5rem 0;
+    max-width: 56em;
+  }
+  .tradsci > div {
+    padding: 1.3rem 1.5rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+  .tradsci__trad {
+    background: linear-gradient(135deg, #f7ecd1 0%, #ecdab0 100%);
+    border-right: 1px solid rgba(122,90,43,.14);
+  }
+  .tradsci__sci {
+    background: linear-gradient(135deg, #fbf6e8 0%, #f3eccd 100%);
+  }
+  .tradsci h4 {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--brown);
+    margin: 0 0 0.55rem;
+  }
+  .tradsci p { margin: 0 0 0.5rem; color: var(--ink-soft); }
+  .tradsci p:last-child { margin: 0; }
+  .tradsci em { font-style: italic; color: var(--brown); }
+  @media (max-width: 760px) {
+    .tradsci { grid-template-columns: 1fr; }
+    .tradsci__trad { border-right: 0; border-bottom: 1px solid rgba(122,90,43,.14); }
+  }
+
+  /* Stat */
+  .stat {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1;
+    color: var(--brown);
+    letter-spacing: -0.02em;
+  }
+  .stat-num small {
+    font-size: 0.5em;
+    color: var(--mute);
+    margin-left: 0.2em;
+  }
+  .stat-label {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--mute);
+    margin-top: 0.6rem;
+  }
+
+  /* Lists */
+  ul.checks { list-style: none; padding: 0; margin: 1rem 0; }
+  ul.checks li {
+    padding-left: 1.6rem;
+    position: relative;
+    margin-bottom: 0.7rem;
+    font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  ul.checks li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--brown);
+    font-weight: 700;
+  }
+  ul.crosses li::before { content: '✕'; color: #b04030; }
+
+  /* Grids */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; max-width: 80em; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; max-width: 88em; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; max-width: 88em; }
+  @media (max-width: 880px) {
+    .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: 1rem; }
+  }
+
+  /* Title slide */
+  .slide-title {
+    text-align: center;
+    align-items: center;
+  }
+  .slide-title .deck-thesis {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    color: var(--ink-soft);
+    line-height: 1.4;
+    max-width: 24em;
+    margin: 0 auto 2.5rem;
+  }
+  .slide-title .deck-byline {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--mute);
+  }
+  .slide-title .deck-byline strong { color: var(--brown); font-weight: 600; }
+  .slide-title .ornamental {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, var(--brown) 50%, transparent 100%);
+    margin: 1.6rem auto 1.6rem;
+  }
+
+  /* Closing */
+  .signature {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--brown);
+    margin-top: 2rem;
+  }
+
+  /* Pull quote */
+  .pull {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.3;
+    font-weight: 600;
+    color: var(--ink);
+    max-width: 24em;
+    border-left: 3px solid var(--brown);
+    padding-left: 1.5rem;
+    margin: 0 auto;
+    letter-spacing: -0.005em;
+  }
+  .pull cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.8em;
+    color: var(--mute);
+    margin-top: 1rem;
+    font-family: var(--sans);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 500;
+  }
+
+  /* Print */
+  @media print {
+    html, body { overflow: visible; height: auto; }
+    .deck-header, .deck-nav { display: none; }
+    .slide {
+      position: relative;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      page-break-after: always;
+      min-height: 100vh;
+      inset: auto;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="deck-header">
+  <div class="deck-header__brand">TMolecule<sup>®</sup> Learn</div>
+  <div class="deck-header__num"><span id="num">1</span> / <span id="total">15</span></div>
+</header>
+
+<main class="deck">
+
+  <!-- Slide 1: Title -->
+  <section class="slide slide-title active">
+    <p class="eyebrow">A walkthrough · May 2026</p>
+    <h1 class="title-xl">TMolecule<sup style="font-size:.4em;color:var(--brown);">®</sup> Learn</h1>
+    <p class="deck-thesis">What our family kitchen knew since 1935. What the studies have since proved. Both, on every page.</p>
+    <div class="ornamental"></div>
+    <p class="deck-byline">Built by <strong>PGP Iyer</strong> · learn.tmolecule.com</p>
+  </section>
+
+  <!-- Slide 2: The shift -->
+  <section class="slide">
+    <p class="eyebrow">The context</p>
+    <h2 class="title-lg">AI search is the new discovery layer.</h2>
+    <div class="grid-4" style="margin-top:2rem;">
+      <div class="stat"><div class="stat-num">~45<small>%</small></div><div class="stat-label">of Google searches now show AI Overviews</div></div>
+      <div class="stat"><div class="stat-num">−58<small>%</small></div><div class="stat-label">click-through to websites in queries with AI Overviews</div></div>
+      <div class="stat"><div class="stat-num">6.5<small>×</small></div><div class="stat-label">more AI citations come from third-party sources than from your own domain</div></div>
+      <div class="stat"><div class="stat-num">+40<small>%</small></div><div class="stat-label">visibility lift from cited sources (Princeton GEO study, KDD 2024)</div></div>
+    </div>
+    <p class="body" style="margin-top:2.4rem;">The brands that get cited <strong>inside</strong> the AI answer win the click. The rest get summarized and replaced.</p>
+  </section>
+
+  <!-- Slide 3: The thesis -->
+  <section class="slide" style="text-align:center;align-items:center;">
+    <p class="eyebrow">The thesis</p>
+    <p class="pull">
+      Traditional SEO ranks <em>pages</em>.<br>
+      AI SEO gets you <em>cited</em>.
+      <cite>The work below is built for the second one.</cite>
+    </p>
+  </section>
+
+  <!-- Slide 4: The TMolecule answer -->
+  <section class="slide">
+    <p class="eyebrow">Our approach</p>
+    <h2 class="title-lg">Three pillars on every page.</h2>
+    <div class="grid-3" style="margin-top:2rem;">
+      <div class="tile">
+        <h3>1 · Structure</h3>
+        <p>Make content extractable by AI engines — schema, semantic HTML, FAQ blocks, comparison tables, speakable selectors, markdown alternatives.</p>
+      </div>
+      <div class="tile">
+        <h3>2 · Authority</h3>
+        <p>Make every claim citable — peer-reviewed sources inline, Person author with E-E-A-T signals, freshness dates, expert framing.</p>
+      </div>
+      <div class="tile">
+        <h3>3 · Presence</h3>
+        <p>Be where AI crawlers look — explicit IETF Content-Signal opt-in, /llms.txt, /<slug>.md, /manifest.json, allow-lists for 11 named AI bots.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 5: Schema layer -->
+  <section class="slide">
+    <p class="eyebrow">Pillar 1 · Structure</p>
+    <h2 class="title-lg">What every article emits.</h2>
+    <div class="grid-2" style="margin-top:1.5rem;">
+      <ul class="checks">
+        <li><strong>Article schema</strong> — Person author, publisher, image, datePublished, dateModified, citation[] array</li>
+        <li><strong>FAQPage schema</strong> with SpeakableSpecification (voice search, Hey Google / Alexa)</li>
+        <li><strong>BreadcrumbList</strong> three-tier hierarchy (Brand → Learn → Article)</li>
+        <li><strong>WebSite + CollectionPage</strong> on the index, with hasPart array of all articles</li>
+      </ul>
+      <ul class="checks">
+        <li><strong>/&lt;slug&gt;.md</strong> markdown alternative on every article — clean ingestion for AI agents</li>
+        <li><strong>Link: rel=alternate</strong> header pointing to the .md from every HTML article</li>
+        <li><strong>/llms.txt</strong> discovery file with per-article TL;DRs, last-updated dates, topic keywords</li>
+        <li><strong>/manifest.json</strong> JSON article list for the in-header search</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 6: Authority -->
+  <section class="slide">
+    <p class="eyebrow">Pillar 2 · Authority</p>
+    <h2 class="title-lg">Citations move the needle.</h2>
+    <p class="lede">Princeton GEO research (KDD 2024, studied across Perplexity.ai)</p>
+    <div class="grid-3">
+      <div class="stat"><div class="stat-num">+40<small>%</small></div><div class="stat-label">cite peer-reviewed sources</div></div>
+      <div class="stat"><div class="stat-num">+37<small>%</small></div><div class="stat-label">add specific statistics with sources</div></div>
+      <div class="stat"><div class="stat-num">+30<small>%</small></div><div class="stat-label">expert quotations with credentials</div></div>
+    </div>
+    <p class="body" style="margin-top:2rem;"><strong>Currently 6 of 10 TMolecule learn articles</strong> have peer-reviewed citations baked in — 18 sources across the stack, including Dulloo (AJCN), Hursel (Int J Obesity), Marnewick (J Ethnopharmacol), Kelly (J Nutrition), Shoba (Planta Medica), Rumpler (J Nutrition), Willems (Int J Sport Nutr Exerc Metab).</p>
+  </section>
+
+  <!-- Slide 7: Bot access -->
+  <section class="slide">
+    <p class="eyebrow">Pillar 3 · Presence</p>
+    <h2 class="title-lg">11 AI bots explicitly allow-listed.</h2>
+    <p class="lede">Plus IETF Content-Signal opt-in: <em>ai-train=no, search=yes, ai-input=yes</em></p>
+    <div class="grid-4" style="font-family:var(--sans);font-size:.92rem;">
+      <ul class="checks"><li>GPTBot</li><li>ChatGPT-User</li><li>OAI-SearchBot</li></ul>
+      <ul class="checks"><li>PerplexityBot</li><li>Perplexity-User</li><li>ClaudeBot</li></ul>
+      <ul class="checks"><li>anthropic-ai</li><li>Claude-Web</li><li>Google-Extended</li></ul>
+      <ul class="checks"><li>Applebot-Extended</li><li>Bingbot</li></ul>
+    </div>
+    <p class="body" style="margin-top:1.5rem;">We don't want our content used for training. We <em>do</em> want to be cited as a source when someone asks an AI engine about chai, matcha, oolong, rooibos, or tea science. The Content-Signal directive expresses that distinction precisely.</p>
+  </section>
+
+  <!-- Slide 8: Tradition + Science -->
+  <section class="slide">
+    <p class="eyebrow">The signature pattern</p>
+    <h2 class="title-lg">Tradition + Science.</h2>
+    <p class="lede">Every health claim pairs the classical source with the peer-reviewed study.</p>
+    <div class="tradsci">
+      <div class="tradsci__trad">
+        <h4>❖ Ayurveda's logic</h4>
+        <p>Classical Ayurveda treats the <em>trikaṭu</em> stack — ginger, black pepper, long pepper — as <em>dīpana-pācana</em>: agni-kindling and absorption-enhancing. Charaka Samhita prescribed it 2,000+ years ago.</p>
+      </div>
+      <div class="tradsci__sci">
+        <h4>◦ What pharmacology measures</h4>
+        <p>Shoba et al. 1998 (Planta Medica) found piperine — the alkaloid in black pepper — increased curcumin bioavailability in human volunteers by <strong>2,000%</strong>. The same multiplier mechanism Ayurveda was using two millennia earlier.</p>
+      </div>
+    </div>
+    <p class="body" style="margin-top:1rem;font-size:.92rem;color:var(--mute);">Live on the masala-chai-recipe page. Five articles use this pattern; pattern documented in seed/_README.md.</p>
+  </section>
+
+  <!-- Slide 9: Trad-sci scope -->
+  <section class="slide">
+    <p class="eyebrow">Where the pattern lives</p>
+    <h2 class="title-lg">Five tradition+science pairings shipped.</h2>
+    <div class="grid-2">
+      <div class="tile">
+        <h3>what-is-matcha</h3>
+        <p>Eisai's <em>Kissa Yōjōki</em> (1211 CE) on matcha as zazen meditation tool — Kelly et al. 2008 alpha-band EEG study on L-theanine + caffeine cognition.</p>
+      </div>
+      <div class="tile">
+        <h3>masala-chai-recipe</h3>
+        <p>Charaka Samhita's <em>trikaṭu</em> / <em>dīpana-pācana</em> — Shoba et al. 1998 piperine bioavailability +2,000%.</p>
+      </div>
+      <div class="tile">
+        <h3>oolong-tea-benefits</h3>
+        <p>Lu Yu's <em>Cha Jing</em> (760) and Li Shizhen's <em>Bencao Gangmu</em> (1578) classifying tea on the warming/cooling axis — Rumpler et al. 2001 partial-oxidation phytochemistry.</p>
+      </div>
+      <div class="tile">
+        <h3>rooibos-tea-benefits</h3>
+        <p>San and Khoikhoi indigenous knowledge of <em>Aspalathus linearis</em> — Marnewick et al. 2011: 6 cups daily lowered LDL ~15%, raised HDL ~33%.</p>
+      </div>
+      <div class="tile">
+        <h3>green-tea-vs-black-tea</h3>
+        <p>Lu Yu's <em>Cha Jing</em> on processing-driven medicinal differences — modern catechin/theaflavin chromatography meta-analyses.</p>
+      </div>
+      <div class="tile" style="background:linear-gradient(135deg, #fbf6e8 0%, #f3eccd 100%);">
+        <h3 style="color:var(--brown);">+ infrastructure</h3>
+        <p>The <code>&lt;aside class="trad-sci"&gt;</code> markup is reusable across any future article. Markdown export renders it as a paired blockquote so AI agents preserve the pairing semantically.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 10: Brand voice -->
+  <section class="slide" style="text-align:center;align-items:center;">
+    <p class="eyebrow">The brand voice</p>
+    <p class="pull" style="margin-bottom:2rem;">
+      What grandmother knew.<br>
+      What the studies have since proved.
+      <cite>Both, on every page. PGP Iyer · 1935 lineage</cite>
+    </p>
+    <p class="body" style="max-width:42em;text-align:left;">Most tea brands choose flavor positioning <em>or</em> wellness positioning. We do both — because the family heritage is real, the spices are real, and the chemistry that explains them is real. The credible move is to put all three on the page.</p>
+  </section>
+
+  <!-- Slide 11: Visual identity -->
+  <section class="slide">
+    <p class="eyebrow">Visual identity</p>
+    <h2 class="title-lg">A manuscript, not a SaaS doc.</h2>
+    <div class="grid-2">
+      <ul class="checks">
+        <li><strong>Aged-parchment background</strong> with charred edges — the page itself feels like rescued scroll, not a clean web page</li>
+        <li><strong>Manuscript ink headings</strong> in brand brown with cycling section accents</li>
+        <li><strong>Illuminated tile cards</strong> (FAQ, Sources, Trad-sci) lifted off the page with warm earth shadows</li>
+        <li><strong>Reading-time scroll capsule</strong> on the right — vertical pill showing minutes left</li>
+      </ul>
+      <ul class="checks">
+        <li><strong>Sticky header</strong> with parchment-translucent backdrop blur</li>
+        <li><strong>Live in-header search</strong> filtering article titles, descriptions, keywords</li>
+        <li><strong>SMS opt-in banner</strong> in footer for the RITUAL keyword</li>
+        <li><strong>Fully responsive</strong> — header collapses, trad-sci stacks, tiles reflow at mobile breakpoints</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 12: Tech stack -->
+  <section class="slide">
+    <p class="eyebrow">Under the hood</p>
+    <h2 class="title-lg">The stack.</h2>
+    <div class="grid-2">
+      <div class="tile">
+        <h3>Edge</h3>
+        <p><strong>Cloudflare Worker</strong> rendering KV-backed JSON content. Sub-100ms cold-start globally. Routes: HTML article, .md alternative, /llms.txt, /manifest.json, /sitemap.xml, /robots.txt, /health.</p>
+      </div>
+      <div class="tile">
+        <h3>Content</h3>
+        <p>Each article = one JSON file in <code>seed/</code>. Single command pushes to KV. Fields: title, h1, meta_description, body_html, image_url, faqs, sources, keywords, dates.</p>
+      </div>
+      <div class="tile">
+        <h3>Schema</h3>
+        <p>JSON-LD generated per page from the seed JSON. Article + FAQPage + Speakable + BreadcrumbList + citation[] all live, validated by Google Rich Results Test.</p>
+      </div>
+      <div class="tile">
+        <h3>Reporting pipeline</h3>
+        <p>launchd job fires 2026-05-16 — runs DataForSEO LLM-mention queries, compares to baseline, writes report, emails it via Resend with action items highlighted.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slide 13: Baseline -->
+  <section class="slide">
+    <p class="eyebrow">2026-05-02 baseline · we ship, then we measure</p>
+    <h2 class="title-lg">Where we start.</h2>
+    <div class="grid-3" style="margin-top:1.5rem;">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">total LLM mentions for tmolecule.com (Google AIO + ChatGPT)</div></div>
+      <div class="stat"><div class="stat-num">0</div><div class="stat-label">citations on category keywords (matcha, masala chai, chai concentrate, oolong, rooibos)</div></div>
+      <div class="stat"><div class="stat-num">2026-05-16</div><div class="stat-label">scheduled re-check (~14 days post-deploy). Auto-emails comparison report.</div></div>
+    </div>
+    <p class="body" style="margin-top:2rem;">The brand is being cited today via nutrition-database sites pulling product macros. The Learn site deploy targets a different angle — tea-knowledge brand, with peer-reviewed authority. We measure whether AI engines reclassify us by 2026-05-16.</p>
+  </section>
+
+  <!-- Slide 14: What's next -->
+  <section class="slide">
+    <p class="eyebrow">Roadmap</p>
+    <h2 class="title-lg">What's next.</h2>
+    <div class="grid-2">
+      <ul class="checks">
+        <li>Expand trad-sci callouts to remaining articles where the framing fits naturally</li>
+        <li>Reddit + YouTube presence for top AIO source-feeders on tea queries</li>
+        <li>Replace Vahdam with a higher-visibility competitor benchmark (Mei Leaf, Harney, Adagio) on the next mentions snapshot</li>
+        <li>Apply same infrastructure pattern to the WhollyKaw learn site (already in flight)</li>
+      </ul>
+      <ul class="checks">
+        <li>"Why this blend" article series — one per curated SKU, walking ingredient-by-ingredient through tradition + science</li>
+        <li>Rasa-Virya-Vipaka tags on each blend (functional Ayurvedic metadata)</li>
+        <li>Foundational article: "How Ayurveda categorizes tea" — high-leverage canonical link target</li>
+        <li>Wikipedia entry once content moat is established</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Slide 15: Closing -->
+  <section class="slide slide-title">
+    <p class="eyebrow">Thank you</p>
+    <h2 class="title-xl" style="font-style:italic;">Self-care, done right.</h2>
+    <div class="ornamental"></div>
+    <p class="signature">— PGP Iyer<br>tmolecule.com</p>
+    <p class="deck-byline" style="margin-top:2rem;">learn.tmolecule.com · live now</p>
+  </section>
+
+</main>
+
+<nav class="deck-nav">
+  <button class="deck-nav__arrow" id="prev" aria-label="Previous slide">‹</button>
+  <div class="deck-nav__dots" id="dots"></div>
+  <button class="deck-nav__arrow" id="next" aria-label="Next slide">›</button>
+</nav>
+
+<script>
+(function(){
+  var slides = document.querySelectorAll('.slide');
+  var total = slides.length;
+  var current = 0;
+  var dotsContainer = document.getElementById('dots');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var numEl = document.getElementById('num');
+  var totalEl = document.getElementById('total');
+
+  totalEl.textContent = total;
+
+  // Build dots
+  for (var i = 0; i < total; i++) {
+    var dot = document.createElement('button');
+    dot.setAttribute('aria-label', 'Go to slide ' + (i+1));
+    dot.dataset.idx = i;
+    dotsContainer.appendChild(dot);
+  }
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= total) return;
+    slides[current].classList.remove('active');
+    current = idx;
+    slides[current].classList.add('active');
+    numEl.textContent = current + 1;
+    Array.prototype.forEach.call(dotsContainer.children, function(d, i){
+      d.classList.toggle('active', i === current);
+    });
+    prevBtn.disabled = (current === 0);
+    nextBtn.disabled = (current === total - 1);
+    history.replaceState(null, '', '#' + (current + 1));
+  }
+
+  prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+  nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+  dotsContainer.addEventListener('click', function(e){
+    if (e.target.tagName === 'BUTTON') goTo(parseInt(e.target.dataset.idx, 10));
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') { goTo(0); }
+    else if (e.key === 'End') { goTo(total - 1); }
+  });
+
+  // Allow click anywhere on slide to advance
+  document.addEventListener('click', function(e){
+    if (e.target.closest('.deck-nav') || e.target.closest('a') || e.target.closest('button')) return;
+    if (e.target.closest('.slide')) goTo(current + 1);
+  });
+
+  // Hash-based navigation
+  var initial = parseInt((location.hash || '#1').slice(1), 10);
+  if (!isNaN(initial) && initial >= 1 && initial <= total) goTo(initial - 1);
+  else goTo(0);
+})();
+</script>
+
+</body>
+</html>
