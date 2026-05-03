@@ -63,11 +63,14 @@
     padding: max(7vh, 88px) 9vw 9vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* "safe center" anchors to the top when content overflows the
+       viewport (mobile-tall slides), centers when it fits */
+    justify-content: safe center;
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.35s ease;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   .slide.active { opacity: 1; pointer-events: auto; }
 
@@ -771,6 +774,9 @@
     slides[current].classList.remove('active');
     current = idx;
     slides[current].classList.add('active');
+    // Reset scroll position to top so tall slides on mobile always
+    // open showing the eyebrow + title (not mid-content)
+    slides[current].scrollTop = 0;
     numEl.textContent = current + 1;
     Array.prototype.forEach.call(dotsContainer.children, function(d, i){
       d.classList.toggle('active', i === current);
