@@ -266,8 +266,16 @@ ${schemaTags.join('\n')}
   body{
     font-family:var(--sans);
     color:rgb(var(--color-foreground));
-    background:linear-gradient(180deg, #faf7f0 0%, #f1e6c8 100%);
+    background-color:#e8d4a3;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.45 0 0 0 0 0.32 0 0 0 0 0.15 0 0 0 0.10 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(253,244,212,.85) 0%, transparent 60%),
+      radial-gradient(ellipse 65% 45% at 100% 100%, rgba(125,90,45,.20) 0%, transparent 55%),
+      radial-gradient(ellipse 65% 45% at 0% 100%, rgba(125,90,45,.16) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 35% at 100% 0%, rgba(180,140,80,.12) 0%, transparent 50%),
+      linear-gradient(180deg, #f5e8b8 0%, #e8d09e 50%, #d4b574 100%);
     background-attachment:fixed;
+    background-size:240px 240px, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%;
     min-height:100vh;
     line-height:1.65;
     -webkit-font-smoothing:antialiased;
