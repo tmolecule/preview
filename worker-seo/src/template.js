@@ -337,18 +337,35 @@ ${schemaTags.join('\n')}
     .tm-header__spacer{display:none}
   }
 
-  /* Main content — sits on a slightly lighter "fresh page" panel
-     so body copy stays readable against the deeper parchment body */
+  /* Main content — page panel with burnt-edge effect on left/right.
+     Dark char at the very edge fades through scorched amber into the
+     clean parchment center, like a manuscript page rescued from a fire. */
   .wrap{
     max-width:740px;
     margin:0 auto;
-    padding:48px 32px 64px;
-    background:linear-gradient(180deg, rgba(253,247,225,.78) 0%, rgba(248,237,200,.72) 100%);
-    box-shadow:0 1px 2px rgba(80,50,20,.04), 0 8px 32px rgba(80,50,20,.08), 0 0 0 1px rgba(122,90,43,.06);
+    padding:48px 56px 64px;
+    background-image:
+      linear-gradient(to right,
+        rgba(38,20,5,.55) 0%,
+        rgba(78,40,15,.42) 1%,
+        rgba(140,85,40,.22) 3%,
+        rgba(180,125,65,.10) 6%,
+        transparent 10%,
+        transparent 90%,
+        rgba(180,125,65,.10) 94%,
+        rgba(140,85,40,.22) 97%,
+        rgba(78,40,15,.42) 99%,
+        rgba(38,20,5,.55) 100%
+      ),
+      linear-gradient(180deg, rgba(253,247,225,.85) 0%, rgba(248,237,200,.78) 100%);
+    box-shadow:
+      0 1px 2px rgba(80,50,20,.06),
+      0 10px 36px rgba(80,50,20,.10),
+      0 0 0 1px rgba(60,35,15,.10);
     border-radius:0 0 4px 4px;
   }
   @media (max-width:760px){
-    .wrap{padding:36px 22px 48px}
+    .wrap{padding:36px 36px 48px}
   }
   .crumbs{font-size:.85rem;color:rgb(var(--color-mute));margin-bottom:14px}
   .crumbs a{color:rgb(var(--color-mute))}
