@@ -1,6 +1,7 @@
 import { handleArticle, handleArticleMarkdown, handleIndex, handleLlmsTxt, handleManifest } from './learn.js';
 import { handleSitemap, handleRobots } from './sitemap.js';
 import { renderNotFound } from './template.js';
+import { handleDeck } from './deck.js';
 
 async function handleHealth(env) {
   const start = Date.now();
@@ -61,6 +62,10 @@ export default {
 
     if (path === '/manifest.json') {
       return handleManifest(env, url.origin);
+    }
+
+    if (path.startsWith('/decks/')) {
+      return handleDeck(request, env, path);
     }
 
     if (path.endsWith('.md')) {

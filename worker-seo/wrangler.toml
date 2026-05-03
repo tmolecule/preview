@@ -17,6 +17,11 @@ binding = "LEARN_PAGES"
 id = "8103e78f27d14611baa93bd0d367293c"
 preview_id = "6619209e0aaf4870aa03c9f0119fbf82"
 
+# R2 bucket for password-gated marketing decks.
+[[r2_buckets]]
+binding = "DECKS"
+bucket_name = "tmolecule-decks"
+
 [vars]
 SITE_NAME = "TMolecule"
 SHOP_ORIGIN = "https://tmolecule.com"
