@@ -1,4 +1,4 @@
-import { handleArticle, handleArticleMarkdown, handleIndex, handleLlmsTxt } from './learn.js';
+import { handleArticle, handleArticleMarkdown, handleIndex, handleLlmsTxt, handleManifest } from './learn.js';
 import { handleSitemap, handleRobots } from './sitemap.js';
 import { renderNotFound } from './template.js';
 
@@ -57,6 +57,10 @@ export default {
 
     if (path === '/llms.txt') {
       return handleLlmsTxt(env, url.origin);
+    }
+
+    if (path === '/manifest.json') {
+      return handleManifest(env, url.origin);
     }
 
     if (path.endsWith('.md')) {

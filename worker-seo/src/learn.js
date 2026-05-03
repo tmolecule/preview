@@ -187,6 +187,35 @@ export async function handleIndex(env, origin) {
 }
 
 /**
+ * /manifest.json — JSON article list for the in-header search box.
+ */
+export async function handleManifest(env, origin) {
+  const list = await env.LEARN_PAGES.list({ limit: 1000 });
+  const articles = [];
+  for (const key of list.keys) {
+    const raw = await env.LEARN_PAGES.get(key.name);
+    if (!raw) continue;
+    try {
+      const data = JSON.parse(raw);
+      articles.push({
+        slug: key.name,
+        title: data.title,
+        description: data.meta_description,
+        keywords: data.keywords || []
+      });
+    } catch {}
+  }
+  articles.sort((a, b) => a.title.localeCompare(b.title));
+  return new Response(JSON.stringify({ articles }), {
+    headers: {
+      'content-type': 'application/json; charset=utf-8',
+      'cache-control': 'public, max-age=300, s-maxage=3600',
+      'access-control-allow-origin': '*'
+    }
+  });
+}
+
+/**
  * /llms.txt — discovery endpoint for LLM-based agents and AI search engines.
  */
 export async function handleLlmsTxt(env, origin) {
