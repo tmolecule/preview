@@ -1,0 +1,32 @@
+name = "tmolecule-learn-intel"
+main = "src/index.ts"
+compatibility_date = "2026-05-16"
+compatibility_flags = ["nodejs_compat"]
+account_id = "6766841fb403fe06a6e2c1f2ea3b5ea0"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[vectorize]]
+binding = "CORPUS"
+index_name = "tm-learn-corpus"
+
+[[kv_namespaces]]
+binding = "STATE"
+id = "d2ddc4bdf2e84f6baf7dc4464c5bfd85"
+preview_id = "89b44686fb1b4f01a13e4ce879c0df1e"
+
+[triggers]
+crons = ["0 8 * * *"]
+
+[vars]
+SITE_NAME = "TMolecule"
+LEARN_ORIGIN = "https://learn.tmolecule.com"
+EMBED_MODEL = "@cf/baai/bge-base-en-v1.5"
+LLM_MODEL = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+GAP_PAGES_PER_TICK = "10"
+BRAND_VOICE = "on"
+
+[observability]
+enabled = true
