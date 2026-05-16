@@ -5,6 +5,10 @@ compatibility_flags = ["nodejs_compat"]
 account_id = "6766841fb403fe06a6e2c1f2ea3b5ea0"
 workers_dev = true
 
+[[routes]]
+pattern = "learn-intel.tmolecule.com"
+custom_domain = true
+
 [ai]
 binding = "AI"
 
