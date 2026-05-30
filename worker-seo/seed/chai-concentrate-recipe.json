@@ -4,7 +4,7 @@
   "meta_description": "Make rich, unsweetened chai concentrate at home. Whole spices, real black tea, fridge-stable for two weeks. Just add hot milk to serve.",
   "image_url": "",
   "published_at": "2026-04-30T20:00:00Z",
-  "updated_at": "2026-04-30T20:00:00Z",
+  "updated_at": "2026-05-08T20:00:00Z",
   "keywords": [
     "chai concentrate recipe",
     "homemade chai concentrate",
@@ -34,5 +34,41 @@
       "q": "What's the difference between this concentrate and store-bought Tazo?",
       "a": "Three things: (1) you use whole spices, not pre-ground — bigger flavor; (2) it's unsweetened; (3) the tea is freshly steeped, not extracted into syrup. The cup tastes more complex and less candy-like."
     }
+  ],
+  "type": "recipe",
+  "recipe": {
+    "prepTime": "PT5M",
+    "cookTime": "PT25M",
+    "totalTime": "PT30M",
+    "recipeYield": "14 servings (about 4 cups / 1L of concentrate)",
+    "recipeCategory": "Beverage",
+    "recipeCuisine": "Indian",
+    "recipeIngredient": [
+      "5 cups water",
+      "3 tablespoons loose-leaf black tea (Assam preferred — CTC for strength, orthodox for nuance)",
+      "20 green cardamom pods, gently cracked",
+      "3 cinnamon sticks (about 3 inches each)",
+      "15 whole cloves",
+      "15 whole black peppercorns",
+      "4 thin slices fresh ginger (about 1/4 inch thick each)",
+      "2 star anise (optional, for a slightly licorice note)",
+      "1 vanilla bean, split (optional)"
+    ],
+    "recipeInstructions": [
+      "Toast the spices. In a heavy-bottomed pot, dry-toast the cardamom, cinnamon, cloves, peppercorns, and star anise over medium heat for 90 seconds, until fragrant. This blooms the volatile oils and dramatically deepens the final flavor.",
+      "Add water and ginger. Pour in the 5 cups of water and add the ginger slices and split vanilla bean if using. Bring to a boil, then reduce to a simmer for 15 minutes. The water should reduce by about 20% and turn deep amber.",
+      "Add the tea. Drop in the loose tea, stir, and simmer for 5 minutes more. Don't go longer — the tannins start turning bitter at 8+ minutes.",
+      "Strain. Pour through a fine-mesh strainer into a heatproof jar or pitcher. Let cool to room temperature before sealing.",
+      "Refrigerate. Sealed in a glass jar in the fridge, the concentrate keeps for 2 weeks."
+    ]
+  },
+  "featured": true,
+  "pillar": "recipes",
+  "cluster": "chai",
+  "intent": "recipe",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "related": [
+    "masala-chai-recipe",
+    "chai-tea-benefits-spice-by-spice"
   ]
 }

@@ -42,5 +42,14 @@
       "q": "Does matcha go bad?",
       "a": "Matcha doesn't spoil but it does fade. Sealed tins keep peak flavor for about 6 months in a cool, dark place; once opened, finish within 4–6 weeks."
     }
+  ],
+  "featured": true,
+  "pillar": "blends",
+  "cluster": "matcha",
+  "intent": "definition",
+  "product_bridge": "/collections/all",
+  "related": [
+    "matcha-vs-green-tea",
+    "matcha-for-weight-loss"
   ]
 }

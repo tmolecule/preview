@@ -1,0 +1,44 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "living",
+  "title": "The Gut–Skin Axis: How Your Gut May Affect Your Skin",
+  "h1": "The Gut–Skin Axis",
+  "meta_description": "The gut–skin axis is the two-way link between your gut microbiome and your skin. Here’s what the emerging research shows, where it’s solid, and where it’s still speculative.",
+  "cluster": "nutrition-science",
+  "intent": "mechanism",
+  "disclaimer": true,
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore our blends",
+  "product_bridge_blurb": "Browse TMolecule’s functional teas.",
+  "related": [
+    "anti-inflammatory-diet",
+    "polyphenols",
+    "collagen-for-skin"
+  ],
+  "keywords": [
+    "gut skin axis",
+    "gut microbiome skin",
+    "gut health and skin",
+    "gut skin connection",
+    "microbiome acne"
+  ],
+  "body_html": "<p>The “gut–skin axis” describes the two-way communication between the gut microbiome — the community of microbes in your digestive tract — and the skin. It’s a fast-growing research area, and it helps explain why diet and digestion often show up on the skin.</p>\n<h2>What the research suggests</h2>\n<p>Reviews of the gut–skin axis link gut microbial balance (and imbalance, or “dysbiosis”) to skin conditions such as psoriasis, acne, and eczema. The proposed mechanism is that gut microbes influence inflammation and immune signaling body-wide, which can register at the skin.</p>\n<h2>Where it’s solid vs speculative</h2>\n<p>The <em>association</em> between gut health and skin is well supported; the <em>specifics</em> — which microbes, which interventions, for which skin issue — are still being worked out. Treat bold “heal your skin through your gut” claims with caution; this is an emerging field, not settled science.</p>\n<h2>What this means practically</h2>\n<p>The habits that support a healthy gut microbiome overlap with general good nutrition: plenty of fiber and plants, fermented foods, polyphenol-rich foods and drinks, and limiting ultra-processed food. None of that is a skin treatment, but it’s low-risk and broadly beneficial.</p>",
+  "faqs": [
+    {
+      "q": "Does gut health affect skin?",
+      "a": "Research on the gut–skin axis links gut microbial balance to skin conditions like acne, psoriasis, and eczema, likely through inflammation and immune signaling. The association is supported; the specifics are still being studied."
+    },
+    {
+      "q": "Can improving my gut clear my skin?",
+      "a": "Possibly supportive, but not a guaranteed treatment. The evidence is emerging. Gut-friendly habits (fiber, plants, fermented and polyphenol-rich foods) are low-risk and broadly healthy regardless."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Gut-Skin Axis: Unravelling the Connection between the Gut Microbiome and Psoriasis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/35625774/",
+      "publisher": "Biomedicines, 2022"
+    }
+  ]
+}

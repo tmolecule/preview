@@ -1,0 +1,65 @@
+{
+  "title": "Is Cinnamon Banned in the EU? Coumarin, Cassia vs Ceylon, and Why the US Differs",
+  "h1": "Is Cinnamon Banned in the EU?",
+  "meta_description": "Cinnamon is not banned in the EU — but coumarin, a compound concentrated in cassia cinnamon, is regulated. Here’s the EU vs US picture, cassia vs Ceylon, and what it means for your cup.",
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "cluster": "chai-spices",
+  "intent": "eu-status",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "About our chai",
+  "product_bridge_blurb": "Spice Rush is a cinnamon-forward chai — so coumarin is a fair question to ask.",
+  "related": [
+    "collagen-peptides",
+    "is-collagen-tea-safe",
+    "chai-tea-benefits-spice-by-spice"
+  ],
+  "keywords": [
+    "is cinnamon banned in the EU",
+    "coumarin cinnamon",
+    "cassia vs ceylon cinnamon",
+    "coumarin limit",
+    "cinnamon safety",
+    "cinnamon regulation US EU"
+  ],
+  "body_html": "<p><strong>Short answer: no.</strong> Cinnamon is not banned in the European Union. What the EU regulates is <em>coumarin</em> — a naturally occurring compound that is concentrated in common cassia cinnamon and only present in trace amounts in Ceylon (“true”) cinnamon. The spice itself is freely sold; the rules are about limiting coumarin intake.</p>\n<h2>What is coumarin?</h2>\n<p>Coumarin is a natural plant compound responsible for part of cinnamon’s warm aroma. At high, sustained doses it can stress the liver in sensitive individuals, which is why regulators set intake limits. It is the reason cinnamon is treated differently across regions — not the cinnamon itself.</p>\n<h2>Cassia vs Ceylon</h2>\n<p>The two cinnamons differ enormously in coumarin. Cassia cinnamon (<em>Cinnamomum cassia</em>, the inexpensive supermarket default) can carry high and variable coumarin; Ceylon cinnamon (<em>Cinnamomum verum</em>) contains very little. Analyses of cinnamon products have found wide variation in coumarin content across cassia bark, which is why the type of cinnamon matters more than the dose for most people.</p>\n<h2>The EU position</h2>\n<p>The EU food-safety authority set a tolerable daily intake (TDI) for coumarin of 0.1 mg per kg of body weight per day, and EU flavoring rules set maximum coumarin levels in certain flavored foods (such as seasonal baked goods and breakfast cereals). Germany’s risk-assessment institute (BfR) has separately advised consumers that heavy use of cassia cinnamon can exceed the TDI — especially for children, who are lighter. None of this bans cinnamon; it caps coumarin exposure.</p>\n<h2>Why the US differs</h2>\n<p>In the United States, cinnamon as a spice is “generally recognized as safe” (GRAS) with no coumarin limit on the spice. Interestingly, the US banned <em>synthetic coumarin as an isolated food additive</em> decades earlier than the EU set its TDI — but it does not regulate the coumarin that occurs <em>naturally</em> in cinnamon. So the headline difference is less “banned vs allowed” and more about how each system handles a natural compound: the EU caps total intake; the US leaves naturally occurring coumarin in spices unregulated.</p>\n<h2>What it means for your cup</h2>\n<p>For everyday tea drinking, normal amounts of cinnamon are generally well within these limits for adults. If you drink large amounts of strongly cassia-spiced products every day — or you’re serving children — choosing Ceylon cinnamon or moderating cassia is the simple, evidence-aligned move.</p>",
+  "regulatory": {
+    "summary": "Cinnamon is not banned in the EU. The EU caps coumarin intake (a compound high in cassia cinnamon); the US treats cinnamon as GRAS and does not limit naturally occurring coumarin.",
+    "eu_status": "restricted",
+    "eu_note": "EFSA set a coumarin TDI of 0.1 mg/kg body weight/day; EU flavoring rules cap coumarin in certain foods. The spice itself is not banned — intake is limited, and Ceylon cinnamon is the low-coumarin option.",
+    "us_status": "permitted",
+    "us_note": "Cinnamon is GRAS. Synthetic coumarin as an isolated additive is prohibited, but coumarin occurring naturally in cinnamon is not specifically limited."
+  },
+  "faqs": [
+    {
+      "q": "Is cinnamon banned in the EU?",
+      "a": "No. Cinnamon is sold freely in the EU. The EU regulates coumarin — a compound concentrated in cassia cinnamon — by setting a tolerable daily intake and maximum levels in certain flavored foods."
+    },
+    {
+      "q": "Cassia or Ceylon — which is safer?",
+      "a": "Ceylon (“true”) cinnamon contains far less coumarin than cassia. If you consume cinnamon heavily every day, Ceylon is the lower-coumarin choice."
+    },
+    {
+      "q": "Is daily cinnamon tea safe?",
+      "a": "For most adults, normal tea amounts of cinnamon stay within coumarin limits. Heavy daily cassia intake — or use by young children — is where moderation or switching to Ceylon matters."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Toxicology and risk assessment of coumarin: focus on human data",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20024932/",
+      "publisher": "Molecular Nutrition & Food Research, 2010"
+    },
+    {
+      "title": "Quantification of flavoring constituents in cinnamon: high variation of coumarin in cassia bark from the German retail market and in authentic samples from Indonesia",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20853872/",
+      "publisher": "Journal of Agricultural and Food Chemistry, 2010"
+    },
+    {
+      "title": "Coumarin in flavourings and other food ingredients with flavouring properties — EFSA scientific opinion (TDI 0.1 mg/kg bw/day)",
+      "url": "https://www.efsa.europa.eu/en/efsajournal/pub/793",
+      "publisher": "EFSA Journal, 2008"
+    }
+  ]
+}

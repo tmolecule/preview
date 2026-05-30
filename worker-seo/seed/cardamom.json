@@ -1,0 +1,49 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "disclaimer": true,
+  "title": "Cardamom: Digestion, Blood Pressure, and the Queen of Spices",
+  "h1": "Cardamom: What the Research Shows",
+  "meta_description": "Cardamom is prized for its aroma and traditional use as a digestive — and trials link it to modest blood-pressure and metabolic effects. Here’s the evidence.",
+  "cluster": "chai-spices",
+  "intent": "benefits",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Aromatic by design",
+  "product_bridge_blurb": "Cardamom rounds out the warming spice blend in Spice Rush.",
+  "related": [
+    "cinnamon",
+    "ginger",
+    "chai-tea-benefits-spice-by-spice"
+  ],
+  "keywords": [
+    "cardamom benefits",
+    "cardamom blood pressure",
+    "cardamom digestion",
+    "cardamom metabolic",
+    "is cardamom good for you"
+  ],
+  "body_html": "<p>Cardamom (<em>Elettaria cardamomum</em>), the “queen of spices,” is a fragrant pod long used in chai and after-meal digestives across South Asia and the Middle East.</p>\n<h2>Blood pressure and metabolic markers</h2>\n<p>A systematic review and meta-analysis reported that green cardamom supplementation was associated with reductions in blood pressure and some inflammatory markers, and a separate meta-analysis found favorable effects on cardiovascular metabolic biomarkers. Effects are modest and the trials are relatively small.</p>\n<h2>Digestion</h2>\n<p>Cardamom is traditionally used as a carminative — to ease bloating and aid digestion — which is part of why it features in post-meal teas and chai blends.</p>\n<h2>In a cup</h2>\n<p>Tea-amounts of cardamom are aromatic, warming, and well tolerated. The evidence above comes from supplement-level doses, so a flavored cup is best seen as a pleasant ritual rather than a measured therapy.</p>",
+  "faqs": [
+    {
+      "q": "Does cardamom lower blood pressure?",
+      "a": "Meta-analyses link green cardamom supplementation to modest reductions in blood pressure and improvements in some cardiovascular metabolic markers. Trials are relatively small; effects are supportive, not a treatment."
+    },
+    {
+      "q": "Is cardamom good for digestion?",
+      "a": "Cardamom is traditionally used as a digestive (carminative) to ease bloating, which is why it appears in chai and after-meal teas."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The effect of green cardamom on blood pressure and inflammatory markers among patients with metabolic syndrome and related disorders: a systematic review and meta-analysis of randomized clinical trials",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36181264/",
+      "publisher": "Phytotherapy Research, 2023"
+    },
+    {
+      "title": "Cardamom consumption may improve cardiovascular metabolic biomarkers in adults: a systematic review and meta-analysis of randomized controlled trials",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38593657/",
+      "publisher": "Nutrition Research, 2024"
+    }
+  ]
+}

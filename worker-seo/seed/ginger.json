@@ -1,0 +1,54 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "disclaimer": true,
+  "title": "Ginger: Nausea, Digestion, and Joint Comfort — the Evidence",
+  "h1": "Ginger: What the Research Shows",
+  "meta_description": "Ginger has some of the strongest spice evidence — especially for nausea, with emerging data for knee osteoarthritis. Here’s what trials report and how it’s used.",
+  "cluster": "chai-spices",
+  "intent": "benefits",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Ginger in your cup",
+  "product_bridge_blurb": "Ginger is one of the warming spices in Spice Rush.",
+  "related": [
+    "cardamom",
+    "cinnamon",
+    "chai-tea-benefits-spice-by-spice"
+  ],
+  "keywords": [
+    "ginger benefits",
+    "ginger nausea",
+    "ginger digestion",
+    "ginger osteoarthritis",
+    "ginger anti-inflammatory"
+  ],
+  "body_html": "<p>Ginger (<em>Zingiber officinale</em>) is one of the better-studied culinary spices, thanks to active compounds called gingerols. Its strongest evidence is for nausea.</p>\n<h2>Nausea</h2>\n<p>Meta-analyses support ginger for reducing nausea and vomiting — including after surgery — and reviews describe benefit in chemotherapy-related nausea as an adjunct. This is the use with the most consistent data.</p>\n<h2>Digestion</h2>\n<p>Ginger is traditionally used to ease digestion and settle the stomach, which is part of why it appears in chai and after-meal drinks across many cultures.</p>\n<h2>Joints</h2>\n<p>A systematic review and meta-analysis found ginger improved pain and function in knee osteoarthritis versus placebo, though effect sizes were modest. Promising, not definitive.</p>\n<h2>Good to know</h2>\n<p>Culinary and tea amounts are well tolerated for most people. Concentrated supplement doses can thin blood slightly, so anyone on blood thinners or near surgery should check with a clinician.</p>",
+  "faqs": [
+    {
+      "q": "Does ginger really help nausea?",
+      "a": "Yes — meta-analyses support ginger for reducing nausea and vomiting, including postoperative nausea, and reviews describe benefit as an adjunct in chemotherapy-related nausea."
+    },
+    {
+      "q": "Is ginger good for joint pain?",
+      "a": "A meta-analysis found ginger improved pain and function in knee osteoarthritis versus placebo, with modest effect sizes. It is a supportive option, not a cure."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The efficacy of ginger for the prevention of postoperative nausea and vomiting: a meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16389016/",
+      "publisher": "American Journal of Obstetrics and Gynecology, 2006"
+    },
+    {
+      "title": "Ginger (Zingiber officinale) and chemotherapy-induced nausea and vomiting: a systematic literature review",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23550785/",
+      "publisher": "Nutrition Reviews, 2013"
+    },
+    {
+      "title": "Effectiveness of Ginger on Pain and Function in Knee Osteoarthritis: A PRISMA Systematic Review and Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32214292/",
+      "publisher": "Pain Physician, 2020"
+    }
+  ]
+}

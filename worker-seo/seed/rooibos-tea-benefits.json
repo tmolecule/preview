@@ -52,5 +52,9 @@
       "q": "Does rooibos have any side effects?",
       "a": "Rare. Some people report estrogen-like effects (rooibos contains weak phytoestrogens) at very high intake. If you have hormone-sensitive conditions, keep intake to 2–3 cups daily and check with your doctor."
     }
-  ]
+  ],
+  "pillar": "benefits",
+  "cluster": "rooibos",
+  "intent": "benefits",
+  "product_bridge": "/collections/all"
 }

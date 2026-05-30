@@ -61,5 +61,13 @@
       "q": "Will sweetened matcha lattes still help?",
       "a": "No. The added sugar and milk calories typically exceed the extra metabolic burn matcha provides. If you want the weight benefit, drink it unsweetened with water or unsweetened plant milk."
     }
+  ],
+  "pillar": "benefits",
+  "cluster": "matcha",
+  "intent": "use-case",
+  "product_bridge": "/collections/all",
+  "related": [
+    "what-is-matcha",
+    "matcha-vs-green-tea"
   ]
 }

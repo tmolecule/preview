@@ -1,0 +1,91 @@
+{
+  "title": "Is Collagen Tea Safe? A Guide by Group",
+  "h1": "Is Collagen Tea Safe? A Guide by Group",
+  "meta_description": "Collagen peptides are generally well tolerated. For collagen tea, the main safety question is caffeine from the tea base. Here’s what adults, women, pregnant and breastfeeding people, children, and older adults should know.",
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "cluster": "collagen",
+  "intent": "safety",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "See the blend",
+  "product_bridge_blurb": "Spice Rush pairs collagen peptides with a black tea base — so caffeine is part of the picture.",
+  "related": [
+    "collagen-peptides",
+    "is-cinnamon-banned-in-the-eu"
+  ],
+  "keywords": [
+    "is collagen tea safe",
+    "collagen side effects",
+    "collagen pregnancy",
+    "caffeine in pregnancy",
+    "collagen for kids",
+    "collagen safety"
+  ],
+  "body_html": "<p>Two things determine whether collagen tea is right for you: the <strong>collagen peptides</strong> (generally well tolerated) and the <strong>tea base</strong> (which usually contains caffeine). For most healthy adults a daily cup is fine. The cautions below are mostly about caffeine, not collagen.</p>\n<h2>The collagen part</h2>\n<p>Hydrolyzed collagen peptides are widely consumed and well tolerated in studies; reported side effects are uncommon and mild (such as a feeling of fullness or mild digestive upset). Collagen is animal-derived (commonly bovine or marine), so it is not suitable for vegetarians/vegans and people with a relevant allergy should check the source.</p>\n<h2>The tea part: caffeine</h2>\n<p>If the base is black tea, each cup contains caffeine. For most adults moderate intake is fine, but caffeine is the reason pregnant and breastfeeding people and children need to be careful. A dose-response meta-analysis links higher maternal caffeine intake to greater risk of small-for-gestational-age and preterm birth, which is why pregnancy guidance generally caps caffeine at a low daily limit.</p>\n<h2>A note on iron</h2>\n<p>Tea tannins can reduce absorption of non-heme (plant) iron when tea is taken with meals. If you are managing low iron, drink tea between meals rather than alongside them.</p>\n<p>The table below summarizes considerations by group. It is general information, not personal medical advice — see the note above and below.</p>",
+  "safety": {
+    "summary": "Collagen peptides are well tolerated. For collagen tea, the main consideration is caffeine from the tea base — which is why pregnant/breastfeeding people and children should mind caffeine limits.",
+    "populations": [
+      {
+        "group": "adults",
+        "status": "safe",
+        "note": "Collagen peptides are well tolerated; black tea is fine in moderation."
+      },
+      {
+        "group": "women",
+        "status": "safe",
+        "note": "Same as adults. If managing low iron, drink tea between meals, not with food."
+      },
+      {
+        "group": "pregnant",
+        "status": "consult",
+        "note": "Collagen has limited pregnancy data; the bigger issue is caffeine. Keep caffeine low and confirm limits with your provider."
+      },
+      {
+        "group": "breastfeeding",
+        "status": "consult",
+        "note": "Caffeine passes into breast milk. Moderate intake and discuss with your provider."
+      },
+      {
+        "group": "children",
+        "status": "caution",
+        "note": "Caffeine is not recommended for young children, and collagen offers no established benefit for them."
+      },
+      {
+        "group": "seniors",
+        "status": "safe",
+        "note": "Generally fine and may support joints; those with kidney disease should mind protein load and check caffeine–medication interactions."
+      }
+    ]
+  },
+  "faqs": [
+    {
+      "q": "Can I drink collagen tea while pregnant?",
+      "a": "The collagen itself has limited pregnancy data, and the main concern is caffeine from the tea base. Keep caffeine within the low limit advised in pregnancy and check with your healthcare provider first."
+    },
+    {
+      "q": "Does collagen tea have side effects?",
+      "a": "Collagen peptides rarely cause more than mild fullness or digestive upset. Most cautions relate to caffeine in the tea base, not the collagen."
+    },
+    {
+      "q": "Is collagen tea safe for children?",
+      "a": "It is not recommended for young children, mainly because of caffeine. Collagen has no established benefit for children."
+    },
+    {
+      "q": "Can collagen tea affect iron levels?",
+      "a": "Tea tannins can lower absorption of plant (non-heme) iron when taken with meals. If you are watching iron, drink tea between meals."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Efficacy and safety of low-molecular-weight collagen peptides in knee osteoarthritis: a randomized, double-blind, placebo-controlled trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40977985/",
+      "publisher": "Frontiers in Nutrition, 2025"
+    },
+    {
+      "title": "Relationship between caffeine intake and small for gestational age and preterm birth: a dose-response meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36825339/",
+      "publisher": "Critical Reviews in Food Science and Nutrition, 2024"
+    }
+  ]
+}

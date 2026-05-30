@@ -1,0 +1,42 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "living",
+  "title": "Building a Morning Wellness Routine That Sticks",
+  "h1": "Building a Morning Wellness Routine That Sticks",
+  "meta_description": "A morning routine works when it’s simple and anchored to habits you already have. Here’s a practical, evidence-aware approach — including the calm-alert effect of tea’s caffeine plus L-theanine.",
+  "cluster": "routines",
+  "intent": "routine",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Make it your morning",
+  "product_bridge_blurb": "A daily cup is an easy anchor for a morning routine.",
+  "related": [
+    "best-collagen-drink-for-busy-mornings",
+    "black-tea"
+  ],
+  "keywords": [
+    "morning routine",
+    "morning wellness",
+    "morning ritual",
+    "healthy morning habits",
+    "morning tea routine"
+  ],
+  "body_html": "<p>The morning routine that helps you is the one you’ll actually repeat. Elaborate regimens collapse on busy days; simple, anchored habits survive. Here’s a practical, low-friction approach.</p>\n<h2>Anchor new habits to old ones</h2>\n<p>Habits stick when they’re attached to something you already do without thinking. Tie a new habit to your existing morning trigger — the kettle you boil, the moment you sit down — so you don’t rely on willpower or memory.</p>\n<h2>A simple template</h2>\n<ul>\n<li><strong>Hydrate</strong> first — your body is mildly dehydrated after sleep.</li>\n<li><strong>A warm drink</strong> you look forward to, ideally one that doubles as a wellness step.</li>\n<li><strong>One small intentional action</strong> — a few minutes of movement, light, or planning.</li>\n</ul>\n<h2>Why tea fits the morning</h2>\n<p>Tea pairs caffeine with the amino acid L-theanine, a combination research links to steadier attention and mood than caffeine alone — a gentler lift than coffee for some people. A single warm cup can do double duty: hydration, a calm-alert start, and a reliable anchor for the rest of your routine.</p>\n<h2>Keep it sustainable</h2>\n<p>Start with one or two steps, not ten. Consistency beats intensity — a small routine done daily outperforms an ambitious one you abandon by Wednesday.</p>",
+  "faqs": [
+    {
+      "q": "How do I build a morning routine that actually sticks?",
+      "a": "Keep it small and anchor new habits to ones you already have (like making your morning drink). Consistency matters more than how elaborate the routine is."
+    },
+    {
+      "q": "Is tea a good morning drink?",
+      "a": "Tea hydrates and pairs caffeine with L-theanine, which research links to steadier, calmer focus than caffeine alone — a gentler morning lift than coffee for some people."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The combined effects of L-theanine and caffeine on cognitive performance and mood",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18681988/",
+      "publisher": "Nutritional Neuroscience, 2008"
+    }
+  ]
+}

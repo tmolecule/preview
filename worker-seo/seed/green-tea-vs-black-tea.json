@@ -47,5 +47,12 @@
       "q": "Can you make black tea from green tea leaves?",
       "a": "Not at home. Once green tea is heat-fixed, the enzymes needed for oxidation are destroyed. Black tea must be made from fresh, unprocessed leaves."
     }
+  ],
+  "pillar": "blends",
+  "cluster": "green-black",
+  "intent": "comparison",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "related": [
+    "matcha-vs-green-tea"
   ]
 }

@@ -1,0 +1,50 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "living",
+  "title": "Polyphenols: The Plant Compounds in Tea, Spices, and Berries",
+  "h1": "Polyphenols: What They Are and Why They Matter",
+  "meta_description": "Polyphenols are plant compounds — abundant in tea, cocoa, berries, and spices — studied for antioxidant and cardiometabolic effects. Here’s what the research shows and where they’re found.",
+  "cluster": "nutrition-science",
+  "intent": "definition",
+  "disclaimer": true,
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "A polyphenol-rich cup",
+  "product_bridge_blurb": "Tea is one of the richest dietary sources of polyphenols.",
+  "related": [
+    "black-tea",
+    "anti-inflammatory-diet",
+    "what-makes-a-tea-functional"
+  ],
+  "keywords": [
+    "polyphenols",
+    "what are polyphenols",
+    "polyphenols in tea",
+    "dietary polyphenols",
+    "flavonoids",
+    "antioxidants food"
+  ],
+  "body_html": "<p>Polyphenols are a large family of plant compounds — including the flavonoids in tea and cocoa and the catechins and theaflavins in tea leaves. They’re responsible for much of the color and bitterness of plant foods, and they’re among the most-studied dietary compounds.</p>\n<h2>What the research shows</h2>\n<p>A systematic review with meta-analysis reported that higher dietary polyphenol intake was associated with lower all-cause mortality. Tea specifically shows a dose-response association: a meta-analysis of population studies linked higher tea consumption to lower risk of cardiovascular disease and all-cause mortality. These are observational associations — promising, but not proof that polyphenols alone cause the benefit.</p>\n<h2>Where to find them</h2>\n<ul>\n<li><strong>Drinks:</strong> tea (black and green), coffee, cocoa.</li>\n<li><strong>Foods:</strong> berries, apples, citrus, onions, dark chocolate, olive oil, and many herbs and spices.</li>\n</ul>\n<h2>The honest framing</h2>\n<p>Polyphenols are part of why whole-food, plant-rich diets look healthy — but they work as part of a whole diet, not as a magic isolated nutrient. A varied intake from real foods and drinks beats chasing any single “super” compound.</p>",
+  "faqs": [
+    {
+      "q": "What are polyphenols?",
+      "a": "Polyphenols are a broad family of plant compounds — including flavonoids and tea catechins/theaflavins — studied for antioxidant and cardiometabolic effects. They’re abundant in tea, cocoa, berries, and spices."
+    },
+    {
+      "q": "Is tea high in polyphenols?",
+      "a": "Yes — tea is one of the richest dietary sources of polyphenols, and higher tea consumption is associated in meta-analyses with lower cardiovascular and all-cause mortality risk."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dietary Intake of Polyphenols and All-Cause Mortality: A Systematic Review with Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39195500/",
+      "publisher": "Metabolites, 2024"
+    },
+    {
+      "title": "Dose-Response Relation between Tea Consumption and Risk of Cardiovascular Disease and All-Cause Mortality: A Systematic Review and Meta-Analysis of Population-Based Studies",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32073596/",
+      "publisher": "Advances in Nutrition, 2020"
+    }
+  ]
+}

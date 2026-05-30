@@ -1,0 +1,54 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "cluster": "collagen",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "title": "Collagen for Joints: What Trials in Athletes and Older Adults Show",
+  "h1": "Collagen for Joints",
+  "meta_description": "Randomized trials report that collagen peptides can reduce activity-related joint discomfort in athletes and active adults, with emerging knee-osteoarthritis data. Here’s the evidence and the limits.",
+  "pillar": "benefits",
+  "intent": "benefits",
+  "disclaimer": true,
+  "product_bridge_label": "Collagen in a cup",
+  "product_bridge_blurb": "Stay consistent with a daily collagen chai.",
+  "related": [
+    "collagen-peptides",
+    "collagen-for-skin",
+    "is-collagen-tea-safe"
+  ],
+  "keywords": [
+    "collagen for joints",
+    "collagen joint pain",
+    "collagen knee",
+    "collagen athletes",
+    "collagen osteoarthritis"
+  ],
+  "body_html": "<p>Joints are one of the more promising areas for collagen peptides, with several randomized trials behind them — though it remains a supportive measure, not a treatment for joint disease.</p>\n<h2>Active adults and athletes</h2>\n<p>A 24-week trial in athletes with activity-related joint pain reported reduced joint discomfort with daily collagen hydrolysate versus placebo. A separate randomized trial in young active adults found that specific collagen peptides improved activity-related knee discomfort.</p>\n<h2>Knee osteoarthritis</h2>\n<p>More recent work is testing collagen in osteoarthritis: a randomized, double-blind, placebo-controlled trial of low-molecular-weight collagen peptides in knee osteoarthritis reported symptom improvement alongside good tolerability. This area is still developing.</p>\n<h2>The limits</h2>\n<p>Collagen is not a painkiller or a substitute for physical therapy, weight management, or medical care for joint conditions. If you have persistent or severe joint pain, see a clinician.</p>",
+  "faqs": [
+    {
+      "q": "Does collagen help joint pain?",
+      "a": "Randomized trials in athletes and active adults report reduced activity-related joint discomfort with daily collagen peptides. It is supportive, not a cure."
+    },
+    {
+      "q": "How much collagen for joints?",
+      "a": "Joint trials commonly use around 5 to 10 grams of collagen peptides per day over several weeks."
+    }
+  ],
+  "sources": [
+    {
+      "title": "24-Week study on the use of collagen hydrolysate as a dietary supplement in athletes with activity-related joint pain",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18416885/",
+      "publisher": "Current Medical Research and Opinion, 2008"
+    },
+    {
+      "title": "Improvement of activity-related knee joint discomfort following supplementation of specific collagen peptides",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28177710/",
+      "publisher": "Applied Physiology, Nutrition, and Metabolism, 2017"
+    },
+    {
+      "title": "Efficacy and safety of low-molecular-weight collagen peptides in knee osteoarthritis: a randomized, double-blind, placebo-controlled trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40977985/",
+      "publisher": "Frontiers in Nutrition, 2025"
+    }
+  ]
+}

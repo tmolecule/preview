@@ -1,0 +1,64 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "disclaimer": true,
+  "title": "Black Tea: Caffeine, Theaflavins, L-Theanine, and What the Research Shows",
+  "h1": "Black Tea: What It Is and What the Research Shows",
+  "meta_description": "Black tea is fully oxidized Camellia sinensis — the source of caffeine, theaflavins, and L-theanine. Here’s the evidence on blood pressure, cholesterol, and calm-alert focus, plus what it can’t do.",
+  "cluster": "tea-base",
+  "intent": "definition",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Black tea, leveled up",
+  "product_bridge_blurb": "Black tea is the base of Spice Rush — with collagen and chai spices added.",
+  "related": [
+    "collagen-peptides",
+    "is-collagen-tea-safe",
+    "green-tea-vs-black-tea"
+  ],
+  "keywords": [
+    "black tea benefits",
+    "black tea caffeine",
+    "theaflavins",
+    "l-theanine",
+    "black tea blood pressure",
+    "black tea antioxidants"
+  ],
+  "body_html": "<p>Black tea is <em>Camellia sinensis</em> leaf that has been fully oxidized, which gives it its dark color, bolder flavor, and signature compounds: caffeine, the polyphenols theaflavins and thearubigins, and the amino acid L-theanine.</p>\n<h2>Quick facts</h2>\n<table><tbody>\n<tr><td>Plant</td><td>Camellia sinensis — same plant as green tea, fully oxidized</td></tr>\n<tr><td>Caffeine</td><td>Roughly 40–70 mg per cup (about half of coffee)</td></tr>\n<tr><td>Key polyphenols</td><td>Theaflavins and thearubigins</td></tr>\n<tr><td>Calming amino acid</td><td>L-theanine</td></tr>\n</tbody></table>\n<h2>Heart and metabolic markers</h2>\n<p>A randomized controlled trial found regular black tea reduced blood-pressure variability, and a theaflavin-enriched tea extract trial reported a cholesterol-lowering effect. These are modest, supportive effects — black tea is not a substitute for prescribed treatment.</p>\n<h2>Calm, alert focus</h2>\n<p>Black tea pairs caffeine with L-theanine. Research on L-theanine alone and combined with caffeine reports effects on mood and attention — the combination is often described as steadier, less jittery focus than caffeine by itself.</p>\n<h2>What to keep in mind</h2>\n<p>Black tea contains caffeine (mind the total if you are pregnant or sensitive), and its tannins can reduce absorption of plant (non-heme) iron when taken with meals — drink it between meals if you are watching iron.</p>",
+  "faqs": [
+    {
+      "q": "How much caffeine is in black tea?",
+      "a": "Roughly 40 to 70 mg per cup, about half that of a typical coffee, depending on leaf and steep time."
+    },
+    {
+      "q": "Is black tea good for you?",
+      "a": "Trials report modest benefits for blood-pressure variability and cholesterol, plus calm-alert focus from caffeine paired with L-theanine. It is supportive, not a treatment."
+    },
+    {
+      "q": "Does black tea affect iron?",
+      "a": "Tea tannins can reduce absorption of plant (non-heme) iron when taken with meals. Drink between meals if you are managing low iron."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Black tea lowers the rate of blood pressure variation: a randomized controlled trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23553154/",
+      "publisher": "American Journal of Clinical Nutrition, 2013"
+    },
+    {
+      "title": "Cholesterol-lowering effect of a theaflavin-enriched green tea extract: a randomized controlled trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12824094/",
+      "publisher": "Archives of Internal Medicine, 2003"
+    },
+    {
+      "title": "L-theanine, a natural constituent in tea, and its effect on mental state",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18296328/",
+      "publisher": "Asia Pacific Journal of Clinical Nutrition, 2008"
+    },
+    {
+      "title": "The combined effects of L-theanine and caffeine on cognitive performance and mood",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18681988/",
+      "publisher": "Nutritional Neuroscience, 2008"
+    }
+  ]
+}

@@ -66,5 +66,12 @@
       "q": "When should I drink oolong tea?",
       "a": "Morning to early afternoon for the focus effect; with or after meals for the metabolic benefit. Avoid after 3pm if you're caffeine-sensitive — the caffeine half-life of 5–6 hours can interfere with sleep."
     }
+  ],
+  "pillar": "benefits",
+  "cluster": "oolong",
+  "intent": "benefits",
+  "product_bridge": "/collections/all",
+  "related": [
+    "how-to-brew-oolong-tea"
   ]
 }

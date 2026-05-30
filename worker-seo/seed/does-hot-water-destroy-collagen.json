@@ -1,0 +1,43 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "cluster": "collagen",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "title": "Does Hot Water Destroy Collagen? The Tea and Coffee Question, Answered",
+  "h1": "Does Hot Water Destroy Collagen?",
+  "meta_description": "No — collagen peptides are already hydrolyzed, so brewing-temperature water dissolves them rather than destroying them. Here’s the science behind adding collagen to hot tea or coffee.",
+  "pillar": "ingredients",
+  "intent": "question",
+  "product_bridge_label": "Collagen made for hot brewing",
+  "product_bridge_blurb": "Spice Rush is built to steep like tea — collagen included.",
+  "related": [
+    "collagen-peptides",
+    "is-collagen-tea-safe",
+    "does-collagen-tea-actually-work"
+  ],
+  "keywords": [
+    "does hot water destroy collagen",
+    "collagen hot tea",
+    "collagen in coffee heat",
+    "can you heat collagen",
+    "collagen temperature"
+  ],
+  "body_html": "<p><strong>Short answer: no.</strong> Adding collagen peptides to hot tea or coffee does not destroy them in any way that matters for absorption. This is the single most common worry about collagen drinks, and it rests on a misunderstanding of what “collagen peptides” are.</p>\n<h2>The key fact: peptides are already broken down</h2>\n<p>Collagen peptides are <em>hydrolyzed</em> — collagen that has already been cut into short amino-acid chains. People picture heat “denaturing” a delicate protein, but that unfolding step has effectively already happened during manufacturing. There’s no fragile 3-D structure left for hot water to ruin.</p>\n<h2>What heat actually does</h2>\n<p>At brewing temperatures, hot water <strong>dissolves</strong> collagen peptides — which is exactly why hydrolyzed collagen is used in hot drinks. Absorption studies feed people dissolved collagen hydrolysate and still measure collagen-derived peptides (like Pro-Hyp) appearing in the blood afterward.</p>\n<h2>The exception worth knowing</h2>\n<p>This applies to <em>peptides</em>. Prolonged boiling of whole collagen or gelatin behaves differently, and live cultures or some heat-sensitive vitamins are a separate story. But for the hydrolyzed collagen in a collagen tea or a scoop in your coffee, hot is fine.</p>",
+  "faqs": [
+    {
+      "q": "Will hot coffee or tea ruin my collagen?",
+      "a": "No. Collagen peptides are already hydrolyzed, so hot water dissolves them rather than destroying them. They are not heat-sensitive the way a live culture or some vitamins are."
+    },
+    {
+      "q": "Is there a temperature that breaks down collagen peptides?",
+      "a": "Normal brewing temperatures dissolve peptides without harming their absorbability. The “heat destroys collagen” idea comes from confusing peptides with whole, intact proteins."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Absorption of bioactive peptides following collagen hydrolysate intake: a randomized, double-blind crossover study in healthy individuals",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
+      "publisher": "Frontiers in Nutrition, 2024"
+    }
+  ]
+}

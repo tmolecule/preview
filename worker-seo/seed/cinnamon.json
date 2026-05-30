@@ -1,0 +1,49 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "disclaimer": true,
+  "title": "Cinnamon: Cassia vs Ceylon, Blood Sugar Evidence, and How to Use It",
+  "h1": "Cinnamon: What It Does and How to Choose It",
+  "meta_description": "Cinnamon is more than a warming spice — trials link it to modest blood-sugar effects. Here’s the cassia vs Ceylon difference, the evidence, and the coumarin caveat.",
+  "cluster": "chai-spices",
+  "intent": "benefits",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Taste it in chai",
+  "product_bridge_blurb": "Cinnamon is one of the warming spices in Spice Rush.",
+  "related": [
+    "is-cinnamon-banned-in-the-eu",
+    "ginger",
+    "cardamom"
+  ],
+  "keywords": [
+    "cinnamon benefits",
+    "cinnamon blood sugar",
+    "cassia vs ceylon",
+    "cinnamon diabetes",
+    "is cinnamon good for you"
+  ],
+  "body_html": "<p>Cinnamon is the inner bark of <em>Cinnamomum</em> trees and one of the oldest trade spices. Beyond its warming flavor, it has been studied most for blood-sugar effects.</p>\n<h2>Blood sugar</h2>\n<p>A systematic review and meta-analysis found cinnamon was associated with modest reductions in fasting glucose in people with type 2 diabetes, though results varied across studies and effects on long-term control (HbA1c) were less consistent. Treat it as a possible supportive nudge, not a replacement for diabetes care.</p>\n<h2>Cassia vs Ceylon</h2>\n<p>Most supermarket cinnamon is cassia; Ceylon (“true” cinnamon) is milder and far lower in coumarin. The difference matters if you consume large amounts daily — see our guide on why the EU regulates coumarin and how the US differs.</p>\n<h2>In a daily cup</h2>\n<p>Tea-amounts of cinnamon are flavorful and generally well within safe coumarin limits for adults. If you drink heavily spiced cassia products every day, Ceylon is the lower-coumarin choice.</p>",
+  "faqs": [
+    {
+      "q": "Does cinnamon lower blood sugar?",
+      "a": "A meta-analysis found cinnamon was associated with modest reductions in fasting glucose in type 2 diabetes, with mixed effects on longer-term control. It is supportive, not a substitute for medical care."
+    },
+    {
+      "q": "Cassia or Ceylon cinnamon — which is better?",
+      "a": "Ceylon (“true”) cinnamon is milder and much lower in coumarin. For heavy daily use, Ceylon is the safer choice; for occasional cooking, either is fine."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Cinnamon use in type 2 diabetes: an updated systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24019277/",
+      "publisher": "Annals of Family Medicine, 2013"
+    },
+    {
+      "title": "Quantification of flavoring constituents in cinnamon: high variation of coumarin in cassia bark from the German retail market and in authentic samples from Indonesia",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/20853872/",
+      "publisher": "Journal of Agricultural and Food Chemistry, 2010"
+    }
+  ]
+}

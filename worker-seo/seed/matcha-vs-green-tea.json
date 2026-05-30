@@ -51,5 +51,13 @@
       "q": "Which is better for weight loss?",
       "a": "Matcha — barely. The higher EGCG dose per cup gives a slight metabolic edge in controlled studies. But the difference vs an equal volume of well-brewed green tea is small."
     }
+  ],
+  "pillar": "blends",
+  "cluster": "matcha",
+  "intent": "comparison",
+  "product_bridge": "/collections/all",
+  "related": [
+    "what-is-matcha",
+    "matcha-for-weight-loss"
   ]
 }

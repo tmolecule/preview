@@ -1,0 +1,58 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "disclaimer": true,
+  "title": "Ashwagandha: An Adaptogen for Stress and Sleep — What the Trials Show",
+  "h1": "Ashwagandha: What the Research Shows",
+  "meta_description": "Ashwagandha is the most-studied adaptogen, with randomized trials reporting reduced stress and improved sleep. Here’s the evidence, the doses used, and the caveats.",
+  "cluster": "functional-botanicals",
+  "intent": "benefits",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore our blends",
+  "product_bridge_blurb": "Browse TMolecule’s functional tea range.",
+  "related": [
+    "turmeric",
+    "black-tea"
+  ],
+  "keywords": [
+    "ashwagandha benefits",
+    "ashwagandha stress",
+    "ashwagandha cortisol",
+    "ashwagandha sleep",
+    "adaptogen",
+    "withania somnifera"
+  ],
+  "body_html": "<p>Ashwagandha (<em>Withania somnifera</em>) is an Ayurvedic herb classed as an “adaptogen” — a plant said to help the body cope with stress. It is the most-studied adaptogen, and the trial evidence is moderate and encouraging.</p>\n<h2>Stress and anxiety</h2>\n<p>A systematic review and meta-analysis concluded that ashwagandha supplementation reduced stress and anxiety versus placebo. An earlier randomized, double-blind, placebo-controlled trial reported lower perceived stress and serum cortisol with a standardized root extract.</p>\n<h2>Sleep</h2>\n<p>A randomized, placebo-controlled trial found ashwagandha root extract improved sleep parameters and anxiety. Effects build over weeks of daily use.</p>\n<h2>The caveats</h2>\n<p>Trials use standardized root extracts at specific doses, so results don’t automatically transfer to any product. Ashwagandha is generally well tolerated short-term, but it isn’t recommended in pregnancy and can interact with thyroid, sedative, or immune medications — check with a clinician if that’s you.</p>",
+  "faqs": [
+    {
+      "q": "Does ashwagandha reduce stress?",
+      "a": "A systematic review and meta-analysis found ashwagandha reduced stress and anxiety versus placebo, and a randomized trial reported lower perceived stress and cortisol with a standardized root extract."
+    },
+    {
+      "q": "Does ashwagandha help sleep?",
+      "a": "A randomized, placebo-controlled trial found ashwagandha root extract improved sleep and anxiety over several weeks of daily use."
+    },
+    {
+      "q": "Who should avoid ashwagandha?",
+      "a": "It is not recommended in pregnancy and may interact with thyroid, sedative, or immune-affecting medications. Check with a clinician if any apply."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Effects of Ashwagandha (Withania Somnifera) on stress and anxiety: A systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39348746/",
+      "publisher": "Explore (New York, N.Y.), 2024"
+    },
+    {
+      "title": "A prospective, randomized double-blind, placebo-controlled study of safety and efficacy of a high-concentration full-spectrum extract of ashwagandha root in reducing stress and anxiety in adults",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23439798/",
+      "publisher": "Indian Journal of Psychological Medicine, 2012"
+    },
+    {
+      "title": "Efficacy and Safety of Ashwagandha (Withania somnifera) Root Extract in Insomnia and Anxiety: A Double-blind, Randomized, Placebo-controlled Study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31728244/",
+      "publisher": "Cureus, 2019"
+    }
+  ]
+}

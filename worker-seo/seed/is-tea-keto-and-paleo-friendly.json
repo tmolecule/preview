@@ -1,0 +1,37 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "living",
+  "title": "Is Tea Keto and Paleo Friendly?",
+  "h1": "Is Tea Keto and Paleo Friendly?",
+  "meta_description": "Plain tea is essentially zero-carb and unprocessed, so it fits both keto and paleo. The catch is what you add. Here’s how to keep your cup compliant.",
+  "cluster": "functional-foods",
+  "intent": "question",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Zero-sugar by design",
+  "product_bridge_blurb": "Spice Rush is a zero-sugar tea blend.",
+  "related": [
+    "what-makes-a-tea-functional",
+    "black-tea"
+  ],
+  "keywords": [
+    "is tea keto",
+    "is tea paleo",
+    "keto tea",
+    "paleo tea",
+    "tea carbs",
+    "zero carb drink"
+  ],
+  "body_html": "<p><strong>Short answer: yes — plain tea fits both keto and paleo.</strong> Brewed tea has essentially no carbohydrates and no calories, and it’s about as unprocessed a drink as exists. The only thing that breaks compliance is what you add to it.</p>\n<h2>Why plain tea qualifies</h2>\n<ul>\n<li><strong>Keto:</strong> tea is essentially zero-carb, so it won’t affect ketosis.</li>\n<li><strong>Paleo:</strong> tea is a whole-plant infusion with nothing artificial — squarely within paleo principles.</li>\n</ul>\n<h2>What breaks it</h2>\n<p>Add-ins are where cups go off-plan: sugar, honey, agave, and sweetened syrups add carbs (not keto), while conventional dairy creamers and refined sweeteners aren’t paleo. Collagen peptides are zero-carb and animal-derived, so they’re compatible with both. If you sweeten, choose a plan-appropriate option, and watch flavored blends for added sugar.</p>\n<h2>The simple rule</h2>\n<p>The tea is fine; read the label on anything blended or pre-sweetened. A zero-sugar tea keeps both diets simple.</p>",
+  "faqs": [
+    {
+      "q": "Does tea break ketosis?",
+      "a": "Plain tea is essentially zero-carb and won’t break ketosis. Sugar, honey, syrups, and sweetened creamers are what add carbs — skip those or use a keto-friendly sweetener."
+    },
+    {
+      "q": "Is collagen tea paleo?",
+      "a": "Plain tea is paleo, and collagen peptides are animal-derived and zero-carb, so collagen tea fits paleo. Check for added sugar or non-paleo additives in flavored blends."
+    }
+  ],
+  "sources": []
+}

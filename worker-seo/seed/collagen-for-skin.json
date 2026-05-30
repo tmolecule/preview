@@ -1,0 +1,58 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "cluster": "collagen",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "title": "Collagen for Skin: What the Research Actually Shows",
+  "h1": "Collagen for Skin: What the Research Actually Shows",
+  "meta_description": "Randomized trials and a meta-analysis report that oral collagen peptides improve skin hydration and elasticity over about 8 weeks. Here’s the evidence, the realistic effect size, and what collagen can’t do.",
+  "pillar": "benefits",
+  "intent": "benefits",
+  "disclaimer": true,
+  "product_bridge_label": "Collagen you can drink",
+  "product_bridge_blurb": "Spice Rush delivers collagen peptides in a daily black chai.",
+  "related": [
+    "collagen-peptides",
+    "collagen-for-hair-nails",
+    "does-collagen-tea-actually-work"
+  ],
+  "keywords": [
+    "collagen for skin",
+    "collagen skin elasticity",
+    "collagen hydration",
+    "collagen anti-aging",
+    "does collagen help skin"
+  ],
+  "body_html": "<p>Collagen is the main structural protein in skin, and oral collagen peptides are among the most-studied beauty supplements. The honest summary: trials show <strong>modest but real</strong> improvements in skin hydration and elasticity — not a wrinkle eraser, and not a replacement for sunscreen.</p>\n<h2>What studies report</h2>\n<p>A double-blind, placebo-controlled study found that specific collagen peptides improved skin elasticity and hydration versus placebo. A 2023 systematic review and meta-analysis of randomized trials reached the same direction of effect across multiple studies: oral collagen improved skin hydration and elasticity compared with placebo.</p>\n<h2>How long it takes</h2>\n<p>Effects build with daily, consistent intake — typically measured over 8–12 weeks in trials. Collagen is a slow, supportive input, not an overnight change.</p>\n<h2>Why it may work</h2>\n<p>After you drink hydrolyzed collagen, small peptides such as Pro-Hyp are absorbed into the bloodstream, where they are thought to signal skin cells (fibroblasts) and supply the amino-acid building blocks for the skin’s own collagen.</p>\n<h2>What collagen can’t do</h2>\n<p>Collagen does not block UV damage, and sun exposure is the single biggest driver of skin aging. Daily sunscreen and not smoking outweigh any supplement. Treat collagen as a small additive input on top of the basics.</p>",
+  "faqs": [
+    {
+      "q": "How long until collagen helps skin?",
+      "a": "Trials generally measure effects over 8 to 12 weeks of daily use. It is a gradual, supportive effect, not immediate."
+    },
+    {
+      "q": "How much collagen for skin?",
+      "a": "Skin studies commonly use roughly 2.5 to 10 grams of collagen peptides per day."
+    },
+    {
+      "q": "Is collagen better than sunscreen for aging?",
+      "a": "No. Sun protection is the most important factor in skin aging. Collagen is a supportive add-on, not a substitute."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Oral supplementation of specific collagen peptides has beneficial effects on human skin physiology: a double-blind, placebo-controlled study",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/23949208/",
+      "publisher": "Skin Pharmacology and Physiology, 2014"
+    },
+    {
+      "title": "Effects of Oral Collagen for Skin Anti-Aging: A Systematic Review and Meta-Analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37432180/",
+      "publisher": "Nutrients, 2023"
+    },
+    {
+      "title": "Absorption of bioactive peptides following collagen hydrolysate intake: a randomized, double-blind crossover study in healthy individuals",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
+      "publisher": "Frontiers in Nutrition, 2024"
+    }
+  ]
+}

@@ -25,5 +25,12 @@
       "q": "Why does my oolong taste bitter?",
       "a": "Three usual causes: water too hot for the oxidation level, steep too long, or too many leaves. Drop one variable at a time and re-test."
     }
+  ],
+  "pillar": "recipes",
+  "cluster": "oolong",
+  "intent": "recipe",
+  "product_bridge": "/collections/all",
+  "related": [
+    "oolong-tea-benefits"
   ]
 }

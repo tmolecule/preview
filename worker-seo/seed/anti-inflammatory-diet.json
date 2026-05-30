@@ -1,0 +1,49 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "living",
+  "title": "Anti-Inflammatory Diet: What It Is and What the Evidence Shows",
+  "h1": "Anti-Inflammatory Diet",
+  "meta_description": "An anti-inflammatory diet emphasizes whole, plant-rich, polyphenol-heavy foods. Trials show Mediterranean-style eating lowers markers of inflammation. Here’s the evidence and the food list.",
+  "cluster": "nutrition-science",
+  "intent": "definition",
+  "disclaimer": true,
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore our blends",
+  "product_bridge_blurb": "Tea and warming spices fit an anti-inflammatory pattern.",
+  "related": [
+    "polyphenols",
+    "gut-skin-axis",
+    "turmeric"
+  ],
+  "keywords": [
+    "anti-inflammatory diet",
+    "anti-inflammatory foods",
+    "mediterranean diet inflammation",
+    "reduce inflammation diet",
+    "CRP diet"
+  ],
+  "body_html": "<p>An “anti-inflammatory diet” isn’t a strict program — it’s a pattern: mostly whole, minimally processed, plant-rich foods, with plenty of polyphenols and healthy fats. The best-studied version is the Mediterranean dietary pattern.</p>\n<h2>What the evidence shows</h2>\n<p>A meta-analysis of intervention trials found that Mediterranean-style eating improved markers of inflammation and endothelial (blood-vessel) function. A more recent systematic review and meta-analysis of randomized trials likewise concluded the Mediterranean diet reduces inflammation in adults. The effect is real, though “inflammation markers” are a step removed from any single health outcome.</p>\n<h2>The food pattern</h2>\n<ul>\n<li><strong>Build on:</strong> vegetables, fruit, legumes, whole grains, nuts, olive oil, fish, herbs and spices, tea.</li>\n<li><strong>Limit:</strong> ultra-processed foods, refined sugar, and excess red/processed meat.</li>\n</ul>\n<h2>Where tea and spices fit</h2>\n<p>Tea, ginger, turmeric, and cinnamon are all polyphenol- or compound-rich foods that fit an anti-inflammatory pattern. They’re a small piece of the picture — the overall diet matters far more than any one ingredient.</p>",
+  "faqs": [
+    {
+      "q": "What is an anti-inflammatory diet?",
+      "a": "A pattern of mostly whole, plant-rich, polyphenol-heavy foods with healthy fats — best exemplified by the Mediterranean diet. It is a way of eating, not a strict program."
+    },
+    {
+      "q": "Does an anti-inflammatory diet actually work?",
+      "a": "Meta-analyses of trials show Mediterranean-style eating lowers markers of inflammation. Inflammation markers are one step removed from specific outcomes, but the pattern is well supported and broadly healthy."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mediterranean dietary pattern, inflammation and endothelial function: a systematic review and meta-analysis of intervention trials",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24787907/",
+      "publisher": "Nutrition, Metabolism and Cardiovascular Diseases, 2014"
+    },
+    {
+      "title": "Mediterranean Diet Reduces Inflammation in Adults: A Systematic Review and Meta-analysis of Randomized Controlled Trials",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41211687/",
+      "publisher": "Nutrition Reviews, 2025"
+    }
+  ]
+}

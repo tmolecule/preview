@@ -34,5 +34,14 @@
       "q": "What's the difference between a chai tea latte and a chai latte?",
       "a": "Nothing — they're the same drink. ‘Chai latte’ is technically redundant (chai means tea in Hindi, so ‘chai latte’ literally is ‘tea latte’), but the name stuck."
     }
+  ],
+  "pillar": "blends",
+  "cluster": "chai",
+  "intent": "definition",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "related": [
+    "chai-vs-masala-chai",
+    "masala-chai-recipe",
+    "chai-tea-benefits-spice-by-spice"
   ]
 }

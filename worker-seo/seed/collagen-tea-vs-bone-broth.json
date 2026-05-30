@@ -1,0 +1,47 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "cluster": "collagen",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "title": "Collagen Tea vs Bone Broth: Which Gives You More Collagen?",
+  "h1": "Collagen Tea vs Bone Broth",
+  "meta_description": "Bone broth is marketed as a collagen source, but research finds its collagen-precursor content is low and unreliable compared with standardized collagen peptides. Here’s the comparison.",
+  "pillar": "blends",
+  "intent": "comparison",
+  "product_bridge_label": "A reliable dose",
+  "product_bridge_blurb": "Spice Rush delivers a known amount of collagen per serving.",
+  "related": [
+    "collagen-peptides",
+    "collagen-tea-vs-collagen-powder",
+    "does-collagen-tea-actually-work"
+  ],
+  "keywords": [
+    "collagen tea vs bone broth",
+    "bone broth collagen",
+    "does bone broth have collagen",
+    "bone broth vs collagen peptides"
+  ],
+  "body_html": "<p>Bone broth has a wholesome, traditional reputation as a collagen source. The catch: its actual collagen-precursor content is <strong>low and highly variable</strong> — so as a way to hit a known collagen dose, it’s unreliable compared with standardized peptides.</p>\n<h2>What the research found</h2>\n<p>An analysis comparing homemade bone broths concluded that bone broth is unlikely to provide reliable concentrations of collagen precursor amino acids compared with supplemental collagen used in research. Broths varied widely depending on bones, simmer time, and recipe.</p>\n<h2>Why the gap</h2>\n<p>Collagen peptides are standardized and hydrolyzed to a known amount and a more absorbable form. A pot of broth is an uncontrolled extraction — you can’t know how many grams of collagen you’re getting cup to cup.</p>\n<h2>Where broth still shines</h2>\n<p>Bone broth is warming, savory, and a real food with electrolytes and flavor. Enjoy it for what it is — just don’t rely on it to hit a specific collagen target.</p>",
+  "faqs": [
+    {
+      "q": "Does bone broth have a lot of collagen?",
+      "a": "Research found bone broth’s collagen-precursor content is low and highly variable, so it is an unreliable way to get a known collagen dose compared with standardized peptides."
+    },
+    {
+      "q": "Is bone broth or collagen tea better for collagen?",
+      "a": "For a reliable, measurable collagen dose, standardized peptides (as in collagen tea or powder) are more dependable than homemade broth."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Bone Broth Unlikely to Provide Reliable Concentrations of Collagen Precursors Compared With Supplemental Sources of Collagen Used in Collagen Research",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29893587/",
+      "publisher": "International Journal of Sport Nutrition and Exercise Metabolism, 2019"
+    },
+    {
+      "title": "Absorption of bioactive peptides following collagen hydrolysate intake: a randomized, double-blind crossover study in healthy individuals",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
+      "publisher": "Frontiers in Nutrition, 2024"
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "published_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-05-28T08:00:00Z",
+  "pillar": "ingredients",
+  "disclaimer": true,
+  "title": "Turmeric and Curcumin: Anti-Inflammatory Evidence and the Bioavailability Problem",
+  "h1": "Turmeric and Curcumin: What the Research Shows",
+  "meta_description": "Curcumin, turmeric’s active compound, has real anti-inflammatory and osteoarthritis evidence — but is poorly absorbed on its own. Here’s the science and the black-pepper fix.",
+  "cluster": "functional-botanicals",
+  "intent": "benefits",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore our blends",
+  "product_bridge_blurb": "Browse TMolecule’s functional tea range.",
+  "related": [
+    "ginger",
+    "cinnamon",
+    "ashwagandha"
+  ],
+  "keywords": [
+    "turmeric benefits",
+    "curcumin",
+    "turmeric anti-inflammatory",
+    "curcumin osteoarthritis",
+    "turmeric bioavailability",
+    "turmeric black pepper"
+  ],
+  "body_html": "<p>Turmeric (<em>Curcuma longa</em>) gets its color and most of its studied activity from curcumin. The evidence is genuinely interesting — with one big practical catch: curcumin is poorly absorbed on its own.</p>\n<h2>Anti-inflammatory and joints</h2>\n<p>A systematic review and meta-analysis found curcumin/turmeric extracts improved osteoarthritis pain and function versus placebo, with a good safety profile. Curcumin has also been studied for inflammatory markers, though trials vary in dose and extract type.</p>\n<h2>The bioavailability problem</h2>\n<p>Plain curcumin is poorly absorbed and rapidly cleared. A classic study showed that <strong>piperine from black pepper substantially increased curcumin absorption</strong> in humans — which is why turmeric products and traditional “golden” preparations so often pair it with pepper or fat.</p>\n<h2>The honest read</h2>\n<p>Turmeric is promising for joint comfort and inflammation, but the form and absorption matter enormously. A sprinkle of culinary turmeric is mostly flavor; studied benefits use standardized, absorption-enhanced extracts.</p>",
+  "faqs": [
+    {
+      "q": "Does turmeric reduce inflammation?",
+      "a": "Curcumin, turmeric’s active compound, has meta-analysis support for improving osteoarthritis pain and function and has been studied for inflammatory markers. Dose and absorption matter a great deal."
+    },
+    {
+      "q": "Why is turmeric taken with black pepper?",
+      "a": "Curcumin is poorly absorbed alone. Piperine from black pepper was shown to substantially increase curcumin absorption in humans, so the two are often combined."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The efficacy and safety of Curcuma longa extract and curcumin supplements on osteoarthritis: a systematic review and meta-analysis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34017975/",
+      "publisher": "Bioscience Reports, 2021"
+    },
+    {
+      "title": "Influence of piperine on the pharmacokinetics of curcumin in animals and human volunteers",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/9619120/",
+      "publisher": "Planta Medica, 1998"
+    }
+  ]
+}

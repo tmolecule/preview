@@ -4,7 +4,7 @@
   "meta_description": "How to make real masala chai at home — whole spices, fresh-bloomed, finished in milk. The Ayurvedic ritual our family has been making since 1935, in twelve minutes.",
   "image_url": "",
   "published_at": "2026-04-30T20:00:00Z",
-  "updated_at": "2026-04-30T22:00:00Z",
+  "updated_at": "2026-05-08T20:00:00Z",
   "keywords": [
     "masala chai recipe",
     "homemade masala chai",
@@ -46,5 +46,40 @@
       "q": "Is masala chai actually healthy?",
       "a": "The unsweetened version is genuinely good for you. Black tea polyphenols, cardamom and ginger anti-inflammatories, cinnamon for blood sugar regulation. Heavy sugar undermines the benefit — aim for one teaspoon per cup or less. Ayurveda has prescribed this exact blend for digestion and circulation for three thousand years; modern research agrees on most counts."
     }
+  ],
+  "type": "recipe",
+  "recipe": {
+    "prepTime": "PT2M",
+    "cookTime": "PT10M",
+    "totalTime": "PT12M",
+    "recipeYield": "2 cups (2 servings)",
+    "recipeCategory": "Beverage",
+    "recipeCuisine": "Indian",
+    "recipeIngredient": [
+      "1 1/2 cups water",
+      "1 1/2 cups whole milk (or barista oat milk)",
+      "2 teaspoons loose-leaf Assam black tea (CTC for strength, orthodox for nuance)",
+      "4 green cardamom pods, gently cracked",
+      "1 cinnamon stick (about 1 inch)",
+      "4 whole cloves",
+      "4 whole black peppercorns",
+      "1 thin slice fresh ginger (about 1/4 inch)",
+      "1-2 teaspoons sugar or jaggery, to taste"
+    ],
+    "recipeInstructions": [
+      "Bloom the spices. Combine water, cardamom, cinnamon, cloves, peppercorns, and ginger in a small saucepan. Bring to a boil, then reduce heat and simmer four minutes. The water should turn faintly amber and smell like baked apples and clove.",
+      "Add the tea. Drop in the loose tea. Simmer two minutes. The liquid turns deep mahogany.",
+      "Add milk and sugar. Pour in the milk and stir in the sugar. Raise the heat until the chai reaches a rolling foam — right when it threatens to boil over, pull it off the heat. Repeat the raise-and-pull motion two or three times. This is what builds the signature creamy body.",
+      "Strain and serve. Pour through a fine-mesh strainer into pre-warmed cups. Drink immediately."
+    ]
+  },
+  "featured": true,
+  "pillar": "recipes",
+  "cluster": "chai",
+  "intent": "recipe",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "related": [
+    "chai-concentrate-recipe",
+    "what-is-chai-latte"
   ]
 }
