@@ -1,6 +1,6 @@
 import { Env, GapClaim, GapReport } from "./types";
 import { embed } from "./indexer";
-import { idealAnswerPrompt, coverageCheckPrompt, PageContext } from "./prompts";
+import { idealAnswerPrompt, coverageCheckPrompt, coverageWriterPrompt, PageContext } from "./prompts";
 
 async function loadPageContext(env: Env, slug: string): Promise<PageContext | undefined> {
   const raw = await env.STATE.get(`page:${slug}:meta`);
@@ -84,6 +84,28 @@ async function draftClaims(env: Env, query: string, page?: PageContext): Promise
 }
 
 /**
+ * Canonical claims are the YARDSTICK we score pages against. Re-drafting them every run
+ * (the LLM is non-deterministic) makes coverage wobble and prevents any improvement loop
+ * from converging. So we draft once per page and cache the set in KV; subsequent runs reuse
+ * it. `force` re-drafts (use on a monthly refresh or when the keyword's answer genuinely moves).
+ */
+async function loadOrDraftClaims(env: Env, slug: string, query: string, page: PageContext | undefined, force: boolean): Promise<string[]> {
+  const key = `page:${slug}:claims`;
+  if (!force) {
+    const cached = await env.STATE.get(key);
+    if (cached) {
+      try {
+        const arr = JSON.parse(cached) as string[];
+        if (Array.isArray(arr) && arr.length) return arr;
+      } catch { /* fall through to redraft */ }
+    }
+  }
+  const claims = await draftClaims(env, query, page);
+  if (claims.length) await env.STATE.put(key, JSON.stringify(claims));
+  return claims;
+}
+
+/**
  * Run gap analysis for a single keyword against a specific page (slug).
  * Steps:
  *   1. Have Llama draft the canonical answer + extract 8-15 claims.
@@ -93,9 +115,9 @@ async function draftClaims(env: Env, query: string, page?: PageContext): Promise
  *
  * Optionally consults Perplexity Sonar for live citation tracking if PERPLEXITY_API_KEY is set.
  */
-export async function runGapAnalysis(env: Env, slug: string, primary_kw: string, url: string): Promise<GapReport> {
+export async function runGapAnalysis(env: Env, slug: string, primary_kw: string, url: string, force = false): Promise<GapReport> {
   const pageCtx = await loadPageContext(env, slug);
-  const claims = await draftClaims(env, primary_kw, pageCtx);
+  const claims = await loadOrDraftClaims(env, slug, primary_kw, pageCtx, force);
   if (!claims.length) {
     return {
       slug,
@@ -387,4 +409,83 @@ export async function listGapReports(env: Env): Promise<GapReport[]> {
     }
   }
   return out.sort((a, b) => b.uncovered_claims - a.uncovered_claims);
+}
+
+export interface CoverageSuggestion {
+  slug: string;
+  primary_kw: string;
+  coverage: { covered: number; total: number; pct: number };
+  html: string;
+  addressed: string[];
+  skipped: string[];
+  error?: string;
+}
+
+/**
+ * Draft fact-first HTML that closes a page's uncovered canonical claims, for the
+ * auto-coverage loop. Reads the page's latest gap report, sends the uncovered claims
+ * through the guarded coverageWriterPrompt, and returns HTML + which claims it
+ * addressed/skipped. Generation only — the caller (a GitHub Action) opens a PR with
+ * this output; nothing is written to KV or the live page here.
+ */
+export async function suggestCoverage(env: Env, slug: string): Promise<CoverageSuggestion> {
+  const raw = await env.STATE.get(`gap:${slug}:latest`);
+  const empty = { slug, primary_kw: "", coverage: { covered: 0, total: 0, pct: 0 }, html: "", addressed: [], skipped: [] };
+  if (!raw) return { ...empty, error: "no gap report — run gap analysis first" };
+
+  let report: GapReport;
+  try {
+    report = JSON.parse(raw) as GapReport;
+  } catch {
+    return { ...empty, error: "gap report parse failed" };
+  }
+
+  const total = report.total_claims || 0;
+  const pct = total ? Math.round((report.covered_claims / total) * 100) : 0;
+  const coverage = { covered: report.covered_claims, total, pct };
+  const uncovered = report.claims.filter((c) => !c.covered).map((c) => c.claim);
+  if (!uncovered.length) {
+    return { slug, primary_kw: report.primary_kw, coverage, html: "", addressed: [], skipped: [] };
+  }
+
+  const pageCtx = (await loadPageContext(env, slug)) ?? {};
+  const out = await llm(env, coverageWriterPrompt(uncovered, pageCtx, env.BRAND_VOICE === "on"), 1600);
+  const parsed = parseCoverageOutput(out);
+  if (!parsed.html) {
+    return { slug, primary_kw: report.primary_kw, coverage, html: "", addressed: [], skipped: [], error: "writer produced no usable HTML" };
+  }
+  return { slug, primary_kw: report.primary_kw, coverage, html: parsed.html, addressed: parsed.addressed, skipped: parsed.skipped };
+}
+
+/** Parse the sentinel-delimited coverage-writer output into html + addressed/skipped. */
+function parseCoverageOutput(out: string): { html: string; addressed: string[]; skipped: string[] } {
+  const grab = (start: string, end?: string): string => {
+    const i = out.indexOf(start);
+    if (i === -1) return "";
+    const from = i + start.length;
+    const j = end ? out.indexOf(end, from) : -1;
+    return out.slice(from, j === -1 ? undefined : j).trim();
+  };
+  const lines = (s: string): string[] =>
+    s.split("\n").map((l) => l.replace(/^[-*]\s*/, "").trim()).filter((l) => l.length > 1);
+
+  const addressed = lines(grab("<<<ADDRESSED>>>", "<<<SKIPPED>>>"));
+  const skipped = lines(grab("<<<SKIPPED>>>", "<<<HTML>>>"));
+  const rawHtml = grab("<<<HTML>>>").replace(/^```html?\s*/i, "").replace(/```$/i, "");
+  return { html: sanitizeCoverageHtml(rawHtml), addressed, skipped };
+}
+
+/**
+ * Keep only <h2>/<p>/<ul>/<li> (the tags chunkPage parses), drop all attributes, and
+ * remove any other tag. Defense-in-depth before the content is proposed in a PR.
+ */
+function sanitizeCoverageHtml(html: string): string {
+  const allowed = new Set(["h2", "p", "ul", "li", "/h2", "/p", "/ul", "/li"]);
+  return html
+    .replace(/<([^>]+)>/g, (m, inner: string) => {
+      const tag = inner.trim().split(/\s/)[0].toLowerCase();
+      return allowed.has(tag) ? `<${tag}>` : "";
+    })
+    .replace(/[ \t]+\n/g, "\n")
+    .trim();
 }

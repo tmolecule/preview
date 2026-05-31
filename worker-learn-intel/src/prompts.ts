@@ -66,6 +66,46 @@ export function coverageCheckPrompt(claim: string, candidateChunks: Array<{ text
 }
 
 /**
+ * Coverage writer: given a page's uncovered canonical claims + its scope, draft fact-first
+ * HTML sections that close the gaps. Used by the auto-coverage loop, which opens a PR with
+ * the output for human review — so the guardrails here are the last line of defense against
+ * medical claims, invented facts, and off-brand copy reaching production.
+ *
+ * Output contract (sentinel-delimited — far more reliable than JSON-wrapped HTML for a 70B):
+ *   <<<ADDRESSED>>>
+ *   - claim
+ *   <<<SKIPPED>>>
+ *   - claim — reason
+ *   <<<HTML>>>
+ *   <h2>..</h2><p>..</p>
+ */
+export function coverageWriterPrompt(
+  uncoveredClaims: string[],
+  page: PageContext,
+  brandVoiceOn: boolean,
+): { system: string; user: string } {
+  const voice = brandVoiceOn ? `\n\n${VOICE_HINT}` : "";
+  return {
+    system:
+      "You are an expert editor adding factual coverage to an existing web page. You are given the page's scope and a list of canonical claims it does NOT yet cover. Write new HTML sections that cover the TRUE, on-topic claims so the page becomes a more complete answer.\n\n" +
+      "HARD RULES (a human reviews your output, but never rely on that):\n" +
+      "1. ACCURACY: State only widely-accepted, verifiable facts. If a claim is false, dubious, oversimplified, or you are not confident it is true, DO NOT write it — list it under SKIPPED with a short reason.\n" +
+      "2. NO MEDICAL CLAIMS: Never claim a product treats, cures, or prevents disease. Frame any health content as what research/clinical trials suggest, note effects are modest, and attribute to studies — never promise user outcomes.\n" +
+      "3. NO INVENTED SPECIFICS: Do not invent product details — no specific doses, prices, ingredient lists, percentages, or brand facts unless they are standard general knowledge for the topic. Prefer studied ranges (\"trials typically use X–Y\") over a fabricated number.\n" +
+      "4. NO DUPLICATION: Don't restate what the page scope implies is already covered. Each section adds new information.\n" +
+      "5. FORMAT: Write fact-first HTML using only <h2>, <p>, <ul>, <li> tags (no attributes, no links, no images). Each claim becomes a clear declarative sentence a reader or AI engine can lift. 1-3 short sections total.\n\n" +
+      "Output EXACTLY this structure and nothing else — no preamble, no markdown fences:\n" +
+      "<<<ADDRESSED>>>\n- (one line per claim you covered)\n<<<SKIPPED>>>\n- (one line per claim you skipped, with — reason)\n<<<HTML>>>\n(the HTML)" +
+      voice,
+    user:
+      `Page scope:\nTitle: ${page.title ?? ""}\nH1: ${page.h1 ?? ""}\nMeta: ${page.meta_description ?? ""}\n\n` +
+      `Uncovered claims (cover the true/on-topic ones, skip the rest):\n` +
+      uncoveredClaims.map((c, i) => `${i + 1}. ${c}`).join("\n") +
+      `\n\nOutput the three sections now.`,
+  };
+}
+
+/**
  * Internal-link anchor suggester: given a draft paragraph + the candidate target paragraph,
  * pick the natural anchor text span inside the draft and confirm relevance.
  */

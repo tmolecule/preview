@@ -1,6 +1,6 @@
 import { Env, SeedPage } from "./types";
 import { indexPage, listIndexedSlugs } from "./indexer";
-import { runGapAnalysis, saveGapReport, listGapReports } from "./gap";
+import { runGapAnalysis, saveGapReport, listGapReports, suggestCoverage } from "./gap";
 import { suggestLinks } from "./linker";
 import { renderDashboard } from "./dashboard";
 import { debugQuery, debugDfsChatGPT, debugDfsAIO, debugDfsAmazon, debugDfsAsin, debugDfsReviews } from "./debug";
@@ -49,6 +49,19 @@ export default {
       return json(await listIndexedSlugs(env));
     }
 
+    // Slim coverage list for the auto-coverage workflow: [{slug, covered, total, pct}].
+    if (path === "/api/coverage") {
+      const reports = await listGapReports(env);
+      return json(
+        reports.map((r) => ({
+          slug: r.slug,
+          covered: r.covered_claims,
+          total: r.total_claims,
+          pct: r.total_claims ? Math.round((r.covered_claims / r.total_claims) * 100) : 0,
+        })),
+      );
+    }
+
     // ---------- admin endpoints ----------
     if (path.startsWith("/admin/")) {
       if (!requireAdmin(req, env)) return unauthorized();
@@ -62,8 +75,16 @@ export default {
 
       if (path === "/admin/gap-run" && req.method === "POST") {
         const body = (await req.json()) as { slugs?: string[]; force?: boolean };
-        const result = await runGapBatch(env, body?.slugs ?? null);
+        const result = await runGapBatch(env, body?.slugs ?? null, body?.force === true);
         return json(result);
+      }
+
+      // Draft fact-first HTML to close a page's uncovered claims (generation only;
+      // the caller opens a PR with it). POST { slug }.
+      if (path === "/admin/suggest-coverage" && req.method === "POST") {
+        const body = (await req.json()) as { slug?: string };
+        if (!body?.slug) return json({ error: "slug required" }, 400);
+        return json(await suggestCoverage(env, body.slug));
       }
 
       if (path === "/admin/debug-query" && req.method === "POST") {
@@ -129,7 +150,7 @@ export default {
  * Run gap analysis for up to GAP_PAGES_PER_TICK pages.
  * If `slugs` is null, picks the oldest-analyzed pages (or never-analyzed).
  */
-async function runGapBatch(env: Env, slugs: string[] | null): Promise<{ ran: number; skipped: number; errors: number }> {
+async function runGapBatch(env: Env, slugs: string[] | null, force = false): Promise<{ ran: number; skipped: number; errors: number }> {
   const cap = parseInt(env.GAP_PAGES_PER_TICK || "10", 10);
   const indexed = await listIndexedSlugs(env);
 
@@ -157,7 +178,7 @@ async function runGapBatch(env: Env, slugs: string[] | null): Promise<{ ran: num
     if (!p.primary_kw) continue;
     const pageUrl = `${env.LEARN_ORIGIN}/${p.slug}`;
     try {
-      const report = await runGapAnalysis(env, p.slug, p.primary_kw, pageUrl);
+      const report = await runGapAnalysis(env, p.slug, p.primary_kw, pageUrl, force);
       await saveGapReport(env, report);
       ran += 1;
     } catch (e) {
