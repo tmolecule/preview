@@ -32,7 +32,12 @@ export default {
     if (path === "/" || path === "/dashboard") {
       const reports = await listGapReports(env);
       return new Response(renderDashboard(reports), {
-        headers: { "content-type": "text/html; charset=utf-8" },
+        headers: {
+          "content-type": "text/html; charset=utf-8",
+          // Always serve fresh — reports update every cycle; a cached dashboard
+          // can show stale (even mid-refresh 0%) coverage to the viewer.
+          "cache-control": "no-store, max-age=0",
+        },
       });
     }
 

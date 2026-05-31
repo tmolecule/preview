@@ -580,7 +580,7 @@ export function renderDashboard(reports: GapReport[]): string {
           <li><strong>Priority rows first.</strong> Pages below 50% are losing AI citations to whoever does cover those claims. Add a short, declarative paragraph or section per missing claim — fact-first writing (AI engines won't lift marketing-style copy).</li>
           <li><strong>Quick wins next.</strong> Usually 1–3 specific claims away from on-track. Often one new H2 + 2–3 paragraphs closes the gap.</li>
           <li><strong>On-track rows.</strong> Skip unless a missing claim happens to be one competitors are now ranking for.</li>
-          <li><strong>Reject bad claims.</strong> Some uncovered claims are wrong, off-brand, or things you intentionally omit (e.g. "tallow can be from cows or pigs" — TMolecule uses beef tallow only). Mark in your editorial doc and ignore; the model retries every cycle.</li>
+          <li><strong>Reject bad claims.</strong> Some uncovered claims are wrong, off-brand, or things you intentionally omit. Mark in your editorial doc and ignore; the model retries every cycle.</li>
         </ol>
 
         <h3>What it does <em>not</em> tell you</h3>
@@ -646,7 +646,7 @@ export function renderDashboard(reports: GapReport[]): string {
 </main>
 
 <footer>
-  tmolecule-learn-intel &middot; Workers AI + Vectorize + Llama 3.3 &middot; daily refresh 04:00 ET
+  tmolecule-learn-intel &middot; Workers AI + Vectorize + Llama 3.3 &middot; weekly refresh Friday
 </footer>
 
 <script>
