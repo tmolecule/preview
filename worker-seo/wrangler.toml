@@ -4,11 +4,30 @@ compatibility_date = "2026-04-01"
 account_id = "6766841fb403fe06a6e2c1f2ea3b5ea0"
 workers_dev = true
 
-# Worker runs on the learn.tmolecule.com subdomain only.
-# Shopify owns tmolecule.com and www.tmolecule.com via Cloudflare for SaaS,
-# so a subdomain is the only place our Worker can intercept traffic.
+# Worker is bound to three routes, all on the same TMolecule zone:
+#
+#   1. learn.tmolecule.com/*    — original subdomain mount (mount = '')
+#   2. www.tmolecule.com/learn/* — www mount (mount = '/learn')
+#                                  www was already CNAME → shops.myshopify.com,
+#                                  which proves O2O works on this zone.
+#   3. tmolecule.com/learn/*    — apex mount (mount = '/learn')
+#                                  Activated 2026-05-06 after flipping the apex
+#                                  DNS from A → CNAME shops.myshopify.com,
+#                                  enabling Cloudflare Orange-to-Orange (O2O).
+#                                  Apex cert switches LE → GTS within ~5-15 min;
+#                                  Worker route fires once DNS propagates.
+#
+# Same pattern proven on whollykaw.com 2026-05-03.
 [[routes]]
 pattern = "learn.tmolecule.com/*"
+zone_name = "tmolecule.com"
+
+[[routes]]
+pattern = "www.tmolecule.com/learn/*"
+zone_name = "tmolecule.com"
+
+[[routes]]
+pattern = "tmolecule.com/learn/*"
 zone_name = "tmolecule.com"
 
 # KV namespace for page content.
@@ -36,6 +55,9 @@ GSC_VERIFICATION = "SFYPUwnKraRF0kqkMv8AoCoVAO5O_AU8LZTJ5uBrHN4"
 AUTHOR_NAME = "PGP Iyer"
 CF_ACCOUNT_ID = "6766841fb403fe06a6e2c1f2ea3b5ea0"
 DECK_ANALYTICS_DATASET = "tmolecule_deck_analytics"
+# Bump this any time KV content changes mid-day to force edge-cache invalidation
+# without waiting for the s-maxage TTL (24 hours on articles).
+BUILD_VERSION = "2026-05-31-collagen-content"
 
 [observability]
 enabled = true

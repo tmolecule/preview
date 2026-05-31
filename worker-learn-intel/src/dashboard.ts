@@ -170,7 +170,7 @@ function renderFindings(reports: GapReport[], bucket: Bucket): string {
     <div class="overview-num"><span class="value">${bucket.priority.length}</span><span class="label">priority (&lt;50%)</span></div>
     <div class="overview-num"><span class="value">${bucket.quickWin.length}</span><span class="label">quick wins (50–79%)</span></div>
     <div class="overview-num"><span class="value">${bucket.strong.length}</span><span class="label">on track (≥80%)</span></div>
-    <div class="overview-num"><span class="value">${scentCount}</span><span class="label">scent / product pages (informational)</span></div>
+    ${scentCount > 0 ? `<div class="overview-num"><span class="value">${scentCount}</span><span class="label">scent / product pages (informational)</span></div>` : ""}
   </div>`);
 
   if (topPriority.length) {
@@ -624,7 +624,7 @@ export function renderDashboard(reports: GapReport[]): string {
     </table>
   </section>
 
-  <section>
+  ${scentRowCount(reports) > 0 ? `<section>
     <h2>Scent &amp; product pages — informational only</h2>
     <details class="scent-fold">
       <summary><strong>${scentRowCount(reports)} scent / product pages</strong> &middot; not factored into priority alerts or findings. Coverage scoring is calibrated to canonical AI answers, which don't apply cleanly to branded product queries.</summary>
@@ -641,7 +641,7 @@ export function renderDashboard(reports: GapReport[]): string {
         <tbody>${scentRows || '<tr><td colspan="7" class="muted" style="padding:24px;text-align:center">No scent reports.</td></tr>'}</tbody>
       </table>
     </details>
-  </section>
+  </section>` : ""}
 
 </main>
 
