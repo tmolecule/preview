@@ -1,7 +1,17 @@
+import {
+  PILLARS,
+  getPillar,
+  intentLabel,
+  SAFETY_POPULATIONS,
+  SAFETY_STATUS,
+  REGULATORY_STATUS
+} from './taxonomy.js';
+import relatedLinks from './data/related-links.json';
+
 const NAV_LINKS = [
   { href: '__SHOP__/', label: 'Home' },
   { href: '__SHOP__/collections/all', label: 'Shop' },
-  { href: '/', label: 'Learn' },
+  { href: '__LEARN__/', label: 'Learn' },
   { href: '__SHOP__/pages/about', label: 'About' },
   { href: '__SHOP__/pages/contact', label: 'Contact' }
 ];
@@ -10,7 +20,7 @@ const FOOTER_LINKS = {
   quick: [
     { href: '__SHOP__/', label: 'Home' },
     { href: '__SHOP__/collections/all', label: 'Shop' },
-    { href: '/', label: 'Learn' },
+    { href: '__LEARN__/', label: 'Learn' },
     { href: '__SHOP__/pages/contact', label: 'Contact Us' }
   ],
   policies: [
@@ -34,7 +44,136 @@ const SOCIAL_LINKS = [
   { href: 'https://twitter.com/GetTMolecule', label: 'X', icon: '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3l-6.6 7.5L22 21h-6.2l-4.8-6.3L5.3 21H2.3l7-8L2 3h6.3l4.4 5.8L17.5 3zm-1 16h1.7L7.6 4.8H5.8L16.5 19z"/></svg>' }
 ];
 
-export function renderArticle(data, slug, origin, env) {
+/**
+ * Rewrite single-segment internal links so they include the mount prefix
+ * when the Worker is mounted on a path (e.g., apex /learn/*). On the
+ * subdomain (mount === ''), this is a no-op. The slug regex matches the
+ * same shape we accept for article slugs, so we don't accidentally rewrite
+ * Shopify paths like /cart that the body might reference.
+ */
+function rewriteMountLinks(html, mount) {
+  if (!mount || !html) return html;
+  return html.replace(
+    /href="\/([a-z0-9][a-z0-9-]{0,80})(\.md)?"/g,
+    (_match, slug, ext) => `href="${mount}/${slug}${ext || ''}"`
+  );
+}
+
+/**
+ * Build the breadcrumb (visible HTML + BreadcrumbList schema) for an article,
+ * inserting the pillar hub between "Learn" and the page title when the page
+ * declares a known pillar. Falls back to the flat Home › Learn › Title chain.
+ */
+function buildBreadcrumb({ data, title, canonical, origin, env, mount }) {
+  const safeTitle = esc(title);
+  const pillar = getPillar(data);
+  const crumbParts = [
+    `<a href="${env.SHOP_ORIGIN}">${esc(env.SITE_NAME)}</a>`,
+    `<a href="${mount}/">Learn</a>`
+  ];
+  const schemaItems = [
+    { '@type': 'ListItem', position: 1, name: env.SITE_NAME, item: env.SHOP_ORIGIN },
+    { '@type': 'ListItem', position: 2, name: 'Learn', item: `${origin}${mount}/` }
+  ];
+  if (pillar) {
+    crumbParts.push(`<a href="${mount}/${pillar.slug}">${esc(pillar.label)}</a>`);
+    schemaItems.push({ '@type': 'ListItem', position: 3, name: pillar.label, item: `${origin}${mount}/${pillar.slug}` });
+  }
+  crumbParts.push(`<span>${safeTitle}</span>`);
+  schemaItems.push({ '@type': 'ListItem', position: schemaItems.length + 1, name: title, item: canonical });
+
+  return {
+    crumbsHtml: `<nav class="crumbs">${crumbParts.join(' &rsaquo; ')}</nav>`,
+    schema: { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: schemaItems }
+  };
+}
+
+/**
+ * "…so what do I drink?" CTA. Every learn page should bridge to a product so
+ * education converts. `product_bridge` is an absolute or shop-relative URL.
+ */
+function renderProductBridge(data, env) {
+  const href = data.product_bridge;
+  if (!href) return '';
+  const url = /^https?:\/\//.test(href) ? href : `${env.SHOP_ORIGIN}${href}`;
+  const label = data.product_bridge_label || 'Shop the blend';
+  const blurb = data.product_bridge_blurb || `Put this into practice with a cup from ${env.SITE_NAME}.`;
+  return `<aside class="bridge"><div class="bridge__text"><strong>${esc(blurb)}</strong></div><a class="btn" href="${esc(url)}">${esc(label)} &rsaquo;</a></aside>`;
+}
+
+/**
+ * Related-article links (internal linking spine). `related` is a list of slugs.
+ */
+function renderRelated(data, mount, slug) {
+  // Manual `related` keeps priority; vector top-ups (build-related-links.mjs)
+  // fill under-linked pages. Dedupe, preserve manual order first.
+  const manual = Array.isArray(data.related) ? data.related.filter(Boolean) : [];
+  const seen = new Set(manual);
+  const vector = (slug && Array.isArray(relatedLinks[slug]) ? relatedLinks[slug] : [])
+    .map(r => r.slug)
+    .filter(s => s && !seen.has(s) && (seen.add(s), true));
+  const all = [...manual, ...vector];
+  if (!all.length) return '';
+  const links = all.map(s => {
+    const label = s.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    return `<li><a href="${mount}/${esc(s)}">${esc(label)}</a></li>`;
+  }).join('');
+  return `<nav class="related" aria-label="Related guides"><h2>Related guides</h2><ul>${links}</ul></nav>`;
+}
+
+/**
+ * Population-aware safety table for intent: "safety". Renders one row per
+ * canonical population group present in data.safety.populations.
+ */
+function renderSafetyBlock(data) {
+  const safety = data.safety;
+  if (!safety || !Array.isArray(safety.populations) || !safety.populations.length) return '';
+  const byKey = Object.fromEntries(safety.populations.map(p => [p.group, p]));
+  const rows = SAFETY_POPULATIONS
+    .filter(pop => byKey[pop.key])
+    .map(pop => {
+      const row = byKey[pop.key];
+      const st = SAFETY_STATUS[row.status] || { label: row.status || '—', tone: 'warn' };
+      return `<tr><td>${esc(pop.label)}</td><td><span class="pill pill--${st.tone}">${esc(st.label)}</span></td><td>${esc(row.note || '')}</td></tr>`;
+    }).join('');
+  if (!rows) return '';
+  const summary = safety.summary ? `<p class="safety__summary">${esc(safety.summary)}</p>` : '';
+  return `<section class="safety"><h2>Is it safe? By group</h2>${summary}<table><thead><tr><th>Group</th><th>Status</th><th>What to know</th></tr></thead><tbody>${rows}</tbody></table></section>`;
+}
+
+/**
+ * EU vs US regulatory comparison for intent: "eu-status".
+ */
+function renderRegulatoryBlock(data) {
+  const reg = data.regulatory;
+  if (!reg || (!reg.eu_status && !reg.us_status)) return '';
+  const pill = (status) => {
+    const st = REGULATORY_STATUS[status];
+    return st ? `<span class="pill pill--${st.tone}">${esc(st.label)}</span>` : '';
+  };
+  const summary = reg.summary ? `<p class="reg__summary">${esc(reg.summary)}</p>` : '';
+  return `<section class="reg"><h2>Regulatory status: EU vs US</h2>${summary}
+    <div class="reg__grid">
+      <div class="reg__col"><h3>European Union</h3>${pill(reg.eu_status)}${reg.eu_note ? `<p>${esc(reg.eu_note)}</p>` : ''}</div>
+      <div class="reg__col"><h3>United States</h3>${pill(reg.us_status)}${reg.us_note ? `<p>${esc(reg.us_note)}</p>` : ''}</div>
+    </div></section>`;
+}
+
+/**
+ * Wellness disclaimer. TMolecule products are ingestible foods, not drugs —
+ * safety/regulatory pages MUST carry this top and bottom (FDA + not-medical-advice).
+ */
+function wellnessDisclaimer(pos) {
+  return `<aside class="wellness-disclaimer wellness-disclaimer--${pos}" role="note">
+    This article is general educational information about tea and food ingredients — not medical advice, and not intended to diagnose, treat, cure, or prevent any disease. These statements have not been evaluated by the FDA. If you are pregnant, breastfeeding, giving tea to a child, managing a health condition, or taking medication, talk to a qualified healthcare provider before changing your routine.
+  </aside>`;
+}
+
+function needsDisclaimer(data) {
+  return data.intent === 'safety' || data.intent === 'eu-status' || data.disclaimer === true;
+}
+
+export function renderArticle(data, slug, origin, env, mount = '') {
   const {
     title,
     h1,
@@ -47,7 +186,10 @@ export function renderArticle(data, slug, origin, env) {
     keywords = []
   } = data;
 
-  const canonical = `${origin}/${slug}`;
+  // canonical_url overrides the auto-generated worker URL when this page mirrors
+  // an existing Shopify post (Worker is the AI-extraction surface, Shopify owns
+  // organic SEO + commerce). Worker page does not compete with the canonical.
+  const canonical = data.canonical_url || `${origin}${mount}/${slug}`;
   const safeTitle = esc(title);
   const safeDesc = esc(meta_description);
   const sources = Array.isArray(data.sources) ? data.sources.filter(s => s && s.url) : [];
@@ -86,19 +228,11 @@ export function renderArticle(data, slug, origin, env) {
       : undefined
   };
 
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: env.SITE_NAME, item: env.SHOP_ORIGIN },
-      { '@type': 'ListItem', position: 2, name: 'Learn', item: `${origin}/` },
-      { '@type': 'ListItem', position: 3, name: title, item: canonical }
-    ]
-  };
+  const crumb = buildBreadcrumb({ data, title, canonical, origin, env, mount });
 
   const schemaTags = [
     `<script type="application/ld+json">${JSON.stringify(articleSchema)}</script>`,
-    `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    `<script type="application/ld+json">${JSON.stringify(crumb.schema)}</script>`
   ];
 
   if (faqs.length) {
@@ -140,8 +274,9 @@ export function renderArticle(data, slug, origin, env) {
     ogType: 'article',
     schemaTags,
     env,
+    mount,
     bodyInner: `
-      <nav class="crumbs"><a href="${env.SHOP_ORIGIN}">${esc(env.SITE_NAME)}</a> &rsaquo; <a href="/">Learn</a> &rsaquo; <span>${safeTitle}</span></nav>
+      ${crumb.crumbsHtml}
       <article>
         <h1>${esc(h1 || title)}</h1>
         ${meta_description ? `<p class="lede">${safeDesc}</p>` : ''}
@@ -150,37 +285,211 @@ export function renderArticle(data, slug, origin, env) {
           <span class="rp-bar-track"><span class="rp-bar"></span></span>
           <span class="rp-text">${readMins} min left</span>
         </div>
-        ${body_html}
+        ${needsDisclaimer(data) ? wellnessDisclaimer('top') : ''}
+        ${rewriteMountLinks(body_html, mount)}
+        ${renderSafetyBlock(data)}
+        ${renderRegulatoryBlock(data)}
+        ${renderProductBridge(data, env)}
         ${faqHtml}
+        ${renderRelated(data, mount, slug)}
+        ${sourcesHtml}
+        ${needsDisclaimer(data) ? wellnessDisclaimer('bottom') : ''}
+      </article>
+    `
+  });
+}
+
+export function renderRecipe(data, slug, origin, env, mount = '') {
+  const {
+    title,
+    h1,
+    meta_description = '',
+    body_html = '',
+    image_url = '',
+    published_at = new Date().toISOString(),
+    updated_at = new Date().toISOString(),
+    faqs = [],
+    keywords = [],
+    recipe = {}
+  } = data;
+
+  const canonical = data.canonical_url || `${origin}${mount}/${slug}`;
+  const safeTitle = esc(title);
+  const safeDesc = esc(meta_description);
+  const sources = Array.isArray(data.sources) ? data.sources.filter(s => s && s.url) : [];
+  const heroImage = image_url || env.LOGO_URL;
+  const dateStr = formatDate(published_at);
+  const readMins = readingTime(body_html);
+
+  // Recipe schema as primary — eligible for Google's recipe rich result + AI Overview citations.
+  // Defined fields only; undefined fields are stripped before serialization.
+  const recipeSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Recipe',
+    name: h1 || title,
+    description: meta_description,
+    image: heroImage,
+    author: {
+      '@type': 'Person',
+      name: env.AUTHOR_NAME || env.SITE_NAME,
+      url: env.SHOP_ORIGIN
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: env.SITE_NAME,
+      logo: { '@type': 'ImageObject', url: env.LOGO_URL }
+    },
+    datePublished: published_at,
+    dateModified: updated_at,
+    keywords: keywords.length ? keywords.join(', ') : undefined,
+    prepTime: recipe.prepTime,
+    cookTime: recipe.cookTime,
+    totalTime: recipe.totalTime,
+    recipeYield: recipe.recipeYield,
+    recipeCategory: recipe.recipeCategory,
+    recipeCuisine: recipe.recipeCuisine,
+    recipeIngredient: recipe.recipeIngredient,
+    recipeInstructions: recipe.recipeInstructions
+      ? recipe.recipeInstructions.map(step =>
+          typeof step === 'string'
+            ? { '@type': 'HowToStep', text: step }
+            : step
+        )
+      : undefined
+  };
+  // Strip undefined fields so the JSON-LD validates cleanly.
+  Object.keys(recipeSchema).forEach(k => recipeSchema[k] === undefined && delete recipeSchema[k]);
+
+  const crumb = buildBreadcrumb({ data, title, canonical, origin, env, mount });
+
+  const schemaTags = [
+    `<script type="application/ld+json">${JSON.stringify(recipeSchema)}</script>`,
+    `<script type="application/ld+json">${JSON.stringify(crumb.schema)}</script>`
+  ];
+
+  // FAQPage retained for AI extraction signal (no longer Google rich result on commerce sites,
+  // but still parsed by ChatGPT/Claude/Perplexity and Google AI Overview).
+  if (faqs.length) {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      speakable: {
+        '@type': 'SpeakableSpecification',
+        cssSelector: ['.faq summary', '.faq-a']
+      },
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a }
+      }))
+    };
+    schemaTags.push(`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`);
+  }
+
+  const faqHtml = faqs.length
+    ? `<section class="faq"><h2>Frequently asked questions</h2>${faqs.map(f =>
+        `<details><summary>${esc(f.q)}</summary><div class="faq-a">${f.a_html || `<p>${esc(f.a)}</p>`}</div></details>`
+      ).join('')}</section>`
+    : '';
+
+  const sourcesHtml = sources.length
+    ? `<section class="sources"><h2>Sources</h2><ol>${sources.map(s =>
+        `<li><a href="${esc(s.url)}" rel="noopener" target="_blank">${esc(s.title)}</a>${s.publisher ? ` &middot; <span class="src-pub">${esc(s.publisher)}</span>` : ''}</li>`
+      ).join('')}</ol></section>`
+    : '';
+
+  const bylineHtml = `<p class="byline">By <span class="author-name">${esc(env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time> &middot; ${readMins} min read</p>`;
+
+  return baseHtml({
+    title: safeTitle,
+    description: safeDesc,
+    canonical,
+    ogImage: heroImage,
+    ogType: 'article',
+    schemaTags,
+    env,
+    mount,
+    bodyInner: `
+      ${crumb.crumbsHtml}
+      <article>
+        <h1>${esc(h1 || title)}</h1>
+        ${meta_description ? `<p class="lede">${safeDesc}</p>` : ''}
+        ${bylineHtml}
+        <div class="read-progress" aria-live="polite" aria-label="Reading progress" data-total-mins="${readMins}">
+          <span class="rp-bar-track"><span class="rp-bar"></span></span>
+          <span class="rp-text">${readMins} min left</span>
+        </div>
+        ${rewriteMountLinks(body_html, mount)}
+        ${renderProductBridge(data, env)}
+        ${faqHtml}
+        ${renderRelated(data, mount, slug)}
         ${sourcesHtml}
       </article>
     `
   });
 }
 
-export function renderIndex(items, origin, env) {
-  const list = items.map(item =>
-    `<li><a href="/${item.slug}"><strong>${esc(item.title)}</strong>${item.meta_description ? `<span>${esc(item.meta_description)}</span>` : ''}</a></li>`
-  ).join('');
+export function renderIndex(items, origin, env, mount = '') {
+  // Featured: explicit `featured: true` in seed JSON. Up to 6, alphabetical.
+  const featuredItems = items.filter(i => i.featured).slice(0, 6);
+  const featuredSlugs = new Set(featuredItems.map(i => i.slug));
+
+  // Recent: top 5 by updated_at, excluding already-featured to avoid double-listing.
+  const recentItems = items
+    .filter(i => i.updated_at && !featuredSlugs.has(i.slug))
+    .map(i => ({ ...i, _ts: Date.parse(i.updated_at) || 0 }))
+    .sort((a, b) => b._ts - a._ts)
+    .slice(0, 5);
+
+  const renderTile = item =>
+    `<li><a href="${mount}/${item.slug}"><strong>${esc(item.title)}</strong>${item.meta_description ? `<span>${esc(item.meta_description)}</span>` : ''}</a></li>`;
+
+  const featuredHtml = featuredItems.length
+    ? `<section class="i-section">
+        <h2 class="i-section__head">Featured</h2>
+        <ul class="article-list">${featuredItems.map(renderTile).join('')}</ul>
+      </section>`
+    : '';
+
+  const recentHtml = recentItems.length
+    ? `<section class="i-section">
+        <h2 class="i-section__head">Recently updated</h2>
+        <ul class="article-list">${recentItems.map(renderTile).join('')}</ul>
+      </section>`
+    : '';
+
+  const fullList = items.map(renderTile).join('');
+
+  // Browse-by-topic: only show pillar hubs that have at least one page.
+  const presentPillars = new Set(items.map(i => i.pillar).filter(Boolean));
+  const topicsHtml = presentPillars.size
+    ? `<section class="i-section">
+        <h2 class="i-section__head">Browse by topic</h2>
+        <ul class="topic-grid">${PILLARS.filter(p => presentPillars.has(p.slug)).map(p =>
+          `<li><a href="${mount}/${p.slug}"><strong>${esc(p.label)}</strong><span>${esc(p.blurb)}</span></a></li>`
+        ).join('')}</ul>
+      </section>`
+    : '';
 
   return baseHtml({
     title: `Learn about tea — ${env.SITE_NAME}`,
     description: 'Guides, how-tos, and origin stories from the TMolecule tea library.',
-    canonical: `${origin}/`,
+    canonical: `${origin}${mount}/`,
     ogType: 'website',
     env,
+    mount,
     schemaTags: [
       `<script type="application/ld+json">${JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         name: `${env.SITE_NAME} Learn`,
-        url: `${origin}/`,
-        hasPart: items.map(i => ({ '@type': 'Article', name: i.title, url: `${origin}/${i.slug}` }))
+        url: `${origin}${mount}/`,
+        hasPart: items.map(i => ({ '@type': 'Article', name: i.title, url: `${origin}${mount}/${i.slug}` }))
       })}</script>`,
       `<script type="application/ld+json">${JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
-        url: origin,
+        url: `${origin}${mount}/`,
         name: `${env.SITE_NAME} Learn`,
         publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
       })}</script>`
@@ -190,33 +499,116 @@ export function renderIndex(items, origin, env) {
         <h1>Learn about tea</h1>
         <p>Brewing guides, origin stories, and tea education from the ${esc(env.SITE_NAME)} library.</p>
       </header>
-      <ul class="article-list">${list || '<li>No articles yet.</li>'}</ul>
+      ${topicsHtml}
+      ${featuredHtml}
+      ${recentHtml}
+      <section class="i-section">
+        <h2 class="i-section__head">All articles</h2>
+        <ul class="article-list">${fullList || '<li>No articles yet.</li>'}</ul>
+      </section>
     `
   });
 }
 
-export function renderNotFound(env, origin) {
+/**
+ * Pillar hub page: lists every article in the pillar, grouped by cluster.
+ */
+export function renderHub(pillar, items, origin, env, mount = '') {
+  const canonical = `${origin}${mount}/${pillar.slug}`;
+
+  // Group by cluster, preserving alphabetical article order within each group.
+  const groups = new Map();
+  for (const it of items) {
+    const c = it.cluster || 'general';
+    if (!groups.has(c)) groups.set(c, []);
+    groups.get(c).push(it);
+  }
+  const clusterLabel = c => c.replace(/-/g, ' ').replace(/\b\w/g, ch => ch.toUpperCase());
+
+  const renderTile = item =>
+    `<li><a href="${mount}/${item.slug}"><strong>${esc(item.title)}</strong>${item.meta_description ? `<span>${esc(item.meta_description)}</span>` : ''}</a></li>`;
+
+  const sectionsHtml = items.length
+    ? [...groups.entries()].sort((a, b) => a[0].localeCompare(b[0])).map(([cluster, list]) =>
+        `<section class="i-section">
+          <h2 class="i-section__head">${esc(clusterLabel(cluster))}</h2>
+          <ul class="article-list">${list.map(renderTile).join('')}</ul>
+        </section>`
+      ).join('')
+    : `<section class="i-section"><p>No guides here yet — <a href="${mount}/">browse all articles</a>.</p></section>`;
+
+  const otherPillars = PILLARS.filter(p => p.slug !== pillar.slug);
+
+  return baseHtml({
+    title: `${pillar.title} — ${env.SITE_NAME} Learn`,
+    description: pillar.blurb,
+    canonical,
+    ogType: 'website',
+    env,
+    mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: pillar.title,
+        description: pillar.blurb,
+        url: canonical,
+        hasPart: items.map(i => ({ '@type': 'Article', name: i.title, url: `${origin}${mount}/${i.slug}` }))
+      })}</script>`,
+      `<script type="application/ld+json">${JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: env.SITE_NAME, item: env.SHOP_ORIGIN },
+          { '@type': 'ListItem', position: 2, name: 'Learn', item: `${origin}${mount}/` },
+          { '@type': 'ListItem', position: 3, name: pillar.label, item: canonical }
+        ]
+      })}</script>`
+    ],
+    bodyInner: `
+      <nav class="crumbs"><a href="${env.SHOP_ORIGIN}">${esc(env.SITE_NAME)}</a> &rsaquo; <a href="${mount}/">Learn</a> &rsaquo; <span>${esc(pillar.label)}</span></nav>
+      <header class="hero">
+        <h1>${esc(pillar.title)}</h1>
+        <p>${esc(pillar.blurb)}</p>
+      </header>
+      ${sectionsHtml}
+      <section class="i-section">
+        <h2 class="i-section__head">More topics</h2>
+        <ul class="topic-grid">${otherPillars.map(p =>
+          `<li><a href="${mount}/${p.slug}"><strong>${esc(p.label)}</strong><span>${esc(p.blurb)}</span></a></li>`
+        ).join('')}</ul>
+      </section>
+    `
+  });
+}
+
+export function renderNotFound(env, origin, mount = '') {
   return baseHtml({
     title: `Page not found — ${env.SITE_NAME} Learn`,
     description: 'The page you requested could not be found.',
-    canonical: `${origin}/`,
+    canonical: `${origin}${mount}/`,
     ogType: 'website',
     env,
+    mount,
     schemaTags: [],
     bodyInner: `
       <header class="hero">
         <h1>Page not found</h1>
         <p>The article you’re looking for doesn’t exist or has moved.</p>
-        <p><a class="btn" href="/">Browse all guides</a> &nbsp; <a href="${env.SHOP_ORIGIN}">Visit the shop &rsaquo;</a></p>
+        <p><a class="btn" href="${mount}/">Browse all guides</a> &nbsp; <a href="${env.SHOP_ORIGIN}">Visit the shop &rsaquo;</a></p>
       </header>
     `
   });
 }
 
-function baseHtml({ title, description, canonical, ogImage, ogType = 'article', schemaTags = [], bodyInner, env }) {
+function expandLink(href, shop, mount) {
+  return href.replace('__SHOP__', shop).replace('__LEARN__', mount || '');
+}
+
+function baseHtml({ title, description, canonical, ogImage, ogType = 'article', schemaTags = [], bodyInner, env, mount = '' }) {
   const shop = env.SHOP_ORIGIN;
   const navHtml = NAV_LINKS.map(l =>
-    `<a href="${l.href.replace('__SHOP__', shop)}">${esc(l.label)}</a>`
+    `<a href="${expandLink(l.href, shop, mount)}">${esc(l.label)}</a>`
   ).join('');
   const verificationTag = env.GSC_VERIFICATION
     ? `<meta name="google-site-verification" content="${esc(env.GSC_VERIFICATION)}">`
@@ -814,6 +1206,18 @@ ${schemaTags.join('\n')}
   .btn:hover{text-decoration:none;background:rgba(var(--color-button),.9)}
 
   /* Hero (index + 404) */
+  /* === INDEX SECTIONS (Featured / Recent / Alphabetical) === */
+  .i-section{margin:2.4rem 0}
+  .i-section__head{
+    font-family:var(--sans);
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:var(--brown);
+    margin:0 0 1rem;
+  }
+
   .hero{margin-bottom:2.5rem}
   .hero h1{margin-bottom:.5rem}
   .hero p{font-size:1.1rem;color:rgba(var(--color-foreground),.8);margin:0 0 1rem}
@@ -989,6 +1393,61 @@ ${schemaTags.join('\n')}
     .tm-footer__inner{grid-template-columns:1fr}
     .tm-footer{padding:48px 22px 24px}
   }
+
+  /* === TAXONOMY COMPONENTS === */
+  /* Topic grid (index browse-by-topic + hub "more topics") */
+  .topic-grid{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+  .topic-grid a{
+    display:block;height:100%;padding:1.1rem 1.2rem;border-radius:12px;
+    background:linear-gradient(135deg,#fdf8e8 0%,#f1e6c8 100%);
+    border:1px solid #e8d9b2;border-left:3px solid rgb(var(--color-button));
+    box-shadow:0 1px 2px rgba(80,50,20,.08),0 4px 12px rgba(80,50,20,.08);
+    transition:transform .15s ease,box-shadow .15s ease;
+  }
+  .topic-grid a:hover{transform:translateY(-2px);text-decoration:none;box-shadow:0 2px 4px rgba(80,50,20,.12),0 10px 24px rgba(80,50,20,.12)}
+  .topic-grid strong{display:block;font-family:var(--serif);font-size:1.1rem;margin-bottom:.3rem;color:rgb(var(--color-foreground))}
+  .topic-grid span{display:block;font-size:.9rem;line-height:1.5;color:rgb(var(--color-mute))}
+
+  /* Product bridge CTA */
+  .bridge{
+    display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;
+    margin:2.4rem 0;padding:1.3rem 1.5rem;border-radius:12px;
+    background:linear-gradient(135deg,#f7ecd1 0%,#ecdab0 100%);
+    border:1px solid #e2cf99;border-left:3px solid rgb(var(--color-button));
+  }
+  .bridge__text strong{font-family:var(--serif);font-size:1.1rem;color:rgb(var(--color-foreground));font-weight:600}
+
+  /* Related guides */
+  .related{margin:2.4rem 0}
+  .related h2{font-size:1.15rem}
+  .related ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:.6rem}
+  .related a{
+    display:inline-block;padding:.45rem .9rem;border-radius:999px;font-size:.9rem;
+    background:rgba(var(--color-contrast),.22);border:1px solid rgb(var(--color-rule));color:rgb(var(--color-button));
+  }
+  .related a:hover{background:rgba(var(--color-contrast),.4);text-decoration:none}
+
+  /* Status pills (safety + regulatory) */
+  .pill{display:inline-block;padding:.2rem .6rem;border-radius:999px;font-size:.8rem;font-weight:600;font-family:var(--sans);white-space:nowrap}
+  .pill--ok{background:#e3f0dc;color:#3d6b27}
+  .pill--warn{background:#fbeccd;color:#8a5a14}
+  .pill--bad{background:#f6dcdc;color:#9a2a2a}
+
+  /* Safety + regulatory sections */
+  .safety,.reg{margin:2.6rem 0}
+  .safety__summary,.reg__summary{color:rgba(var(--color-foreground),.85)}
+  .reg__grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:1rem}
+  .reg__col{padding:1.1rem 1.2rem;border-radius:12px;background:rgb(var(--color-card));border:1px solid rgb(var(--color-rule))}
+  .reg__col h3{margin:0 0 .6rem;font-size:1.05rem}
+  .reg__col p{margin:.6rem 0 0;font-size:.92rem;color:rgb(var(--color-mute))}
+  @media (max-width:560px){.reg__grid{grid-template-columns:1fr}}
+
+  /* Wellness / FDA disclaimer */
+  .wellness-disclaimer{
+    margin:1.6rem 0;padding:.95rem 1.1rem;border-radius:10px;
+    background:rgba(var(--color-mute),.08);border:1px solid rgb(var(--color-rule));border-left:3px solid rgb(var(--color-mute));
+    font-family:var(--sans);font-size:.82rem;line-height:1.55;color:rgb(var(--color-mute));
+  }
 </style>
 </head>
 <body>
@@ -1073,7 +1532,7 @@ ${schemaTags.join('\n')}
   function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function loadManifest(){
     if (articles) return Promise.resolve();
-    return fetch('/manifest.json').then(function(r){return r.json();}).then(function(d){articles = d.articles || [];}).catch(function(){articles = [];});
+    return fetch('${mount}/manifest.json').then(function(r){return r.json();}).then(function(d){articles = d.articles || [];}).catch(function(){articles = [];});
   }
   function render(q){
     if (!q || !q.trim() || !articles) { dropdown.hidden = true; return; }
@@ -1088,7 +1547,7 @@ ${schemaTags.join('\n')}
       dropdown.hidden = false; return;
     }
     dropdown.innerHTML = hits.map(function(a){
-      return '<a class="tm-search__hit" href="/' + escHtml(a.slug) + '" role="option">' +
+      return '<a class="tm-search__hit" href="${mount}/' + escHtml(a.slug) + '" role="option">' +
         '<strong>' + escHtml(a.title) + '</strong>' +
         (a.description ? '<span>' + escHtml(a.description) + '</span>' : '') + '</a>';
     }).join('');
@@ -1133,11 +1592,11 @@ ${schemaTags.join('\n')}
   <div class="tm-footer__inner">
     <div>
       <h4>Quick Links</h4>
-      <ul>${FOOTER_LINKS.quick.map(l => `<li><a href="${l.href.replace('__SHOP__', shop)}">${esc(l.label)}</a></li>`).join('')}</ul>
+      <ul>${FOOTER_LINKS.quick.map(l => `<li><a href="${expandLink(l.href, shop, mount)}">${esc(l.label)}</a></li>`).join('')}</ul>
     </div>
     <div>
       <h4>Policies</h4>
-      <ul>${FOOTER_LINKS.policies.map(l => `<li><a href="${l.href.replace('__SHOP__', shop)}">${esc(l.label)}</a></li>`).join('')}</ul>
+      <ul>${FOOTER_LINKS.policies.map(l => `<li><a href="${expandLink(l.href, shop, mount)}">${esc(l.label)}</a></li>`).join('')}</ul>
     </div>
     <div>
       <h4>Connect</h4>
