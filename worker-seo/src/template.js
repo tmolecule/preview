@@ -7,6 +7,7 @@ import {
   REGULATORY_STATUS
 } from './taxonomy.js';
 import relatedLinks from './data/related-links.json';
+import { WIDGET_VERSION } from './widget-bundles.js';
 
 const NAV_LINKS = [
   { href: '__SHOP__/', label: 'Home' },
@@ -173,6 +174,28 @@ function needsDisclaimer(data) {
   return data.intent === 'safety' || data.intent === 'eu-status' || data.disclaimer === true;
 }
 
+// Interactive tool widgets that an article can embed via a seed `"widget"` field.
+// The IIFE self-mounts into the div; it's served at <mount>/widgets/<name>.js.
+const WIDGET_EMBEDS = {
+  'tea-finder': { id: 'tm-tea-finder', heading: 'Not sure which tea?', blurb: 'Take the four-question finder — flavor, routine and dietary preference, no health questions.' },
+  'brew-guide': { id: 'tm-brew-guide', heading: 'Brew it right', blurb: 'Scale temperature, steep time and the water-to-milk ratio to your servings.' },
+  'cost-per-cup': { id: 'tm-cost-per-cup', heading: 'What does your cup cost?', blurb: 'Compare it against a café latte or a DIY coffee-and-powder routine — live.' }
+};
+
+/** Inline a tool widget into an article body (no-op for an unknown name). */
+function renderWidgetEmbed(name, origin, mount) {
+  const w = WIDGET_EMBEDS[name];
+  if (!w) return '';
+  const src = `${origin}${mount}/widgets/${name}.js?v=${WIDGET_VERSION}`;
+  return `
+        <section class="widget-embed" style="margin:2.5rem 0;padding-top:1.5rem;border-top:1px solid rgb(var(--color-rule));">
+          <div style="font-family:var(--serif);font-weight:600;font-size:1.4rem;line-height:1.2;color:rgb(var(--color-foreground));margin:0 0 .25rem;">${w.heading}</div>
+          <p style="font-family:var(--sans);font-size:.95rem;color:rgb(var(--color-mute));margin:0 0 1rem;">${w.blurb}</p>
+          <div id="${w.id}"></div>
+          <script defer src="${src}"></script>
+        </section>`;
+}
+
 export function renderArticle(data, slug, origin, env, mount = '') {
   const {
     title,
@@ -287,6 +310,7 @@ export function renderArticle(data, slug, origin, env, mount = '') {
         </div>
         ${needsDisclaimer(data) ? wellnessDisclaimer('top') : ''}
         ${rewriteMountLinks(body_html, mount)}
+        ${data.widget ? renderWidgetEmbed(data.widget, origin, mount) : ''}
         ${renderSafetyBlock(data)}
         ${renderRegulatoryBlock(data)}
         ${renderProductBridge(data, env)}
@@ -420,6 +444,7 @@ export function renderRecipe(data, slug, origin, env, mount = '') {
           <span class="rp-text">${readMins} min left</span>
         </div>
         ${rewriteMountLinks(body_html, mount)}
+        ${data.widget ? renderWidgetEmbed(data.widget, origin, mount) : ''}
         ${renderProductBridge(data, env)}
         ${faqHtml}
         ${renderRelated(data, mount, slug)}
@@ -473,7 +498,7 @@ export function renderIndex(items, origin, env, mount = '') {
 
   return baseHtml({
     title: `Learn about tea — ${env.SITE_NAME}`,
-    description: 'Guides, how-tos, and origin stories from the TMolecule tea library.',
+    description: 'Explore TMolecule tea guides, ingredient research, chai recipes, collagen tea explainers, and practical brewing notes from a family tea brand since 1935.',
     canonical: `${origin}${mount}/`,
     ogType: 'website',
     env,
@@ -578,6 +603,215 @@ export function renderHub(pillar, items, origin, env, mount = '') {
           `<li><a href="${mount}/${p.slug}"><strong>${esc(p.label)}</strong><span>${esc(p.blurb)}</span></a></li>`
         ).join('')}</ul>
       </section>
+    `
+  });
+}
+
+/**
+ * #2 Brew Guide tool page — a real /learn page hosting the interactive
+ * brew-guide widget (the IIFE is served separately at <mount>/widgets/brew-guide.js
+ * and self-mounts into the div below). Indexable (canonical + sitemap), so this
+ * URL is the GSC / IndexNow-submittable surface.
+ *
+ * COMPLIANCE (no-medical-claims, food/supplement tier): preparation guidance only.
+ * The <noscript> fallback makes no health claim; the research note is research-
+ * framed and carries the general-information + FDA disclaimer.
+ */
+export function renderBrewGuide(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/brew-guide`;
+  const title = `Tea Brew Guide & Chai Calculator — ${env.SITE_NAME} Learn`;
+  const description =
+    'Dial in spiced black tea, chai latte, iced, or batch concentrate — temperature, steep time and water-to-milk ratios scaled to your servings.';
+  const scriptSrc = `${origin}${mount}/widgets/brew-guide.js?v=${WIDGET_VERSION}`;
+
+  const appSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Tea Brew Guide',
+    applicationCategory: 'LifestyleApplication',
+    operatingSystem: 'Web',
+    url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Brew guide', item: canonical }
+    ]
+  };
+
+  return baseHtml({
+    title,
+    description,
+    canonical,
+    ogType: 'website',
+    env,
+    mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>Tea brew guide</h1>
+        <p class="lede">Scale a spiced black-tea brew to any number of servings — hot, iced, as a latte, or a batch concentrate. The calculator gives you temperature, steep time and the water-to-milk ratio; flip on the masala blend for whole-spice amounts.</p>
+        <section class="widget-block"><div id="tm-brew-guide"></div></section>
+        <noscript>
+          <h2>Standard brew (per cup)</h2>
+          <ul>
+            <li>Heat 8&nbsp;oz water to about 205&deg;F (96&deg;C) — just off the boil.</li>
+            <li>Add 1 sachet and steep 4 minutes.</li>
+            <li>For a latte, use 4&nbsp;oz strong brew + 4&nbsp;oz frothed milk.</li>
+            <li>For a batch concentrate, brew double-strength and dilute 1:1 to serve.</li>
+          </ul>
+          <p>Pairs with <a href="${env.SHOP_ORIGIN}/products/spice-rush-collagen-black-tea">Spice Rush Collagen Black Tea</a>.</p>
+        </noscript>
+        <p class="tm-research-note"><strong>Heat &amp; collagen:</strong> some research examines whether prolonged boiling affects collagen peptides, so steeping just off the boil rather than hard-boiling is a common precaution. This describes published research, not a health claim. This is general information, not medical or dietary advice; these statements have not been evaluated by the FDA.</p>
+      </article>
+      <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * #3 Cost-per-cup tool page — hosts the cost-per-cup widget (IIFE served at
+ * <mount>/widgets/cost-per-cup.js). Indexable; the GSC / IndexNow URL.
+ *
+ * COMPLIANCE: arithmetic price comparison only. The <noscript> fallback states
+ * representative costs as editable estimates and makes no nutritional-equivalence
+ * or medical claim; the disclaimer mirrors the widget's.
+ */
+export function renderCostPerCup(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/cost-per-cup`;
+  const title = `Collagen Tea Cost-per-Cup Calculator — ${env.SITE_NAME} Learn`;
+  const description =
+    'Compare the cost of a collagen tea against a daily café latte or a DIY coffee-plus-collagen-powder morning — live per-cup, monthly and annual totals.';
+  const scriptSrc = `${origin}${mount}/widgets/cost-per-cup.js?v=${WIDGET_VERSION}`;
+
+  const appSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Collagen Tea Cost-per-Cup Calculator',
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Web',
+    url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Cost per cup', item: canonical }
+    ]
+  };
+
+  return baseHtml({
+    title,
+    description,
+    canonical,
+    ogType: 'website',
+    env,
+    mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>Collagen tea cost-per-cup</h1>
+        <p class="lede">What does your morning drink actually cost? Compare a collagen tea against a daily café latte or a do-it-yourself coffee-plus-collagen-powder routine — per cup, per month, and per year. Every price is editable to match your own.</p>
+        <section class="widget-block"><div id="tm-cost-per-cup"></div></section>
+        <noscript>
+          <h2>Representative costs (editable estimates)</h2>
+          <ul>
+            <li>Collagen tea: a ~$29 box of ~20 sachets &asymp; <strong>$1.45/cup</strong>.</li>
+            <li>Café latte: ~<strong>$5.50/cup</strong>.</li>
+            <li>Coffee + collagen powder: ~$0.50 coffee + a scoop from a ~$40 / 30-serving tub &asymp; <strong>$1.83/cup</strong>.</li>
+          </ul>
+          <p>At one cup a day, that is roughly <strong>$1,480/yr</strong> for the café habit vs <strong>$529/yr</strong> for the tea. Prices vary — adjust to your own.</p>
+          <p>Pairs with <a href="${env.SHOP_ORIGIN}/products/spice-rush-collagen-black-tea">Spice Rush Collagen Black Tea</a>.</p>
+        </noscript>
+        <p class="tm-research-note">This compares the <em>cost</em> of assembling a morning drink. It is not a claim that the tea is nutritionally equivalent to collagen powder, and not a medical, performance, or guaranteed-savings claim. This is general information, not financial or dietary advice.</p>
+        <nav class="related" aria-label="Related guides">
+          <h2>Related reading</h2>
+          <ul>
+            <li><a href="${mount}/collagen-tea-vs-collagen-powder">Collagen tea vs collagen powder</a></li>
+            <li><a href="${mount}/does-collagen-tea-actually-work">Does collagen tea actually work?</a></li>
+            <li><a href="${mount}/collagen-tea-vs-bone-broth">Collagen tea vs bone broth</a></li>
+          </ul>
+        </nav>
+      </article>
+      <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * #1 Tea Finder tool page — hosts the tea-finder quiz widget (IIFE served at
+ * <mount>/widgets/tea-finder.js). Indexable; the GSC / IndexNow URL.
+ *
+ * COMPLIANCE: a flavor/occasion/dietary preference quiz. The <noscript> fallback
+ * routes by preference only and names composition, not outcomes.
+ */
+export function renderTeaFinder(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/tea-finder`;
+  const title = `Tea Finder Quiz: Which TMolecule Tea Fits You — ${env.SITE_NAME} Learn`;
+  const description =
+    'Answer four quick questions about flavor, routine and dietary preference and we’ll point you to the TMolecule tea that fits — collagen black tea or adaptogen defense tea.';
+  const scriptSrc = `${origin}${mount}/widgets/tea-finder.js?v=${WIDGET_VERSION}`;
+  const shop = env.SHOP_ORIGIN;
+
+  const appSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'TMolecule Tea Finder',
+    applicationCategory: 'LifestyleApplication',
+    operatingSystem: 'Web',
+    url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: shop }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Tea finder', item: canonical }
+    ]
+  };
+
+  return baseHtml({
+    title,
+    description,
+    canonical,
+    ogType: 'website',
+    env,
+    mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>Which TMolecule tea fits you?</h1>
+        <p class="lede">Four quick questions on flavor, routine and dietary preference — no health questions — and we’ll point you to the right cup.</p>
+        <section class="widget-block"><div id="tm-tea-finder"></div></section>
+        <noscript>
+          <h2>The two teas at a glance</h2>
+          <ul>
+            <li><strong><a href="${shop}/products/spice-rush-collagen-black-tea">Spice Rush Collagen Black Tea</a></strong> — black tea, hydrolyzed collagen peptides and warming chai spices in one milled scoop; built for a morning ritual. Contains collagen (not vegan).</li>
+            <li><strong><a href="${shop}/products/immunitea-defense-tea">ImmuniTea Defense Tea</a></strong> — black tea built on four standardized adaptogens (turmeric, gooseberry, postbiotics, terminalia bellerica); plant-based.</li>
+          </ul>
+          <p>Pick warm-and-spiced + collagen + a morning cup → Spice Rush. Pick earthy-and-golden + adaptogens + plant-based → ImmuniTea.</p>
+        </noscript>
+        <p class="tm-research-note">This quiz matches on taste, routine and dietary preference — not health needs. It is general information, not medical or dietary advice; statements have not been evaluated by the FDA.</p>
+      </article>
+      <script defer src="${scriptSrc}"></script>
     `
   });
 }
@@ -1587,7 +1821,7 @@ ${schemaTags.join('\n')}
       <img src="${logoLo}" alt="${esc(env.SITE_NAME)}" width="240" height="60">
       <sup>&reg;</sup>
     </div>
-    <p class="tm-footer__tagline">Food with benefits. Real health benefits.</p>
+    <p class="tm-footer__tagline">Food with benefits. Real ingredients.</p>
   </div>
   <div class="tm-footer__inner">
     <div>

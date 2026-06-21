@@ -5,7 +5,7 @@
   "product_bridge": "/products/spice-rush-collagen-black-tea",
   "title": "Collagen Tea vs Bone Broth: Which Gives You More Collagen?",
   "h1": "Collagen Tea vs Bone Broth",
-  "meta_description": "Bone broth is marketed as a collagen source, but research finds its collagen-precursor content is low and unreliable compared with standardized collagen peptides. Here’s the comparison.",
+  "meta_description": "Bone broth is marketed as a collagen source, but its collagen content is low and unreliable next to standardized peptides. Here's the comparison.",
   "pillar": "blends",
   "intent": "comparison",
   "product_bridge_label": "A reliable dose",
@@ -43,5 +43,6 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
       "publisher": "Frontiers in Nutrition, 2024"
     }
-  ]
+  ],
+  "widget": "cost-per-cup"
 }

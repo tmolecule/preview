@@ -1,17 +1,18 @@
 {
   "published_at": "2026-05-28T08:00:00Z",
-  "updated_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-06-21T00:00:00.000Z",
   "cluster": "collagen",
   "product_bridge": "/products/spice-rush-collagen-black-tea",
-  "title": "Does Collagen Tea Actually Work? An Honest Look at the Evidence",
+  "title": "Does Collagen Tea Actually Work? An Honest Look",
   "h1": "Does Collagen Tea Actually Work?",
-  "meta_description": "Collagen peptides have real but modest trial support for skin, nails, and joints. Whether collagen tea “works” comes down to dose and consistency. Here’s a straight read of the evidence.",
+  "meta_description": "Collagen peptides have modest trial support for skin, nails, and joints. Whether collagen tea \"works\" comes down to dose and consistency.",
   "pillar": "ingredients",
   "intent": "question",
   "disclaimer": true,
   "product_bridge_label": "See what’s in it",
   "product_bridge_blurb": "Check the per-serving collagen dose on Spice Rush.",
   "related": [
+    "collagen-tea-vs-collagen-powder",
     "collagen-peptides",
     "collagen-for-skin",
     "collagen-for-joints"
@@ -23,7 +24,7 @@
     "does collagen work",
     "collagen tea evidence"
   ],
-  "body_html": "<p>Here’s the honest version: collagen peptides have <strong>real but modest</strong> evidence for skin, nails, and joints. Collagen tea “works” to the extent it delivers an effective dose, consistently — the format is just delivery.</p>\n<h2>Where the evidence is reasonable</h2>\n<ul>\n<li><strong>Skin:</strong> a meta-analysis of randomized trials found improved hydration and elasticity versus placebo over roughly 8–12 weeks.</li>\n<li><strong>Nails:</strong> a trial reported faster nail growth and less brittleness over 24 weeks.</li>\n<li><strong>Joints:</strong> trials in athletes and active adults report reduced activity-related joint discomfort.</li>\n</ul>\n<h2>The honest caveats</h2>\n<p>Effects are modest, build over months, and some studies are industry-funded. Benefits depend on taking an adequate dose every day — and the absorbable peptides only help if the serving actually contains a meaningful amount.</p>\n<h2>So does the tea form work?</h2>\n<p>The peptides absorb the same whether they arrive in tea, powder, or water. A collagen tea’s advantage is adherence: a pleasant daily ritual is easier to keep than a chore. Its limit is dose — check the grams per serving. If the dose is adequate and you’re consistent, the tea can deliver the same modest benefits the research describes.</p>\n<h2>What's in a collagen tea besides collagen</h2>\n<p>Most collagen teas are built on a Camellia sinensis base — often a black-tea cultivar — so the cup carries more than peptides. Depending on the leaf and its oxidation level, it can contain catechins, L-theanine, and theaflavins (the polyphenols that form when black tea is oxidized). These come from the tea leaf, not the collagen, and are part of why a tea base is more interesting than plain dissolved powder.</p>\n<h2>Does brewing change what you get?</h2>\n<p>Hydrolyzed collagen peptides are highly water-soluble, so they dissolve fully in hot water regardless of steep time — water temperature affects how fast they go into solution, not whether they do. Steep time, water temperature, and leaf-to-water ratio mainly govern the tea side: a hotter, longer, leaf-heavier brew pulls more catechins and theaflavins from the leaf. Near-boiling water and a 3–5 minute steep give you both a fully dissolved dose and a well-extracted cup.</p>\n",
+  "body_html": "<p>Here’s the honest version: collagen peptides have <strong>real but modest</strong> evidence for skin, nails, and joints. Collagen tea “works” to the extent it delivers an effective dose, consistently — the format is just delivery.</p>\n<h2>Where the evidence is reasonable</h2>\n<ul>\n<li><strong>Skin:</strong> a meta-analysis of randomized trials reported greater hydration and elasticity measurements versus placebo over roughly 8–12 weeks.</li>\n<li><strong>Nails:</strong> a trial reported faster measured nail growth and fewer brittle-nail symptoms over 24 weeks.</li>\n<li><strong>Joints:</strong> trials in athletes and active adults reported lower activity-related joint-discomfort scores.</li>\n</ul>\n<h2>The honest caveats</h2>\n<p>Effects are modest, build over months, and some studies are industry-funded. Benefits depend on taking an adequate dose every day — and the absorbable peptides only help if the serving actually contains a meaningful amount.</p>\n<h2>So does the tea form work?</h2>\n<p>The peptides absorb the same whether they arrive in tea, powder, or water. A collagen tea’s advantage is adherence: a pleasant daily ritual is easier to keep than a chore. Its limit is dose — check the grams per serving. If the dose is adequate and you’re consistent, the tea can deliver the same modest benefits the research describes.</p>\n<h2>What's in a collagen tea besides collagen</h2>\n<p>Most collagen teas are built on a Camellia sinensis base — often a black-tea cultivar — so the cup carries more than peptides. Depending on the leaf and its oxidation level, it can contain catechins, L-theanine, and theaflavins (the polyphenols that form when black tea is oxidized). These come from the tea leaf, not the collagen, and are part of why a tea base is more interesting than <a href=\"/collagen-tea-vs-collagen-powder\">plain dissolved collagen powder</a>.</p>\n<h2>Does brewing change what you get?</h2>\n<p>Hydrolyzed collagen peptides are highly water-soluble, so they dissolve fully in hot water regardless of steep time — water temperature affects how fast they go into solution, not whether they do. Steep time, water temperature, and leaf-to-water ratio mainly govern the tea side: a hotter, longer, leaf-heavier brew pulls more catechins and theaflavins from the leaf. Near-boiling water and a 3–5 minute steep give you both a fully dissolved dose and a well-extracted cup.</p>\n",
   "faqs": [
     {
       "q": "Is collagen tea a scam?",
@@ -55,5 +56,6 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
       "publisher": "Frontiers in Nutrition, 2024"
     }
-  ]
+  ],
+  "widget": "cost-per-cup"
 }

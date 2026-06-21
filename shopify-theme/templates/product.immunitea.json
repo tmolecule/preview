@@ -28,22 +28,78 @@
         "subheadline": "A black tea blend built around four research-backed botanicals — turmeric, gooseberry, a vegan postbiotic, and terminalia bellerica. Adaptogens, antioxidants, and polyphenols in one cup.",
         "show_rating": true,
         "rating_text": "4.9 · 47 reviews",
-        "bullets": "🌱 Four standardized botanical extracts — not flavorings|🛡️ Daily immune + gut-health support*|🍃 Vegan postbiotics — heat-stable, shelf-stable|🌿 Caffeine from real black tea, not isolates|👨‍👩‍👧 TMolecule heritage since 1935|🇺🇸 Made in USA",
+        "bullets": "🌱 Four standardized botanical extracts — not flavorings|🛡️ Built for a daily tea ritual|🍃 Vegan postbiotics — heat-stable, shelf-stable|🌿 Caffeine from real black tea, not isolates|👨‍👩‍👧 TMolecule heritage since 1935|🇺🇸 Made in USA",
         "show_subscribe_toggle": true
       },
       "blocks": {
-        "title": { "type": "title" },
-        "price": { "type": "price" },
-        "vp": { "type": "variant_picker" },
-        "bb": { "type": "buy_buttons" },
-        "b1": { "type": "badge", "settings": { "icon": "🌿", "label": "Plant-<br>Based" } },
-        "b2": { "type": "badge", "settings": { "icon": "🇺🇸", "label": "Made in<br>USA" } },
-        "b3": { "type": "badge", "settings": { "icon": "🚫", "label": "No<br>Sugar" } },
-        "b4": { "type": "badge", "settings": { "icon": "🌱", "label": "Vegan" } },
-        "b5": { "type": "badge", "settings": { "icon": "🌾", "label": "Gluten<br>Free" } },
-        "b6": { "type": "badge", "settings": { "icon": "🧬", "label": "Non<br>GMO" } },
-        "b7": { "type": "badge", "settings": { "icon": "🔬", "label": "Standardized<br>Extracts" } },
-        "b8": { "type": "badge", "settings": { "icon": "🚚", "label": "Fast<br>Shipping" } }
+        "title": {
+          "type": "title"
+        },
+        "price": {
+          "type": "price"
+        },
+        "vp": {
+          "type": "variant_picker"
+        },
+        "bb": {
+          "type": "buy_buttons"
+        },
+        "b1": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌿",
+            "label": "Plant-<br>Based"
+          }
+        },
+        "b2": {
+          "type": "badge",
+          "settings": {
+            "icon": "🇺🇸",
+            "label": "Made in<br>USA"
+          }
+        },
+        "b3": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚫",
+            "label": "No<br>Sugar"
+          }
+        },
+        "b4": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌱",
+            "label": "Vegan"
+          }
+        },
+        "b5": {
+          "type": "badge",
+          "settings": {
+            "icon": "🌾",
+            "label": "Gluten<br>Free"
+          }
+        },
+        "b6": {
+          "type": "badge",
+          "settings": {
+            "icon": "🧬",
+            "label": "Non<br>GMO"
+          }
+        },
+        "b7": {
+          "type": "badge",
+          "settings": {
+            "icon": "🔬",
+            "label": "Standardized<br>Extracts"
+          }
+        },
+        "b8": {
+          "type": "badge",
+          "settings": {
+            "icon": "🚚",
+            "label": "Fast<br>Shipping"
+          }
+        }
       },
       "block_order": [
         "title",
@@ -169,7 +225,7 @@
           "type": "reviews",
           "settings": {
             "heading": "What sippers say",
-            "quote_1": "Immunitea Defense is a delicious, easy and convenient way to boost your immunity. I use about 2 grams per cup. I drink it after work and in the morning to calm my nerves — a one-of-a-kind ayurvedic blend for a calm mind.",
+            "quote_1": "Immunitea Defense is a delicious, easy and convenient daily ritual. I use about 2 grams per cup. I drink it after work and in the morning to calm my nerves — a one-of-a-kind ayurvedic blend for a calm mind.",
             "author_1": "Verified buyer · April 12, 2026",
             "quote_2": "I'm a sucker for clinical-grade ingredients. A standardized turmeric extract in a daily cup of tea is exactly the upgrade my routine needed.",
             "author_2": "Verified buyer",
@@ -184,6 +240,25 @@
           "settings": {
             "body": "* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary.<br><br>Trademarks: The standardized turmeric extract (Curcumin C3 Complex®), gooseberry extract (Saberry®), and vegan postbiotic (Immunospore®) used in Immunitea are registered trademarks of Sabinsa Corporation, USA."
           }
+        },
+        "sources": {
+          "type": "sources",
+          "settings": {
+            "band": "cream",
+            "eyebrow": "The research, not the marketing",
+            "heading": "The research behind this cup",
+            "intro": "Independent guides on the adaptogens in this blend and what the studies actually describe — published research, plainly. Not health claims.",
+            "label_1": "Turmeric, by the research",
+            "url_1": "https://tmolecule.com/learn/turmeric",
+            "desc_1": "What published studies actually describe about turmeric.",
+            "label_2": "The best adaptogen tea",
+            "url_2": "https://tmolecule.com/learn/best-adaptogen-tea",
+            "desc_2": "Adaptogen ingredients ranked by the research.",
+            "label_3": "What makes a tea “functional”?",
+            "url_3": "https://tmolecule.com/learn/what-makes-a-tea-functional",
+            "desc_3": "The line between a functional tea and a flavored one.",
+            "note": "These guides describe published research and have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease."
+          }
         }
       },
       "block_order": [
@@ -194,6 +269,7 @@
         "compare",
         "ed1",
         "ed2",
+        "sources",
         "reviews",
         "disclaimer"
       ]

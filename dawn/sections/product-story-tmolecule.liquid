@@ -205,17 +205,6 @@
                     controls playsinline preload="none"></video>
                 </div>
               {%- endif -%}
-              <script type="application/ld+json">
-              {
-                "@context": "https://schema.org",
-                "@type": "VideoObject",
-                "name": {{ block.settings.heading | default: product.title | json }},
-                "description": {{ block.settings.description | default: product.description | strip_html | truncate: 300 | json }},
-                "thumbnailUrl": {{ block.settings.poster_url | json }},
-                "uploadDate": "{{ 'now' | date: '%Y-%m-%d' }}",
-                "contentUrl": {{ block.settings.full_url | json }}
-              }
-              </script>
             {%- endif -%}
           </div>
         </div>
@@ -226,6 +215,45 @@
             <p>{{ block.settings.body }}</p>
           </div>
         </div>
+
+      {%- when 'sources' -%}
+        <div class="tm-band tm-band--{{ block.settings.band | default: 'cream' }}" {{ block.shopify_attributes }}>
+          <div class="tm-sources">
+            {%- if block.settings.eyebrow != blank -%}<p class="tm-eyebrow">{{ block.settings.eyebrow }}</p>{%- endif -%}
+            {%- if block.settings.heading != blank -%}<h2 class="tm-h2">{{ block.settings.heading }}</h2>{%- endif -%}
+            {%- if block.settings.intro != blank -%}<p class="tm-sub">{{ block.settings.intro }}</p>{%- endif -%}
+            <ul class="tm-sources__list">
+              {%- for n in (1..6) -%}
+                {%- assign lbl = 'label_' | append: n -%}
+                {%- assign url = 'url_' | append: n -%}
+                {%- assign desc = 'desc_' | append: n -%}
+                {%- if block.settings[lbl] != blank and block.settings[url] != blank -%}
+                  <li class="tm-sources__item">
+                    <a href="{{ block.settings[url] }}">
+                      <span class="tm-sources__text">
+                        <span class="tm-sources__label">{{ block.settings[lbl] }}</span>
+                        {%- if block.settings[desc] != blank -%}<span class="tm-sources__desc">{{ block.settings[desc] }}</span>{%- endif -%}
+                      </span>
+                      <span class="tm-sources__arrow" aria-hidden="true">&rarr;</span>
+                    </a>
+                  </li>
+                {%- endif -%}
+              {%- endfor -%}
+            </ul>
+            {%- if block.settings.note != blank -%}<p class="tm-sources__note">{{ block.settings.note }}</p>{%- endif -%}
+          </div>
+        </div>
+        <style>
+          .tm-sources{max-width:820px;margin:0 auto;}
+          .tm-sources__list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px;}
+          .tm-sources__item a{display:flex;align-items:center;gap:14px;padding:14px 18px;background:#fff;border:1px solid var(--tm-rule,#e3dbc9);border-radius:8px;text-decoration:none;color:inherit;transition:border-color .15s ease,transform .12s ease;}
+          .tm-sources__item a:hover{border-color:var(--tm-accent,#7a5a2b);transform:translateX(3px);}
+          .tm-sources__text{display:flex;flex-direction:column;gap:2px;}
+          .tm-sources__label{font-weight:600;}
+          .tm-sources__desc{opacity:.7;font-size:14px;font-family:system-ui,sans-serif;}
+          .tm-sources__arrow{margin-left:auto;color:var(--tm-accent,#7a5a2b);font-size:18px;}
+          .tm-sources__note{margin:18px 0 0;font-size:13px;opacity:.7;font-family:system-ui,sans-serif;}
+        </style>
 
       {%- endcase -%}
     {%- endfor -%}
@@ -310,7 +338,20 @@
       {"type":"url","id":"full_url","label":"Full video URL","info":"Full-length MP4 opened in modal when user clicks play"},
       {"type":"url","id":"poster_url","label":"Poster image URL"},
       {"type":"text","id":"full_duration","label":"Full video duration","default":"5 min","info":"Shown on play button, e.g. '5 min'"},
-      {"type":"textarea","id":"description","label":"SEO description (for VideoObject schema)"}
+      {"type":"textarea","id":"description","label":"SEO description"}
+    ]},
+    { "type": "sources", "name": "Research & sources", "limit": 1, "settings": [
+      {"type":"select","id":"band","label":"Band color","default":"cream","options":[{"value":"cream","label":"Cream"},{"value":"sand","label":"Sand"},{"value":"honey","label":"Honey"},{"value":"deep-sand","label":"Deep sand"}]},
+      {"type":"text","id":"eyebrow","label":"Eyebrow","default":"The research, not the marketing"},
+      {"type":"text","id":"heading","label":"Heading","default":"The research behind this cup"},
+      {"type":"textarea","id":"intro","label":"Intro","default":"Independent guides on the ingredients and how they actually behave — published research, described plainly. Not health claims."},
+      {"type":"text","id":"label_1","label":"Link 1 label","default":"What collagen peptides are"}, {"type":"url","id":"url_1","label":"Link 1 URL"}, {"type":"text","id":"desc_1","label":"Link 1 description","default":"How hydrolyzed collagen is made and absorbed."},
+      {"type":"text","id":"label_2","label":"Link 2 label","default":"Does hot water destroy collagen?"}, {"type":"url","id":"url_2","label":"Link 2 URL"}, {"type":"text","id":"desc_2","label":"Link 2 description","default":"What the research says about heat and collagen peptides."},
+      {"type":"text","id":"label_3","label":"Link 3 label","default":"The best collagen tea, formats ranked"}, {"type":"url","id":"url_3","label":"Link 3 URL"}, {"type":"text","id":"desc_3","label":"Link 3 description","default":"Tea vs powder vs broth, on effort and consistency."},
+      {"type":"text","id":"label_4","label":"Link 4 label"}, {"type":"url","id":"url_4","label":"Link 4 URL"}, {"type":"text","id":"desc_4","label":"Link 4 description"},
+      {"type":"text","id":"label_5","label":"Link 5 label"}, {"type":"url","id":"url_5","label":"Link 5 URL"}, {"type":"text","id":"desc_5","label":"Link 5 description"},
+      {"type":"text","id":"label_6","label":"Link 6 label"}, {"type":"url","id":"url_6","label":"Link 6 URL"}, {"type":"text","id":"desc_6","label":"Link 6 description"},
+      {"type":"textarea","id":"note","label":"Footnote","default":"These guides describe published research and have not been evaluated by the FDA. This product is not intended to diagnose, treat, cure, or prevent any disease."}
     ]},
     { "type": "disclaimer", "name": "FDA disclaimer", "limit": 1, "settings": [
       {"type":"textarea","id":"body","label":"Disclaimer text","default":"* These statements have not been evaluated by the Food and Drug Administration. This product is not intended to diagnose, treat, cure, or prevent any disease. Consult your healthcare provider before use if you are pregnant, nursing, taking medication, or have a medical condition. Individual results may vary."}
@@ -329,7 +370,7 @@
     { "name":"TMolecule story", "blocks":[
       {"type":"trust_marquee"},{"type":"tabs"},{"type":"ingredient_grid"},{"type":"heritage"},{"type":"compare"},
       {"type":"editorial","settings":{"band":"deep-sand"}},{"type":"editorial","settings":{"band":"honey","reverse":true}},
-      {"type":"reviews"}
+      {"type":"sources"},{"type":"reviews"}
     ]}
   ]
 }

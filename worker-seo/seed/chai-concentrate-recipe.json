@@ -1,5 +1,5 @@
 {
-  "title": "Chai Concentrate Recipe: Make Two Weeks of Chai in 30 Minutes",
+  "title": "Chai Concentrate Recipe: Two Weeks of Chai in 30 Min",
   "h1": "Chai concentrate recipe",
   "meta_description": "Make rich, unsweetened chai concentrate at home. Whole spices, real black tea, fridge-stable for two weeks. Just add hot milk to serve.",
   "image_url": "",
@@ -70,5 +70,6 @@
   "related": [
     "masala-chai-recipe",
     "chai-tea-benefits-spice-by-spice"
-  ]
+  ],
+  "widget": "brew-guide"
 }

@@ -1,0 +1,251 @@
+/* Cost-per-cup calculator — scoped inside the widget shadow root.
+   Brand tokens come from brand.css (injected alongside this file). */
+
+.cpc-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 22px;
+  margin: 0 0 18px;
+  align-items: start;
+}
+@media (max-width: 600px) {
+  .cpc-controls { grid-template-columns: 1fr; }
+}
+
+.cpc-slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+.cpc-slider-val {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+}
+.cpc-slider input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--rule);
+  outline: none;
+}
+.cpc-slider input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  box-shadow: 0 1px 4px rgba(70, 50, 15, 0.3);
+  cursor: pointer;
+}
+.cpc-slider input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  cursor: pointer;
+}
+
+.cpc-control-label {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mute);
+  margin: 0 0 6px;
+}
+.cpc-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.cpc-pill {
+  appearance: none;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--ink-soft);
+  padding: 0.42rem 0.8rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.cpc-pill:hover { border-color: var(--accent); }
+.cpc-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.cpc-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0 0 14px;
+}
+@media (max-width: 480px) {
+  .cpc-result { grid-template-columns: 1fr; }
+}
+.cpc-method {
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--tm-radius);
+  padding: 0.85rem 1rem;
+}
+.cpc-method.highlight {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.cpc-method-name {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mute);
+  margin: 0 0 4px;
+}
+.cpc-method.highlight .cpc-method-name { color: var(--accent); }
+.cpc-percup {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.85rem;
+  line-height: 1;
+  color: var(--ink);
+}
+.cpc-percup span {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mute);
+  margin-left: 2px;
+}
+.cpc-total {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  margin-top: 5px;
+}
+
+.cpc-verdict {
+  text-align: center;
+  border-radius: var(--tm-radius);
+  padding: 1rem;
+  margin: 0 0 14px;
+}
+.cpc-verdict.save {
+  background: linear-gradient(180deg, #f3eddd 0%, #ece2c8 100%);
+  border: 1px solid var(--accent);
+}
+.cpc-verdict.nosave {
+  background: #fff;
+  border: 1px dashed var(--rule);
+}
+.cpc-save-amt {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2.6rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.cpc-save-cap {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+}
+
+.cpc-toggle {
+  appearance: none;
+  background: none;
+  border: none;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.cpc-assume {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 8px 0 4px;
+}
+@media (max-width: 600px) {
+  .cpc-assume { grid-template-columns: 1fr; }
+}
+.cpc-col {
+  border: 1px solid var(--rule);
+  border-radius: var(--tm-radius);
+  padding: 0.6rem 0.85rem 0.85rem;
+  margin: 0;
+}
+.cpc-col legend {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  padding: 0 6px;
+}
+.cpc-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 0 0;
+}
+.cpc-field-label {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+.cpc-input-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+.cpc-affix {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--mute);
+}
+.cpc-field input {
+  width: 64px;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  text-align: right;
+  border: 1px solid var(--rule);
+  border-radius: 7px;
+  padding: 4px 6px;
+  background: #fff;
+  color: var(--ink);
+}
+.cpc-field input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+.cpc-reset {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.85rem;
+}
+
+.cpc-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 16px 0 4px;
+}
+.cpc-cta-link {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--accent);
+}

@@ -5,7 +5,7 @@
   "product_bridge": "/products/spice-rush-collagen-black-tea",
   "title": "The Best Collagen Drink for Busy Mornings",
   "h1": "The Best Collagen Drink for Busy Mornings",
-  "meta_description": "If you struggle to take collagen consistently, the format that fits your morning wins. Here’s how collagen tea compares to powders and coffee add-ins for a fast routine.",
+  "meta_description": "If you struggle to take collagen consistently, the format that fits your morning wins. Here's how tea, powders, and coffee add-ins compare.",
   "pillar": "living",
   "intent": "use-case",
   "product_bridge_label": "Make it your morning",
@@ -39,5 +39,6 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
       "publisher": "Frontiers in Nutrition, 2024"
     }
-  ]
+  ],
+  "widget": "cost-per-cup"
 }

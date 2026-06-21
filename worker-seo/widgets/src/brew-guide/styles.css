@@ -1,0 +1,185 @@
+/* Brew Guide — scoped inside the widget shadow root.
+   Brand tokens come from brand.css (injected alongside this file). */
+
+.brew-slider { margin: 0 0 16px; }
+.brew-slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+.brew-slider-val {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--accent);
+}
+.brew-slider input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--rule);
+  outline: none;
+}
+.brew-slider input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  box-shadow: 0 1px 4px rgba(70, 50, 15, 0.3);
+  cursor: pointer;
+}
+.brew-slider input[type='range']::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid #fff;
+  cursor: pointer;
+}
+
+.brew-control { margin: 0 0 12px; }
+.brew-control-label {
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--mute);
+  margin: 0 0 6px;
+}
+.brew-pills { display: flex; flex-wrap: wrap; gap: 7px; }
+.brew-pill {
+  appearance: none;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--rule);
+  background: #fff;
+  color: var(--ink-soft);
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+.brew-pill:hover { border-color: var(--accent); }
+.brew-pill.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.brew-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin: 4px 0 16px;
+  cursor: pointer;
+}
+.brew-toggle input { width: 16px; height: 16px; accent-color: var(--accent); }
+
+.brew-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 0 16px;
+}
+.brew-stat {
+  flex: 1 1 70px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--tm-radius);
+  padding: 0.65rem 0.5rem;
+  text-align: center;
+}
+.brew-stat-val {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.brew-stat-val span {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--mute);
+}
+.brew-stat-label {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  color: var(--mute);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.brew-method-title {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 6px;
+}
+.brew-method {
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  padding-left: 1.2rem;
+}
+.brew-method li { margin: 0 0 6px; }
+
+.brew-spice-title {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin: 0 0 6px;
+}
+.brew-spice {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+  padding-left: 1.2rem;
+}
+.brew-spice li { margin: 0 0 4px; }
+
+.brew-research {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--mute);
+  background: var(--accent-soft);
+  border: 1px solid var(--rule);
+  border-radius: var(--tm-radius);
+  padding: 0.7rem 0.85rem;
+  margin: 0 0 14px;
+}
+.brew-research strong { color: var(--ink-soft); }
+
+.brew-cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+}
+.brew-cta-link {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--accent);
+}
