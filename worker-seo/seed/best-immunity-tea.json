@@ -1,0 +1,62 @@
+{
+  "published_at": "2026-06-03T12:00:00Z",
+  "updated_at": "2026-06-03T12:00:00Z",
+  "cluster": "functional-botanicals",
+  "product_bridge": "/products/immunitea-defense-tea",
+  "title": "The Best Immunity Tea, by the Research (Not the Marketing)",
+  "h1": "The Best Immunity Tea, by the Research (Not the Marketing)",
+  "meta_description": "\"Immunity tea\" is a marketing category, not a promise. Here's what research describes about turmeric, amla, adaptogens, and tea polyphenols.",
+  "pillar": "benefits",
+  "intent": "use-case",
+  "product_bridge_label": "Brew the research, not the hype",
+  "product_bridge_blurb": "Immunitea Defense is milled black tea with standardized turmeric and amla extracts — it drinks like tea, and it describes research rather than promising a result.",
+  "related": [
+    "turmeric",
+    "ashwagandha",
+    "polyphenols",
+    "what-makes-a-tea-functional"
+  ],
+  "keywords": [
+    "best immunity tea",
+    "immunity tea",
+    "turmeric tea",
+    "amla vitamin c tea",
+    "functional tea ingredients"
+  ],
+  "body_html": "<p>There is no tea that \"boosts immunity\" — and the FTC has taken action against products that claim otherwise. \"Immunity tea\" is a marketing label, not a medical category. What actually matters is which ingredients are inside and what research has studied them for. So instead of ranking products, this guide ranks the ingredients by what the evidence describes, which is consistently mixed and modest.</p>\n<h2>Comparison at a glance</h2>\n<table>\n<thead>\n<tr><th>Ingredient</th><th>What research describes</th><th>Notes</th></tr>\n</thead>\n<tbody>\n<tr><td>Turmeric (curcumin)</td><td>Studied for immune-related and inflammatory markers; human evidence is mixed and curcumin is poorly absorbed on its own.</td><td>Often paired with black pepper (piperine) in studies to aid absorption.</td></tr>\n<tr><td>Amla / vitamin C</td><td>Vitamin C contributes to the normal function of the immune system — a recognized nutrient role only when a product supplies a meaningful amount.</td><td>Amla is a traditional source of vitamin C and polyphenols; check whether the product actually delivers a meaningful dose.</td></tr>\n<tr><td>Adaptogens</td><td>Herbs like ashwagandha have been studied for stress-related measures; immune-related findings are preliminary and inconsistent.</td><td>\"Adaptogen\" is a traditional-use category, not a regulated health claim.</td></tr>\n<tr><td>Black-tea polyphenols</td><td>Theaflavins and catechins are studied as dietary antioxidants; research describes the chemistry more than any outcome for a person.</td><td>A black-tea base also carries modest natural caffeine.</td></tr>\n</tbody>\n</table>\n<h2>The ingredients, by the research</h2>\n<h3>Turmeric (curcumin)</h3>\n<p><strong>What research describes:</strong> Turmeric's main studied compound, curcumin, has been examined in laboratory and human research for immune-related and inflammatory markers, but according to the NIH's National Center for Complementary and Integrative Health, the human evidence is limited and findings are mixed. Curcumin is also poorly absorbed when taken alone, which is one reason studies often combine it with black pepper. Research describes the chemistry of curcumin — it does not establish that drinking turmeric tea will do anything specific for you.</p>\n<h3>Amla / vitamin C</h3>\n<p><strong>What research describes:</strong> Vitamin C contributes to the normal function of the immune system — a recognized nutrient role, but only meaningful if a product actually supplies a worthwhile amount of vitamin C. Amla (Indian gooseberry) is a traditional botanical source of vitamin C and polyphenols. The honest framing is to read the label: a trace of amla extract for flavor is not the same as a meaningful vitamin C dose, and the nutrient role does not translate into a promise of fewer colds.</p>\n<h3>Adaptogens</h3>\n<p><strong>What research describes:</strong> \"Adaptogen\" is a traditional-use term for herbs such as ashwagandha, eleuthero, and tulsi that have been studied mostly for stress-related measures. Where immune-related markers have been examined, the studies are small, preliminary, and inconsistent. Research describes these as traditionally used and under investigation — not as immune enhancers with established outcomes.</p>\n<h3>Black-tea polyphenols</h3>\n<p><strong>What research describes:</strong> Black tea (Camellia sinensis) contains theaflavins and catechins, polyphenols studied as dietary antioxidants. The research largely characterizes the chemistry of these compounds; it does not show that a cup of tea produces a defined immune result for the drinker. A black-tea base also contributes a modest amount of natural caffeine.</p>\n<h2>What to be skeptical of</h2>\n<p>Be skeptical of any tea — including ours — that is sold as something that \"boosts immunity,\" \"strengthens your immune system,\" \"fights off colds,\" or \"keeps you from getting sick.\" Those are outcome claims, and for a food or tea they are not supported by the evidence and not permitted as health claims. The research consistently describes ingredient chemistry and reports mixed, modest findings. A product that promises a result is telling you about its marketing, not about what science has shown.</p>\n<h2>How to choose</h2>\n<p>Choose on the things you can actually verify: which ingredients are present, in what form, and at what dose. Look for standardized extracts (so you know the active compounds are consistent), a base you enjoy drinking daily, and labeling that describes ingredients honestly rather than promising outcomes. Our Immunitea Defense Tea is built this way — milled black tea with standardized turmeric and amla extracts, brewed like ordinary tea. It is offered as a pleasant way to drink ingredients that researchers have studied, and it describes that research, not a result you'll get. Talk to a healthcare provider before using any new product, especially if you take medication or have a health condition.</p>\n",
+  "faqs": [
+    {
+      "q": "Does any tea actually boost immunity?",
+      "a": "No. No tea \"boosts immunity\" or strengthens the immune system, and claims like that are not supported by evidence or permitted for a food or tea. What research describes is the chemistry of certain ingredients, with findings that are typically mixed and modest. For anything health-related, talk to a healthcare provider."
+    },
+    {
+      "q": "What does the research say about turmeric in tea?",
+      "a": "Turmeric's studied compound, curcumin, has been examined for immune-related and inflammatory markers, but the NIH's NCCIH notes the human evidence is limited and mixed, and curcumin is poorly absorbed on its own. Research describes the chemistry — it doesn't establish a result for you. Talk to a healthcare provider for advice specific to your situation."
+    },
+    {
+      "q": "Is the vitamin C in amla enough to matter?",
+      "a": "It depends entirely on the dose. Vitamin C contributes to the normal function of the immune system, but only if a product supplies a meaningful amount — a trace of amla for flavor doesn't. Read the label for the actual amount. Evidence on outcomes is modest, so talk to a healthcare provider rather than relying on a tea."
+    },
+    {
+      "q": "Are adaptogens like ashwagandha proven to help immunity?",
+      "a": "No. Adaptogens have been studied mostly for stress-related measures; immune-related findings are preliminary and inconsistent. \"Adaptogen\" is a traditional-use term, not an established health claim. The evidence is mixed and modest, so talk to a healthcare provider before using one."
+    },
+    {
+      "q": "Will Immunitea Defense Tea keep me from getting sick?",
+      "a": "We don't make outcome claims, and we can't tell you it will prevent illness — no tea can honestly promise that. Immunitea Defense is a way to drink ingredients that researchers have studied; it describes that research, not a result you'll get. For preventing or treating illness, talk to a healthcare provider."
+    },
+    {
+      "q": "How should I think about \"immunity tea\" as a category?",
+      "a": "Treat it as a marketing label, not a medical one. Judge a product on its ingredients, their form, and their dose — not on promises. The research describes ingredient chemistry with mixed, modest findings, and a healthcare provider is the right source for guidance on your health."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Turmeric",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "publisher": "NIH NCCIH"
+    }
+  ],
+  "disclaimer": true,
+  "widget": "tea-finder"
+}

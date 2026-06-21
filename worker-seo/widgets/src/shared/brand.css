@@ -1,0 +1,91 @@
+/* Shared TMolecule brand tokens, scoped inside each widget's shadow root.
+   Matched to the worker-seo /learn page design system (src/template.js):
+   Fraunces serif + Inter sans, warm-gold "spiced tea" palette.
+   The host /learn page loads Fraunces/Inter via <link>; @font-face crosses the
+   shadow boundary, so widgets render in the same type as the page. */
+:host,
+.tm {
+  --bg: #fdf8e8;
+  --ink: #1f1a12;
+  --ink-soft: #33291a;
+  --mute: #6f6249;
+  --rule: #e8d9b2;
+  --rule-soft: #efe4c4;
+  --accent: #9c6b1f;        /* amber/gold — matches the /learn accent range */
+  --accent-soft: #f3eccd;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --tm-radius: 12px;
+  /* Multi-layer drop shadow over the warm tile (per brand drop-shadow rule). */
+  --tm-shadow:
+    0 1px 2px rgba(70, 50, 15, 0.06),
+    0 4px 10px rgba(70, 50, 15, 0.08),
+    0 14px 36px rgba(70, 50, 15, 0.14);
+  font-family: var(--serif);
+  color: var(--ink);
+  line-height: 1.6;
+  box-sizing: border-box;
+}
+.tm *,
+.tm *::before,
+.tm *::after { box-sizing: border-box; }
+
+.tm {
+  display: block;
+  background: linear-gradient(180deg, #fffdf2 0%, #f1e6c8 100%);
+  border: 1px solid var(--rule);
+  border-radius: var(--tm-radius);
+  box-shadow: var(--tm-shadow);
+  padding: 1.05rem 1.3rem;
+  max-width: 680px;
+}
+@media (max-width: 600px) {
+  .tm { padding: 1rem 1.05rem; }
+  .tm h2 { font-size: 1.4rem; }
+}
+
+.tm h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.6rem;
+  line-height: 1.15;
+  letter-spacing: -0.012em;
+  margin: 0 0 0.4rem;
+  color: var(--ink);
+}
+.tm p.sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.2rem;
+}
+
+.tm-btn {
+  appearance: none;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.92rem;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  padding: 0.62rem 1.15rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: filter 0.15s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+.tm-btn:hover { filter: brightness(1.08); }
+.tm-btn[disabled] { opacity: 0.5; cursor: default; }
+.tm-btn.ghost { background: transparent; color: var(--accent); }
+
+.tm-note {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  color: var(--mute);
+  margin-top: 0.85rem;
+}
+
+/* sub helper used by sans-serif UI rows */
+.tm .sub { font-family: var(--sans); font-size: 0.9rem; color: var(--mute); font-style: normal; }

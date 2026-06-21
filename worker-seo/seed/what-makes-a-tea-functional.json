@@ -2,9 +2,9 @@
   "published_at": "2026-05-28T08:00:00Z",
   "updated_at": "2026-05-28T08:00:00Z",
   "pillar": "living",
-  "title": "What Makes a Tea “Functional”? Functional Beverages Explained",
+  "title": "What Makes a Tea \"Functional\"? A Plain Explainer",
   "h1": "What Makes a Tea “Functional”?",
-  "meta_description": "A functional tea adds a researched benefit beyond hydration — via ingredients like collagen, adaptogens, or functional spices. Here’s what “functional” really means (and what it doesn’t).",
+  "meta_description": "A functional tea adds a researched ingredient beyond hydration — collagen, adaptogens, or spices. What \"functional\" really means (and what it doesn't).",
   "cluster": "functional-foods",
   "intent": "definition",
   "disclaimer": true,
@@ -23,7 +23,7 @@
     "functional drink",
     "functional foods"
   ],
-  "body_html": "<p>A “functional” beverage is one designed to deliver a benefit beyond basic hydration or refreshment — usually by adding ingredients with researched effects. A functional tea, then, is tea plus a purposeful ingredient: collagen peptides, an adaptogen, or a functional spice.</p>\n<h2>What can make a tea functional</h2>\n<ul>\n<li><strong>The tea itself:</strong> tea is already rich in polyphenols and L-theanine.</li>\n<li><strong>Added actives:</strong> collagen peptides (skin, joints), warming spices like ginger and cinnamon, or adaptogens such as ashwagandha.</li>\n</ul>\n<h2>The honest caveat</h2>\n<p>“Functional” is a marketing category, not a strictly regulated claim. It only means something if the ingredient is present in a researched, meaningful amount — a pinch of a trendy botanical for label appeal isn’t the same as an effective dose. Always check what’s actually in the blend and how much.</p>\n<h2>How to judge one</h2>\n<p>Look for named ingredients with disclosed amounts, evidence behind the active (not just the trend), and a formula that fits your routine. The best functional tea is one with a real dose of something useful that you’ll actually drink consistently.</p>",
+  "body_html": "<p>A “functional” beverage is one designed to deliver a benefit beyond basic hydration or refreshment — usually by adding ingredients with researched effects. A functional tea, then, is tea plus a purposeful ingredient: collagen peptides, an adaptogen, or a functional spice.</p>\n<h2>What can make a tea functional</h2>\n<ul>\n<li><strong>The tea itself:</strong> tea is already rich in polyphenols and L-theanine.</li>\n<li><strong>Added actives:</strong> collagen peptides (studied in skin and joint research), warming spices like ginger and cinnamon, or adaptogens such as ashwagandha.</li>\n</ul>\n<h2>The honest caveat</h2>\n<p>“Functional” is a marketing category, not a strictly regulated claim. It only means something if the ingredient is present in a researched, meaningful amount — a pinch of a trendy botanical for label appeal isn’t the same as an effective dose. Always check what’s actually in the blend and how much.</p>\n<h2>How to judge one</h2>\n<p>Look for named ingredients with disclosed amounts, evidence behind the active (not just the trend), and a formula that fits your routine. The best functional tea is one with a researched ingredient in a meaningful amount that you’ll actually drink consistently.</p>",
   "faqs": [
     {
       "q": "What is a functional tea?",
@@ -40,5 +40,6 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/32073596/",
       "publisher": "Advances in Nutrition, 2020"
     }
-  ]
+  ],
+  "widget": "tea-finder"
 }

@@ -1,5 +1,5 @@
 {
-  "title": "What is a Chai Latte? (And How It's Different from Masala Chai)",
+  "title": "What Is a Chai Latte? How It Differs from Masala Chai",
   "h1": "What is a chai latte?",
   "meta_description": "A chai latte is a Western coffee-shop drink: spiced black tea concentrate mixed with steamed milk. Here's how it differs from authentic Indian masala chai.",
   "image_url": "",
@@ -43,5 +43,6 @@
     "chai-vs-masala-chai",
     "masala-chai-recipe",
     "chai-tea-benefits-spice-by-spice"
-  ]
+  ],
+  "widget": "brew-guide"
 }

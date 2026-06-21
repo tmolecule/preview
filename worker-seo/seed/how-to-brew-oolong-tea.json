@@ -1,7 +1,7 @@
 {
   "title": "How to Brew Oolong Tea: Gongfu and Western Methods",
   "h1": "How to brew oolong tea",
-  "meta_description": "Step-by-step guide to brewing oolong tea using both gongfu (multiple short steeps) and Western (single long steep) methods. Includes water temperature and leaf ratios for light and dark oolongs.",
+  "meta_description": "Step-by-step guide to brewing oolong with both gongfu and Western methods — including water temperature and leaf ratios for light and dark oolongs.",
   "image_url": "https://tmolecule.com/cdn/shop/files/how-to-brew-oolong.jpg",
   "published_at": "2026-04-30T08:00:00Z",
   "updated_at": "2026-04-30T08:00:00Z",
@@ -32,5 +32,6 @@
   "product_bridge": "/collections/all",
   "related": [
     "oolong-tea-benefits"
-  ]
+  ],
+  "widget": "brew-guide"
 }

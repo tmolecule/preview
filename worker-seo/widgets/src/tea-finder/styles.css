@@ -1,0 +1,77 @@
+/* Tea Finder — Typeform-style quiz. One question per screen, full-width rounded
+   pill choices, circular letter badges, smooth enter animation. Tokens from
+   shared/brand.css. Ported from the WhollyKaw scent-finder. */
+.q-card { animation: tm-in 0.35s cubic-bezier(0.22, 0.61, 0.36, 1); min-height: 260px; }
+@keyframes tm-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.q-progress { height: 5px; background: var(--rule); border-radius: 99px; overflow: hidden; margin-bottom: 0.85rem; }
+.q-progress > span { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1); }
+
+.q-num {
+  font-family: var(--sans); font-size: 0.7rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--accent); margin-bottom: 0.5rem;
+}
+.q-prompt {
+  font-family: var(--serif); font-weight: 600; font-size: 1.4rem; line-height: 1.18;
+  letter-spacing: -0.012em; color: var(--ink); margin: 0 0 0.35rem;
+}
+.q-note { font-family: var(--sans); font-size: 0.78rem; color: var(--mute); margin: 0 0 1rem; }
+.q-prompt + .q-options { margin-top: 1rem; }
+
+/* PILLS */
+.q-options { display: flex; flex-direction: column; gap: 0.45rem; }
+.q-option {
+  display: flex; align-items: center; gap: 0.7rem; width: 100%;
+  text-align: left; font-family: var(--sans); font-size: 0.93rem; font-weight: 500;
+  padding: 0.58rem 0.95rem; border: 1.5px solid var(--rule); border-radius: 999px;
+  background: #fffdf8; color: var(--ink-soft); cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+}
+.q-option:hover, .q-option:focus-visible {
+  border-color: var(--accent); background: var(--accent-soft); color: var(--ink);
+  transform: translateX(3px); outline: none; box-shadow: 0 4px 14px rgba(122, 90, 43, 0.1);
+}
+.q-option:active { transform: translateX(3px) scale(0.99); }
+.q-option .kbd {
+  display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  border: 1.5px solid var(--rule); background: #fff;
+  font-size: 0.72rem; font-weight: 700; color: var(--accent); flex-shrink: 0; transition: inherit;
+}
+.q-option .label { flex: 1; }
+.q-option .tick { font-weight: 700; opacity: 0.9; }
+.q-option.selected { border-color: var(--accent); background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(122, 90, 43, 0.22); }
+.q-option.selected .kbd { background: rgba(255, 255, 255, 0.22); border-color: transparent; color: #fff; }
+
+.q-foot { display: flex; align-items: center; gap: 0.9rem; margin-top: 0.9rem; }
+.q-back {
+  font-family: var(--sans); font-size: 0.85rem; font-weight: 600;
+  background: none; border: 0; color: var(--mute); cursor: pointer; padding: 0.3rem 0.1rem;
+}
+.q-back:hover { color: var(--accent); }
+.q-hint { font-family: var(--sans); font-size: 0.74rem; color: var(--mute); margin-left: auto; }
+.q-hint kbd {
+  font-family: var(--sans); font-size: 0.68rem; font-weight: 600; background: #fff;
+  border: 1px solid var(--rule); border-bottom-width: 2px; border-radius: 5px; padding: 0.05rem 0.38rem; color: var(--ink-soft);
+}
+
+/* Results */
+.result-card {
+  border: 1.5px solid var(--rule); border-left: 4px solid var(--accent);
+  border-radius: 14px; background: #fffdf8; padding: 1rem 1.1rem; margin-top: 0.3rem;
+  animation: tm-in 0.35s ease;
+}
+.result-name { font-family: var(--serif); font-weight: 600; font-size: 1.3rem; color: var(--ink); }
+.result-blurb { font-family: var(--sans); font-size: 0.9rem; color: var(--ink-soft); margin: 0.4rem 0 0.9rem; }
+.result-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.result-link { font-family: var(--sans); font-size: 0.85rem; color: var(--accent); }
+.result-alt { font-family: var(--sans); font-size: 0.86rem; color: var(--mute); margin-top: 0.9rem; }
+.result-alt a { color: var(--accent); font-weight: 600; }
+.back { margin-top: 0.8rem; display: block; }
+
+@media (max-width: 600px) {
+  .q-card { min-height: 230px; }
+  .q-prompt { font-size: 1.25rem; }
+  .q-option { padding: 0.6rem 0.85rem; font-size: 0.9rem; gap: 0.6rem; }
+  .q-option .kbd { width: 24px; height: 24px; }
+  .q-hint { display: none; }
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brew Guide · TMolecule Learn</title>
+    <meta name="description" content="Dev playground — renders the TMolecule widgets inside the real /learn page shell." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Same font load as the worker /learn pages so the widgets render in-context. -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap"
+    />
+    <style>
+      /* Mirrors the src/template.js /learn-page chrome (warm-gold paper). */
+      body {
+        margin: 0;
+        background: linear-gradient(180deg, #f6ecc8 0%, #eedcae 55%, #e0c896 100%);
+        min-height: 100vh;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        color: #1f1a12;
+      }
+      .page { max-width: 760px; margin: 0 auto; padding: 48px 20px 96px; }
+      .page h1 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 600;
+        font-size: 2rem;
+        margin: 0 0 4px;
+      }
+      .page .lead { color: #6f6249; margin: 0 0 32px; }
+      .mounts > * { margin: 0 0 40px; }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <h1>Brew Guide</h1>
+      <p class="lead">Dev playground — the widget below is the real build, mounted in the /learn shell.</p>
+      <div class="mounts">
+        <div id="tm-tea-finder"></div>
+        <div id="tm-brew-guide"></div>
+        <div id="tm-cost-per-cup"></div>
+      </div>
+    </main>
+    <script type="module" src="/src/tea-finder/index.js"></script>
+    <script type="module" src="/src/brew-guide/index.js"></script>
+    <script type="module" src="/src/cost-per-cup/index.js"></script>
+  </body>
+</html>

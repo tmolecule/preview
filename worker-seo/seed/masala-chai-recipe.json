@@ -1,7 +1,7 @@
 {
   "title": "Masala Chai Recipe: Authentic Indian Tea, Step by Step",
   "h1": "Masala chai recipe",
-  "meta_description": "How to make real masala chai at home — whole spices, fresh-bloomed, finished in milk. The Ayurvedic ritual our family has been making since 1935, in twelve minutes.",
+  "meta_description": "How to make real masala chai at home — whole spices, fresh-bloomed, finished in milk. The ritual our family has made since 1935, in twelve minutes.",
   "image_url": "",
   "published_at": "2026-04-30T20:00:00Z",
   "updated_at": "2026-05-08T20:00:00Z",
@@ -81,5 +81,6 @@
   "related": [
     "chai-concentrate-recipe",
     "what-is-chai-latte"
-  ]
+  ],
+  "widget": "brew-guide"
 }
