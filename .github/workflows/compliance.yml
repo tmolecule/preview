@@ -1,28 +1,34 @@
-name: Compliance gate
+name: Compliance gate (worker-seo)
 
-# Blocks a PR from merging a no-medical-claims violation, malformed seed, editorial
-# scaffolding ({{VERIFY}} / broken {{TODO}} links), or a missing wellness/FDA disclaimer on an
+# The worker-seo /learn corpus lives in a subdirectory of this repo, so this workflow lives at
+# the repo root (where GitHub reads workflows) but runs every step inside worker-seo/.
+# Blocks a PR from merging a no-medical-claims violation, malformed seed, editorial scaffolding
+# ({{VERIFY}} / broken {{TODO}} links), or a missing wellness/FDA disclaimer on an
 # ingredient-effect page. TMolecule products are ingestible foods/teas, not drugs.
 
 on:
   pull_request:
     paths:
-      - 'seed/**'
-      - 'scripts/**'
-      - 'test/**'
-      - 'package.json'
+      - 'worker-seo/seed/**'
+      - 'worker-seo/scripts/**'
+      - 'worker-seo/test/**'
+      - 'worker-seo/package.json'
       - '.github/workflows/compliance.yml'
   push:
     branches: [main]
     paths:
-      - 'seed/**'
-      - 'scripts/**'
-      - 'test/**'
+      - 'worker-seo/seed/**'
+      - 'worker-seo/scripts/**'
+      - 'worker-seo/test/**'
   workflow_dispatch: {}
 
 concurrency:
   group: compliance-${{ github.ref }}
   cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: worker-seo
 
 jobs:
   compliance:
