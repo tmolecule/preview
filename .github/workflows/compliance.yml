@@ -38,7 +38,10 @@ jobs:
       - uses: actions/setup-node@v5
         with:
           node-version: '22'
-      - run: npm ci
+      # `npm install` (not `npm ci`): the committed package-lock.json is stale/out-of-sync with
+      # package.json (missing ajv/sanitize-html, wrangler version drift). The gate only needs
+      # ajv to run; regenerating the lockfile is a separate cleanup.
+      - run: npm install --no-audit --no-fund
       - name: Schema + no-medical-claims (strict)
         run: npm run validate:seeds -- --strict
       - uses: oven-sh/setup-bun@v2
