@@ -1,0 +1,42 @@
+name: Compliance gate
+
+# Blocks a PR from merging a no-medical-claims violation, malformed seed, editorial
+# scaffolding ({{VERIFY}} / broken {{TODO}} links), or a missing wellness/FDA disclaimer on an
+# ingredient-effect page. TMolecule products are ingestible foods/teas, not drugs.
+
+on:
+  pull_request:
+    paths:
+      - 'seed/**'
+      - 'scripts/**'
+      - 'test/**'
+      - 'package.json'
+      - '.github/workflows/compliance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'seed/**'
+      - 'scripts/**'
+      - 'test/**'
+  workflow_dispatch: {}
+
+concurrency:
+  group: compliance-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm ci
+      - name: Schema + no-medical-claims (strict)
+        run: npm run validate:seeds -- --strict
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Bun compliance suite
+        run: bun test test/compliance.test.ts
