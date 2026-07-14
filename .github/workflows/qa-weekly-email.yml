@@ -1,0 +1,39 @@
+name: Weekly /learn QA email
+
+# Runs the full /learn QA suite (schema, citations, broken links, no-medical
+# compliance) and emails a report via Brevo every Saturday. The job turns red if
+# any check regresses, and emails the report either way.
+
+on:
+  schedule:
+    # Saturday 07:00 UTC (~3am US Eastern). GitHub cron is UTC and does not observe DST.
+    - cron: '0 7 * * 6'
+  workflow_dispatch: {}
+
+concurrency:
+  group: qa-email-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    working-directory: worker-seo
+
+jobs:
+  qa-email:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      - run: npm install --no-audit --no-fund
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Run QA + email report (Brevo)
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY_TM }}
+          QA_BRAND: TMolecule
+          QA_FROM_EMAIL: support@tmolecule.com
+          QA_TO_EMAIL: support@tmolecule.com
+        run: node jobs/qa-report.mjs

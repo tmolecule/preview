@@ -20,10 +20,6 @@ on:
       - 'worker-seo/seed/**'
       - 'worker-seo/scripts/**'
       - 'worker-seo/test/**'
-  schedule:
-    # Weekly full QA (Mon 14:00 UTC) — runs even without a push, so broken /learn links
-    # or dead citations that creep in via KV edits get caught within a week.
-    - cron: '0 14 * * 1'
   workflow_dispatch: {}
 
 concurrency:
