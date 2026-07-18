@@ -2,6 +2,7 @@ import { Env, GapClaim, GapReport } from "./types";
 import { embed } from "./indexer";
 import { idealAnswerPrompt, coverageCheckPrompt, coverageWriterPrompt, PageContext } from "./prompts";
 import { observeEngine, type BrandIdentity } from "./citations";
+import { logDfsFailure, parseChatGptScraper, unwrapDfs } from "./dataforseo";
 
 /**
  * Who we are, for citation and mention matching. The domain covers every host
@@ -253,61 +254,57 @@ async function queryPerplexity(env: Env, query: string): Promise<{ answer: strin
   }
 }
 
-// DataForSEO ChatGPT scraper — runs the query through GPT with web search enabled and
-// returns the answer plus the list of source URLs ChatGPT cited.
-// Endpoint: POST /v3/ai_optimization/chat_gpt/llm_responses/live
-// IMPORTANT: must use a search-capable model. gpt-4o-mini silently disables web_search
-// (the response comes back with "web_search": false) and returns vanilla model knowledge
-// with no citations. gpt-4o-search-preview is the search-enabled variant.
-// Pricing: ~$0.005–0.01 per request.
+// DataForSEO ChatGPT scraper — drives REAL ChatGPT with web search and returns
+// the answer plus the source URLs it actually cited.
+// Endpoint: POST /v3/ai_optimization/chat_gpt/llm_scraper/live/advanced
+// Pricing: ~$0.004 per request.
+//
+// This is the SCRAPER, deliberately not `llm_responses`. History, so nobody
+// "simplifies" this back:
+//
+//   The original implementation called /v3/ai_optimization/chat_gpt/
+//   llm_responses/live pinned to model_name "gpt-4o-search-preview". OpenAI
+//   retired that model; DataForSEO then returned HTTP 200 with a task-level
+//   40501 "Invalid Field: 'model_name'" and result null, on EVERY call. The
+//   old code checked only response.ok, so it logged nothing and returned null,
+//   which the pipeline reads as "engine not checked". The ChatGPT column read
+//   "—" on all 264 pages and nobody noticed.
+//
+//   Swapping in a current model does NOT fix it: llm_responses calls the
+//   OpenAI API, where web_search is silently ignored. Verified 2026-07-18 on
+//   gpt-5-chat-latest and gpt-5.1 — both return "web_search": false and
+//   "annotations": null, i.e. model knowledge with zero citations. Using them
+//   would report "checked, cited by nobody" for every page: worse than the
+//   outage, because it looks like data.
+//
+//   Only llm_scraper drives real ChatGPT (currently GPT-5.5) and returns the
+//   sources it cited.
 async function queryChatGPT(env: Env, query: string): Promise<{ answer: string; citations: string[] } | null> {
   if (!env.DATAFORSEO_LOGIN || !env.DATAFORSEO_PASSWORD) return null;
   try {
     const auth = btoa(`${env.DATAFORSEO_LOGIN}:${env.DATAFORSEO_PASSWORD}`);
-    const r = await fetch("https://api.dataforseo.com/v3/ai_optimization/chat_gpt/llm_responses/live", {
+    const r = await fetch("https://api.dataforseo.com/v3/ai_optimization/chat_gpt/llm_scraper/live/advanced", {
       method: "POST",
       headers: { Authorization: `Basic ${auth}`, "Content-Type": "application/json" },
       body: JSON.stringify([{
-        user_prompt: query,
-        model_name: "gpt-4o-search-preview",
-        web_search: true,
-        max_output_tokens: 800,
+        keyword: query,
+        location_name: "United States",
+        language_code: "en",
+        force_web_search: true,
       }]),
     });
     if (!r.ok) {
-      console.error(`queryChatGPT: HTTP ${r.status}`);
+      logDfsFailure("chatgpt", { ok: false, stage: "http", status: r.status, message: r.statusText });
       return null;
     }
-    const data = (await r.json()) as Record<string, unknown>;
-    const tasks = (data.tasks as Array<{ result?: Array<Record<string, unknown>> }>) ?? [];
-    const result = tasks[0]?.result?.[0] ?? null;
-    if (!result) return null;
-    // Walk every shape the API can return citations in: top-level annotations,
-    // per-item references, per-section annotations, per-section sources.
-    const citations = new Set<string>();
-    const collect = (obj: unknown): void => {
-      if (!obj || typeof obj !== "object") return;
-      const o = obj as Record<string, unknown>;
-      if (typeof o.url === "string") citations.add(o.url);
-      for (const key of ["annotations", "references", "web_search_results", "sources", "citations", "items", "sections"]) {
-        const v = o[key];
-        if (Array.isArray(v)) for (const x of v) collect(x);
-      }
-    };
-    collect(result);
-    // Pull the answer text from items[].sections[type=text].text (current shape).
-    let answer = (result.message_content as string) ?? "";
-    if (!answer) {
-      const items = (result.items as Array<{ sections?: Array<{ type?: string; text?: string }> }>) ?? [];
-      for (const it of items) {
-        for (const s of it.sections ?? []) {
-          if (s.type === "text" && s.text) answer += (answer ? "\n" : "") + s.text;
-        }
-      }
+    const outcome = unwrapDfs(await r.json());
+    if (!outcome.ok) {
+      logDfsFailure("chatgpt", outcome);
+      return null;
     }
-    return { answer, citations: Array.from(citations) };
+    return parseChatGptScraper(outcome.result);
   } catch (e) {
-    console.error("queryChatGPT failed:", e);
+    logDfsFailure("chatgpt", { ok: false, stage: "http", message: e instanceof Error ? e.message : String(e) });
     return null;
   }
 }
@@ -332,13 +329,18 @@ async function queryAIO(env: Env, query: string): Promise<{ answer: string; cita
       }]),
     });
     if (!r.ok) {
-      console.error(`queryAIO: HTTP ${r.status}`);
+      logDfsFailure("aio", { ok: false, stage: "http", status: r.status, message: r.statusText });
       return null;
     }
-    const data = (await r.json()) as Record<string, unknown>;
-    const tasks = (data.tasks as Array<{ result?: Array<Record<string, unknown>> }>) ?? [];
-    const result = tasks[0]?.result?.[0] ?? null;
-    if (!result) return null;
+    // Same task-level-error trap that hid the dead ChatGPT engine: DataForSEO
+    // returns HTTP 200 with the real status inside tasks[0]. Not currently
+    // firing for AIO, but it would fail just as silently.
+    const outcome = unwrapDfs(await r.json());
+    if (!outcome.ok) {
+      logDfsFailure("aio", outcome);
+      return null;
+    }
+    const result = outcome.result;
     const items = (result.items as Array<Record<string, unknown>>) ?? [];
     const aioItem = items.find((it) => it.type === "ai_overview");
     if (!aioItem) return null;
