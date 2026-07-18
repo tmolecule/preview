@@ -1,6 +1,16 @@
 import { Env, GapClaim, GapReport } from "./types";
 import { embed } from "./indexer";
 import { idealAnswerPrompt, coverageCheckPrompt, coverageWriterPrompt, PageContext } from "./prompts";
+import { observeEngine, type BrandIdentity } from "./citations";
+
+/**
+ * Who we are, for citation and mention matching. The domain covers every host
+ * the article is mirror-served from (learn.tmolecule.com via worker-seo and the
+ * apex /learn/* route) — a citation of any of them is a citation of us. The
+ * alias catches the spaced spelling an engine may write in prose; the
+ * unspaced "TMolecule" is already covered by the domain label.
+ */
+const BRAND: BrandIdentity = { domain: "tmolecule.com", aliases: ["T Molecule"] };
 
 async function loadPageContext(env: Env, slug: string): Promise<PageContext | undefined> {
   const raw = await env.STATE.get(`page:${slug}:meta`);
@@ -182,25 +192,13 @@ export async function runGapAnalysis(env: Env, slug: string, primary_kw: string,
     hasDfs ? queryAIO(env, primary_kw) : Promise.resolve(null),
   ]);
 
-  let perplexity_cited_us: boolean | undefined;
-  let perplexity_citations: string[] | undefined;
-  let chatgpt_cited_us: boolean | undefined;
-  let chatgpt_citations: string[] | undefined;
-  let aio_cited_us: boolean | undefined;
-  let aio_citations: string[] | undefined;
-
-  if (pplx) {
-    perplexity_citations = pplx.citations;
-    perplexity_cited_us = tmCitedIn(pplx.citations);
-  }
-  if (chat) {
-    chatgpt_citations = chat.citations;
-    chatgpt_cited_us = tmCitedIn(chat.citations);
-  }
-  if (aio) {
-    aio_citations = aio.citations;
-    aio_cited_us = tmCitedIn(aio.citations);
-  }
+  // Two INDEPENDENT signals per engine. `cited` is a crawlability/structure
+  // problem when it's missing; `mentioned` is a brand-authority one. The answer
+  // text used to be fetched and discarded, which made "the engine knows us but
+  // sources somebody else" invisible. See src/citations.ts.
+  const pplxObs = observeEngine(pplx, BRAND);
+  const chatObs = observeEngine(chat, BRAND);
+  const aioObs = observeEngine(aio, BRAND);
 
   const covered = checked.filter((c) => c.covered).length;
   return {
@@ -213,27 +211,16 @@ export async function runGapAnalysis(env: Env, slug: string, primary_kw: string,
     covered_claims: covered,
     uncovered_claims: checked.length - covered,
     claims: checked,
-    perplexity_cited_us,
-    perplexity_citations,
-    chatgpt_cited_us,
-    chatgpt_citations,
-    aio_cited_us,
-    aio_citations,
+    perplexity_cited_us: pplxObs?.cited,
+    perplexity_mentioned_us: pplxObs?.mentioned,
+    perplexity_citations: pplxObs?.citations,
+    chatgpt_cited_us: chatObs?.cited,
+    chatgpt_mentioned_us: chatObs?.mentioned,
+    chatgpt_citations: chatObs?.citations,
+    aio_cited_us: aioObs?.cited,
+    aio_mentioned_us: aioObs?.mentioned,
+    aio_citations: aioObs?.citations,
   };
-}
-
-// Match any TMolecule-owned canonical URL. learn.tmolecule.com is served by
-// worker-seo; apex tmolecule.com may also be cited. An AI engine citing any
-// of them counts as a citation for us.
-function tmCitedIn(citations: string[]): boolean {
-  return citations.some((c) => {
-    try {
-      const u = new URL(c);
-      return u.hostname === "tmolecule.com" || u.hostname.endsWith(".tmolecule.com");
-    } catch {
-      return false;
-    }
-  });
 }
 
 interface PerplexityResponse {

@@ -58,11 +58,22 @@ export interface GapReport {
   covered_claims: number;
   uncovered_claims: number;
   claims: GapClaim[];
+  // Two independent signals per engine, plus the cleaned source list.
+  // `undefined` means NOT CHECKED (no credentials, engine errored, or the query
+  // had no AI Overview surface) and must stay distinct from `false`, which
+  // means checked and negative. Only the former is excluded from rate
+  // denominators — see src/sweeps.ts.
+  //
+  // cited     — the engine used one of our URLs as a source
+  // mentioned — the engine named the brand in prose, links aside
   perplexity_cited_us?: boolean;
+  perplexity_mentioned_us?: boolean;
   perplexity_citations?: string[];
   chatgpt_cited_us?: boolean;
+  chatgpt_mentioned_us?: boolean;
   chatgpt_citations?: string[];
   aio_cited_us?: boolean;
+  aio_mentioned_us?: boolean;
   aio_citations?: string[];
 }
 

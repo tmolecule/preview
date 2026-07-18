@@ -4,6 +4,7 @@ import { renderNotFound, renderBrewGuide, renderCostPerCup, renderTeaFinder, ren
 import { BREW_GUIDE_JS, COST_PER_CUP_JS, TEA_FINDER_JS, CAFFEINE_COMPARATOR_JS, COLLAGEN_CALCULATOR_JS, SUGAR_SAVED_JS, SPICE_BLEND_BUILDER_JS, ADVISOR_JS } from './widget-bundles.js';
 import { handleDeck } from './deck.js';
 import { pickVariant, VARIANT_DEFAULT } from './experiments.js';
+import { classifyCrawler } from './crawlers.js';
 import { handleAdvisor, AdvisorRateLimiter } from './advisor.js';
 
 // Durable Object class must be a named export of the entry module.
@@ -429,9 +430,62 @@ function withSecurityHeaders(response) {
   return r;
 }
 
+// Server-side pageview logging for the /learn worker pages (GA4's gtag is not
+// injected here, so the whole corpus is otherwise invisible to analytics).
+// Writes one Analytics Engine data point per HTML page response. Runs on EVERY
+// request — including edge-cache HITs, since the Worker still executes — so
+// counts are complete, not miss-only. No-op when the PAGEVIEWS binding is
+// absent; never throws into the response path.
+//
+// Schema (query via the Analytics Engine SQL API, dataset
+// `tmolecule_learn_pageviews`):
+//   index1 = path        blob1 = path      blob2 = referer   blob3 = variant
+//   blob4  = client      (human | gptbot | claudebot | perplexity | googlebot | other-bot | …)
+//   blob5  = user-agent (truncated 200)
+//   blob6  = purpose     (training | search | user-agent | index | other | none)
+//   blob7  = operator    (OpenAI | Anthropic | Perplexity | Google | …, '' for humans)
+//   double1 = 1 (count)  double2 = isBot (0 human/unknown, 1 crawler)
+//   double3 = isLiveRetrieval (1 when purpose === 'user-agent')
+//
+// APPEND ONLY once this ships — positions are how the dataset is queried.
+// Layout deliberately mirrors WhollyKaw's `learn_pageviews` so one query works
+// against both brands.
+//
+// double3 is the one to watch. `training` crawls (GPTBot, ClaudeBot) say
+// nothing about whether we get cited; a live conversation-time fetch
+// (ChatGPT-User, Claude-User, Perplexity-User) means the page is being pulled
+// into a real answer right now, and it moves weeks before a citation rate does.
+function logPageview(request, resp, url, env) {
+  try {
+    if (request.method !== 'GET' || !env.PAGEVIEWS || resp.status !== 200) return;
+    if (!(resp.headers.get('content-type') || '').includes('text/html')) return;
+    const path = (url.pathname.replace(/\/+$/, '') || '/').slice(0, 96);
+    const ua = (request.headers.get('user-agent') || '');
+    const c = classifyCrawler(ua);
+    // Our own auditor crawls this corpus as a side effect of measuring it.
+    // Counting it would inflate exactly the numbers it exists to report.
+    if (c.isSelf) return;
+    env.PAGEVIEWS.writeDataPoint({
+      indexes: [path],
+      blobs: [
+        path,
+        (request.headers.get('referer') || '').slice(0, 200),
+        '',
+        c.client,
+        ua.slice(0, 200),
+        c.purpose,
+        c.operator,
+      ],
+      doubles: [1, c.isBot ? 1 : 0, c.purpose === 'user-agent' ? 1 : 0],
+    });
+  } catch (_) { /* analytics must never break a response */ }
+}
+
 export default {
   async fetch(request, env, ctx) {
     const response = await handleWithCache(request, env, ctx, () => handleFetch(request, env, ctx));
-    return withSecurityHeaders(response);
+    const resp = withSecurityHeaders(response);
+    logPageview(request, resp, new URL(request.url), env);
+    return resp;
   }
 };

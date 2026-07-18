@@ -100,6 +100,15 @@ preview_id = "6619209e0aaf4870aa03c9f0119fbf82"
 binding = "DECKS"
 bucket_name = "tmolecule-decks"
 
+# Server-side pageview log for the /learn corpus. GA4's gtag is not injected on
+# worker-served pages, so without this the entire corpus is invisible to
+# analytics. Blob/double layout is documented at logPageview() in src/index.js
+# and deliberately mirrors WhollyKaw's `learn_pageviews`, so one AE SQL query
+# works across both brands. Auto-created on first writeDataPoint() call.
+[[analytics_engine_datasets]]
+binding = "PAGEVIEWS"
+dataset = "tmolecule_learn_pageviews"
+
 # Analytics Engine dataset for deck view + per-slide tracking.
 # Auto-created on first writeDataPoint() call.
 [[analytics_engine_datasets]]
