@@ -173,9 +173,16 @@ async function runGapBatch(env: Env, slugs: string[] | null, force = false): Pro
     });
   }
 
-  // Cap only applies to autonomous cron runs (slugs == null). Explicit slug lists from a
-  // manual or weekly batch invocation should process all requested pages — the caller decided.
-  if (slugs == null) targets = targets.slice(0, cap);
+  // Cap applies whenever the caller did NOT name specific pages. Explicit slug
+  // lists from a manual or weekly batch invocation process all requested pages —
+  // the caller decided.
+  //
+  // `!slugs?.length` deliberately covers BOTH null (cron) and [] (empty array).
+  // A bare `slugs == null` check let `{"slugs": []}` fall through to "every
+  // indexed page, uncapped" — 264 pages, each running 8-15 sequential LLM
+  // verdicts plus three paid citation engines. Posting an empty array is never
+  // a request to sweep the entire corpus.
+  if (!slugs?.length) targets = targets.slice(0, cap);
 
   let ran = 0, errors = 0;
   const tallies = emptyEngineTallies();
