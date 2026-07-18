@@ -1,0 +1,54 @@
+{
+  "title": "Warming vs Cooling Foods in Ayurveda, Explained",
+  "h1": "Warming vs cooling foods in Ayurveda",
+  "meta_description": "In Ayurveda, foods and spices are traditionally classified as 'warming' or 'cooling' — a descriptive quality, not a temperature or a health rule. What the concept means, with examples.",
+  "image_url": "",
+  "published_at": "2026-07-15T18:00:00Z",
+  "updated_at": "2026-07-15T18:00:00Z",
+  "keywords": [
+    "warming vs cooling foods",
+    "warming foods ayurveda",
+    "cooling foods ayurveda",
+    "warming spices",
+    "ayurveda virya"
+  ],
+  "body_html": "<p>In Ayurveda, foods and spices are traditionally classified as <strong>&ldquo;warming&rdquo; or &ldquo;cooling&rdquo; &mdash; a descriptive quality the tradition assigns to them, not a measure of temperature or a health rule.</strong> Ginger and cardamom are called warming; fennel and mint, cooling. It's a culinary framework for balancing a plate or a cup. This describes the tradition, not medical advice.</p><h2>What &ldquo;warming&rdquo; and &ldquo;cooling&rdquo; mean</h2><p>The tradition calls this quality <em>virya</em>. It isn't about how hot the food is served &mdash; it's a character the tradition assigns based on how a food is understood to affect the body's qualities. A warming spice is described as heating and stimulating; a cooling one as calming and refreshing. These are traditional descriptors, not scientific measurements or claims.</p><h2>Warming and cooling, side by side</h2><table><thead><tr><th>Quality</th><th>Example spices &amp; foods</th><th>Traditional character</th></tr></thead><tbody><tr><td>Warming</td><td>Ginger, black pepper, cinnamon, clove, cardamom, mustard</td><td>Heating, stimulating, drying</td></tr><tr><td>Cooling</td><td>Fennel, coriander, mint, rose, cucumber, coconut</td><td>Calming, refreshing, moistening</td></tr></tbody></table><h2>How it's used</h2><p>Cooks in the tradition lean on this to balance a dish or match the season &mdash; warming spices for a cold, damp day; cooling ones when it's hot. It's the same instinct behind reaching for ginger tea in winter and mint in summer. The warming aromatics are exactly the ones in <a href=\"/ayurvedic-spices\">a cup of chai</a>; the cooling seeds are what make <a href=\"/ccf-tea\">CCF tea</a> so mild.</p><h2>A note on balance</h2><p>The whole point of the framework is balance &mdash; not that one category is &ldquo;good&rdquo; and the other &ldquo;bad.&rdquo; It connects to the broader idea of the <a href=\"/doshas\">doshas</a>, where qualities are matched and offset. Treat it as a lens for cooking with intention, not a set of health rules. For the tradition behind it, see <a href=\"/what-is-ayurveda\">what is Ayurveda</a>.</p><p><em>This is general information about a cultural and culinary tradition, not medical or dietary advice. 'Warming' and 'cooling' are traditional descriptors, not health claims. These statements have not been evaluated by the Food and Drug Administration and are not intended to diagnose, treat, cure or prevent any disease.</em></p>",
+  "sources": [
+    {
+      "title": "Virya (potency) and the classification of foods in Ayurveda",
+      "url": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/ayurveda",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What are warming and cooling foods in Ayurveda?",
+      "a": "A traditional classification (called virya) that describes foods and spices as 'warming' or 'cooling' based on the qualities the tradition assigns them — not on the temperature they're served at. It's a culinary framework, not a health rule."
+    },
+    {
+      "q": "What are examples of warming spices?",
+      "a": "Ginger, black pepper, cinnamon, clove, cardamom and mustard are described as warming in the tradition — the same aromatics at the heart of chai."
+    },
+    {
+      "q": "What are cooling foods?",
+      "a": "Fennel, coriander, mint, rose, cucumber and coconut are traditionally described as cooling. Fennel and coriander are two of the three seeds in CCF tea."
+    },
+    {
+      "q": "Is the warming/cooling idea scientific?",
+      "a": "It's a traditional descriptive framework from a cultural cuisine, not a scientific measurement or a health claim. It's a helpful lens for cooking with intention, used for interest rather than as medical guidance."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "comparison",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Warming spices, one stir",
+  "product_bridge_blurb": "Spice Rush is built on the tradition's warming aromatics — ginger, cardamom, Ceylon cinnamon and clove.",
+  "related": [
+    "ayurvedic-spices",
+    "ccf-tea",
+    "doshas"
+  ],
+  "disclaimer": true
+}

@@ -1,0 +1,54 @@
+{
+  "title": "How to Brew Green Tea (Without Making It Bitter)",
+  "h1": "How to brew green tea",
+  "meta_description": "The secret to green tea is cooler water (160-180°F, never boiling) and a short 1-3 minute steep. Here's the temperature, timing, and leaf amount that keep it from turning bitter.",
+  "image_url": "",
+  "published_at": "2026-07-14T20:00:00Z",
+  "updated_at": "2026-07-14T20:00:00Z",
+  "keywords": [
+    "how to brew green tea",
+    "green tea water temperature",
+    "how long to steep green tea",
+    "why is my green tea bitter",
+    "green tea brewing"
+  ],
+  "body_html": "<p>The secret to good green tea is <strong>heat and time: use water around 160&ndash;180&deg;F (70&ndash;80&deg;C), never boiling, and steep just 1&ndash;3 minutes.</strong> Boiling water and long steeps are exactly what make green tea bitter. Use about 1 teaspoon of loose leaf (or one bag) per cup, and you'll get a sweet, fresh cup instead of an astringent one.</p><h2>The green tea cheat sheet</h2><table><thead><tr><th>Variable</th><th>Green tea target</th><th>Why</th></tr></thead><tbody><tr><td>Water temp</td><td>160&ndash;180&deg;F (70&ndash;80&deg;C)</td><td>Above this scorches the leaf and releases bitter catechins</td></tr><tr><td>Steep time</td><td>1&ndash;3 minutes</td><td>Longer over-extracts and turns astringent</td></tr><tr><td>Leaf amount</td><td>~1 tsp (2 g) per cup</td><td>More leaf, shorter steep beats less leaf, longer steep</td></tr><tr><td>Re-steeps</td><td>2&ndash;3 times</td><td>Good green leaves give several infusions</td></tr></tbody></table><h2>Getting the temperature right without a thermometer</h2><p>Boil the kettle, then let it sit for 2&ndash;3 minutes before pouring &mdash; that drops boiling water into the green-tea range. Or add a splash of cold water to the cup first. The goal is hot, not scalding: if steam is billowing violently, it's too hot.</p><h2>Why green tea goes bitter</h2><p>Green tea is only lightly oxidized, so it keeps fresh catechins that taste smooth in cool water but harsh when scorched or over-steeped. Two fixes cover almost every bitter cup: <strong>lower the temperature</strong> and <strong>shorten the steep</strong>. For why green differs from black in the first place, see <a href=\"/what-is-tea-oxidation\">what is tea oxidation</a> and <a href=\"/green-tea-vs-black-tea\">green tea vs black tea</a>.</p><h2>Re-steeping</h2><p>Quality loose green tea is a bargain because you can steep it 2&ndash;3 times. Add 15&ndash;30 seconds to each subsequent steep. For matcha, the rules are different &mdash; you whisk the whole powder rather than steep leaves; see <a href=\"/matcha-vs-green-tea\">matcha vs green tea</a>. For every tea's ideal temperature, see our <a href=\"/tea-brewing-temperature-guide\">tea brewing temperature guide</a>.</p>",
+  "sources": [
+    {
+      "title": "Brewing temperature and catechin extraction in green tea",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/camellia-sinensis",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What temperature should green tea be brewed at?",
+      "a": "Around 160-180°F (70-80°C) — hot but not boiling. Boiling water scorches the delicate leaf and pulls out bitter compounds. Let a boiled kettle rest 2-3 minutes before pouring."
+    },
+    {
+      "q": "How long should you steep green tea?",
+      "a": "Just 1-3 minutes. Longer steeps over-extract and turn the cup astringent. If you want it stronger, use more leaf rather than a longer steep."
+    },
+    {
+      "q": "Why is my green tea bitter?",
+      "a": "Almost always because the water was too hot or you steeped too long. Lower the temperature to about 175°F and keep the steep under 3 minutes."
+    },
+    {
+      "q": "Can you re-steep green tea?",
+      "a": "Yes — good loose green tea gives 2-3 infusions. Add about 15-30 seconds to each subsequent steep."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "use-case",
+  "product_bridge": "/products/cardamom-green-tea-elixir",
+  "product_bridge_label": "Green tea, made easy",
+  "product_bridge_blurb": "Our Cardamom & Green Tea Elixir starts from green tea and adds real cardamom in a drop — brew the green tea right, then add the Elixir.",
+  "related": [
+    "green-tea-vs-black-tea",
+    "matcha-vs-green-tea",
+    "tea-brewing-temperature-guide"
+  ],
+  "disclaimer": false
+}

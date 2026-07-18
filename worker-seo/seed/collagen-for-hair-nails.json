@@ -3,9 +3,9 @@
   "updated_at": "2026-05-28T08:00:00Z",
   "cluster": "collagen",
   "product_bridge": "/products/spice-rush-collagen-black-tea",
-  "title": "Collagen for Hair and Nails: Strong Evidence vs Wishful Thinking",
+  "title": "Collagen for Hair and Nails: Evidence vs Wishful Thinking",
   "h1": "Collagen for Hair and Nails",
-  "meta_description": "A randomized trial shows collagen peptides improve nail growth and reduce brittleness. Hair evidence is far weaker. Here’s what’s actually supported and what isn’t.",
+  "meta_description": "A randomized trial reported faster nail growth with collagen peptides; hair evidence is far weaker. Here's what's supported and what isn't.",
   "pillar": "benefits",
   "intent": "benefits",
   "disclaimer": true,
@@ -23,7 +23,7 @@
     "collagen hair growth",
     "does collagen help hair"
   ],
-  "body_html": "<p>The evidence for collagen is much stronger for <strong>nails</strong> than for <strong>hair</strong>. It’s worth separating the two so expectations match the data.</p>\n<h2>Nails: supported</h2>\n<p>In a randomized trial, daily bioactive collagen peptides increased nail growth rate and reduced symptoms of brittle nails over 24 weeks, with most participants reporting improvement. Nails grow slowly, so this is a multi-month commitment.</p>\n<h2>Hair: limited evidence</h2>\n<p>Hair is where claims outrun the science. There is little high-quality, hair-specific trial evidence for oral collagen, and much of what circulates is marketing. Collagen supplies amino acids like proline, but hair is mostly keratin — a different protein. Treat hair benefits as unproven for now.</p>\n<h2>The realistic takeaway</h2>\n<p>If brittle nails are your goal, collagen has a reasonable trial behind it. If hair regrowth is the goal, manage expectations and look at evidence-based options first.</p>",
+  "body_html": "<p>The evidence for collagen is much stronger for <strong>nails</strong> than for <strong>hair</strong>. It’s worth separating the two so expectations match the data.</p>\n<h2>Nails: supported</h2>\n<p>In a randomized trial, participants taking daily bioactive collagen peptides showed a faster measured nail-growth rate and fewer brittle-nail symptoms over 24 weeks, with most reporting improvement. Nails grow slowly, so this is a multi-month commitment.</p>\n<h2>Hair: limited evidence</h2>\n<p>Hair is where claims outrun the science. There is little high-quality, hair-specific trial evidence for oral collagen, and much of what circulates is marketing. Collagen supplies amino acids like proline, but hair is mostly keratin — a different protein. Treat hair benefits as unproven for now.</p>\n<h2>The realistic takeaway</h2>\n<p>If brittle nails are your concern, the nail research is the relevant evidence to weigh. If hair regrowth is the goal, manage expectations and look at evidence-based options first.</p>",
   "faqs": [
     {
       "q": "Does collagen actually help nails?",

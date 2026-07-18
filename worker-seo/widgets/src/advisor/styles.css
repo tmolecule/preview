@@ -1,0 +1,104 @@
+/* TMolecule Tea Advisor chat — scoped inside the widget shadow root. */
+
+.adv-head { margin: 0 0 12px; }
+.adv-head h2 { margin: 0 0 2px; font-size: 1.5rem; }
+.adv-head .sub { font-size: 1rem; }
+
+.adv-log {
+  display: flex; flex-direction: column; gap: 12px;
+  max-height: 420px; overflow-y: auto; -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain; padding: 4px 2px 8px; margin: 0 0 12px;
+}
+/* On phones the widget often sits in a capped bottom-sheet; keep the log short
+   so the whole thing (head + log + input + note) fits without a double scroll. */
+@media (max-width: 600px) {
+  .adv-log { max-height: 42vh; }
+  .adv-head { margin-bottom: 8px; }
+  .adv-head h2 { font-size: 1.3rem; }
+}
+.adv-msg { display: flex; }
+.adv-msg--user { justify-content: flex-end; }
+.adv-msg--assistant { justify-content: flex-start; }
+
+/* Each turn is a vertical stack (text on top, product cards beneath). align-items
+   makes bubbles hug their content and align to the correct side. */
+.adv-stack { display: flex; flex-direction: column; gap: 10px; max-width: 88%; }
+.adv-msg--user .adv-stack { align-items: flex-end; }
+.adv-msg--assistant .adv-stack { align-items: flex-start; }
+
+.adv-bubble {
+  font-family: var(--sans); font-size: 1.1rem; line-height: 1.55;
+  padding: 11px 15px; border-radius: 14px; max-width: 100%; white-space: pre-wrap;
+}
+.adv-msg--user .adv-bubble { background: var(--accent); color: #fff; border-bottom-right-radius: 4px; }
+.adv-msg--assistant .adv-bubble {
+  background: #fffdf6; border: 1px solid var(--rule); color: var(--ink-soft); border-bottom-left-radius: 4px;
+}
+
+.adv-bubble--typing { display: inline-flex; gap: 5px; align-items: center; padding: 14px; }
+.adv-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mute); animation: adv-blink 1.2s infinite; }
+.adv-dot:nth-child(2) { animation-delay: .2s; }
+.adv-dot:nth-child(3) { animation-delay: .4s; }
+@keyframes adv-blink { 0%, 60%, 100% { opacity: .3; } 30% { opacity: 1; } }
+
+/* Cards sit in a wrapping row sized to content — a single product stays ~200px
+   (no empty second column), two products sit side by side. */
+.adv-cards { display: flex; flex-wrap: wrap; gap: 10px; }
+.adv-card {
+  display: flex; flex-direction: column; text-decoration: none;
+  flex: 0 1 200px; max-width: 220px;
+  border: 1px solid var(--rule); border-radius: 12px; overflow: hidden; background: #fff;
+  transition: box-shadow .15s ease;
+}
+.adv-card:hover { box-shadow: var(--tm-shadow); }
+.adv-card__img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; background: var(--accent-soft); }
+.adv-card__img--ph { aspect-ratio: 1 / 1; }
+.adv-card__body { padding: 9px 11px; }
+.adv-card__title { font-family: var(--serif); font-weight: 600; font-size: 1rem; line-height: 1.2; color: var(--ink); }
+.adv-card__foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px; }
+.adv-card__price { font-family: var(--sans); font-weight: 600; font-size: 0.98rem; color: var(--ink-soft); }
+.adv-card__cta { font-family: var(--sans); font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+
+.adv-chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 12px; }
+.adv-chip {
+  font-family: var(--sans); font-size: 0.95rem; color: var(--accent);
+  background: var(--accent-soft); border: 1px solid var(--rule); border-radius: 999px;
+  padding: 7px 13px; cursor: pointer;
+}
+.adv-chip:hover { filter: brightness(.98); }
+
+.adv-form { display: flex; gap: 8px; align-items: stretch; }
+.adv-input {
+  flex: 1; min-width: 0; font-family: var(--sans); font-size: 1.1rem; color: var(--ink);
+  background: #ffffff; border: 1.5px solid #c9b485; border-radius: 10px;
+  padding: 14px 16px; min-height: 52px; line-height: 1.3;
+  box-shadow: inset 0 1px 2px rgba(70, 50, 15, 0.07);
+}
+.adv-input::placeholder { color: #8a7d61; opacity: 1; }
+.adv-input:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.adv-input:disabled { opacity: .6; }
+.adv-send {
+  flex: 0 0 auto; font-family: var(--sans); font-weight: 600; font-size: 0.95rem; color: #fff;
+  background: var(--accent); border: 1.5px solid var(--accent); border-radius: 10px;
+  min-height: 52px; padding: 0 20px; cursor: pointer;
+}
+.adv-send:hover:not(:disabled) { filter: brightness(1.06); }
+.adv-send:disabled { opacity: .5; cursor: default; }
+
+/* === Email capture (shown after the advisor answers) === */
+.adv-cap { margin: 0 0 12px; padding: 12px 14px; border: 1px solid var(--rule); border-radius: 12px; background: var(--accent-soft); }
+.adv-cap__lead { font-family: var(--sans); font-size: 0.95rem; line-height: 1.45; color: var(--ink-soft); margin: 0 0 9px; }
+.adv-cap__lead strong { color: var(--ink); }
+.adv-cap__form { display: flex; gap: 8px; flex-wrap: wrap; align-items: stretch; }
+.adv-cap__input { flex: 1 1 180px; min-width: 0; font-family: var(--sans); font-size: 1rem; color: var(--ink); background: #fff; border: 1.5px solid #c9b485; border-radius: 10px; padding: 11px 14px; min-height: 46px; }
+.adv-cap__input:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.adv-cap__btn { flex: 0 0 auto; font-family: var(--sans); font-weight: 600; font-size: 0.92rem; color: #fff; background: var(--accent); border: 1.5px solid var(--accent); border-radius: 10px; min-height: 46px; padding: 0 18px; cursor: pointer; }
+.adv-cap__btn:hover:not(:disabled) { filter: brightness(1.06); }
+.adv-cap__btn:disabled { opacity: .5; cursor: default; }
+.adv-cap__hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.adv-cap__err { font-family: var(--sans); font-size: 0.82rem; color: #b23b2e; margin: 8px 0 0; }
+.adv-cap--done { text-align: center; }
+.adv-cap__done-title { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--ink); margin: 0 0 8px; }
+.adv-cap__code { font-family: var(--serif); font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; color: var(--accent); border: 1.5px dashed var(--accent); border-radius: 8px; padding: 8px 0; margin: 0 auto 6px; max-width: 260px; }
+.adv-cap__fine { font-family: var(--sans); font-size: 0.8rem; color: var(--mute); }
+@media (max-width: 600px) { .adv-cap__form { flex-direction: column; } .adv-cap__input, .adv-cap__btn { width: 100%; } }

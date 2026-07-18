@@ -1,0 +1,55 @@
+{
+  "title": "The Best Cardamom for Chai: Whole vs Ground vs Pre-Blended",
+  "h1": "The best cardamom for chai",
+  "meta_description": "For chai, use green cardamom — never black. The best form is lightly crushed whole pods, freshly ground, or a milled chai blend for consistency. Here's how to choose.",
+  "image_url": "",
+  "published_at": "2026-07-14T16:00:00Z",
+  "updated_at": "2026-07-14T16:00:00Z",
+  "keywords": [
+    "best cardamom for chai",
+    "cardamom for chai",
+    "how much cardamom in chai",
+    "cardamom chai",
+    "green cardamom chai"
+  ],
+  "body_html": "<p>For chai, the best cardamom is <strong>green cardamom &mdash; never black</strong>. Black cardamom's smoky flavor ruins a sweet-spiced cup. Within green cardamom, the best form depends on how you make chai: <strong>lightly crushed whole pods for a from-scratch pot, freshly ground for a spice blend you'll use quickly, or a milled/pre-blended chai when you want the same cup every time with no prep.</strong></p><h2>Forms compared</h2><table><thead><tr><th>Form</th><th>Flavor</th><th>Control</th><th>Convenience</th><th>Best for</th></tr></thead><tbody><tr><td>Whole green pods</td><td>Fullest, freshest</td><td>High &mdash; adjust per pot</td><td>Low &mdash; crush &amp; simmer</td><td>From-scratch masala chai</td></tr><tr><td>Freshly ground</td><td>Strong, even</td><td>High</td><td>Medium</td><td>Homemade spice blends</td></tr><tr><td>Pre-ground (jar)</td><td>Fades fast</td><td>Medium</td><td>High</td><td>Occasional use</td></tr><tr><td>Milled / pre-blended chai</td><td>Consistent, balanced</td><td>Low</td><td>Highest &mdash; one stir</td><td>Same cup daily, no prep</td></tr></tbody></table><h2>Why green, not black</h2><p>Green cardamom (<em>Elettaria cardamomum</em>) is the sweet, floral, citrusy spice that defines chai's aroma. Black cardamom is a different plant, dried over fire, and tastes smoky and savory &mdash; it belongs in curries, not the teacup. Full detail in <a href=\"/green-cardamom-vs-black-cardamom\">green vs black cardamom</a>.</p><h2>How much to use</h2><p>Cardamom is potent. For a pot of masala chai serving two, 3&ndash;4 lightly crushed green pods is a good starting point, adjusted to taste. Crushing (not powdering) whole pods releases the aroma while letting you strain them out. See the full method in <a href=\"/masala-chai-recipe\">our masala chai recipe</a> and how each spice contributes in <a href=\"/chai-tea-benefits-spice-by-spice\">chai spice by spice</a>.</p><h2>If you want consistency without the work</h2><p>Crushing pods every morning is a ritual some love and others skip. A milled chai blend puts balanced cardamom (alongside <a href=\"/ginger\">ginger</a>, <a href=\"/ceylon-vs-cassia-cinnamon\">Ceylon cinnamon</a>, and clove) into one stir &mdash; the same cup every day. For choosing a chai format overall, see <a href=\"/best-chai-tea\">the best chai tea</a>.</p>",
+  "sources": [
+    {
+      "title": "Elettaria cardamomum: flavor compounds and culinary use",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/elettaria-cardamomum",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What kind of cardamom is used in chai?",
+      "a": "Green cardamom (Elettaria cardamomum) — the sweet, floral, citrusy pods. Never black cardamom, which is smoky and savory and overwhelms a chai."
+    },
+    {
+      "q": "How many cardamom pods for chai?",
+      "a": "About 3–4 lightly crushed green pods for a two-cup pot is a good starting point. Cardamom is strong, so adjust to taste and don't over-add — too much turns soapy."
+    },
+    {
+      "q": "Should I use whole or ground cardamom in chai?",
+      "a": "Whole crushed pods give the freshest flavor and can be strained out. Freshly ground works for spice blends but fades fast. Pre-ground jars lose aroma quickly, so use them soon after opening."
+    },
+    {
+      "q": "Can I use cardamom powder instead of pods in chai?",
+      "a": "Yes, but use less and use it fresh — powder is more concentrated and loses aroma faster than whole pods. Roughly &frac14; teaspoon of ground green cardamom replaces a few pods."
+    }
+  ],
+  "pillar": "ingredients",
+  "cluster": "chai-spices",
+  "intent": "use-case",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Balanced cardamom, one stir",
+  "product_bridge_blurb": "Spice Rush is a milled collagen chai with green cardamom, Ceylon cinnamon, ginger and clove already balanced — the same cup daily, no crushing pods.",
+  "related": [
+    "green-cardamom-vs-black-cardamom",
+    "masala-chai-recipe",
+    "best-chai-tea"
+  ],
+  "disclaimer": false,
+  "widget": "spice-blend-builder"
+}

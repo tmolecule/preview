@@ -1,0 +1,54 @@
+{
+  "title": "Loose Leaf vs Tea Bags vs Tea Powder: Which Brews Better?",
+  "h1": "Loose leaf vs tea bags vs tea powder",
+  "meta_description": "Loose leaf, tea bags, and milled tea powder brew differently. Compare flavor, convenience, cost, and control — and see which format actually gives you a better cup.",
+  "image_url": "",
+  "published_at": "2026-07-14T14:00:00Z",
+  "updated_at": "2026-07-14T14:00:00Z",
+  "keywords": [
+    "loose leaf vs tea bags",
+    "loose leaf vs tea bags vs powder",
+    "is loose leaf tea better than bags",
+    "tea powder vs tea bags",
+    "best tea format"
+  ],
+  "body_html": "<p>Loose leaf, tea bags, and milled tea powder are three formats of the same drink, and the format changes the cup more than most people expect. <strong>Loose leaf generally brews the fullest flavor</strong> because whole leaves have room to unfurl; bags trade some of that flavor for convenience; milled powder dissolves completely, so you drink the whole leaf and lose nothing to a discarded bag.</p><h2>Side-by-side comparison</h2><table><thead><tr><th>Property</th><th>Loose leaf</th><th>Tea bags</th><th>Milled powder</th></tr></thead><tbody><tr><td>Leaf size</td><td>Whole / large pieces</td><td>Small broken bits (&ldquo;fannings/dust&rdquo;)</td><td>Finely milled, fully dissolves</td></tr><tr><td>Flavor ceiling</td><td>Highest &mdash; leaves unfurl fully</td><td>Fast but can taste flat/bitter</td><td>Full &mdash; you consume the whole leaf</td></tr><tr><td>Convenience</td><td>Needs an infuser or strainer</td><td>Highest &mdash; drop and steep</td><td>High &mdash; stir into water or milk</td></tr><tr><td>Control over strength</td><td>Full</td><td>Limited</td><td>Full (adjust scoop)</td></tr><tr><td>Waste</td><td>Compostable leaf</td><td>Bag (some contain plastic)</td><td>None &mdash; nothing discarded</td></tr><tr><td>Cost per cup</td><td>Low&ndash;moderate</td><td>Low</td><td>Moderate</td></tr></tbody></table><h2>Why leaf size matters</h2><p>Flavor lives in whole and large-cut leaves. When tea is broken down into the small &ldquo;fannings and dust&rdquo; that fill most commodity tea bags, more surface area is exposed &mdash; it brews fast and strong, but also releases tannins quickly, which is why bagged tea can turn bitter if it steeps a minute too long. Whole loose leaves release flavor more gradually and give a rounder cup.</p><h2>Where milled powder fits</h2><p>Milled tea powder is a third path: the leaf is ground fine enough to disperse into water or milk instead of being steeped and thrown away. You consume the whole leaf, so nothing is lost to a spent bag, and it dissolves in seconds &mdash; convenient like a bag, complete like loose leaf. This is the format behind <a href=\"/what-is-matcha\">matcha</a>, and it's how our Spice Rush blend is built so a collagen chai comes together in one stir.</p><h2>So which should you choose?</h2><p>If you want the richest cup and enjoy the ritual, loose leaf. If you want fast and cheap, bags &mdash; just don't over-steep. If you want convenience without discarding the leaf (and want add-ins like spices or collagen to blend evenly), a milled powder wins. For getting any of them right, see our brewing notes in <a href=\"/what-is-masala-chai\">what is masala chai</a>.</p>",
+  "sources": [
+    {
+      "title": "Tea grading and particle size: whole leaf vs fannings and dust",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/camellia-sinensis",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is loose leaf tea really better than tea bags?",
+      "a": "For flavor, usually yes. Loose leaf uses whole or large leaf pieces that unfurl and brew a rounder cup, while most bags use small broken fannings that brew fast but can taste flat or turn bitter if over-steeped."
+    },
+    {
+      "q": "Do tea bags contain plastic?",
+      "a": "Some do. Many heat-sealed and 'silken' pyramid bags contain polypropylene or nylon. Paper bags and loose leaf avoid this. Check the packaging if it matters to you."
+    },
+    {
+      "q": "What's the difference between tea powder and matcha?",
+      "a": "Matcha is a specific shade-grown green tea stone-ground into ultra-fine powder. 'Tea powder' more broadly means any tea milled fine enough to dissolve. Both are consumed whole rather than steeped and discarded."
+    },
+    {
+      "q": "Is milled tea powder as good as loose leaf?",
+      "a": "For flavor completeness, it can be better — you drink the whole leaf instead of discarding it in a bag. Loose leaf still wins on ritual and the pleasure of watching leaves unfurl. It comes down to what you value."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "comparison",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Milled, so it stirs right in",
+  "product_bridge_blurb": "Spice Rush is a milled collagen chai — whole-leaf flavor plus spices and collagen that blend evenly in one stir, no bag to discard.",
+  "related": [
+    "what-is-matcha",
+    "matcha-vs-green-tea",
+    "what-is-masala-chai"
+  ],
+  "disclaimer": false
+}

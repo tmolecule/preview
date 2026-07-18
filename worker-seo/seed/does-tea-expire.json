@@ -1,0 +1,54 @@
+{
+  "title": "Does Tea Expire? Shelf Life, Storage & When to Toss It",
+  "h1": "Does tea expire?",
+  "meta_description": "Dried tea rarely spoils, but it does go stale and lose flavor over months to years. Here's how long tea lasts by type, how to store it, and the signs it's past its best.",
+  "image_url": "",
+  "published_at": "2026-07-14T18:00:00Z",
+  "updated_at": "2026-07-14T18:00:00Z",
+  "keywords": [
+    "does tea expire",
+    "does tea go bad",
+    "how long does tea last",
+    "tea shelf life",
+    "how to store tea"
+  ],
+  "body_html": "<p>Tea doesn't &ldquo;expire&rdquo; the way milk does &mdash; <strong>dried tea is shelf-stable and rarely becomes unsafe to drink.</strong> But it does go <strong>stale</strong>: it loses aroma, flavor, and brightness over months to a couple of years. Most tea is at its best within one to two years of packing, stored airtight and away from light, heat, moisture, and strong odors.</p><h2>Roughly how long tea stays at its best</h2><table><thead><tr><th>Type</th><th>Best within</th><th>Why</th></tr></thead><tbody><tr><td>Green &amp; white</td><td>6&ndash;12 months</td><td>Delicate, fresh flavors fade fastest</td></tr><tr><td>Oolong</td><td>1&ndash;2 years</td><td>Partial oxidation adds some stability</td></tr><tr><td>Black</td><td>2&ndash;3 years</td><td>Fully oxidized and most robust</td></tr><tr><td>Herbal / tisane</td><td>1&ndash;2 years</td><td>Varies by botanical</td></tr><tr><td>Matcha &amp; milled powders</td><td>Months</td><td>High surface area &mdash; aroma fades fast once opened</td></tr></tbody></table><h2>Stale vs unsafe</h2><p>Stale tea tastes flat, papery, or dusty and brews a weaker cup &mdash; it's disappointing, not dangerous. Tea only becomes genuinely unsafe if it gets wet or is stored damp, which can grow mold. If tea has been kept dry, an old box is a flavor question, not a safety one. When in doubt, look and smell: discard anything with visible mold or a musty, off odor.</p><h2>How to store tea</h2><ul><li><strong>Airtight and opaque.</strong> Air and light are tea's enemies. An opaque, sealed tin or the original resealable pouch beats a clear glass jar on a sunny shelf.</li><li><strong>Cool, dry, odor-free.</strong> Tea absorbs smells &mdash; keep it away from spices, coffee, and the trash. Not above the stove.</li><li><strong>Don't refrigerate loose tea.</strong> Humidity and fridge odors do more harm than good (sealed matcha is the exception).</li></ul><h2>Where milled tea fits</h2><p>Finely milled teas and powders have far more surface area than whole leaves, so they lose aroma faster once exposed to air &mdash; freshness and a good seal matter most here. That's a point in favor of well-sealed, single-portion formats. For the leaf-size trade-off, see <a href=\"/loose-leaf-vs-tea-bags\">loose leaf vs tea bags vs powder</a>.</p>",
+  "sources": [
+    {
+      "title": "Tea storage and staling: moisture, oxygen and volatile loss",
+      "url": "https://www.sciencedirect.com/topics/food-science/tea",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Does tea actually expire?",
+      "a": "Not in a spoilage sense — dried tea kept dry stays safe well past any 'best by' date. What it loses is flavor and aroma, going stale over months to a couple of years rather than becoming unsafe."
+    },
+    {
+      "q": "Can you drink expired tea?",
+      "a": "If it's been stored dry and shows no mold or musty smell, old tea is generally safe — it just tastes weaker and flatter. Discard any tea that got damp or smells off."
+    },
+    {
+      "q": "How long does tea last?",
+      "a": "Roughly 6–12 months for delicate green and white teas, 1–2 years for oolong and herbals, and 2–3 years for black tea, when stored airtight and away from light, heat, and moisture. Milled powders fade fastest."
+    },
+    {
+      "q": "What's the best way to store tea?",
+      "a": "Airtight and opaque, somewhere cool, dry, and free of strong odors. Keep it out of sunlight and away from spices or coffee, since tea readily absorbs smells."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "question",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Sealed for freshness",
+  "product_bridge_blurb": "Spice Rush is a milled blend, so we seal it to protect aroma — stir a fresh portion straight into your cup.",
+  "related": [
+    "loose-leaf-vs-tea-bags",
+    "what-is-tea-oxidation",
+    "black-tea"
+  ],
+  "disclaimer": false
+}

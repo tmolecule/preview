@@ -16,7 +16,8 @@
     "validate:seeds": "node scripts/validate-seeds.mjs",
     "check:links": "node scripts/check-links.mjs",
     "test": "bun test",
-    "test:compliance": "bun test test/compliance.test.ts"
+    "test:compliance": "bun test test/compliance.test.ts",
+    "build:vectors": "node scripts/build-learn-vectors.mjs && npx wrangler vectorize upsert tm-learn-corpus --file scripts/.cache/tm-learn-vectors.ndjson"
   },
   "devDependencies": {
     "ajv": "^8.20.0",

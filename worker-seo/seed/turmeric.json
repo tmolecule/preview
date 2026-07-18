@@ -3,9 +3,9 @@
   "updated_at": "2026-05-28T08:00:00Z",
   "pillar": "ingredients",
   "disclaimer": true,
-  "title": "Turmeric and Curcumin: Anti-Inflammatory Evidence and the Bioavailability Problem",
+  "title": "Turmeric & Curcumin: The Evidence and Absorption Problem",
   "h1": "Turmeric and Curcumin: What the Research Shows",
-  "meta_description": "Curcumin, turmeric’s active compound, has real anti-inflammatory and osteoarthritis evidence — but is poorly absorbed on its own. Here’s the science and the black-pepper fix.",
+  "meta_description": "Curcumin, turmeric's active compound, is studied for inflammatory markers and osteoarthritis — but is poorly absorbed alone. The science and pepper fix.",
   "cluster": "functional-botanicals",
   "intent": "benefits",
   "product_bridge": "/collections/all",
@@ -24,7 +24,7 @@
     "turmeric bioavailability",
     "turmeric black pepper"
   ],
-  "body_html": "<p>Turmeric (<em>Curcuma longa</em>) gets its color and most of its studied activity from curcumin. The evidence is genuinely interesting — with one big practical catch: curcumin is poorly absorbed on its own.</p>\n<h2>Anti-inflammatory and joints</h2>\n<p>A systematic review and meta-analysis found curcumin/turmeric extracts improved osteoarthritis pain and function versus placebo, with a good safety profile. Curcumin has also been studied for inflammatory markers, though trials vary in dose and extract type.</p>\n<h2>The bioavailability problem</h2>\n<p>Plain curcumin is poorly absorbed and rapidly cleared. A classic study showed that <strong>piperine from black pepper substantially increased curcumin absorption</strong> in humans — which is why turmeric products and traditional “golden” preparations so often pair it with pepper or fat.</p>\n<h2>The honest read</h2>\n<p>Turmeric is promising for joint comfort and inflammation, but the form and absorption matter enormously. A sprinkle of culinary turmeric is mostly flavor; studied benefits use standardized, absorption-enhanced extracts.</p>",
+  "body_html": "<p>Turmeric (<em>Curcuma longa</em>) gets its color and most of its studied activity from curcumin. The evidence is genuinely interesting — with one big practical catch: curcumin is poorly absorbed on its own.</p>\n<h2>Anti-inflammatory and joints</h2>\n<p>A systematic review and meta-analysis found curcumin/turmeric extracts improved osteoarthritis pain and function versus placebo, with a good safety profile. Curcumin has also been studied for inflammatory markers, though trials vary in dose and extract type.</p>\n<h2>The bioavailability problem</h2>\n<p>Plain curcumin is poorly absorbed and rapidly cleared. A classic study showed that <strong>piperine from black pepper substantially increased curcumin absorption</strong> in humans — which is why turmeric products and traditional <a href=\"/golden-milk\">“golden” preparations</a> so often pair it with pepper or fat.</p>\n<h2>The honest read</h2>\n<p>Turmeric’s studied benefits for joints and inflammation depend heavily on form and absorption. A sprinkle of culinary turmeric is mostly flavor; the trials use standardized, absorption-enhanced extracts.</p>",
   "faqs": [
     {
       "q": "Does turmeric reduce inflammation?",

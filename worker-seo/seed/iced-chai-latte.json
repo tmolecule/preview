@@ -1,0 +1,74 @@
+{
+  "published_at": "2026-06-24T10:00:00Z",
+  "updated_at": "2026-06-24T10:00:00Z",
+  "type": "recipe",
+  "pillar": "recipes",
+  "cluster": "chai",
+  "intent": "recipe",
+  "title": "Iced Chai Latte Recipe (Better Than the Café)",
+  "h1": "Iced chai latte",
+  "meta_description": "How to make an iced chai latte at home: brew a strong spiced chai concentrate, then pour over ice with cold milk. Ready in about 10 minutes, no syrup needed.",
+  "image_url": "https://tmolecule.com/learn/media/iced-chai-latte.jpg",
+  "keywords": [
+    "iced chai latte",
+    "iced chai latte recipe",
+    "how to make iced chai latte",
+    "homemade iced chai",
+    "iced spiced tea latte"
+  ],
+  "body_html": "<p>An iced chai latte is just a strong, spiced chai concentrate poured over ice with cold milk. Made at home it costs a fraction of the café version, skips the sugary syrup, and you control exactly how strong and how sweet it is. The whole thing takes about ten minutes, most of which is steeping.</p>\n<p>The one rule that matters: <strong>brew it twice as strong as you think you need.</strong> Ice and milk dilute fast, so a normal-strength brew tastes thin over ice.</p>\n<h2>Ingredients</h2>\n<ul><li>2 sachets Spice Rush Collagen Black Tea (or 2 tbsp loose masala chai, or 2 strong chai tea bags)</li><li>1 cup (240 ml) water</li><li>1/2 to 1 cup (120&ndash;240 ml) cold milk of choice (dairy, oat or almond)</li><li>1&ndash;2 tsp sweetener to taste (maple, honey or sugar) &mdash; optional</li><li>A tall glass of ice</li></ul>\n<h2>How to make an iced chai latte</h2>\n<ol><li>Brew it double-strength. Steep your chai in just 1 cup of water for 5 minutes, so it is twice as strong as a normal cup. The ice and cold milk will dilute it, so strong brewing is what keeps an iced chai latte from tasting watery.</li><li>Sweeten while it is hot (optional). Stir any sweetener into the hot concentrate now, while it dissolves easily.</li><li>Fill a tall glass with ice. Use plenty &mdash; it flash-chills the hot chai so you can drink it right away.</li><li>Add the cold milk. Pour the milk over the ice first.</li><li>Pour the hot chai over the top. It will cool on contact with the ice. Stir, and adjust milk or sweetness to taste.</li></ol>\n<h2>Tips and variations</h2>\n<ul>\n<li><strong>Make it ahead:</strong> brew a batch of <a href=\"/chai-concentrate-recipe\">chai concentrate</a> and keep it in the fridge; an iced chai latte is then just concentrate + cold milk + ice, in thirty seconds.</li>\n<li><strong>Dairy-free:</strong> oat milk is the closest to the café texture; almond is lighter.</li>\n<li><strong>Less sweet than the chain version:</strong> start with 1 tsp of sweetener and taste &mdash; most café iced chais are far sweeter than homemade needs to be.</li>\n<li><strong>Cold-brew option:</strong> steep the chai in cold water in the fridge for 6&ndash;8 hours instead of brewing hot, for a smoother, less tannic cup.</li>\n</ul>",
+  "recipe": {
+    "prepTime": "PT3M",
+    "cookTime": "PT5M",
+    "totalTime": "PT8M",
+    "recipeYield": "1 large iced latte (about 16 oz)",
+    "recipeCategory": "Beverage",
+    "recipeCuisine": "Indian",
+    "recipeIngredient": [
+      "2 sachets Spice Rush Collagen Black Tea (or 2 tbsp loose masala chai)",
+      "1 cup water",
+      "1/2 to 1 cup cold milk of choice",
+      "1 to 2 tsp sweetener, to taste (optional)",
+      "1 tall glass of ice"
+    ],
+    "recipeInstructions": [
+      "Brew double-strength: steep the chai in just 1 cup of water for 5 minutes so it is twice as strong as a normal cup.",
+      "Stir in any sweetener while the concentrate is still hot.",
+      "Fill a tall glass with ice and pour in the cold milk.",
+      "Pour the hot chai concentrate over the ice and milk; it chills on contact. Stir and adjust to taste."
+    ]
+  },
+  "faqs": [
+    {
+      "q": "How do I make an iced chai latte that isn't watery?",
+      "a": "Brew the chai twice as strong as a normal cup (same tea, half the water). The ice and cold milk dilute it down to the right strength; a normal brew tastes thin over ice."
+    },
+    {
+      "q": "What milk is best for an iced chai latte?",
+      "a": "Oat milk gives the closest texture to a café version; almond is lighter; dairy is classic. Any of them work cold straight from the fridge."
+    },
+    {
+      "q": "Can I make it less sweet than a Starbucks iced chai?",
+      "a": "Yes, and that's the main advantage of making it at home. Start with about 1 teaspoon of sweetener and taste. Café iced chais are usually much sweeter than homemade needs to be."
+    },
+    {
+      "q": "Can I use a chai concentrate?",
+      "a": "Absolutely. With concentrate on hand it's just concentrate + cold milk + ice. See our chai concentrate recipe for a make-ahead batch."
+    },
+    {
+      "q": "Is an iced chai latte caffeinated?",
+      "a": "Yes, it's built on black tea, so it contains caffeine, typically less than a cup of coffee. See our caffeine comparator for how black tea compares."
+    }
+  ],
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Make it with Spice Rush",
+  "product_bridge_blurb": "Spice Rush is a chai-spiced black tea, so it brews straight into the concentrate this recipe needs.",
+  "related": [
+    "chai-concentrate-recipe",
+    "masala-chai-recipe",
+    "what-is-chai-latte",
+    "dirty-chai-latte"
+  ],
+  "widget": "brew-guide",
+  "image_alt": "A tall glass of iced chai latte layered over ice and garnished with a cinnamon stick, with green cardamom pods and a star anise on a marble surface"
+}

@@ -10,6 +10,14 @@ leak) → served by `worker-seo` at `/learn/widgets/<name>.js`**.
 > Safety: declined, NOT built** — YMYL + vendor-COI (we sell the ingredients); stays as
 > research-framed articles (e.g. `/learn/is-collagen-tea-safe`). Reopen only with explicit
 > human sign-off. This doc remains the reference for the build/deploy pattern.
+>
+> Update (2026-06-24): **Reopened for #5 — `caffeine-comparator`. Built & LIVE** at
+> `/learn/caffeine-comparator`, embedded on `/learn/is-rooibos-caffeine-free` and
+> `/learn/l-theanine-and-caffeine-in-tea`, in sitemap + IndexNow-submitted. Purely factual
+> caffeine figures (compliance-trivial). Unlike the first three, it ships an **embed snippet**
+> on its page (link-building asset — the one Vite angle that touches TM's real lever, off-site
+> links; on-page calculators drive ~0 citations per WK data). Build: `WIDGET=caffeine-comparator
+> vite build` → `node scripts/bundle-widgets.mjs` → routes in `src/index.js`.
 
 ---
 

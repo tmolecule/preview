@@ -1,0 +1,60 @@
+{
+  "title": "Green Cardamom vs Black Cardamom: What's the Difference?",
+  "h1": "Green cardamom vs black cardamom: what's actually different?",
+  "meta_description": "Green and black cardamom come from different plants and aren't interchangeable. Green is sweet, floral, and made for tea and baking; black is smoky and savory. Full comparison.",
+  "image_url": "",
+  "published_at": "2026-07-14T14:00:00Z",
+  "updated_at": "2026-07-14T14:00:00Z",
+  "keywords": [
+    "green cardamom vs black cardamom",
+    "difference between green and black cardamom",
+    "black cardamom vs green cardamom",
+    "which cardamom for tea",
+    "types of cardamom"
+  ],
+  "body_html": "<p>Green cardamom and black cardamom come from <strong>different plants and are not interchangeable</strong>. Green cardamom (<em>Elettaria cardamomum</em>) is small, sweet, floral, and citrusy &mdash; it's what nearly every tea, chai, and dessert recipe means by &ldquo;cardamom.&rdquo; Black cardamom (<em>Amomum subulatum</em>) is a large, dark pod dried over open flame, giving it a smoky, resinous flavor that belongs in savory cooking, not the teacup.</p><h2>Side-by-side comparison</h2><table><thead><tr><th>Property</th><th>Green cardamom</th><th>Black cardamom</th></tr></thead><tbody><tr><td>Botanical name</td><td><em>Elettaria cardamomum</em></td><td><em>Amomum subulatum</em></td></tr><tr><td>Pod</td><td>Small, pale green, papery</td><td>Large, dark brown, rough</td></tr><tr><td>Flavor</td><td>Sweet, floral, citrus, cooling eucalyptus</td><td>Smoky, camphor, resinous, savory</td></tr><tr><td>How it's dried</td><td>Cured with gentle/mechanical heat, keeps green color</td><td>Dried over open fire &mdash; the source of its smoke</td></tr><tr><td>Best for</td><td>Chai, tea, coffee, baking, desserts</td><td>Curries, biryani, dals, slow-cooked stews</td></tr><tr><td>Use in tea?</td><td>Yes &mdash; this is the tea-and-chai cardamom</td><td>Rarely &mdash; too smoky for most cups</td></tr><tr><td>Relative cost</td><td>Higher (a premium spice)</td><td>Lower</td></tr></tbody></table><h2>What green cardamom is</h2><p>Green cardamom is the third-most-expensive spice by weight, after saffron and vanilla. Its aroma comes largely from a compound called <em>1,8-cineole</em> (the same cooling note found in eucalyptus) balanced by sweet, citrus-floral terpenes. That combination is why it works across both sweet and warm-spiced applications &mdash; Scandinavian buns, Indian kheer, Turkish coffee, and masala chai all lean on green cardamom.</p><p>When a recipe just says &ldquo;cardamom,&rdquo; it means green. It's also the cardamom in our <a href=\"/cardamom-and-green-tea\">cardamom and green tea</a> pairing.</p><h2>What black cardamom is</h2><p>Black cardamom is a different genus entirely. The pods are dried over smoldering fires, which is where the unmistakable smokiness comes from &mdash; there is no citrus-floral sweetness here. It's a backbone spice for North Indian and Nepali savory dishes, added whole to infuse a dish and then usually removed before serving.</p><h2>Can you substitute one for the other?</h2><p>Not directly. Using black cardamom where green is called for will make a dessert or tea taste of campfire; using green where black is called for will leave a savory braise thin and perfumed instead of deep and smoky. If you're out of green cardamom for tea or baking, see <a href=\"/cardamom-substitute\">what to use as a cardamom substitute</a> &mdash; the answer is a warm-spice blend, never black cardamom.</p><h2>Which cardamom for tea and chai?</h2><p>Always green. Its sweet, aromatic profile is what makes cardamom chai and cardamom-green-tea taste the way they do. For a deeper look at the spice itself, see <a href=\"/what-is-cardamom\">what is cardamom</a>, and for the flavor pairing that anchors our Elixir, <a href=\"/cardamom-and-green-tea\">cardamom and green tea</a>.</p>",
+  "sources": [
+    {
+      "title": "Cardamom (Elettaria cardamomum): production, technology and processing",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/elettaria-cardamomum",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Amomum subulatum (black / large cardamom): botany and uses",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/amomum",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is black cardamom just older green cardamom?",
+      "a": "No. They are two different plants — green is Elettaria cardamomum, black is Amomum subulatum. Black cardamom's dark color and smokiness come from being dried over open fire, not from age."
+    },
+    {
+      "q": "Can I use black cardamom in chai or tea?",
+      "a": "It's not recommended. Chai and cardamom teas use green cardamom for its sweet, floral aroma. Black cardamom's smoky, resinous flavor overwhelms a cup and reads as savory."
+    },
+    {
+      "q": "Which cardamom is more expensive?",
+      "a": "Green cardamom is the premium one — it's among the most expensive spices in the world by weight. Black cardamom is generally cheaper."
+    },
+    {
+      "q": "What does 'cardamom' mean when a recipe doesn't specify?",
+      "a": "Green cardamom. Unless a recipe explicitly says 'black cardamom,' assume green — especially in tea, coffee, baking, and desserts."
+    }
+  ],
+  "pillar": "ingredients",
+  "cluster": "chai-spices",
+  "intent": "comparison",
+  "product_bridge": "/products/cardamom-green-tea-elixir",
+  "product_bridge_label": "Taste green cardamom in a drop",
+  "product_bridge_blurb": "Our Cardamom & Green Tea Elixir is a concentrated green tea and green-cardamom oleoresin — one drop adds this sweet, floral pairing to any cup.",
+  "related": [
+    "what-is-cardamom",
+    "cardamom-substitute",
+    "cardamom-and-green-tea"
+  ],
+  "disclaimer": false
+}

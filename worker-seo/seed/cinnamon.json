@@ -3,9 +3,9 @@
   "updated_at": "2026-05-28T08:00:00Z",
   "pillar": "ingredients",
   "disclaimer": true,
-  "title": "Cinnamon: Cassia vs Ceylon, Blood Sugar Evidence, and How to Use It",
+  "title": "Cinnamon: Cassia vs Ceylon and the Blood-Sugar Evidence",
   "h1": "Cinnamon: What It Does and How to Choose It",
-  "meta_description": "Cinnamon is more than a warming spice — trials link it to modest blood-sugar effects. Here’s the cassia vs Ceylon difference, the evidence, and the coumarin caveat.",
+  "meta_description": "Cinnamon is more than a warming spice — small trials have studied its effect on fasting glucose. Plus cassia vs Ceylon and the coumarin caveat.",
   "cluster": "chai-spices",
   "intent": "benefits",
   "product_bridge": "/products/spice-rush-collagen-black-tea",
@@ -14,7 +14,7 @@
   "related": [
     "is-cinnamon-banned-in-the-eu",
     "ginger",
-    "cardamom"
+    "cardamom-benefits"
   ],
   "keywords": [
     "cinnamon benefits",

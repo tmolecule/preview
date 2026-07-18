@@ -24,6 +24,11 @@ const WIDGETS = {
   'brew-guide': 'BREW_GUIDE_JS',
   'cost-per-cup': 'COST_PER_CUP_JS',
   'tea-finder': 'TEA_FINDER_JS',
+  'caffeine-comparator': 'CAFFEINE_COMPARATOR_JS',
+  'collagen-calculator': 'COLLAGEN_CALCULATOR_JS',
+  'sugar-saved': 'SUGAR_SAVED_JS',
+  'spice-blend-builder': 'SPICE_BLEND_BUILDER_JS',
+  'advisor': 'ADVISOR_JS',
 };
 
 const parts = [];

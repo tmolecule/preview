@@ -1,0 +1,60 @@
+{
+  "title": "What Is Ayurveda? A Beginner's Guide to the Tradition",
+  "h1": "What is Ayurveda?",
+  "meta_description": "Ayurveda is a traditional wellness system from India over 3,000 years old. A plain-language guide to its name, origins, the five elements and three doshas — as a cultural tradition, not medical advice.",
+  "image_url": "",
+  "published_at": "2026-07-15T14:00:00Z",
+  "updated_at": "2026-07-15T14:00:00Z",
+  "keywords": [
+    "what is ayurveda",
+    "ayurveda meaning",
+    "ayurveda doshas",
+    "vata pitta kapha",
+    "ayurveda beginners guide"
+  ],
+  "body_html": "<p><strong>Ayurveda is a traditional system of wellness that originated in India more than 3,000 years ago.</strong> Its name comes from Sanskrit &mdash; <em>ayus</em> (life) and <em>veda</em> (knowledge) &mdash; and it centers on food, herbs, spices and daily routine, classifying things by qualities like warming and cooling. It is a cultural and historical tradition, described here for context. It is <strong>not medical advice and not a substitute for professional care</strong>.</p><h2>Where it comes from</h2><p>Ayurveda's roots reach back to the Vedic period in the Indian subcontinent; its foundational texts &mdash; among them the <em>Charaka Samhita</em> and <em>Sushruta Samhita</em> &mdash; were compiled over two thousand years ago. It's one of the world's oldest continuously practiced wellness traditions, and today it's studied and used alongside (not instead of) modern medicine. The U.S. NIH classifies it as a whole-system traditional medicine and notes it should not replace conventional care.</p><h2>The five elements and three doshas</h2><p>A core idea in the tradition is that everything is composed of five elements (space, air, fire, water, earth), which combine into three functional principles called <a href=\"/doshas\"><em>doshas</em></a>. This is a traditional classification framework &mdash; a way of describing qualities and tendencies &mdash; <strong>not a medical diagnosis</strong>.</p><table><thead><tr><th>Dosha</th><th>Associated elements</th><th>Traditional qualities (cultural description)</th></tr></thead><tbody><tr><td>Vata</td><td>Air + space</td><td>Light, dry, mobile, cool</td></tr><tr><td>Pitta</td><td>Fire + water</td><td>Warm, sharp, intense</td></tr><tr><td>Kapha</td><td>Earth + water</td><td>Heavy, stable, moist, cool</td></tr></tbody></table><p>In the tradition, foods and spices are also described by these qualities &mdash; which is why warming spices like ginger and cardamom feature so heavily. Again: this is a descriptive framework from a cultural tradition, not a clinical tool.</p><h2>The role of food and spices</h2><p>More than almost any other tradition, Ayurveda treats the kitchen as central: how food is prepared, spiced and eaten, and when. Aromatic spices &mdash; cardamom, ginger, cinnamon, clove, turmeric &mdash; are staples, valued in the tradition for flavor and for their &ldquo;warming&rdquo; classification. See <a href=\"/ayurvedic-spices\">Ayurvedic spices, cup by cup</a> for each one, and <a href=\"/ccf-tea\">CCF tea</a> for a classic Ayurvedic tisane.</p><h2>Ayurveda today</h2><p>People engage with Ayurveda in many ways &mdash; diet, spices, daily routine, herbal preparations. It's best understood as a cultural wellness tradition to explore for interest and ritual, always alongside qualified medical care rather than in place of it. For how it connects to a warm daily cup, see our overview of <a href=\"/ayurveda\">Ayurveda and tea</a>.</p><p><em>This is general information about a cultural tradition, not medical or dietary advice. These statements have not been evaluated by the Food and Drug Administration and are not intended to diagnose, treat, cure or prevent any disease. Consult a qualified professional for health concerns.</em></p>",
+  "sources": [
+    {
+      "title": "Ayurvedic Medicine: In Depth",
+      "url": "https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth",
+      "publisher": "NIH — National Center for Complementary and Integrative Health",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Ayurveda: historical background and classical texts",
+      "url": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/ayurveda",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What does the word Ayurveda mean?",
+      "a": "It comes from two Sanskrit words: ayus, meaning life, and veda, meaning knowledge — often translated as 'the knowledge of life.'"
+    },
+    {
+      "q": "What are the three doshas?",
+      "a": "Vata, pitta and kapha — three functional principles the tradition uses to describe qualities and tendencies, built from combinations of the five elements. It's a traditional descriptive framework, not a medical diagnosis."
+    },
+    {
+      "q": "Is Ayurveda a medicine?",
+      "a": "It's a whole-system traditional wellness practice. The U.S. NIH treats it as complementary and advises it should be used alongside conventional medical care, not as a replacement. We make no medical claims about it."
+    },
+    {
+      "q": "Is Ayurveda safe?",
+      "a": "As a culinary-and-lifestyle tradition (spices, food, routine) it's part of everyday life for millions. But herbal preparations can interact with medications, and quality varies — consult a qualified professional before using Ayurvedic supplements, especially if you're pregnant, nursing or on medication."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "definition",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "A warm cup to start with",
+  "product_bridge_blurb": "New to the tradition? A spiced tea built on cardamom, ginger and Ceylon cinnamon is an easy, everyday place to begin.",
+  "related": [
+    "ayurveda",
+    "ayurvedic-spices",
+    "ccf-tea"
+  ],
+  "disclaimer": true
+}

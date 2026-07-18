@@ -1,0 +1,54 @@
+{
+  "title": "How to Brew Black Tea (The Right Temperature & Time)",
+  "h1": "How to brew black tea",
+  "meta_description": "Black tea is the forgiving one: fully boiling water (200-212°F) and a 3-5 minute steep. Here's the temperature, timing, leaf amount, and when to add milk.",
+  "image_url": "",
+  "published_at": "2026-07-14T20:00:00Z",
+  "updated_at": "2026-07-14T20:00:00Z",
+  "keywords": [
+    "how to brew black tea",
+    "black tea water temperature",
+    "how long to steep black tea",
+    "black tea brewing",
+    "how to make black tea"
+  ],
+  "body_html": "<p>Black tea is the forgiving one: <strong>use fully boiling water (200&ndash;212&deg;F / 93&ndash;100&deg;C) and steep 3&ndash;5 minutes.</strong> Unlike green tea, black tea is fully oxidized and stands up to boiling water without turning harsh. Use about 1 teaspoon of loose leaf (or one bag) per cup, and add milk after steeping if you like.</p><h2>The black tea cheat sheet</h2><table><thead><tr><th>Variable</th><th>Black tea target</th><th>Why</th></tr></thead><tbody><tr><td>Water temp</td><td>200&ndash;212&deg;F (93&ndash;100&deg;C)</td><td>Full boil fully extracts a robust, oxidized leaf</td></tr><tr><td>Steep time</td><td>3&ndash;5 minutes</td><td>Under 3 is weak; much over 5 can get tannic</td></tr><tr><td>Leaf amount</td><td>~1 tsp (2&ndash;3 g) per cup</td><td>Standard strength; add more for a bolder cup</td></tr><tr><td>Milk</td><td>After steeping</td><td>Adding milk mid-steep cools the water and weakens extraction</td></tr></tbody></table><h2>Temperature and time</h2><p>Because black tea is fully oxidized, boiling water won't scorch it the way it does green tea &mdash; you want the full heat to pull out its malty depth and color. The main thing to watch is time: steep too long and the tannins make it astringent. If your black tea is bitter, shorten the steep before you blame the leaf. Why oxidation makes black tea sturdier is covered in <a href=\"/what-is-tea-oxidation\">what is tea oxidation</a>.</p><h2>Milk, lemon, and sweetener</h2><p>Add milk <em>after</em> the tea has steeped &mdash; pouring cold milk in early drops the water temperature and weakens extraction. Lemon and black tea are a classic pair (skip lemon if you're adding milk, since acid curdles it). For chai, the rules change: the tea is simmered with milk and spices from the start.</p><h2>For chai and stronger cups</h2><p>Chai uses a robust black-tea base simmered with milk and spices rather than a simple steep &mdash; see <a href=\"/what-is-masala-chai\">what is masala chai</a> and <a href=\"/masala-chai-recipe\">our masala chai recipe</a>. For the ideal temperature of every tea type, see the <a href=\"/tea-brewing-temperature-guide\">tea brewing temperature guide</a>.</p>",
+  "sources": [
+    {
+      "title": "Black tea infusion: theaflavins, thearubigins and tannin extraction",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/camellia-sinensis",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What temperature should black tea be brewed at?",
+      "a": "Fully boiling water, 200-212°F (93-100°C). Black tea is fully oxidized and needs the full heat to extract its flavor and color — boiling water won't scorch it the way it does green tea."
+    },
+    {
+      "q": "How long should you steep black tea?",
+      "a": "3-5 minutes. Under 3 minutes is weak; much past 5 can turn tannic and astringent. If your black tea is bitter, shorten the steep."
+    },
+    {
+      "q": "When should you add milk to black tea?",
+      "a": "After the tea has steeped. Adding cold milk during the steep drops the water temperature and weakens extraction. (Chai is the exception — there the tea simmers with the milk.)"
+    },
+    {
+      "q": "Why is my black tea bitter?",
+      "a": "Usually over-steeping. Black tea handles boiling water fine, but a long steep pulls out astringent tannins. Keep it to 3-5 minutes."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "use-case",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "A black-tea blend, one stir",
+  "product_bridge_blurb": "Spice Rush is a milled black-tea chai — the robust base done for you, with spices and collagen already blended in.",
+  "related": [
+    "what-is-tea-oxidation",
+    "what-is-masala-chai",
+    "tea-brewing-temperature-guide"
+  ],
+  "disclaimer": false
+}

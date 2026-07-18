@@ -3,9 +3,9 @@
   "updated_at": "2026-05-28T08:00:00Z",
   "cluster": "collagen",
   "product_bridge": "/products/spice-rush-collagen-black-tea",
-  "title": "Does Hot Water Destroy Collagen? The Tea and Coffee Question, Answered",
+  "title": "Does Hot Water Destroy Collagen? The Tea & Coffee Answer",
   "h1": "Does Hot Water Destroy Collagen?",
-  "meta_description": "No — collagen peptides are already hydrolyzed, so brewing-temperature water dissolves them rather than destroying them. Here’s the science behind adding collagen to hot tea or coffee.",
+  "meta_description": "No — collagen peptides are already hydrolyzed, so hot water dissolves them rather than destroying them. The science of collagen in hot tea or coffee.",
   "pillar": "ingredients",
   "intent": "question",
   "product_bridge_label": "Collagen made for hot brewing",
@@ -39,5 +39,6 @@
       "url": "https://pubmed.ncbi.nlm.nih.gov/39149544/",
       "publisher": "Frontiers in Nutrition, 2024"
     }
-  ]
+  ],
+  "widget": "collagen-calculator"
 }

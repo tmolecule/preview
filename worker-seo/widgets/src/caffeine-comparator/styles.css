@@ -1,0 +1,122 @@
+/* Caffeine comparator — scoped inside the widget shadow root.
+   Brand tokens come from brand.css (injected alongside this file). */
+
+.cc-controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 22px;
+  margin: 0 0 18px;
+  align-items: end;
+}
+@media (max-width: 600px) {
+  .cc-controls { grid-template-columns: 1fr; }
+}
+
+.cc-field { display: flex; flex-direction: column; gap: 6px; }
+.cc-field-label {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+.cc-select {
+  appearance: none;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  color: var(--ink);
+  background: #fffdf6;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 9px 12px;
+  width: 100%;
+  cursor: pointer;
+}
+.cc-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+
+.cc-slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin: 0 0 6px;
+}
+.cc-slider-val { font-family: var(--sans); font-weight: 700; font-size: 1rem; color: var(--accent); }
+.cc-slider input[type='range'] { width: 100%; accent-color: var(--accent); }
+
+/* Headline result */
+.cc-result {
+  background: linear-gradient(180deg, #fffaf0 0%, var(--accent-soft) 100%);
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--accent);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 0 0 18px;
+}
+.cc-result.free { border-left-color: #2f7d4f; }
+.cc-big {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 2.1rem;
+  line-height: 1.05;
+  color: var(--ink);
+}
+.cc-big span { font-size: 1.1rem; font-weight: 600; color: var(--mute); }
+.cc-cap { font-family: var(--sans); font-size: 0.92rem; color: var(--ink-soft); margin-top: 4px; }
+.cc-daily { font-family: var(--sans); font-size: 0.86rem; color: var(--mute); margin-top: 6px; }
+
+/* Bar chart */
+.cc-bars-head {
+  font-family: var(--sans);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--mute);
+  margin: 0 0 10px;
+}
+.cc-bars { display: flex; flex-direction: column; gap: 7px; }
+.cc-bar-row {
+  display: grid;
+  grid-template-columns: 116px 1fr 34px;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 0.85rem;
+}
+.cc-bar-label { color: var(--ink-soft); }
+.cc-bar-track {
+  background: var(--rule-soft);
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+}
+.cc-bar-fill {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #c89a4e 0%, var(--accent) 100%);
+}
+.cc-bar-mg { text-align: right; font-variant-numeric: tabular-nums; color: var(--mute); }
+.cc-bar-row.active .cc-bar-label { font-weight: 700; color: var(--ink); }
+.cc-bar-row.active .cc-bar-fill { background: linear-gradient(90deg, var(--accent) 0%, #7a4f12 100%); }
+.cc-bar-row.active .cc-bar-mg { color: var(--accent); font-weight: 700; }
+
+@media (max-width: 600px) {
+  .cc-bar-row { grid-template-columns: 92px 1fr 30px; font-size: 0.8rem; }
+}
+
+/* CTA links */
+.cc-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 18px;
+  margin: 16px 0 4px;
+}
+.cc-cta-link {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-decoration: none;
+}
+.cc-cta-link:hover { text-decoration: underline; }

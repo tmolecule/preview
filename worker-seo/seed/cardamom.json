@@ -1,6 +1,6 @@
 {
   "published_at": "2026-05-28T08:00:00Z",
-  "updated_at": "2026-05-28T08:00:00Z",
+  "updated_at": "2026-07-13",
   "pillar": "ingredients",
   "disclaimer": true,
   "title": "Cardamom: Digestion, Blood Pressure, and the Queen of Spices",
@@ -8,9 +8,9 @@
   "meta_description": "Cardamom is prized for its aroma and traditional use as a digestive — and trials link it to modest blood-pressure and metabolic effects. Here’s the evidence.",
   "cluster": "chai-spices",
   "intent": "benefits",
-  "product_bridge": "/products/spice-rush-collagen-black-tea",
-  "product_bridge_label": "Aromatic by design",
-  "product_bridge_blurb": "Cardamom rounds out the warming spice blend in Spice Rush.",
+  "product_bridge": "/products/cardamom-green-tea-elixir",
+  "product_bridge_label": "Taste it",
+  "product_bridge_blurb": "Cardamom's aromatics in our Cardamom & Green Tea Elixir.",
   "related": [
     "cinnamon",
     "ginger",

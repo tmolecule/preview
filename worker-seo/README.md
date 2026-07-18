@@ -93,11 +93,94 @@ npm run kv:seed-preview
   "body_html": "<p>Trusted HTML — rendered as-is.</p>",
   "faqs": [
     { "q": "Question?", "a": "Plain-text answer." }
-  ]
+  ],
+
+  "pillar": "ingredients",
+  "cluster": "collagen",
+  "intent": "safety",
+  "related": ["collagen-for-skin", "collagen-tea-vs-collagen-powder"],
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Try Spice Rush",
+  "product_bridge_blurb": "Collagen + chai in one busy-morning cup."
 }
 ```
 
 `body_html` is **not** escaped — only put trusted HTML there. `faqs[].a` is escaped by default; pass `a_html` instead for rich answers.
+
+### Taxonomy fields (drives hubs, breadcrumbs, internal links)
+
+The Learn corpus is a 2-axis taxonomy defined in `src/taxonomy.js`.
+
+**Axis 1 — `pillar`** (one of): `ingredients`, `benefits`, `blends`, `recipes`, `living`.
+Each pillar has a hub page at `/<pillar>` listing its articles grouped by `cluster`.
+`cluster` is a free-text grouping slug (e.g. `collagen`, `chai`, `matcha`) shown as a section header on the hub.
+
+**Axis 2 — `intent`** (page template): `definition`, `comparison`, `benefits`, `mechanism`, `use-case`, `question`, `recipe`, `routine`, `safety`, `eu-status`.
+
+- `related` — slugs of sibling articles; rendered as a "Related guides" link row.
+- `product_bridge` — shop-relative or absolute URL; rendered as a "…so what do I drink?" CTA. Every page should set one.
+
+### Intent: `safety` ("Is it safe?")
+
+Add a `safety` block. One row per population group; covers the canonical audiences
+(adults, women, pregnant, breastfeeding, children, seniors) in a fixed order.
+
+```json
+"intent": "safety",
+"safety": {
+  "summary": "One-line plain answer.",
+  "populations": [
+    { "group": "adults",   "status": "safe",    "note": "…" },
+    { "group": "pregnant", "status": "consult", "note": "…" },
+    { "group": "children", "status": "caution", "note": "…" }
+  ]
+}
+```
+`status` ∈ `safe | caution | consult | avoid`.
+
+### Intent: `eu-status` ("Banned in the EU?")
+
+Add a `regulatory` block contrasting EU vs US.
+
+```json
+"intent": "eu-status",
+"regulatory": {
+  "summary": "One-line answer.",
+  "eu_status": "restricted", "eu_note": "…why the EU restricts it…",
+  "us_status": "permitted",  "us_note": "…why the US allows it…"
+}
+```
+`*_status` ∈ `permitted | restricted | banned`.
+
+**Compliance:** any page with `intent: safety`, `intent: eu-status`, or `"disclaimer": true`
+auto-renders the not-medical-advice / FDA disclaimer top **and** bottom. TMolecule
+products are ingestible foods — keep safety claims sourced and cautious; never promise
+outcomes for pregnant women, children, or any clinical population.
+
+## Citation guardrail (PubMed verification)
+
+Every wellness/ingredient/safety claim should cite a real source. Because
+LLM-drafted citations often keep a plausible title but attach a **hallucinated
+PMID that points to an unrelated paper**, citations are verified against NCBI
+E-utilities before content can ship.
+
+```bash
+npm run verify:citations
+```
+
+For each `sources[]` entry with a PubMed/PMC URL the guardrail confirms:
+1. the PMID/PMCID resolves to a real record, and
+2. the cited `title` overlaps the record's real title (≥30% of the real title's
+   keywords) — catching swapped/hallucinated IDs.
+
+- **FAIL** (blocks seeding): unresolvable ID or title mismatch.
+- **WARN**: Wikipedia used as a source (fine for history/origins, not health claims).
+- **UNVERIFIED**: non-NCBI URL (journal site, ScienceDirect) — verify by hand.
+
+`npm run kv:seed` runs this first and **aborts the push on any FAIL**, so broken
+citations can't reach production. (Preview seeding via `kv:seed-preview` is not
+gated, so local drafting isn't blocked.) Prefer `pubmed.ncbi.nlm.nih.gov/<PMID>`
+URLs so claims are machine-verifiable.
 
 ## Local development
 

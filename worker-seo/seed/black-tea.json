@@ -3,9 +3,9 @@
   "updated_at": "2026-05-28T08:00:00Z",
   "pillar": "ingredients",
   "disclaimer": true,
-  "title": "Black Tea: Caffeine, Theaflavins, L-Theanine, and What the Research Shows",
+  "title": "Black Tea: Caffeine, Theaflavins, and the Evidence",
   "h1": "Black Tea: What It Is and What the Research Shows",
-  "meta_description": "Black tea is fully oxidized Camellia sinensis — the source of caffeine, theaflavins, and L-theanine. Here’s the evidence on blood pressure, cholesterol, and calm-alert focus, plus what it can’t do.",
+  "meta_description": "Black tea is fully oxidized Camellia sinensis — caffeine, theaflavins, and L-theanine. The evidence on blood pressure, cholesterol, and focus.",
   "cluster": "tea-base",
   "intent": "definition",
   "product_bridge": "/products/spice-rush-collagen-black-tea",
@@ -24,7 +24,7 @@
     "black tea blood pressure",
     "black tea antioxidants"
   ],
-  "body_html": "<p>Black tea is <em>Camellia sinensis</em> leaf that has been fully oxidized, which gives it its dark color, bolder flavor, and signature compounds: caffeine, the polyphenols theaflavins and thearubigins, and the amino acid L-theanine.</p>\n<h2>Quick facts</h2>\n<table><tbody>\n<tr><td>Plant</td><td>Camellia sinensis — same plant as green tea, fully oxidized</td></tr>\n<tr><td>Caffeine</td><td>Roughly 40–70 mg per cup (about half of coffee)</td></tr>\n<tr><td>Key polyphenols</td><td>Theaflavins and thearubigins</td></tr>\n<tr><td>Calming amino acid</td><td>L-theanine</td></tr>\n</tbody></table>\n<h2>Heart and metabolic markers</h2>\n<p>A randomized controlled trial found regular black tea reduced blood-pressure variability, and a theaflavin-enriched tea extract trial reported a cholesterol-lowering effect. These are modest, supportive effects — black tea is not a substitute for prescribed treatment.</p>\n<h2>Calm, alert focus</h2>\n<p>Black tea pairs caffeine with L-theanine. Research on L-theanine alone and combined with caffeine reports effects on mood and attention — the combination is often described as steadier, less jittery focus than caffeine by itself.</p>\n<h2>What to keep in mind</h2>\n<p>Black tea contains caffeine (mind the total if you are pregnant or sensitive), and its tannins can reduce absorption of plant (non-heme) iron when taken with meals — drink it between meals if you are watching iron.</p>",
+  "body_html": "<p>Black tea is <em>Camellia sinensis</em> leaf that has been fully oxidized, which gives it its dark color, bolder flavor, and signature compounds: caffeine, the polyphenols theaflavins and thearubigins, and the amino acid L-theanine.</p>\n<h2>Quick facts</h2>\n<table><tbody>\n<tr><td>Plant</td><td>Camellia sinensis — same plant as green tea, fully oxidized</td></tr>\n<tr><td>Caffeine</td><td>Roughly 40–70 mg per cup (about half of coffee)</td></tr>\n<tr><td>Key polyphenols</td><td>Theaflavins and thearubigins</td></tr>\n<tr><td>Calming amino acid</td><td>L-theanine</td></tr>\n</tbody></table>\n<h2>Heart and metabolic markers</h2>\n<p>A randomized controlled trial found regular black tea reduced blood-pressure variability, and a theaflavin-enriched tea extract trial reported lower cholesterol measurements versus placebo. These are modest, supportive effects — black tea is not a substitute for prescribed treatment.</p>\n<h2>Calm, alert focus</h2>\n<p>Black tea pairs caffeine with L-theanine. Research on L-theanine alone and combined with caffeine reports effects on mood and attention — the combination is often described as steadier, less jittery focus than caffeine by itself.</p>\n<h2>What to keep in mind</h2>\n<p>Black tea contains caffeine (mind the total if you are pregnant or sensitive), and its tannins can reduce absorption of plant (non-heme) iron when taken with meals — drink it between meals if you are watching iron.</p>",
   "faqs": [
     {
       "q": "How much caffeine is in black tea?",
@@ -32,7 +32,7 @@
     },
     {
       "q": "Is black tea good for you?",
-      "a": "Trials report modest benefits for blood-pressure variability and cholesterol, plus calm-alert focus from caffeine paired with L-theanine. It is supportive, not a treatment."
+      "a": "Trials have studied black tea’s effect on blood-pressure variability and cholesterol and report modest, study-specific results, plus calm-alert focus from caffeine paired with L-theanine. It is supportive, not a treatment."
     },
     {
       "q": "Does black tea affect iron?",

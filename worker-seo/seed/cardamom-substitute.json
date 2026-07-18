@@ -9,8 +9,8 @@
   "cluster": "chai-spices",
   "intent": "use-case",
   "product_bridge": "/products/spice-rush-collagen-black-tea",
-  "product_bridge_label": "No substitutes needed",
-  "product_bridge_blurb": "Spice Rush blends real cardamom, ginger, and Ceylon cinnamon.",
+  "product_bridge_label": "Shop Spice Rush",
+  "product_bridge_blurb": "Taste real cardamom — milled into our chai, or as a single-drop green tea elixir.",
   "related": [
     "what-is-cardamom",
     "cardamom-and-green-tea"
@@ -42,5 +42,7 @@
       "a": "There's no exact single match. Its ginger-family relative ginger is the closest single note, but a cinnamon-clove or cinnamon-ginger blend beats any solo spice. ---"
     }
   ],
-  "sources": []
+  "sources": [],
+  "product_bridge_2": "/products/cardamom-green-tea-elixir",
+  "product_bridge_2_label": "Try the Elixir"
 }

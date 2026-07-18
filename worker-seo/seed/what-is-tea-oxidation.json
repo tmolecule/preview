@@ -1,0 +1,54 @@
+{
+  "title": "What Is Tea Oxidation? Why Green, Oolong & Black Tea Differ",
+  "h1": "What is tea oxidation?",
+  "meta_description": "Tea oxidation is the browning reaction that turns one plant into green, oolong, or black tea. Here's what it is, how it's controlled, and why it changes flavor and color.",
+  "image_url": "",
+  "published_at": "2026-07-14T18:00:00Z",
+  "updated_at": "2026-07-14T18:00:00Z",
+  "keywords": [
+    "what is tea oxidation",
+    "tea oxidation",
+    "oxidation vs fermentation tea",
+    "how is black tea made",
+    "why is green tea green"
+  ],
+  "body_html": "<p>Tea oxidation is the <strong>enzymatic browning that happens when tea leaves are bruised and exposed to air</strong> &mdash; the same reaction that turns a cut apple brown. How far a leaf is allowed to oxidize is what turns one plant into green, oolong, or black tea. All true teas come from the same species, <em>Camellia sinensis</em>; oxidation is the main thing that makes them taste and look so different.</p><h2>Oxidation by tea type</h2><table><thead><tr><th>Tea</th><th>Oxidation</th><th>How it's controlled</th><th>Flavor</th><th>Liquor color</th></tr></thead><tbody><tr><td>Green</td><td>Minimal (~0%)</td><td>Heated fast (steamed or pan-fired) to stop it</td><td>Fresh, grassy, vegetal</td><td>Pale green-yellow</td></tr><tr><td>White</td><td>Very light</td><td>Simply withered and dried</td><td>Delicate, subtle</td><td>Very pale</td></tr><tr><td>Oolong</td><td>Partial (~10&ndash;80%)</td><td>Halted part-way</td><td>Floral to toasty, wide range</td><td>Gold to amber</td></tr><tr><td>Black</td><td>Full (~100%)</td><td>Allowed to fully oxidize</td><td>Malty, robust, brisk</td><td>Deep amber-red</td></tr></tbody></table><h2>How oxidation is controlled</h2><p>After picking, leaves are withered to soften, then rolled or bruised to break cell walls and expose enzymes to oxygen. The maker decides how long to let this run. To <em>stop</em> oxidation, the leaf is heated &mdash; steaming or pan-firing for green tea, a final drying for black. That single choice of when to apply heat is what sets the tea's category.</p><h2>Why it matters for flavor and caffeine</h2><p>As a leaf oxidizes, its fresh catechins convert into larger compounds (theaflavins and thearubigins) that give black tea its color, body, and malty taste. Less-oxidized teas keep more of the original catechins and a fresher flavor. Caffeine is fairly stable through oxidation, so a strong black and a delicate green can be closer in caffeine than their taste suggests &mdash; see <a href=\"/green-tea-vs-black-tea\">green tea vs black tea</a>.</p><h2>Oxidation is not &ldquo;fermentation&rdquo;</h2><p>Tea is often loosely called &ldquo;fermented,&rdquo; but standard oxidation involves no microbes &mdash; it's an enzyme-and-oxygen reaction. True microbial fermentation only applies to aged teas like pu-erh. For where specific teas sit on the scale, see <a href=\"/black-tea\">black tea</a> and <a href=\"/oolong-tea-benefits\">oolong</a>.</p>",
+  "sources": [
+    {
+      "title": "Enzymatic oxidation in tea processing: catechins to theaflavins",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/camellia-sinensis",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is tea oxidation in simple terms?",
+      "a": "It's the browning reaction that happens when bruised tea leaves meet air — like a cut apple turning brown. How far a leaf oxidizes decides whether it becomes green, oolong, or black tea."
+    },
+    {
+      "q": "Is oxidation the same as fermentation?",
+      "a": "No. Standard tea oxidation is an enzyme-and-oxygen reaction with no microbes involved. True microbial fermentation only applies to aged teas like pu-erh, though 'fermented' is often used loosely for tea."
+    },
+    {
+      "q": "Why is green tea green and black tea dark?",
+      "a": "Green tea is heated quickly after picking to stop oxidation, so it keeps its fresh green color. Black tea is left to fully oxidize, which converts its compounds into darker theaflavins and thearubigins."
+    },
+    {
+      "q": "Do green and black tea come from different plants?",
+      "a": "No — both come from Camellia sinensis. The difference is how much the leaves are oxidized during processing, not the plant they come from."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "definition",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore the blends",
+  "product_bridge_blurb": "From a green-tea Elixir to a black-tea collagen chai — see how oxidation shapes each of our blends.",
+  "related": [
+    "green-tea-vs-black-tea",
+    "black-tea",
+    "oolong-tea-benefits"
+  ],
+  "disclaimer": false
+}

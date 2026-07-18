@@ -1,0 +1,60 @@
+{
+  "title": "Ceylon vs Cassia Cinnamon: What's the Difference?",
+  "h1": "Ceylon vs cassia cinnamon: what's the difference?",
+  "meta_description": "Ceylon ('true' cinnamon) is lighter, sweeter, and lower in coumarin; cassia is bolder and the common supermarket type. Here's how they differ in flavor, look, and coumarin.",
+  "image_url": "",
+  "published_at": "2026-07-14T14:00:00Z",
+  "updated_at": "2026-07-14T14:00:00Z",
+  "keywords": [
+    "ceylon vs cassia cinnamon",
+    "difference between ceylon and cassia cinnamon",
+    "true cinnamon vs cassia",
+    "which cinnamon is better",
+    "ceylon cinnamon coumarin"
+  ],
+  "body_html": "<p>Ceylon and cassia are two different cinnamons. <strong>Ceylon (&ldquo;true&rdquo; cinnamon) is lighter, sweeter, and much lower in a compound called coumarin; cassia is bolder, cheaper, and the type sold as generic supermarket cinnamon.</strong> They look and taste different, and the coumarin gap is why some people specifically seek out Ceylon.</p><h2>Side-by-side comparison</h2><table><thead><tr><th>Property</th><th>Ceylon (&ldquo;true&rdquo; cinnamon)</th><th>Cassia</th></tr></thead><tbody><tr><td>Plant</td><td><em>Cinnamomum verum</em></td><td><em>Cinnamomum cassia</em> and relatives</td></tr><tr><td>Origin</td><td>Sri Lanka, parts of India</td><td>China, Indonesia, Vietnam</td></tr><tr><td>Quill look</td><td>Thin, papery, many soft layers</td><td>Thick, hard, single curled layer</td></tr><tr><td>Color</td><td>Light tan</td><td>Reddish dark brown</td></tr><tr><td>Flavor</td><td>Delicate, sweet, citrusy</td><td>Strong, spicy, bold</td></tr><tr><td>Coumarin content</td><td>Very low</td><td>Substantially higher</td></tr><tr><td>Price</td><td>Higher</td><td>Lower (the common type)</td></tr></tbody></table><h2>The coumarin difference</h2><p>The main reason people distinguish the two is coumarin, a naturally occurring compound found in much higher amounts in cassia than in Ceylon. European food-safety authorities (EFSA) have set a tolerable daily intake for coumarin, and regulators have flagged cassia-heavy products in that context. This is a description of published food-safety research and regulatory guidance &mdash; not medical advice, and not a claim about any product. For the fuller story, see <a href=\"/is-cinnamon-banned-in-the-eu\">is cinnamon banned in the EU</a>.</p><h2>Which tastes better?</h2><p>It depends on the dish. Ceylon's delicate, citrus-sweet flavor suits teas, delicate bakes, and anything where cinnamon shouldn't dominate. Cassia's bold, hot-spicy punch stands up in cinnamon rolls, mulled drinks, and robust braises. Neither is &ldquo;wrong&rdquo; &mdash; they're tools for different jobs. For more on the spice generally, see <a href=\"/cinnamon\">cinnamon</a> and how it behaves next to cardamom in <a href=\"/cardamom-vs-cinnamon\">cardamom vs cinnamon</a>.</p><h2>Which cinnamon we use</h2><p>Our Spice Rush blend uses <strong>Ceylon cinnamon</strong> &mdash; the lighter, sweeter, low-coumarin type &mdash; for its delicate flavor in a daily cup.</p>",
+  "sources": [
+    {
+      "title": "Coumarin in cinnamon: EFSA tolerable daily intake and cassia vs Ceylon",
+      "url": "https://www.efsa.europa.eu/en/efsajournal/pub/793",
+      "publisher": "EFSA (European Food Safety Authority)",
+      "type": "ScholarlyArticle"
+    },
+    {
+      "title": "Cinnamomum verum vs Cinnamomum cassia: botanical and chemical distinction",
+      "url": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/cinnamomum",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is Ceylon cinnamon better than cassia?",
+      "a": "It depends on what you mean. Ceylon is milder, sweeter, and much lower in coumarin, which is why some people prefer it for daily use. Cassia is bolder and cheaper. For flavor, it comes down to the dish."
+    },
+    {
+      "q": "What is coumarin and why does it matter?",
+      "a": "Coumarin is a natural compound found in much higher amounts in cassia than in Ceylon cinnamon. European food-safety authorities have set a tolerable daily intake for it. This is food-safety research, not medical advice."
+    },
+    {
+      "q": "How can I tell Ceylon from cassia?",
+      "a": "Look at the stick: Ceylon quills are thin, papery, and layered like a cigar; cassia is a single thick, hard, dark curl. Ground, Ceylon is lighter tan and cassia is reddish-brown."
+    },
+    {
+      "q": "Which cinnamon is in most supermarkets?",
+      "a": "Usually cassia. Unless a label specifically says 'Ceylon' or 'true cinnamon,' generic supermarket cinnamon is almost always cassia."
+    }
+  ],
+  "pillar": "ingredients",
+  "cluster": "chai-spices",
+  "intent": "comparison",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Made with Ceylon cinnamon",
+  "product_bridge_blurb": "Spice Rush uses Ceylon cinnamon — the lighter, sweeter, low-coumarin type — in a milled collagen chai.",
+  "related": [
+    "cinnamon",
+    "is-cinnamon-banned-in-the-eu",
+    "cardamom-vs-cinnamon"
+  ],
+  "disclaimer": true
+}

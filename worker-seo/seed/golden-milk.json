@@ -1,0 +1,60 @@
+{
+  "title": "Golden Milk (Haldi Doodh): What It Is & How to Make It",
+  "h1": "Golden milk (haldi doodh)",
+  "meta_description": "Golden milk — haldi doodh — is a traditional Ayurvedic drink of turmeric simmered in warm milk with black pepper and warming spices. What it is, why the pepper, and a simple recipe.",
+  "image_url": "",
+  "published_at": "2026-07-15T18:00:00Z",
+  "updated_at": "2026-07-15T18:00:00Z",
+  "keywords": [
+    "golden milk",
+    "haldi doodh",
+    "turmeric latte",
+    "how to make golden milk",
+    "turmeric milk recipe"
+  ],
+  "body_html": "<p><strong>Golden milk &mdash; haldi doodh &mdash; is a traditional Ayurvedic drink of turmeric simmered in warm milk</strong>, usually with a pinch of black pepper and warming spices like cardamom, ginger or cinnamon. It's caffeine-free, warming and earthy-sweet, with a vivid golden color. Here's what it is and how to make it &mdash; a traditional recipe, not medical advice.</p><h2>What goes in it</h2><table><thead><tr><th>Ingredient</th><th>Role &amp; flavor</th></tr></thead><tbody><tr><td>Turmeric</td><td>The base &mdash; earthy, bitter-warm, and the golden color</td></tr><tr><td>Milk (dairy or plant)</td><td>The body; carries the spices and mellows the turmeric</td></tr><tr><td>Black pepper</td><td>A pinch &mdash; sharpens flavor (see below on why it's traditional)</td></tr><tr><td>Cardamom / ginger / cinnamon</td><td>Warming aromatics that round out the cup</td></tr><tr><td>Honey or maple (optional)</td><td>A little sweetness, added after simmering</td></tr></tbody></table><h2>Why the black pepper?</h2><p>Golden milk almost always includes a pinch of black pepper, and there's a reason rooted in both tradition and research: turmeric's main compound, curcumin, is poorly absorbed on its own, and piperine (from black pepper) has been studied for its effect on curcumin absorption. That's a description of published research on the compounds, not a health claim about what the drink will do for you. For the spice itself, see <a href=\"/turmeric\">turmeric</a>.</p><h2>How to make golden milk</h2><ol><li id=\"step-1\"><strong>Warm the milk.</strong> Gently heat 1 cup of milk (dairy or oat) in a small saucepan &mdash; don't boil.</li><li id=\"step-2\"><strong>Add the spices.</strong> Whisk in &frac12; tsp ground turmeric, a pinch of black pepper, and a pinch of ground cardamom, ginger or cinnamon.</li><li id=\"step-3\"><strong>Simmer.</strong> Keep it at a low simmer for 3&ndash;5 minutes, whisking, so the spices bloom.</li><li id=\"step-4\"><strong>Sweeten &amp; serve.</strong> Take off the heat, add honey or maple to taste, and pour. A little froth is traditional.</li></ol><h2>What it tastes like</h2><p>Earthy and warming, with the turmeric mellowed by the milk and lifted by the aromatic spices &mdash; comforting rather than bold. It's caffeine-free, which makes it a natural evening cup. For the warming spices it shares with chai, see <a href=\"/ayurvedic-spices\">Ayurvedic spices, cup by cup</a>, and for the wider tradition, <a href=\"/ayurveda\">Ayurveda and tea</a>.</p><p><em>This is a traditional culinary recipe and general information, not medical or dietary advice. Statements about turmeric and piperine describe published research, not outcomes. These statements have not been evaluated by the Food and Drug Administration and are not intended to diagnose, treat, cure or prevent any disease.</em></p>",
+  "sources": [
+    {
+      "title": "Curcumin and piperine: bioavailability research",
+      "url": "https://www.sciencedirect.com/topics/biochemistry-genetics-and-molecular-biology/curcumin",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Turmeric (Curcuma longa) in traditional and culinary use",
+      "url": "https://www.nccih.nih.gov/health/turmeric",
+      "publisher": "NIH — National Center for Complementary and Integrative Health",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is golden milk?",
+      "a": "A traditional Ayurvedic drink of turmeric simmered in warm milk, usually with black pepper and warming spices like cardamom or ginger. It's caffeine-free, warming and earthy-sweet. Also called haldi doodh or a turmeric latte."
+    },
+    {
+      "q": "Why do you put black pepper in golden milk?",
+      "a": "Turmeric's main compound, curcumin, is poorly absorbed alone, and piperine from black pepper has been studied for its effect on curcumin absorption. It's a traditional pairing that research has also looked at — a description of the science, not a health claim."
+    },
+    {
+      "q": "How do you make golden milk?",
+      "a": "Gently warm a cup of milk, whisk in about ½ tsp turmeric, a pinch of black pepper and a warming spice, simmer 3–5 minutes, then sweeten to taste. Don't boil."
+    },
+    {
+      "q": "Does golden milk have caffeine?",
+      "a": "No. It's made from turmeric, milk and spices — no tea or coffee — so it's naturally caffeine-free and suits the evening."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "definition",
+  "product_bridge": "/products/cardamom-green-tea-elixir",
+  "product_bridge_label": "A cardamom lift",
+  "product_bridge_blurb": "A drop of our Cardamom & Green Tea Elixir adds a real cardamom note to golden milk — no pods to crush.",
+  "related": [
+    "turmeric",
+    "ayurvedic-spices",
+    "ayurveda"
+  ],
+  "disclaimer": true
+}
