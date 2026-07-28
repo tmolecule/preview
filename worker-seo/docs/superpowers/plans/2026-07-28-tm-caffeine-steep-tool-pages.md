@@ -243,7 +243,7 @@ git commit -m "feat(learn): green-tea-caffeine head-term page (9.9k)"
 - Create: `seed/matcha-to-water-ratio.json`
 
 **Interfaces:**
-- Consumes: `brew-guide` widget (Task 2); Appendix A steep table.
+- Consumes: `steep-guide` widget (Task 2R); Appendix A steep table (verified rows).
 - Produces: KV slug `matcha-to-water-ratio`.
 
 - [ ] **Step 1: Write the seed** with:
@@ -251,9 +251,10 @@ git commit -m "feat(learn): green-tea-caffeine head-term page (9.9k)"
   - `h1`: `The right matcha-to-water ratio`
   - `meta_description`: `Use 1 tsp (2 g) matcha to 2 oz (60 ml) water for thin (usucha), or 4 g to 1 oz for thick (koicha). Latte and troubleshooting ratios inside.`
   - `keywords`: `["matcha to water ratio","how much water for matcha","matcha ratio","matcha powder to water","matcha latte ratio"]`
-  - `widget`: `"brew-guide"`; `product_bridge` + labels; `intent`: `"how-to"`, `cluster`: `"matcha"`, `pillar`: `"blends"`
+  - `widget`: `"steep-guide"`; `product_bridge` + labels; `intent`: `"how-to"`, `cluster`: `"matcha"`, `pillar`: `"blends"`
   - `related`: `["what-is-matcha","matcha-caffeine","green-tea-steeping-time","tea-brewing-temperature-guide"]`
-  - `body_html` answer-first (verbatim): `For a standard bowl of thin matcha (usucha), use <strong>1 teaspoon (2 g) of matcha to about 2 oz (60 ml) of water at ~175 °F</strong>. For thick matcha (koicha), use 4 g to about 1 oz (30 ml). For a latte, whisk 2 g into 2 oz water, then add 6 oz of milk.` H2s: usucha vs koicha vs latte `<table>` (SSR fallback from Appendix A), water temperature (link `tea-brewing-temperature-guide`), grams-vs-teaspoons conversion, troubleshooting (clumpy/bitter/weak), disclaimer.
+  - `body_html` answer-first (verbatim): `For a standard bowl of thin matcha (usucha), use <strong>1 teaspoon (2 g) of matcha to about 2 oz (60 ml) of water at 176 °F (80 °C)</strong>, whisked about 15 seconds. For thick matcha (koicha), use 4 g to about 1 oz (30 ml). For a latte, whisk 2 g into 2 oz water, then add 6 oz of milk.` H2s: usucha vs koicha vs latte `<table>` (SSR fallback, verified Appendix A figures), water temperature (link `tea-brewing-temperature-guide`), grams-vs-teaspoons conversion, troubleshooting (clumpy/bitter/weak), disclaimer.
+  - Figures MUST come from the verified Appendix A rows / `widgets/src/steep-guide/model.js`: usucha 176 °F, whisk 15 s, 2 g / 2 oz; koicha 176 °F, mix 15 s, 4 g / 1 oz. Cite Ippodo's usucha and koicha specs in `sources[]`.
   - `sources`: Japanese-tea authority brewing spec (e.g. `https://ippodotea.com/pages/how-to-prepare-matcha`); Healthline matcha prep `https://www.healthline.com/nutrition/what-is-matcha`.
   - `faqs`: how much matcha per cup; matcha to water ratio in grams; matcha latte ratio; why is my matcha bitter (too hot / too much powder); can I use a scale instead of a spoon. (5 Q&As.)
 
@@ -273,17 +274,18 @@ git commit -m "feat(learn): matcha-to-water-ratio how-to page (1.6k, brew-guide 
 - Create: `seed/green-tea-steeping-time.json`
 
 **Interfaces:**
-- Consumes: `brew-guide` widget; Appendix A.
+- Consumes: `steep-guide` widget (Task 2R); Appendix A (verified rows).
 - Produces: KV slug `green-tea-steeping-time`.
 
 - [ ] **Step 1: Write the seed** with:
   - `title`: `Green Tea Steeping Time & Temperature (Without the Bitterness)`
   - `h1`: `How long to steep green tea`
-  - `meta_description`: `Steep green tea 1–3 minutes at 160–180 °F (70–82 °C). Longer or hotter turns it bitter. Times by green-tea type, plus a brew calculator.`
+  - `meta_description`: `Japanese tea guidance steeps green tea about 1 minute at 165–185 °F (74–85 °C); Western guidance says 3–4. Times by type, plus a steep calculator.`
   - `keywords`: `["green tea steeping time","how long to steep green tea","green tea steep temperature","green tea brewing time","how to brew green tea"]`
-  - `widget`: `"brew-guide"`; `product_bridge` + labels; `intent`: `"how-to"`, `cluster`: `"green-tea"`, `pillar`: `"blends"`
+  - `widget`: `"steep-guide"`; `product_bridge` + labels; `intent`: `"how-to"`, `cluster`: `"green-tea"`, `pillar`: `"blends"`
   - `related`: `["how-to-brew-green-tea","tea-brewing-temperature-guide","matcha-to-water-ratio","green-tea-caffeine"]`
-  - `body_html` answer-first (verbatim): `Steep green tea for <strong>1 to 3 minutes at 160–180 °F (70–82 °C)</strong>, using about 1 teaspoon (2 g) of leaf per 8 oz cup. Water hotter than ~185 °F or steeping past 3 minutes pulls out bitter tannins.` H2s: time by green-tea type (sencha/gyokuro/genmaicha) `<table>`, temperature `<table>` (Appendix A, SSR fallback), multiple infusions, does longer steeping add caffeine (link `green-tea-caffeine`), disclaimer.
+  - `body_html` answer-first (verbatim): `Steep green tea at <strong>165–185 °F (74–85 °C)</strong>, using about 1 teaspoon (2 g) of leaf per 8 oz cup. Japanese tea guidance calls for a brief steep of about <strong>1 minute</strong>; general Western guidance suggests 3–4 minutes. Hotter water or a longer steep pulls out more bitterness.` H2s: the two conventions and why they differ (attribute BOTH — Tea Association of the USA / Ippodo for the short steep, Healthline for 3–4 min), time by green-tea type (sencha/gyokuro/genmaicha) `<table>`, temperature `<table>` (verified Appendix A, SSR fallback), multiple infusions, does longer steeping add caffeine (link `green-tea-caffeine`), disclaimer.
+  - **Do NOT collapse the variance to one number.** Both conventions are real and sourced; presenting both with attribution is the deliberate differentiator versus competitors who publish a single unsourced figure. Every numeral must have a `sources[]` entry that actually states it.
   - `sources`: Tea Association of the USA brewing guidance (`https://www.teausa.org/`); Healthline how to brew green tea (`https://www.healthline.com/nutrition/how-to-brew-green-tea`).
   - `faqs`: how long to steep green tea; what temperature for green tea; can you over-steep green tea; how many times can you steep green tea; why is my green tea bitter. (5 Q&As.)
 
