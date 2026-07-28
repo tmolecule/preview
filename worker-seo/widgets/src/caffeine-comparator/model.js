@@ -9,13 +9,21 @@
  * tea/coffee caffeine measurements (USDA, Mayo Clinic, commercial-tea infusion
  * studies). Brewing strength, leaf grade and steep time all move the real number,
  * so every drink carries a typical LOW–HIGH range, not a single figure.
+ *
+ * Green tea (2026-07-28 reconciliation): low/high corrected to 30–50 mg (avg
+ * unchanged at 35) to match the cited Healthline figure ("between 30 and 50
+ * milligrams... around 35 mg", https://www.healthline.com/nutrition/caffeine-in-green-tea,
+ * verified 200 + content-checked). The prior 25–45 mg range had no source that
+ * actually stated it after the bogus fdc.nal.usda.gov search-page citation was
+ * removed; this value must stay identical across every seed/*.json page, this
+ * widget, and the caffeine-comparator noscript fallback in src/template.js.
  */
 
 export const DRINKS = [
   { key: 'rooibos',  label: 'Rooibos / herbal',  low: 0,  high: 0,   avg: 0,  trueTea: false, free: true },
   { key: 'decaf',    label: 'Decaf coffee',       low: 2,  high: 5,   avg: 3,  trueTea: false },
   { key: 'white',    label: 'White tea',          low: 15, high: 30,  avg: 25, trueTea: true },
-  { key: 'green',    label: 'Green tea',          low: 25, high: 45,  avg: 35, trueTea: true },
+  { key: 'green',    label: 'Green tea',          low: 30, high: 50,  avg: 35, trueTea: true },
   { key: 'oolong',   label: 'Oolong tea',         low: 30, high: 50,  avg: 40, trueTea: true },
   { key: 'black',    label: 'Black tea',          low: 40, high: 70,  avg: 50, trueTea: true },
   { key: 'puerh',    label: 'Pu-erh tea',         low: 30, high: 70,  avg: 60, trueTea: true },

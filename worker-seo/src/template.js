@@ -889,7 +889,7 @@ export function renderCaffeineComparator(origin, env, mount = '') {
           <ul>
             <li>Rooibos / herbal: <strong>0 mg</strong> (naturally caffeine-free)</li>
             <li>White tea: ~15&ndash;30 mg</li>
-            <li>Green tea: ~25&ndash;45 mg</li>
+            <li>Green tea: ~30&ndash;50 mg</li>
             <li>Oolong tea: ~30&ndash;50 mg</li>
             <li>Black tea: ~40&ndash;70 mg</li>
             <li>Pu-erh: ~30&ndash;70 mg</li>
