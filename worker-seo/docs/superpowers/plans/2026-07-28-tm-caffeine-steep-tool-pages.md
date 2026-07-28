@@ -140,7 +140,7 @@ Create `seed/matcha-caffeine.json` mirroring the field set of `seed/matcha-vs-gr
 
 - `title`: `How Much Caffeine Is in Matcha? (Per Tsp, Gram & Latte)`
 - `h1`: `How much caffeine is in matcha?`
-- `meta_description`: unique, ≤155 chars, e.g. `A standard 1 tsp (2 g) serving of matcha has about 60–70 mg of caffeine. See matcha vs coffee, green tea, and latte amounts — with a calculator.`
+- `meta_description`: unique, ≤155 chars, e.g. `A standard 1 tsp (2 g) serving of matcha has about 65–70 mg of caffeine. See matcha vs coffee, green tea, and latte amounts — with a calculator.` (must use the Appendix A typical value, not a hybrid)
 - `keywords`: `["how much caffeine in matcha","matcha caffeine","matcha vs coffee caffeine","matcha latte caffeine","caffeine in matcha per gram","is matcha high in caffeine"]`
 - `widget`: `"caffeine-comparator"`
 - `product_bridge`: `"/products/spice-rush-collagen-black-tea"`, `product_bridge_label`: `"Shop Spice Rush Black Tea"`, `product_bridge_blurb`: `"Want steady tea energy without a matcha whisk? Spice Rush is a caffeinated black-tea blend."`
