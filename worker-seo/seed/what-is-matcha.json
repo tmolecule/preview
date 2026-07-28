@@ -11,7 +11,7 @@
     "matcha vs green tea",
     "ceremonial matcha"
   ],
-  "body_html": "<p>Matcha is a stone-ground powder made from shade-grown Japanese green tea leaves. Unlike steeped tea, you whisk the entire leaf into water and drink it &mdash; meaning every cup delivers the full nutritional profile of the plant.</p><h2>How matcha is made</h2><p>Three to four weeks before harvest, tea farmers cover the tea bushes with shade cloth. The lack of sunlight forces the plant to produce more chlorophyll and L-theanine, giving matcha its bright green color and characteristic umami sweetness.</p><p>After harvest, leaves are steamed to halt oxidation, dried, de-stemmed, and stone-ground into a powder so fine it floats on water.</p><h2>Matcha grades</h2><ul><li><strong>Ceremonial grade</strong> &mdash; first-harvest leaves, brightest color, most delicate flavor. Whisk with water only.</li><li><strong>Premium grade</strong> &mdash; second harvest, slightly more astringent. Daily-drinking matcha.</li><li><strong>Culinary grade</strong> &mdash; later harvest, stronger flavor, holds up in lattes and baking.</li></ul><h2>How to brew matcha</h2><ol><li>Sift 1&ndash;2 grams (about &frac12; tsp) of matcha into a warm bowl.</li><li>Add 60ml of water heated to 70&deg;C / 160&deg;F.</li><li>Whisk in a rapid W or M motion until a fine foam forms (~15 seconds).</li><li>Drink immediately &mdash; matcha settles fast.</li></ol><h2>Matcha vs. regular green tea</h2><p>Regular green tea is steeped and discarded. Matcha is consumed in full, so the caffeine, L-theanine, and antioxidant content per cup is roughly 3&ndash;4&times; higher. The L-theanine balances the caffeine, producing the calm-alert state matcha is known for.</p><aside class=\"trad-sci\"><div class=\"trad-sci__trad\"><h4>Zen tradition</h4><p>The Zen monk Eisai brought tea seeds to Japan in 1191 and three decades later wrote <em>Kissa Y&#333;j&#333;ki</em> (\"Drink Tea, Prolong Life,\" 1211 CE), the first Japanese treatise on tea as medicine. Matcha was used in monasteries to sustain the alert calm needed for long meditation &mdash; the same state <em>zazen</em> trains for, brought into the cup.</p></div><div class=\"trad-sci__sci\"><h4>What the science measures</h4><p>A <a href=\"https://pubmed.ncbi.nlm.nih.gov/18641209/\" rel=\"noopener\" target=\"_blank\">2008 study (Kelly et al., J Nutrition)</a> recorded EEG alpha-band activity (8&ndash;14 Hz, the brain rhythm of relaxed attention) in subjects given L-theanine + caffeine versus either alone. The combination produced a distinctive alpha-band signature linked to focused, calm cognition &mdash; the same oscillation pattern seen in experienced meditators.</p></div></aside>",
+  "body_html": "<p>Matcha is a stone-ground powder made from shade-grown Japanese green tea leaves. Unlike steeped tea, you whisk the entire leaf into water and drink it &mdash; meaning every cup delivers the full nutritional profile of the plant.</p><h2>How matcha is made</h2><p>Three to four weeks before harvest, tea farmers cover the tea bushes with shade cloth. The lack of sunlight forces the plant to produce more chlorophyll and L-theanine, giving matcha its bright green color and characteristic umami sweetness.</p><p>After harvest, leaves are steamed to halt oxidation, dried, de-stemmed, and stone-ground into a powder so fine it floats on water.</p><h2>Matcha grades</h2><ul><li><strong>Ceremonial grade</strong> &mdash; first-harvest leaves, brightest color, most delicate flavor. Whisk with water only.</li><li><strong>Premium grade</strong> &mdash; second harvest, slightly more astringent. Daily-drinking matcha.</li><li><strong>Culinary grade</strong> &mdash; later harvest, stronger flavor, holds up in lattes and baking.</li></ul><h2>How to brew matcha</h2><ol><li>Sift 1&ndash;2 grams (about &frac12; tsp) of matcha into a warm bowl.</li><li>Add 60ml of water heated to 70&deg;C / 160&deg;F.</li><li>Whisk in a rapid W or M motion until a fine foam forms (~15 seconds).</li><li>Drink immediately &mdash; matcha settles fast.</li></ol><h2>Matcha vs. regular green tea</h2><p>Regular green tea is steeped and discarded. Matcha is consumed in full, so the caffeine, L-theanine, and antioxidant content per cup is roughly 3&ndash;4&times; higher. Published research has looked at how L-theanine and caffeine interact in combination &mdash; see &quot;What the science measures&quot; below for what that research actually recorded.</p><aside class=\"trad-sci\"><div class=\"trad-sci__trad\"><h4>Zen tradition</h4><p>The Zen monk Eisai brought tea seeds to Japan in 1191 and, 23 years later, wrote <em>Kissa Y&#333;j&#333;ki</em> (\"Drink Tea, Prolong Life,\" 1214 CE), the first Japanese treatise on tea as medicine. Zen monasteries used matcha to sustain the alert calm needed for long meditation &mdash; the same state <em>zazen</em> trains for, brought into the cup.</p></div><div class=\"trad-sci__sci\"><h4>What the science measures</h4><p>A <a href=\"https://pubmed.ncbi.nlm.nih.gov/18641209/\" rel=\"noopener\" target=\"_blank\">2008 study (Kelly et al., J Nutrition)</a> recorded EEG alpha-band activity (8&ndash;14 Hz, the brain rhythm of relaxed attention) in subjects given L-theanine + caffeine versus either alone. The combination produced a distinctive alpha-band signature linked to focused, calm cognition &mdash; the same oscillation pattern seen in experienced meditators.</p></div></aside><p>This describes published research and general information, not medical or dietary advice.</p>",
   "sources": [
     {
       "title": "L-theanine and caffeine in combination affect human cognition as evidenced by oscillatory alpha-band activity and attention task performance (Kelly et al., 2008)",
@@ -24,19 +24,24 @@
       "publisher": "Asia Pacific Journal of Clinical Nutrition"
     },
     {
-      "title": "Eisai (Myōan Eisai, 1141–1215) — author of Kissa Yōjōki (喫茶養生記, \"Drink Tea, Prolong Life,\" 1211), Japan's first treatise on tea as medicine",
-      "url": "https://en.wikipedia.org/wiki/Eisai",
-      "publisher": "Wikipedia (reference) / primary work c. 1211 CE"
+      "title": "Eisai (Zen Buddhism founder, 1141–1215) — returned from China in 1191 with tea seeds and composed the Kissa Yōjōki (Drink Tea to Improve Health and Prolong Life) in 1214",
+      "url": "https://www.encyclopedia.com/people/philosophy-and-religion/buddhism-biographies/eisai",
+      "publisher": "Encyclopedia.com"
+    },
+    {
+      "title": "Spilling the Beans: How Much Caffeine Is Too Much?",
+      "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much",
+      "publisher": "U.S. Food and Drug Administration"
     }
   ],
   "faqs": [
     {
       "q": "Is matcha better than coffee?",
-      "a": "Matcha contains about a third the caffeine of coffee, but pairs it with L-theanine, an amino acid that smooths the caffeine curve. Most drinkers report sustained focus without the crash."
+      "a": "Matcha (1 tsp / 2 g) has less caffeine than coffee — roughly 65–70 mg versus about 95 mg in an 8 oz brewed cup (see our <a href=\"/matcha-caffeine\">matcha caffeine breakdown</a>). It also carries a meaningfully higher dose of L-theanine, an amino acid concentrated in tea, than most drinks. A 2008 study (Kelly et al., Journal of Nutrition, PMID 18641209) found that L-theanine combined with caffeine was associated with changes in EEG alpha-band brain activity and attention-task performance compared with either alone — a description of what that research measured, not a promise about how any individual cup will feel."
     },
     {
       "q": "How much matcha can I drink per day?",
-      "a": "Up to 2 servings (2–4g) per day is widely considered safe for most adults. Higher amounts can deliver too much caffeine and, in rare cases, lead-exposure concerns."
+      "a": "There's no single number that's right for everyone, but here's what's published: the U.S. FDA has cited about 400 mg of caffeine per day as a general reference point for healthy adults that isn't generally associated with dangerous, negative effects. A standard 2 g (1 tsp) matcha serving has roughly 65–70 mg of caffeine (see our <a href=\"/matcha-caffeine\">matcha caffeine breakdown</a>), so a couple of servings a day is a modest share of that reference — though it's worth counting all caffeinated drinks together, not matcha alone. People who are pregnant, caffeine-sensitive, or managing a health condition should talk to a healthcare provider about what's appropriate for them."
     },
     {
       "q": "Does matcha go bad?",
@@ -53,5 +58,6 @@
     "matcha-for-weight-loss",
     "matcha-caffeine",
     "matcha-to-water-ratio"
-  ]
+  ],
+  "disclaimer": true
 }
