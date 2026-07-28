@@ -158,10 +158,10 @@ Create `seed/matcha-caffeine.json` mirroring the field set of `seed/matcha-vs-gr
   8. Disclaimer line: `This describes published research and general information, not medical or dietary advice.`
 - `sources`: at least — Healthline `https://www.healthline.com/nutrition/does-matcha-have-caffeine`; USDA FoodData Central `https://fdc.nal.usda.gov/`; Kelly 2008 `https://pubmed.ncbi.nlm.nih.gov/18641209/`.
 - `faqs` (verbatim, from live PAA/related searches):
-  - `{"q":"Is matcha higher in caffeine than coffee?","a":"No. A 1 tsp (2 g) serving of matcha has about 60–70 mg of caffeine; an 8 oz coffee has about 95–120 mg. Matcha has more than steeped green tea but less than brewed coffee."}`
-  - `{"q":"How much caffeine is in a matcha latte?","a":"Most cafés use 1.5–2 tsp (3–4 g) of matcha, so a latte typically has about 90–140 mg of caffeine, similar to a small coffee."}`
-  - `{"q":"Is 2 tsp of matcha a lot of caffeine?","a":"Two teaspoons (~4 g) is about 90–140 mg — roughly one strong cup of coffee. Published guidance puts a general adult ceiling around 400 mg/day."}`
-  - `{"q":"How much caffeine is in matcha per gram?","a":"Published measurements put matcha at roughly 19–44 mg of caffeine per gram, so a 2 g serving lands around 38–88 mg, typically 60–70 mg."}`
+  - `{"q":"Is matcha higher in caffeine than coffee?","a":"No. A 1 tsp (2 g) serving of matcha has about 65–70 mg of caffeine; an 8 oz brewed coffee has about 95 mg. Matcha has more than steeped green tea but less than brewed coffee."}`
+  - `{"q":"How much caffeine is in a matcha latte?","a":"Most cafés use about 2 tsp (4 g) of matcha, so a latte typically has around 130 mg of caffeine (roughly 120–160 mg), similar to a small coffee."}`
+  - `{"q":"Is 2 tsp of matcha a lot of caffeine?","a":"Two teaspoons (~4 g) is around 130 mg — roughly one strong cup of coffee. Published guidance puts a general adult reference at about 400 mg/day."}`
+  - `{"q":"How much caffeine is in matcha per gram?","a":"A 2 g serving typically lands around 65–70 mg, with a usual range of 60–80 mg depending on grade and how much powder you use — roughly 30–40 mg per gram."}`
   - `{"q":"Does matcha give jitters like coffee?","a":"Matcha pairs caffeine with L-theanine. Research (Kelly et al., 2008) describes L-theanine plus caffeine affecting attention differently than caffeine alone; this is research description, not a promised effect."}`
 
 - [ ] **Step 2: Validate schema**
