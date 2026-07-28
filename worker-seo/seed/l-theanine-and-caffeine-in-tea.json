@@ -108,7 +108,9 @@
     "matcha-vs-green-tea",
     "what-makes-a-tea-functional",
     "best-tea-to-replace-coffee",
-    "green-tea-vs-black-tea"
+    "green-tea-vs-black-tea",
+    "matcha-caffeine",
+    "green-tea-caffeine"
   ],
   "widget": "caffeine-comparator"
 }
