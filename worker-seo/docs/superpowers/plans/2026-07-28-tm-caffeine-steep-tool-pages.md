@@ -43,7 +43,7 @@ FDA general adult reference: `DAILY_REF = 400 mg/day` (already in the widget mod
 
 **Steep / ratio.**
 
-> ⚠️ **VERIFICATION STATUS (corrected 2026-07-28).** This table was originally drafted from SERP research and was NOT source-verified. A Task 4 review caught a figure that no cited source supported. **Only the Green row below is now verified against primary sources.** Every other row is UNVERIFIED and must be validated against a real, resolving authority (with the URL recorded) before any page or widget quotes it. Do not treat an unverified row as citable.
+> ⚠️ **VERIFICATION STATUS (corrected 2026-07-28).** This table was originally drafted from SERP research and was NOT source-verified. A Task 4 review caught a figure that no cited source supported. **As of Task 2R (2026-07-28) ALL rows are now verified** against real, resolving authorities, with every URL recorded in `widgets/src/steep-guide/model.js` (the canonical source of truth for steep data). Several original draft figures were WRONG and were corrected — see the corrections note below. Never quote a steep figure that is not traceable to that model file.
 
 **Green tea — VERIFIED:**
 
@@ -57,15 +57,19 @@ FDA general adult reference: `DAILY_REF = 400 mg/day` (already in the widget mod
 
 Canonical Green row: **165–185 °F (74–85 °C)**, **~1 min** (Japanese convention; note 3–4 min generic guidance), 1 tsp (2 g) / 8 oz.
 
-**UNVERIFIED rows — must be sourced before use:**
+**Remaining rows — NOW VERIFIED (Task 2R, 2026-07-28).** All source URLs confirmed HTTP 200 and recorded in `widgets/src/steep-guide/model.js`, which is the **canonical source of truth** for steep data (it ships the provenance with the values). Quote these, not the earlier draft:
 
-| Tea | Water temp | Time | Leaf : water |
-|---|---|---|---|
-| Matcha (usucha, thin) | ~175 °F (80 °C) | whisk 15 s | 2 g (1 tsp) / 2 oz (60 ml) |
-| Matcha (koicha, thick) | ~175 °F | whisk 30 s | 4 g / 1 oz (30 ml) |
-| Black | 200–212 °F (93–100 °C) | 3–5 min | 1 tsp / 8 oz |
-| Oolong | 185–205 °F | 3–5 min | 1 tsp / 8 oz |
-| White | 175–185 °F | 2–5 min | 1 tsp / 8 oz |
+| Tea | Water temp | Time | Leaf : water | Source |
+|---|---|---|---|---|
+| Matcha (usucha, thin) | 176 °F (80 °C) | whisk 15 s | 2 g / 2 oz (60 ml) | Ippodo (usucha spec) |
+| Matcha (koicha, thick) | 176 °F (80 °C) | mix 15 s | 4 g / 1 oz (30 ml) | Ippodo (koicha spec) |
+| Black | 195–212 °F | 3–5 min | 1 tsp / 8 oz | TAUSA + Healthline |
+| Oolong | 180–195 °F | 3–7 min | 1 tsp / 8 oz | TAUSA + Healthline |
+| White | 175–190 °F | 3–5 min | 1 tsp / 8 oz | TAUSA + Healthline |
+
+**Corrections against the original SERP-drafted draft** (evidence the draft was unreliable): koicha whisk time was 30 s, actually **15 s**; black low-end was 200 °F, actually **195 °F**; oolong was 185–205 °F / 3–5 min, actually **180–195 °F / 3–7 min**; white was 175–185 °F / 2–5 min, actually **175–190 °F / 3–5 min**.
+
+**Genuine TAUSA-vs-Healthline disagreement** exists for black, oolong and white and is recorded per-tea in the widget model. Pages must present the variance with both attributions rather than silently picking one number.
 
 **L-theanine / calm-alert (research framing only, reuse already-verified PMIDs):**
 - Kelly et al. 2008, *J Nutrition* — `https://pubmed.ncbi.nlm.nih.gov/18641209/` (L-theanine + caffeine on attention).
