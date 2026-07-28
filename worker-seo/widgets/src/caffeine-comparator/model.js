@@ -19,8 +19,9 @@ export const DRINKS = [
   { key: 'oolong',   label: 'Oolong tea',         low: 30, high: 50,  avg: 40, trueTea: true },
   { key: 'black',    label: 'Black tea',          low: 40, high: 70,  avg: 50, trueTea: true },
   { key: 'puerh',    label: 'Pu-erh tea',         low: 30, high: 70,  avg: 60, trueTea: true },
-  { key: 'matcha',   label: 'Matcha (1 tsp)',     low: 60, high: 80,  avg: 65, trueTea: true },
-  { key: 'espresso', label: 'Espresso (1 shot)',  low: 60, high: 80,  avg: 63, trueTea: false },
+  { key: 'matcha',       label: 'Matcha (1 tsp)',        low: 60,  high: 80,  avg: 65,  trueTea: true },
+  { key: 'matchaLatte',  label: 'Matcha latte (2 tsp)',  low: 120, high: 160, avg: 130, trueTea: true },
+  { key: 'espresso',     label: 'Espresso (1 shot)',     low: 60,  high: 80,  avg: 63,  trueTea: false },
   { key: 'coffee',   label: 'Brewed coffee',      low: 80, high: 100, avg: 95, trueTea: false },
 ];
 
