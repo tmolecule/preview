@@ -31,7 +31,7 @@
 |---|---|---|---|
 | Matcha | 1 tsp (2 g) whisked in 2–3 oz | **~65–70 mg** | 60–80 mg |
 | Matcha latte | 2 tsp (4 g) | ~130 mg | 120–160 mg |
-| Green tea (steeped) | 8 oz | **~35 mg** | 25–45 mg |
+| Green tea (steeped) | 8 oz | **~35 mg** | **30–50 mg** (corrected 2026-07-28) |
 | Black tea (steeped) | 8 oz | ~50 mg | 40–70 mg |
 | Oolong | 8 oz | ~40 mg | 30–50 mg |
 | White | 8 oz | ~25 mg | 15–30 mg |
@@ -40,6 +40,10 @@
 | Rooibos / herbal | 8 oz | 0 mg | caffeine-free |
 
 FDA general adult reference: `DAILY_REF = 400 mg/day` (already in the widget model).
+
+> ⚠️ **GREEN TEA RANGE CORRECTED 2026-07-28.** This table originally said 25–45 mg. A final pre-deploy review found **no source anywhere stated that range** — the citation propping it up was the bare `fdc.nal.usda.gov` search homepage, which substantiates nothing (Mayo Clinic 403s; USDA FDC offers only a single ~28 mg point, and its record deep-links 404). The range was corrected to **30–50 mg (avg ~35)**, which Healthline states verbatim at `https://www.healthline.com/nutrition/caffeine-in-green-tea`. This propagated to 9 seed files, the `caffeine-comparator` widget `DRINKS`, its rebuilt bundle, and the widget host page's SSR list in `src/template.js`.
+>
+> **Lesson for the WhollyKaw port:** a figure can pass `verify:citations`, survive several scoped reviews, and still have no source that states it. Check claim COVERAGE, not just that URLs resolve. Changing a canonical range also silently falsifies comparative prose written against the old numbers ("overlaps with", "half of", "more than") — sweep for that language whenever a canonical value moves.
 
 **Steep / ratio.**
 
