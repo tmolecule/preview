@@ -24,16 +24,21 @@
 
 ## Appendix A — Canonical reference data (single source of truth)
 
-**Caffeine (per standard serving).** Sources: Healthline "Does Matcha Have Caffeine?" (19–44 mg/g matcha), USDA FoodData Central, Mayo Clinic caffeine chart.
+**Caffeine (per standard serving).** **Canonical source = the built widget's `DRINKS` table** (`widgets/src/caffeine-comparator/model.js`, sourced from USDA / Mayo Clinic / infusion studies). Article tables must match it exactly — do not reintroduce the SERP-scraped variants below the widget's values. Reconciled figures:
 
-| Drink | Serving | Caffeine (typical) | Range |
+| Drink | Serving | Typical | Range (low–high) |
 |---|---|---|---|
-| Matcha | 1 tsp (2 g) whisked in 2–3 oz | **60–70 mg** | 38–88 mg (grade/serving) |
-| Matcha latte | 2 tsp (4 g) | 90–140 mg | — |
-| Green tea (steeped) | 8 oz | 28 mg | 25–45 mg |
-| Black tea (steeped) | 8 oz | 47 mg | 40–70 mg |
-| Espresso | 1 oz shot | 63 mg | — |
-| Brewed coffee | 8 oz | 95–120 mg | — |
+| Matcha | 1 tsp (2 g) whisked in 2–3 oz | **~65–70 mg** | 60–80 mg |
+| Matcha latte | 2 tsp (4 g) | ~130 mg | 120–160 mg |
+| Green tea (steeped) | 8 oz | **~35 mg** | 25–45 mg |
+| Black tea (steeped) | 8 oz | ~50 mg | 40–70 mg |
+| Oolong | 8 oz | ~40 mg | 30–50 mg |
+| White | 8 oz | ~25 mg | 15–30 mg |
+| Espresso | 1 oz shot | ~63 mg | 60–80 mg |
+| Brewed coffee | 8 oz | ~95 mg | 80–100 mg |
+| Rooibos / herbal | 8 oz | 0 mg | caffeine-free |
+
+FDA general adult reference: `DAILY_REF = 400 mg/day` (already in the widget model).
 
 **Steep / ratio.** Sources: Tea Association of the USA brewing guidance; Japanese-tea authority brewing specs (Ippodo/Ureshino); Healthline brewing guides.
 
@@ -142,8 +147,9 @@ Create `seed/matcha-caffeine.json` mirroring the field set of `seed/matcha-vs-gr
 - `pillar`: `"blends"`, `cluster`: `"matcha"`, `intent`: `"informational"`
 - `related`: `["matcha-vs-green-tea","what-is-matcha","green-tea-caffeine","l-theanine-and-caffeine-in-tea"]`
 - `body_html` (answer-first, ~1,100–1,300 words). Required structure:
-  1. **Answer-first paragraph** (verbatim opening): `A standard serving of matcha — 1 teaspoon (about 2 grams) whisked into 2–3 oz of water — contains roughly <strong>60–70 mg of caffeine</strong>. Depending on grade and how much powder you use, a serving ranges from about 38 mg to 88 mg. That's more than a cup of steeped green tea (~28 mg) but less than an 8 oz coffee (~95–120 mg).`
-  2. `<h2>Matcha caffeine by serving size</h2>` — a `<table>` with rows: 1/2 tsp (~1 g) 30–40 mg; 1 tsp (2 g) 60–70 mg; strong latte (2 tsp / 4 g) 90–140 mg. (From Appendix A.)
+  > All figures in this page use Appendix A (canonical widget values). The examples below already reflect them.
+  1. **Answer-first paragraph** (verbatim opening): `A standard serving of matcha — 1 teaspoon (about 2 grams) whisked into 2–3 oz of water — contains roughly <strong>65–70 mg of caffeine</strong>. Depending on grade and how much powder you use, a serving ranges from about 60 to 80 mg. That's more than a cup of steeped green tea (~35 mg) but less than an 8 oz coffee (~95 mg).`
+  2. `<h2>Matcha caffeine by serving size</h2>` — a `<table>` with rows: 1/2 tsp (~1 g) ~35 mg; 1 tsp (2 g) ~65–70 mg; strong latte (2 tsp / 4 g) ~130 mg. (From Appendix A.)
   3. `<h2>Matcha vs coffee, green tea, and espresso</h2>` — the full Appendix A caffeine comparison `<table>` (matcha, matcha latte, green tea, black tea, espresso, coffee). **This is the SSR fallback for the widget.**
   4. `<h2>Why matcha's caffeine feels different</h2>` — L-theanine research framing (cite Kelly 2008), no outcome claims.
   5. `<h2>How to control your matcha caffeine</h2>` — usucha vs koicha, grade, serving (ties to `matcha-to-water-ratio`, link it).
@@ -192,12 +198,12 @@ git commit -m "feat(learn): matcha-caffeine head-term page (18.1k, caffeine-comp
 - [ ] **Step 1: Write the seed** (mirror Task 3 structure) with:
   - `title`: `How Much Caffeine Is in Green Tea? (vs Coffee, Matcha & Black Tea)`
   - `h1`: `How much caffeine is in green tea?`
-  - `meta_description`: `An 8 oz cup of steeped green tea has about 25–45 mg of caffeine (typically ~28 mg) — less than black tea, matcha, or coffee. Full comparison inside.`
+  - `meta_description`: `An 8 oz cup of steeped green tea has about 25–45 mg of caffeine (typically ~35 mg) — less than black tea, matcha, or coffee. Full comparison inside.`
   - `keywords`: `["how much caffeine in green tea","green tea caffeine","green tea vs coffee caffeine","green tea caffeine vs black tea","does green tea have caffeine"]`
   - `widget`: `"caffeine-comparator"`; `product_bridge` + labels as global constraint.
   - `pillar`: `"blends"`, `cluster`: `"green-tea"`, `intent`: `"informational"`
   - `related`: `["matcha-caffeine","green-tea-vs-black-tea","matcha-vs-green-tea","l-theanine-and-caffeine-in-tea"]`
-  - `body_html` answer-first opening (verbatim): `An 8 oz cup of steeped green tea contains about <strong>25–45 mg of caffeine</strong> — typically around 28 mg. That's roughly a third of a cup of coffee (~95–120 mg) and about half a cup of black tea (~47 mg).` Then H2s: by-factors (steep time/temp raises caffeine — link `green-tea-steeping-time`), full Appendix A comparison table (SSR fallback), decaf/low-caffeine options, L-theanine research note, disclaimer.
+  - `body_html` answer-first opening (verbatim): `An 8 oz cup of steeped green tea contains about <strong>25–45 mg of caffeine</strong> — typically around 35 mg. That's roughly a third of a cup of coffee (~95 mg) and about two-thirds of a cup of black tea (~50 mg).` Then H2s: by-factors (steep time/temp raises caffeine — link `green-tea-steeping-time`), full Appendix A comparison table (SSR fallback), decaf/low-caffeine options, L-theanine research note, disclaimer.
   - `sources`: Healthline green tea caffeine `https://www.healthline.com/nutrition/how-much-caffeine-in-green-tea`; USDA `https://fdc.nal.usda.gov/`; Kelly 2008 PMID.
   - `faqs` from PAA/related: green tea vs coffee; does steeping longer add caffeine; green tea before bed; green tea vs black tea caffeine; is there caffeine-free green tea. (Write 5 Q&As, answers grounded in Appendix A.)
 
