@@ -13,6 +13,97 @@
  * All volumes are fluid ounces of FINISHED drink per serving (one ~8 oz cup).
  */
 
+// Tea type reference data — canonical steep/ratio table for /learn pages.
+// Sources: Tea Association of the USA, Japanese-tea authority specs (Ippodo/Ureshino), Healthline.
+export const TEA_TYPES = [
+  {
+    key: 'green-sencha',
+    label: 'Green (sencha)',
+    tempFLow: 160,
+    tempFHigh: 180,
+    tempCLow: 70,
+    tempCHigh: 82,
+    timeMin: 1,
+    timeMax: 3,
+    leafG: 2,
+    waterOz: 8,
+    leafDesc: '1 tsp (2 g)',
+    waterDesc: '8 oz',
+  },
+  {
+    key: 'matcha-usucha',
+    label: 'Matcha (usucha, thin)',
+    tempFLow: 175,
+    tempFHigh: 175,
+    tempCLow: 80,
+    tempCHigh: 80,
+    timeMin: 0.25, // 15 seconds = 0.25 min
+    timeMax: 0.25,
+    method: 'whisk 15 s',
+    leafG: 2,
+    waterMl: 60,
+    leafDesc: '2 g (1 tsp)',
+    waterDesc: '2 oz (60 ml)',
+  },
+  {
+    key: 'matcha-koicha',
+    label: 'Matcha (koicha, thick)',
+    tempFLow: 175,
+    tempFHigh: 175,
+    tempCLow: 80,
+    tempCHigh: 80,
+    timeMin: 0.5, // 30 seconds = 0.5 min
+    timeMax: 0.5,
+    method: 'whisk 30 s',
+    leafG: 4,
+    waterMl: 30,
+    leafDesc: '4 g',
+    waterDesc: '1 oz (30 ml)',
+  },
+  {
+    key: 'black',
+    label: 'Black',
+    tempFLow: 200,
+    tempFHigh: 212,
+    tempCLow: 93,
+    tempCHigh: 100,
+    timeMin: 3,
+    timeMax: 5,
+    leafG: 2,
+    waterOz: 8,
+    leafDesc: '1 tsp',
+    waterDesc: '8 oz',
+  },
+  {
+    key: 'oolong',
+    label: 'Oolong',
+    tempFLow: 185,
+    tempFHigh: 205,
+    tempCLow: 85,
+    tempCHigh: 97,
+    timeMin: 3,
+    timeMax: 5,
+    leafG: 2,
+    waterOz: 8,
+    leafDesc: '1 tsp',
+    waterDesc: '8 oz',
+  },
+  {
+    key: 'white',
+    label: 'White',
+    tempFLow: 175,
+    tempFHigh: 185,
+    tempCLow: 79,
+    tempCHigh: 85,
+    timeMin: 2,
+    timeMax: 5,
+    leafG: 2,
+    waterOz: 8,
+    leafDesc: '1 tsp',
+    waterDesc: '8 oz',
+  },
+];
+
 export const DEFAULTS = {
   servings: 2,
   format: 'latte', // 'hot' | 'iced' | 'latte' | 'concentrate'
