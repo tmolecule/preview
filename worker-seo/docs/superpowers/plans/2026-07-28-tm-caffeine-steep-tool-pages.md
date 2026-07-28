@@ -412,10 +412,21 @@ git commit -m "feat(schema): Dataset JSON-LD for caffeine pages"
 
 **Files:** none created; runs the pipeline.
 
+- [ ] **Step 0: Clean the working tree (MANDATORY — `npm run deploy` ships the WORKING TREE, not HEAD)**
+
+The tree carries unrelated in-flight work (`src/template.js` +196 lines of "Ask Ayurveda" header modal + A/B test, `widgets/src/advisor/index.js`, `widgets/dist/advisor.js`). It is **half-built** — `src/widget-bundles.js` does not contain the new advisor bundle, so deploying now would ship the modal WITHOUT its matching widget. Per user decision (2026-07-28): **stash it, deploy clean, restore after.**
+
+```bash
+git stash push -m "advisor modal WIP (pre-deploy)" -- worker-seo/src/template.js worker-seo/widgets/src/advisor/index.js worker-seo/widgets/dist/advisor.js
+git status --porcelain | grep -E 'template.js|advisor' || echo "tree clean of advisor WIP"
+# ... run the deploy steps below ...
+# afterwards:  git stash pop
+```
+
 - [ ] **Step 1: Full gate**
 
-Run: `npm run validate:seeds && npm run verify:citations && npm run test:compliance`
-Expected: all exit 0.
+Run: `npm run validate:seeds && npm run verify:citations && npm run test:compliance && npm run check:links && bun test`
+Expected: all exit 0; `check:links` 0 broken; `bun test` 207 pass. (The original step omitted `check:links` and `bun test` — including the new `template.test.ts`.)
 
 - [ ] **Step 2: Seed KV (preview namespace first)**
 
@@ -424,8 +435,10 @@ Then spot-check a preview render if a preview URL/`wrangler dev` is available; c
 
 - [ ] **Step 3: Seed KV (production)**
 
+> ⚠️ **SCOPE WARNING (found in final review).** `scripts/seed-kv.sh` loops over `seed/*.json` and overwrites **all 85 KV keys**, not just the ones changed here. It cannot delete keys, so the other pages are structurally safe — but any live-KV → repo drift gets silently clobbered in the repo's favour. **Before running, diff repo seeds against live KV** (`npm run kv:list`, spot-check a few unrelated keys) and confirm no live-only edits would be lost. This run touches far more than 4 pages: the green-tea caffeine correction propagated to 9 seeds, plus 3 reconciled legacy pages.
+
 Run: `npm run kv:seed`
-Expected: `verify:citations` re-runs (via the script) then the four slugs upload to `LEARN_PAGES`.
+Expected: `verify:citations` re-runs (via the script) then the changed slugs upload to `LEARN_PAGES`.
 
 - [ ] **Step 4: Rebuild the semantic index**
 
@@ -439,16 +452,32 @@ Expected: new `BUILD_VERSION`; deploy succeeds.
 
 - [ ] **Step 6: Live content-level verification (per website-build-baseline — content, not status)**
 
+> ⚠️ **Corrected 2026-07-28.** The original version of this step was broken in two ways that would have made it "pass" while proving nothing: it grepped for `brew-guide` (two of the four pages embed `steep-guide`), and for `60.70 mg` when the matcha copy uses an en-dash `65–70 mg`. Both fixed below. Figures also updated for the corrected green-tea range (30–50 mg).
+
 ```bash
-for s in matcha-caffeine green-tea-caffeine matcha-to-water-ratio green-tea-steeping-time; do
+# Per-page: answer-first figure present in RAW HTML (proves SSR, not JS-only)
+declare -A EXPECT=(
+  [matcha-caffeine]='65–70 mg'
+  [green-tea-caffeine]='30–50 mg'
+  [matcha-to-water-ratio]='176 °F'
+  [green-tea-steeping-time]='165–185 °F'
+)
+for s in "${!EXPECT[@]}"; do
   echo "== $s =="
-  curl -s "https://tmolecule.com/learn/$s" | grep -oE '(60.70 mg|25.45 mg|2 oz|160.180)' | head -1
-  curl -s "https://tmolecule.com/learn/$s" | grep -c 'caffeine-comparator\|brew-guide'   # widget embed present
-  curl -s "https://tmolecule.com/learn/$s" | grep -c 'spice-rush-collagen-black-tea'      # product bridge present
+  html=$(curl -s "https://tmolecule.com/learn/$s")
+  echo "$html" | grep -c -- "${EXPECT[$s]}"                        # answer-first figure (expect >=1)
+  echo "$html" | grep -c 'caffeine-comparator\|steep-guide'        # widget embed (expect >=1)
+  echo "$html" | grep -c 'spice-rush-collagen-black-tea'           # product bridge (expect >=1)
+  echo "$html" | grep -c 'application/ld+json'                     # schema blocks (expect >=3)
 done
-curl -s "https://tmolecule.com/learn/sitemap.xml" | grep -c -E 'matcha-caffeine|green-tea-caffeine|matcha-to-water-ratio|green-tea-steeping-time'
+# Dataset JSON-LD should appear on the two caffeine pages ONLY
+for s in matcha-caffeine green-tea-caffeine; do
+  echo "$s Dataset: $(curl -s "https://tmolecule.com/learn/$s" | grep -c '"@type":"Dataset"')"   # expect 1
+done
+# Sitemap contains all four
+curl -s "https://tmolecule.com/learn/sitemap.xml" | grep -c -E 'matcha-caffeine|green-tea-caffeine|matcha-to-water-ratio|green-tea-steeping-time'   # expect 4
 ```
-Expected: each page returns its answer-first number in raw HTML (proves SSR, not JS-only), the widget script reference, the Spice Rush bridge, and all four appear in the sitemap.
+Expected: every count ≥1 (schema ≥3), Dataset exactly 1 on each caffeine page, sitemap count 4. A zero anywhere means the page did not render as intended — investigate before declaring done.
 
 - [ ] **Step 7: Validate structured data**
 
