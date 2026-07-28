@@ -41,11 +41,26 @@
 
 FDA general adult reference: `DAILY_REF = 400 mg/day` (already in the widget model).
 
-**Steep / ratio.** Sources: Tea Association of the USA brewing guidance; Japanese-tea authority brewing specs (Ippodo/Ureshino); Healthline brewing guides.
+**Steep / ratio.**
+
+> ⚠️ **VERIFICATION STATUS (corrected 2026-07-28).** This table was originally drafted from SERP research and was NOT source-verified. A Task 4 review caught a figure that no cited source supported. **Only the Green row below is now verified against primary sources.** Every other row is UNVERIFIED and must be validated against a real, resolving authority (with the URL recorded) before any page or widget quotes it. Do not treat an unverified row as citable.
+
+**Green tea — VERIFIED:**
+
+| Source | URL | Temp | Time |
+|---|---|---|---|
+| Tea Association of the USA | `https://www.teausa.org/` (brewing tea) | 165–185 °F | ~1 min |
+| Ippodo (Japanese sencha standard) | `https://ippodotea.com/` | 176 °F (80 °C) | 60 s |
+| Healthline (generic Western guidance) | `https://www.healthline.com/nutrition/how-to-steep-tea` | 175 °F (79 °C) | 3–4 min |
+
+**Genuine variance — do not paper over it.** Japanese sencha convention (Ippodo, TAUSA) is a brief ~1-minute steep; generic Western guidance is 3–4 minutes. Both are real and sourced. Pages should present the short steep as the Japanese-tea convention and note the longer generic guidance, citing each — this honest treatment is a differentiator versus competitors who publish one unsourced number.
+
+Canonical Green row: **165–185 °F (74–85 °C)**, **~1 min** (Japanese convention; note 3–4 min generic guidance), 1 tsp (2 g) / 8 oz.
+
+**UNVERIFIED rows — must be sourced before use:**
 
 | Tea | Water temp | Time | Leaf : water |
 |---|---|---|---|
-| Green (sencha) | 160–180 °F (70–82 °C) | 1–3 min | 1 tsp (2 g) / 8 oz |
 | Matcha (usucha, thin) | ~175 °F (80 °C) | whisk 15 s | 2 g (1 tsp) / 2 oz (60 ml) |
 | Matcha (koicha, thick) | ~175 °F | whisk 30 s | 4 g / 1 oz (30 ml) |
 | Black | 200–212 °F (93–100 °C) | 3–5 min | 1 tsp / 8 oz |
