@@ -336,6 +336,23 @@ export function renderArticle(data, slug, origin, env, mount = '') {
     schemaTags.push(`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`);
   }
 
+  // Optional Dataset node: exposes cited figures (e.g. caffeine mg by drink) as
+  // machine-readable structured data. Competitor pages publishing the same numbers
+  // ship no structured data at all — this is a differentiator for AI-answer and
+  // rich-result eligibility. Backward compatible: absent when seed has no `dataset`.
+  if (data.dataset) {
+    const datasetSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: data.dataset.name,
+      description: data.dataset.description,
+      variableMeasured: (data.dataset.variableMeasured || []).map(v => ({
+        '@type': 'PropertyValue', name: v.name, value: v.value, unitText: v.unitText
+      }))
+    };
+    schemaTags.push(`<script type="application/ld+json">${JSON.stringify(datasetSchema)}</script>`);
+  }
+
   const faqHtml = faqs.length
     ? `<section class="faq"><h2>Frequently asked questions</h2>${faqs.map(f =>
         `<details><summary>${esc(f.q)}</summary><div class="faq-a">${f.a_html || `<p>${esc(f.a)}</p>`}</div></details>`
