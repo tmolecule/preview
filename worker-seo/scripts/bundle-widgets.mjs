@@ -29,6 +29,7 @@ const WIDGETS = {
   'sugar-saved': 'SUGAR_SAVED_JS',
   'spice-blend-builder': 'SPICE_BLEND_BUILDER_JS',
   'advisor': 'ADVISOR_JS',
+  'steep-guide': 'STEEP_GUIDE_JS',
 };
 
 const parts = [];

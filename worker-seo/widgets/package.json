@@ -6,7 +6,7 @@
   "description": "Embeddable TMolecule storefront widgets. Built with Vite library mode, served via worker-seo at /learn/widgets/*. First widget: brew-guide (#2). Planned: tea-finder (#1), cost-per-cup (#3), ingredient-safety (#4, compliance-gated). See SCOPE.md.",
   "scripts": {
     "dev": "vite",
-    "build": "npm run build:brew && npm run build:cost && npm run build:finder && npm run build:caffeine && npm run build:collagen && npm run build:sugar && npm run build:spice && npm run build:advisor",
+    "build": "npm run build:brew && npm run build:cost && npm run build:finder && npm run build:caffeine && npm run build:collagen && npm run build:sugar && npm run build:spice && npm run build:advisor && npm run build:steep",
     "build:brew": "WIDGET=brew-guide vite build",
     "build:cost": "WIDGET=cost-per-cup vite build",
     "build:finder": "WIDGET=tea-finder vite build",
@@ -16,7 +16,8 @@
     "build:spice": "WIDGET=spice-blend-builder vite build",
     "lint": "oxlint src",
     "preview": "vite preview",
-    "build:advisor": "WIDGET=advisor vite build"
+    "build:advisor": "WIDGET=advisor vite build",
+    "build:steep": "WIDGET=steep-guide vite build"
   },
   "devDependencies": {
     "oxlint": "^0.15.0",

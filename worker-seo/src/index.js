@@ -1,7 +1,7 @@
 import { handleArticle, handleArticleMarkdown, handleIndex, handleHub, handleLlmsTxt, handleManifest } from './learn.js';
 import { handleSitemap, handleRobots, LEARN_REDIRECTS } from './sitemap.js';
 import { renderNotFound, renderBrewGuide, renderCostPerCup, renderTeaFinder, renderCaffeineComparator, renderCollagenCalculator, renderSugarSaved, renderSpiceBlendBuilder, renderToolsHub } from './template.js';
-import { BREW_GUIDE_JS, COST_PER_CUP_JS, TEA_FINDER_JS, CAFFEINE_COMPARATOR_JS, COLLAGEN_CALCULATOR_JS, SUGAR_SAVED_JS, SPICE_BLEND_BUILDER_JS, ADVISOR_JS } from './widget-bundles.js';
+import { BREW_GUIDE_JS, COST_PER_CUP_JS, TEA_FINDER_JS, CAFFEINE_COMPARATOR_JS, COLLAGEN_CALCULATOR_JS, SUGAR_SAVED_JS, SPICE_BLEND_BUILDER_JS, ADVISOR_JS, STEEP_GUIDE_JS } from './widget-bundles.js';
 import { handleDeck } from './deck.js';
 import { pickVariant, VARIANT_DEFAULT } from './experiments.js';
 import { classifyCrawler } from './crawlers.js';
@@ -324,6 +324,11 @@ async function handleFetch(request, env, ctx) {
         'cache-control': 'public, max-age=300, s-maxage=3600'
       }
     });
+  }
+
+  // Interactive tool widget (#10 Steep Guide — tea-type water temp/time/ratio lookup).
+  if (path === '/widgets/steep-guide.js') {
+    return serveWidgetJs(STEEP_GUIDE_JS);
   }
 
   // Interactive tool widget (#6 Collagen-per-day calculator).

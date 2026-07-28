@@ -251,7 +251,8 @@ const WIDGET_EMBEDS = {
   'caffeine-comparator': { id: 'tm-caffeine-comparator', heading: 'How much caffeine is in your tea?', blurb: 'Compare common teas and coffee, by the cup and across your day.' },
   'collagen-calculator': { id: 'tm-collagen-calculator', heading: 'How much collagen are you getting?', blurb: 'Set your cups per day to see the collagen protein per day and week — a content figure, not a health claim.' },
   'sugar-saved': { id: 'tm-sugar-saved', heading: 'How much sugar could you skip?', blurb: 'Swap café chai lattes for unsweetened Spice Rush and see a year of sugar, calories and dollars.' },
-  'spice-blend-builder': { id: 'tm-spice-blend-builder', heading: 'Build your chai spice blend', blurb: 'Dial in cardamom, ginger, cinnamon and clove and read your cup\'s flavor profile.' }
+  'spice-blend-builder': { id: 'tm-spice-blend-builder', heading: 'Build your chai spice blend', blurb: 'Dial in cardamom, ginger, cinnamon and clove and read your cup\'s flavor profile.' },
+  'steep-guide': { id: 'tm-steep-guide', heading: 'How to steep your tea', blurb: 'Pick a tea type for its water temperature, steep time and leaf-to-water ratio, sourced from tea-industry and tea-house guidance.' }
 };
 
 /** Inline a tool widget into an article body (no-op for an unknown name). */

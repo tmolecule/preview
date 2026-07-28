@@ -22,6 +22,7 @@ const WIDGETS = {
   'sugar-saved': resolve(__dirname, 'src/sugar-saved/index.js'),                  // #7 café-swap sugar saved
   'spice-blend-builder': resolve(__dirname, 'src/spice-blend-builder/index.js'),  // #8 chai spice-blend builder
   'advisor': resolve(__dirname, 'src/advisor/index.js'),                          // #9 RAG chat advisor
+  'steep-guide': resolve(__dirname, 'src/steep-guide/index.js'),                  // #10 tea-type steep reference lookup
 };
 
 export default defineConfig(() => {
