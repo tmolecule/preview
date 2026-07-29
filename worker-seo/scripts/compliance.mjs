@@ -37,8 +37,13 @@ export const SCAFFOLDING = [/\{\{[^}]+\}\}/, /BEFORE PUBLISHING/i, /SOURCE NEEDE
 
 // Ingredient-effect vocab that, when present on a page carrying NO disclaimer, indicates a
 // health-adjacent page missing its wellness/FDA banner.
+// Cardiometabolic/glycemic terms (cholesterol, LDL, HDL, cardiovascular, blood pressure,
+// blood sugar, glycemic, insulin, triglyceride, heart disease) added 2026-07-29 after a scan
+// found 3 seed pages (green-tea-vs-black-tea, chai-vs-masala-chai, masala-chai-recipe) using
+// this vocabulary with no disclaimer flag and 0 advisory hits — these are among the most
+// heavily regulated claim categories for a food brand and were entirely absent from the list.
 export const BIOACTIVITY =
-  /anti-?inflammat|antioxidant|immune|adaptogen|lowers? (blood|cholesterol|glucose)|blood sugar|metabolis|cortisol|inflammation/i;
+  /anti-?inflammat|antioxidant|immune|adaptogen|lowers? (blood|cholesterol|glucose)|blood sugar|metabolis|cortisol|inflammation|cholesterol|\bLDL\b|\bHDL\b|cardiovascular|blood pressure|glycemic|insulin|triglyceride|heart disease/i;
 
 /**
  * Medical-claim hits in a seed page (empty = clean).
@@ -68,6 +73,17 @@ export function findClaims(d) {
     }
   }
   return hits;
+}
+
+/**
+ * Text surface the BIOACTIVITY advisory scans: body_html + faqs (same fields findClaims hays
+ * over). A page can carry regulated vocab entirely inside an FAQ answer (e.g. a "is this
+ * healthy?" FAQ) with none of it in body_html — scanning body_html alone would silently miss
+ * that page. Added 2026-07-29 alongside the BIOACTIVITY vocab expansion.
+ * @param {{body_html?:string, faqs?:any}} d
+ */
+export function bioactivityText(d) {
+  return (d.body_html || "") + " " + JSON.stringify(d.faqs || "");
 }
 
 /**

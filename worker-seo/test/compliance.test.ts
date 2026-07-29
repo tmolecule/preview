@@ -13,7 +13,7 @@ import { describe, test, expect } from "bun:test";
 import { readdirSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
-import { findClaims, hasDisclaimer, SCAFFOLDING, BIOACTIVITY } from "../scripts/compliance.mjs";
+import { findClaims, hasDisclaimer, SCAFFOLDING, BIOACTIVITY, bioactivityText } from "../scripts/compliance.mjs";
 
 const SEED = join(dirname(fileURLToPath(import.meta.url)), "..", "seed");
 const SKIP = new Set(["reviews.json"]);
@@ -94,7 +94,7 @@ describe("wellness disclaimer — ingredient-effect pages (hard guard)", () => {
 // Advisory (never fails CI): bannerless pages that mention ingredient-effect vocab, for review.
 test("wellness disclaimer coverage report (advisory)", () => {
   const bannerless = pages
-    .filter((p) => BIOACTIVITY.test(p.d.body_html) && !hasDisclaimer(p.d))
+    .filter((p) => BIOACTIVITY.test(bioactivityText(p.d)) && !hasDisclaimer(p.d))
     .map((p) => p.file);
   if (bannerless.length) {
     console.warn(
