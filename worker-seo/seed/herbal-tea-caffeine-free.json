@@ -1,0 +1,161 @@
+{
+  "title": "Is Herbal Tea Caffeine-Free? The Full List (and the Exceptions)",
+  "h1": "Is herbal tea caffeine-free?",
+  "meta_description": "Most herbal teas — rooibos, chamomile, peppermint, hibiscus, ginger — are naturally 0 mg caffeine. Yerba mate, guayusa, and decaf tea are not. Full list.",
+  "image_url": "",
+  "published_at": "2026-07-29T21:00:00Z",
+  "updated_at": "2026-07-29T21:00:00Z",
+  "keywords": [
+    "herbal tea caffeine free",
+    "is herbal tea caffeine free",
+    "caffeine free herbal tea list",
+    "does herbal tea have caffeine",
+    "herbal tea without caffeine",
+    "is chamomile tea caffeine free",
+    "decaf tea vs caffeine free tea",
+    "which herbal teas have no caffeine"
+  ],
+  "widget": "caffeine-comparator",
+  "dataset": {
+    "name": "Caffeine content of herbal tisanes vs true tea",
+    "description": "Caffeine range in milligrams per typical serving. The herbal/tisane, white, green, oolong, black, matcha, espresso, and brewed-coffee values match the caffeine comparator widget above (canonical site dataset). Yerba mate is sourced separately from Healthline's published figure, since it is not one of the widget's tracked drinks.",
+    "variableMeasured": [
+      { "name": "Herbal infusion / tisane (rooibos, chamomile, peppermint, hibiscus, ginger, honeybush — 8 oz)", "value": "0", "unitText": "mg" },
+      { "name": "White tea (8 oz, steeped)", "value": "15-30", "unitText": "mg" },
+      { "name": "Green tea (8 oz, steeped)", "value": "30-50", "unitText": "mg" },
+      { "name": "Oolong tea (8 oz, steeped)", "value": "30-50", "unitText": "mg" },
+      { "name": "Black tea (8 oz, steeped)", "value": "40-70", "unitText": "mg" },
+      { "name": "Yerba mate (8 oz)", "value": "80", "unitText": "mg" },
+      { "name": "Matcha (1 tsp / 2 g, whisked in 2–3 oz)", "value": "60-80", "unitText": "mg" },
+      { "name": "Espresso (1 oz shot)", "value": "60-80", "unitText": "mg" },
+      { "name": "Brewed coffee (8 oz)", "value": "80-100", "unitText": "mg" }
+    ]
+  },
+  "body_html": "<p>Yes &mdash; most herbal teas are genuinely caffeine-free, because they're not made from the tea plant at all. Chamomile, peppermint, hibiscus, ginger, rooibos, lemongrass, and honeybush all contain 0 mg of caffeine. The exceptions: yerba mate and guayusa both contain real caffeine despite the &ldquo;herbal&rdquo; label, and decaf tea isn't truly 0 mg either.</p><h2>Which herbal teas are actually caffeine-free?</h2><p>Every tea on this list is 0 mg because none of them come from <em>Camellia sinensis</em>, the tea plant &mdash; they're herbal infusions (tisanes), not tea in the botanical sense:</p><ul><li><strong>Rooibos</strong> &mdash; 0 mg. From <em>Aspalathus linearis</em>, a South African legume unrelated to the tea plant. See our full <a href=\"/is-rooibos-caffeine-free\">rooibos caffeine breakdown</a>.</li><li><strong>Chamomile</strong> &mdash; 0 mg. Healthline lists chamomile as &ldquo;a caffeine-free alternative to black or green tea.&rdquo;</li><li><strong>Peppermint</strong> &mdash; 0 mg. Healthline describes peppermint tea as &ldquo;naturally free of caffeine.&rdquo;</li><li><strong>Hibiscus</strong> &mdash; 0 mg. WebMD states plainly: &ldquo;Hibiscus tea contains no caffeine.&rdquo;</li><li><strong>Ginger</strong> &mdash; 0 mg. Per Healthline, ginger tea &ldquo;doesn't come from the <em>Camellia sinensis</em> plant, which is the source of caffeine in tea.&rdquo;</li><li><strong>Honeybush</strong> &mdash; 0 mg. Healthline calls it &ldquo;a caffeine-free herbal infusion similar to rooibos tea.&rdquo;</li><li><strong>Lemongrass</strong> &mdash; 0 mg. Like the others, it isn't from the tea plant, so none of true tea's caffeine is present.</li></ul><p>The pattern holds across all of them: caffeine is a compound the tea plant (and coffee, and cacao) produces. A plant that doesn't make caffeine can't put any into an infusion, no matter how long it steeps.</p><h2>True tea vs. herbal tea: why the caffeine differs</h2><p>&ldquo;Tea,&rdquo; in the strict botanical sense, only means green, black, white, oolong, pu-erh, and matcha &mdash; all processed from the leaves of <em>Camellia sinensis</em>. Everything else sold as &ldquo;tea&rdquo; &mdash; herbs, flowers, roots, spices, dried fruit &mdash; is technically a <strong>tisane</strong>, and tisanes don't carry any of true tea's caffeine because they were never made from the tea leaf to begin with. See our full breakdown of <a href=\"/what-is-a-tisane\">what a tisane is</a> for the complete true-tea-vs-tisane comparison.</p><p>That's also why a blended product's base matters more than its name. A &ldquo;rooibos chai&rdquo; built purely on rooibos and spices is caffeine-free; the moment black tea gets added to the blend, it's a true tea again. Our <a href=\"/chai-caffeine\">chai caffeine guide</a> covers that exact split for chai specifically.</p><p>The distinction also shows up in how the two are brewed. True teas are generally more delicate about steep time and water temperature; oversteep a green tea and it turns bitter fast. Herbal tisanes tend to be more forgiving &mdash; most can steep longer, in hotter or even near-boiling water, without the same bitterness risk, since there's no tea leaf to over-extract. That's one reason bagged herbal blends often list a longer suggested steep time on the box than a true tea does.</p><h2>&ldquo;Herbal,&rdquo; &ldquo;caffeine-free,&rdquo; and &ldquo;decaf&rdquo; aren't the same label</h2><p>These three terms get used interchangeably, but they describe different things:</p><ul><li><strong>Herbal / tisane</strong> means the drink was never made from the tea plant, so it's caffeine-free by default (rooibos, chamomile, peppermint, etc., above).</li><li><strong>Caffeine-free</strong> is a claim that should mean the same thing &mdash; 0 mg &mdash; and on a pure herbal tisane, it does.</li><li><strong>Decaffeinated</strong> is different: it means a tea that started out caffeinated (black, green, oolong) went through a process to remove most of its caffeine. &ldquo;Most&rdquo; is the operative word. Healthline notes that even decaffeinated tea can retain &ldquo;trace amounts of caffeine&rdquo; after processing &mdash; it isn't the same as the true 0 mg you get from a plant that never had caffeine in it.</li></ul><p>In practice: if you need an absolute 0 mg, reach for an herbal tisane, not a decaf true tea. If a little residual caffeine is fine, decaf works too.</p><h2>&ldquo;Herbal&rdquo; doesn't always mean caffeine-free</h2><p>Two drinks commonly marketed as herbal teas break the pattern above, because &mdash; unlike rooibos or chamomile &mdash; the plants they're made from do produce caffeine naturally:</p><ul><li><strong>Yerba mate.</strong> Made from the leaves of <em>Ilex paraguariensis</em>, a holly relative. Healthline puts a cup at <strong>80 mg of caffeine</strong> &mdash; &ldquo;about the same amount of caffeine as a cup of coffee.&rdquo; It's an infusion of a non-<em>Camellia-sinensis</em> plant, which is why it gets called &ldquo;herbal,&rdquo; but it's very much caffeinated.</li><li><strong>Guayusa.</strong> A close botanical relative of yerba mate from the Amazon. Healthline describes it as offering &ldquo;similar amounts of caffeine as regular coffee,&rdquo; not a caffeine-free amount.</li></ul><p>On the flip side, <strong>matcha and green tea are sometimes mistaken for herbal teas because they're green and plant-based &mdash; they aren't.</strong> Both come from <em>Camellia sinensis</em>, the actual tea plant, and both carry real caffeine. See <a href=\"/matcha-caffeine\">how much caffeine is in matcha</a> and <a href=\"/green-tea-caffeine\">green tea's caffeine content</a> for the numbers.</p><p>The mix-up happens for an understandable reason: yerba mate, guayusa, matcha, and rooibos are all sold in the same grocery-store tea aisle, often in visually similar boxes, so shoppers reasonably assume anything not labeled &ldquo;black&rdquo; or &ldquo;green&rdquo; is automatically caffeine-free. The only reliable check is the plant, not the aisle or the packaging color: <em>Camellia sinensis</em> and caffeine go together every time; everything else depends on the specific plant, and most &mdash; but not all &mdash; of those plants make none.</p><h2>Caffeine-free herbal vs. true tea, compared</h2><p>Use the calculator above to compare any drink by the cup or across a full day, or check the static reference table below &mdash; the herbal/tisane row and every true-tea row match the figures the calculator uses:</p><table><thead><tr><th>Drink</th><th>Serving</th><th>Typical caffeine</th><th>Range</th></tr></thead><tbody><tr><td>Herbal tisane (rooibos, chamomile, peppermint, hibiscus, ginger, honeybush)</td><td>8 oz</td><td>0 mg</td><td>caffeine-free</td></tr><tr><td>White tea (steeped)</td><td>8 oz</td><td>~25 mg</td><td>15&ndash;30 mg</td></tr><tr><td>Green tea (steeped)</td><td>8 oz</td><td>~35 mg</td><td>30&ndash;50 mg</td></tr><tr><td>Oolong (steeped)</td><td>8 oz</td><td>~40 mg</td><td>30&ndash;50 mg</td></tr><tr><td>Black tea (steeped)</td><td>8 oz</td><td>~50 mg</td><td>40&ndash;70 mg</td></tr><tr><td>Yerba mate</td><td>8 oz</td><td>~80 mg</td><td>&mdash;</td></tr><tr><td>Matcha</td><td>1 tsp (2 g) whisked in 2&ndash;3 oz</td><td>~65&ndash;70 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Espresso</td><td>1 oz shot</td><td>~63 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Brewed coffee</td><td>8 oz</td><td>~95 mg</td><td>80&ndash;100 mg</td></tr></tbody></table><p>Two things stand out. First, the gap between herbal tisanes and every true tea isn't a matter of degree &mdash; it's 0 mg versus a real, measurable number, because the plant itself either makes caffeine or it doesn't. Second, yerba mate sits closer to coffee than to any true tea, which is easy to miss if you assume &ldquo;herbal&rdquo; automatically means low-caffeine.</p><h2>What &ldquo;caffeine-free&rdquo; actually means on a label</h2><p>On a pure herbal tisane, &ldquo;caffeine-free&rdquo; is a simple botanical fact: the plant was never going to contain caffeine, so there's nothing to remove. On a decaffeinated true tea, the same words describe a very different process &mdash; caffeine was present, and most (not all) of it was taken out afterward. If a product's ingredient list includes black, green, oolong, white, pu-erh tea, yerba mate, or guayusa, check whether it says &ldquo;decaf&rdquo; or &ldquo;caffeine-free&rdquo; specifically, since the two aren't interchangeable on drinks that started out caffeinated.</p><p>For the complete true-tea-vs-tisane breakdown, see <a href=\"/what-is-a-tisane\">what is a tisane</a>. For rooibos specifically, see <a href=\"/is-rooibos-caffeine-free\">is rooibos caffeine-free</a>. For how chai, matcha, and green tea compare on caffeine, see <a href=\"/chai-caffeine\">chai caffeine</a>, <a href=\"/matcha-caffeine\">matcha caffeine</a>, and <a href=\"/green-tea-caffeine\">green tea caffeine</a>.</p><p>This describes published research and general information, not medical or dietary advice.</p>",
+  "sources": [
+    {
+      "title": "Caffeine in Tea vs. Coffee: How Do They Compare?",
+      "url": "https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "5 Ways Chamomile Tea Benefits Your Health",
+      "url": "https://www.healthline.com/nutrition/5-benefits-of-chamomile-tea",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "12 Science-Backed Benefits of Peppermint Tea and Extracts",
+      "url": "https://www.healthline.com/nutrition/peppermint-tea",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "Hibiscus Tea: Nutrition Facts & Benefits",
+      "url": "https://www.webmd.com/diet/hibiscus-tea-is-it-good-for-you",
+      "publisher": "WebMD"
+    },
+    {
+      "title": "Ginger Tea Benefits: Nausea, Pain Relief, and Blood Sugar",
+      "url": "https://www.healthline.com/nutrition/benefits-ginger-tea",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "Honeybush Tea: Benefits and Side Effects",
+      "url": "https://www.healthline.com/nutrition/honeybush-tea",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "7 Health Benefits of Yerba Mate (Backed by Science)",
+      "url": "https://www.healthline.com/nutrition/8-benefits-of-yerba-mate",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "Guayusa: Benefits, Side Effects, and More",
+      "url": "https://www.healthline.com/nutrition/guayusa",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "How Much Caffeine Is in White Tea?",
+      "url": "https://www.healthline.com/nutrition/white-tea-caffeine",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "The health benefits of rooibos tea in humans (Aspalathus linearis): a scoping review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10774856/",
+      "publisher": "PubMed Central, 2024",
+      "type": "ScholarlyArticle",
+      "datePublished": "2024"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is herbal tea caffeine free?",
+      "a": "Most of it, yes. Pure herbal infusions (tisanes) like rooibos, chamomile, peppermint, hibiscus, ginger, honeybush, and lemongrass contain 0 mg of caffeine because they aren't made from the tea plant. Two exceptions marketed as \"herbal\" — yerba mate and guayusa — do contain caffeine."
+    },
+    {
+      "q": "Is chamomile tea caffeine free?",
+      "a": "Yes. Healthline lists chamomile as \"a caffeine-free alternative to black or green tea.\" It's a flower infusion, not made from the tea plant."
+    },
+    {
+      "q": "Is peppermint tea caffeine free?",
+      "a": "Yes. Healthline describes peppermint tea as \"naturally free of caffeine,\" so it can be brewed and drunk at any time of day without adding any caffeine."
+    },
+    {
+      "q": "Is hibiscus tea caffeine free?",
+      "a": "Yes. WebMD states plainly that \"hibiscus tea contains no caffeine.\" It's brewed from the hibiscus flower, not the tea plant."
+    },
+    {
+      "q": "Is ginger tea caffeine free?",
+      "a": "Yes. Per Healthline, ginger tea \"doesn't come from the Camellia sinensis plant, which is the source of caffeine in tea,\" so it carries none."
+    },
+    {
+      "q": "Is rooibos caffeine free?",
+      "a": "Yes, 0 mg — rooibos comes from a South African legume (Aspalathus linearis), not the tea plant. See our full is rooibos caffeine-free breakdown for the details and the one labeling exception to check for."
+    },
+    {
+      "q": "Is honeybush tea caffeine free?",
+      "a": "Yes. Healthline calls honeybush \"a caffeine-free herbal infusion similar to rooibos tea\" — both come from South African plants unrelated to Camellia sinensis."
+    },
+    {
+      "q": "Does decaf tea have zero caffeine?",
+      "a": "No. Decaffeinated tea started out as a caffeinated true tea and had most — not all — of its caffeine removed. Healthline notes trace amounts can remain even after decaffeination. If you need a true 0 mg, choose a pure herbal tisane instead of a decaf true tea."
+    },
+    {
+      "q": "Does yerba mate have caffeine?",
+      "a": "Yes, and a meaningful amount — Healthline puts a cup at about 80 mg, \"about the same amount of caffeine as a cup of coffee.\" It's often shelved alongside herbal teas, but the plant it's made from does naturally produce caffeine."
+    },
+    {
+      "q": "Does guayusa have caffeine?",
+      "a": "Yes. Healthline describes guayusa as offering caffeine amounts \"similar to regular coffee,\" not a caffeine-free amount, despite being sold as an herbal option."
+    },
+    {
+      "q": "Is matcha an herbal tea?",
+      "a": "No. Matcha is ground leaf from Camellia sinensis, the true tea plant, so it carries real caffeine — typically 60–80 mg per serving. It's easy to assume otherwise because it's green and plant-based, but botanically it's a true tea, not a tisane."
+    },
+    {
+      "q": "What's the difference between caffeine-free and decaffeinated?",
+      "a": "Caffeine-free (on a pure herbal tisane) means the plant never produced caffeine, so there's none to begin with. Decaffeinated means a tea that started with caffeine — black, green, oolong, white — went through a process that removed most, not all, of it."
+    },
+    {
+      "q": "Which herbal teas have the most caffeine?",
+      "a": "By definition, a genuine herbal tisane (rooibos, chamomile, peppermint, hibiscus, ginger, honeybush, lemongrass) has none — 0 mg across the board. The drinks with meaningful caffeine that get mistakenly filed under \"herbal\" are yerba mate and guayusa, both around coffee-strength."
+    },
+    {
+      "q": "Can I drink herbal tea any time of day?",
+      "a": "From a caffeine standpoint, yes — pure herbal tisanes like chamomile, peppermint, rooibos, and hibiscus contain 0 mg, so timing isn't a caffeine consideration the way it is with true tea or coffee."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "question",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore true-tea blends",
+  "product_bridge_blurb": "TMolecule's blends are built on real green and black tea, so none of them are naturally caffeine-free. When you're not avoiding caffeine, explore the collection.",
+  "related": [
+    "is-rooibos-caffeine-free",
+    "what-is-a-tisane",
+    "chai-caffeine",
+    "matcha-caffeine",
+    "green-tea-caffeine"
+  ],
+  "disclaimer": true
+}
