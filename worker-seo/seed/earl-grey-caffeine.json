@@ -19,14 +19,46 @@
     "name": "Caffeine content of Earl Grey and comparison drinks",
     "description": "Caffeine range in milligrams per typical serving. Black, green, white, matcha, espresso, brewed coffee, and rooibos values match the caffeine comparator widget above (canonical site dataset). The Earl Grey-specific published range is sourced separately from WebMD, since Earl Grey itself is not one of the widget's tracked drinks — its caffeine comes from its black tea base.",
     "variableMeasured": [
-      { "name": "Earl Grey tea, published range (WebMD, 8 oz)", "value": "40-120", "unitText": "mg" },
-      { "name": "Black tea (8 oz, steeped — Earl Grey's base)", "value": "40-70", "unitText": "mg" },
-      { "name": "White tea (8 oz, steeped)", "value": "15-30", "unitText": "mg" },
-      { "name": "Green tea (8 oz, steeped)", "value": "30-50", "unitText": "mg" },
-      { "name": "Matcha (1 tsp / 2 g, whisked in 2–3 oz)", "value": "60-80", "unitText": "mg" },
-      { "name": "Espresso (1 oz shot)", "value": "60-80", "unitText": "mg" },
-      { "name": "Brewed coffee (8 oz)", "value": "80-100", "unitText": "mg" },
-      { "name": "Rooibos / herbal (8 oz, caffeine-free)", "value": "0", "unitText": "mg" }
+      {
+        "name": "Earl Grey tea, published range (WebMD, 8 oz)",
+        "value": "40-120",
+        "unitText": "mg"
+      },
+      {
+        "name": "Black tea (8 oz, steeped — Earl Grey's base)",
+        "value": "40-70",
+        "unitText": "mg"
+      },
+      {
+        "name": "White tea (8 oz, steeped)",
+        "value": "15-30",
+        "unitText": "mg"
+      },
+      {
+        "name": "Green tea (8 oz, steeped)",
+        "value": "30-50",
+        "unitText": "mg"
+      },
+      {
+        "name": "Matcha (1 tsp / 2 g, whisked in 2–3 oz)",
+        "value": "60-80",
+        "unitText": "mg"
+      },
+      {
+        "name": "Espresso (1 oz shot)",
+        "value": "60-80",
+        "unitText": "mg"
+      },
+      {
+        "name": "Brewed coffee (8 oz)",
+        "value": "80-100",
+        "unitText": "mg"
+      },
+      {
+        "name": "Rooibos / herbal (8 oz, caffeine-free)",
+        "value": "0",
+        "unitText": "mg"
+      }
     ]
   },
   "body_html": "<p>Yes &mdash; Earl Grey has caffeine, and it comes entirely from its black tea base. This site's working range for black tea is <strong>40&ndash;70 mg</strong> per 8 oz cup (avg ~50 mg); WebMD reports a wider published figure specifically for Earl Grey of <strong>40 to 120 milligrams</strong> per cup. Bergamot, the citrus oil that gives Earl Grey its signature flavor, doesn't add or remove any of it.</p><h2>How much caffeine is in Earl Grey tea?</h2><p>Per WebMD, &ldquo;your cup of Earl Grey tea also contains 40 to 120 milligrams of caffeine.&rdquo; That's a wide published band, and it's wider than this site's general black-tea range (40&ndash;70 mg) &mdash; a difference that likely reflects how strongly a given Earl Grey is brewed and how heavily the bergamot-oil coating covers the leaf, rather than a different plant or process. Other sources on black tea generally show similar spread: Medical News Today puts black tea at 64&ndash;112 mg per 8 fl oz, while the FDA's figure of 71 mg per 12 oz works out to about 47 mg per 8 oz. Published black-tea numbers vary meaningfully by source and method &mdash; there isn't one single agreed-upon figure, for Earl Grey or for black tea generally.</p><h2>What is Earl Grey tea?</h2><p>Earl Grey is a flavored black tea, not a distinct tea type of its own. WebMD describes it plainly: &ldquo;Traditionally, it's a simple blend of black tea and oil of bergamot,&rdquo; bergamot being a bitter citrus fruit grown mainly in southern Italy. The black tea leaf supplies the caffeine, body, and tannins; the bergamot oil supplies the citrusy, floral aroma Earl Grey is known for. Some modern versions swap in green tea, oolong, or rooibos as the base and still call the result &ldquo;Earl Grey&rdquo; because of the bergamot flavoring &mdash; which means the caffeine range on this page applies to <em>traditional, black-tea-based</em> Earl Grey specifically, and a rooibos-based &ldquo;Earl Grey&rdquo; would be caffeine-free instead.</p><h2>Does bergamot add caffeine?</h2><p>No. Caffeine is a compound the tea plant (<em>Camellia sinensis</em>) produces in its leaves; bergamot is an unrelated citrus fruit used only for its oil's aroma. Flavoring a black tea with bergamot changes how it tastes and smells &mdash; it doesn't add, remove, or otherwise change the caffeine already present in the tea leaf underneath.</p><h2>Earl Grey vs. black tea vs. other drinks, compared</h2><p>Use the calculator above to compare Earl Grey's black-tea base against any other drink, by the cup or across a full day, or check the static reference table below:</p><table><thead><tr><th>Drink</th><th>Serving</th><th>Typical caffeine</th><th>Range</th></tr></thead><tbody><tr><td>Earl Grey tea (published range, WebMD)</td><td>8 oz</td><td>&mdash;</td><td>40&ndash;120 mg</td></tr><tr><td>Black tea (steeped &mdash; Earl Grey's base)</td><td>8 oz</td><td>~50 mg</td><td>40&ndash;70 mg</td></tr><tr><td>White tea (steeped)</td><td>8 oz</td><td>~25 mg</td><td>15&ndash;30 mg</td></tr><tr><td>Green tea (steeped)</td><td>8 oz</td><td>~35 mg</td><td>30&ndash;50 mg</td></tr><tr><td>Matcha</td><td>1 tsp (2 g) whisked in 2&ndash;3 oz</td><td>~65&ndash;70 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Espresso</td><td>1 oz shot</td><td>~63 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Brewed coffee</td><td>8 oz</td><td>~95 mg</td><td>80&ndash;100 mg</td></tr><tr><td>Rooibos / herbal (caffeine-free)</td><td>8 oz</td><td>0 mg</td><td>caffeine-free</td></tr></tbody></table><p>Even at its published high end (120 mg), a strong cup of Earl Grey can approach brewed coffee's typical range &mdash; but at the low end (40 mg), it's closer to a light green tea. The spread is wide enough that &ldquo;how strong did you brew it&rdquo; matters more for Earl Grey than for most single-origin teas.</p><h2>What changes Earl Grey's caffeine</h2><ul><li><strong>Steep time and water temperature.</strong> A longer steep in hotter water pulls more caffeine from the black tea leaf underneath the bergamot coating.</li><li><strong>Leaf-to-water ratio.</strong> More tea per cup means a stronger, more caffeinated brew.</li><li><strong>How the bergamot is applied.</strong> A tea scented with natural bergamot rind or herbs tends to be milder than one coated in concentrated bergamot oil, but this affects flavor intensity, not the caffeine coming from the tea leaf itself.</li><li><strong>Base tea substitution.</strong> An Earl Grey made with green tea, oolong, or rooibos instead of black tea will carry that base's caffeine range instead &mdash; always check the ingredient list if the base matters to you.</li></ul><h2>Is there a caffeine-free Earl Grey?</h2><p>A traditional black-tea Earl Grey is not caffeine-free. Two lower-caffeine options exist instead: <strong>decaf Earl Grey</strong>, made by decaffeinating the black tea base &mdash; Medical News Today notes that &ldquo;decaffeinated varieties of popular teas are usually available,&rdquo; including Earl Grey &mdash; and <strong>rooibos-based &ldquo;Earl Grey,&rdquo;</strong> which swaps in caffeine-free rooibos and keeps only the bergamot flavoring. Decaffeination is worth a caveat: it removes most, not all, of a tea's caffeine, so a decaf Earl Grey still carries a small residual amount rather than being truly 0 mg.</p><h2>Is Earl Grey's caffeine a lot?</h2><p>Earl Grey's black-tea-range caffeine (roughly 40&ndash;70 mg on this site's figures, up to a published 120 mg on the high end) is a meaningful but not extreme share of the general daily reference the U.S. FDA has cited &mdash; about 400 mg per day as a level not generally associated with negative effects for most healthy adults. That reference covers everything caffeinated you drink in a day, not any single cup. People who are pregnant, caffeine-sensitive, or managing a health condition should talk to a healthcare provider about what caffeine level is appropriate for them.</p><p>For the full black-tea breakdown Earl Grey's base draws from, see <a href=\"/black-tea\">black tea: caffeine and the evidence</a>. For how Earl Grey compares to chai, another black-tea-based blend, see <a href=\"/chai-caffeine\">chai caffeine</a>.</p><p>This describes published research and general information, not medical or dietary advice.</p>",
@@ -40,11 +72,6 @@
       "title": "Which tea has the most caffeine?",
       "url": "https://www.medicalnewstoday.com/articles/which-tea-has-the-most-caffeine",
       "publisher": "Medical News Today"
-    },
-    {
-      "title": "How Much Caffeine Is in Green Tea? (methodology basis for tea-caffeine variance)",
-      "url": "https://www.healthline.com/nutrition/caffeine-in-tea-vs-coffee",
-      "publisher": "Healthline"
     },
     {
       "title": "Spilling the Beans: How Much Caffeine Is Too Much?",
