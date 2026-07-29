@@ -35,7 +35,12 @@ export async function handleArticle(slug, env, origin, request, mount = '') {
     : renderArticle(data, slug, origin, env, mount);
   const headers = {
     'content-type': 'text/html; charset=utf-8',
-    'cache-control': 'public, max-age=300, s-maxage=86400',
+    // s-maxage 1h, not 24h. A 24h edge cache meant a corrected page — including
+    // a no-medical-claims or fabricated-citation fix — stayed live for a full
+    // day. Hit 2026-07-29: fixed pages served stale content across PoPs and
+    // URL-targeted purges did not clear them (only Purge Everything did).
+    // At 1h a bad page self-heals. Other /learn routes already use 3600.
+    'cache-control': 'public, max-age=300, s-maxage=3600',
     'x-tmolecule-source': isRecipe ? 'worker-pseo-recipe' : 'worker-pseo',
     'x-tmol-variant': served,
     'vary': 'Cookie',
@@ -69,7 +74,9 @@ export async function handleArticleMarkdown(slug, env, origin, request, mount = 
   return new Response(md, {
     headers: {
       'content-type': 'text/markdown; charset=utf-8',
-      'cache-control': 'public, max-age=300, s-maxage=86400',
+      // Same 1h cap as the HTML route — this markdown view is what AI crawlers
+      // fetch, so a stale copy misinforms them for as long as it lives.
+      'cache-control': 'public, max-age=300, s-maxage=3600',
       'x-tmolecule-source': 'worker-pseo-md',
       'x-tmol-variant': served,
       'vary': 'Cookie',
