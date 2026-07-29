@@ -75,6 +75,14 @@ const HTTP_CONCURRENCY = 4;
 const HTTP_MIN_INTERVAL_MS = 1000 / 6; // paces the whole pool to ~6 req/s regardless of concurrency
 const HEAD_RETRY_STATUSES = new Set([403, 405, 501]); // hosts that reject/mishandle HEAD
 
+// Hosts that answer datacenter/CI IP ranges with a 404 instead of a 403 as an
+// anti-bot measure, making a real removal indistinguishable from a block.
+// Non-2xx from these is downgraded to an indeterminate WARN. Keep this list
+// SHORT and only add a host after confirming the same URL 200s from a normal
+// client while failing in CI — every entry weakens the gate for that host.
+const BOT_WALLED_404_HOSTS = ['fda.gov'];
+const hostOf = (u) => { try { return new URL(u).hostname.toLowerCase(); } catch { return ''; } };
+
 const STOP = new Set(['the','a','an','and','or','of','in','on','for','with','to','from','by','at','as','is','are','was','were','be','its','their','effect','effects','study','trial','randomized','randomised','controlled','review','meta','analysis','systematic','human','humans','adults']);
 
 function keywords(t) {
@@ -240,6 +248,17 @@ function evaluateHttpResult(url, r) {
     // the same indeterminate treatment; a 404/410/5xx never does.
     if (r.status === 403 && /cloudflare/i.test(r.server)) {
       return { checkKind: 'bot-challenge', status: 'WARN', reason: `HTTP 403 from a Cloudflare-fronted host (no cf-mitigated header, but server=cloudflare) — likely a bot/WAF block, not confirmed dead (indeterminate)`, httpStatus: r.status };
+    }
+    // Hosts that serve a 404 (not a 403) to datacenter/CI IP ranges as an
+    // anti-bot measure. fda.gov does exactly this: the same URL returns 200
+    // from an ordinary client and 404 from a GitHub Actions runner, so a hard
+    // FAIL here is a false positive that blocks the pipeline on a live page.
+    // Verified 2026-07-28: the FDA caffeine page 200s locally, 404s in CI.
+    // Kept deliberately narrow — one host, and only because its block is
+    // indistinguishable from a real 404. A genuinely removed page on these
+    // hosts will surface as a WARN a human must check, not silently pass.
+    if (BOT_WALLED_404_HOSTS.some((h) => hostOf(url) === h || hostOf(url).endsWith(`.${h}`))) {
+      return { checkKind: 'bot-challenge', status: 'WARN', reason: `HTTP ${r.status} from ${hostOf(url)}, a host known to serve 404s to datacenter/CI IPs — not confirmed dead (indeterminate; verify manually)`, httpStatus: r.status };
     }
     return {
       checkKind: 'dead-link',
