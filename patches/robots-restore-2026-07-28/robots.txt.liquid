@@ -1,0 +1,31 @@
+{% comment %}
+  Custom robots.txt. Created 2026-07-29.
+
+  Purpose: emit the IETF Content-Signal directive (opt in to AI search and RAG,
+  opt out of model training) at the APEX host. The Cloudflare worker already
+  emits this in worker-seo/src/sitemap.js, but no worker route is bound to
+  /robots.txt, so it only ever served at /learn/robots.txt -- a path no crawler
+  reads. robots.txt is only honoured at the host root.
+
+  robots.default_groups re-emits every Shopify default rule (cart, checkout,
+  account, /services, sort_by and filter crawl traps, the adsbot group), so
+  nothing Shopify currently blocks becomes crawlable. This only adds three
+  directives to the wildcard group.
+{% endcomment %}
+{% for group in robots.default_groups %}
+  {{- group.user_agent }}
+
+  {%- for rule in group.rules -%}
+    {{ rule }}
+  {%- endfor -%}
+
+  {%- if group.user_agent.value == '*' -%}
+    {{ 'Content-Signal: ai-train=no, search=yes, ai-input=yes' }}
+    {{ 'Disallow: /*?variant=' }}
+    {{ 'Disallow: /*.atom$' }}
+  {%- endif -%}
+
+  {%- if group.sitemap != blank -%}
+    {{ group.sitemap }}
+  {%- endif -%}
+{% endfor %}
