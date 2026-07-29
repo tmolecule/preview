@@ -1,0 +1,54 @@
+{
+  "title": "What Is a Tisane? Herbal 'Tea' vs Real Tea, Explained",
+  "h1": "What is a tisane?",
+  "meta_description": "A tisane is an herbal infusion from anything other than the tea plant, so 'herbal tea' isn't technically tea. Here's the difference from real tea, and why caffeine varies.",
+  "image_url": "",
+  "published_at": "2026-07-14T18:00:00Z",
+  "updated_at": "2026-07-14T18:00:00Z",
+  "keywords": [
+    "what is a tisane",
+    "tisane vs tea",
+    "is herbal tea real tea",
+    "herbal tea vs tea",
+    "difference between tea and tisane"
+  ],
+  "body_html": "<p>A tisane is an <strong>herbal infusion made from anything other than the tea plant</strong> &mdash; herbs, spices, flowers, roots, or fruit. That means &ldquo;herbal tea&rdquo; isn't technically tea at all. <strong>True teas (green, black, oolong, white, pu-erh) all come from <em>Camellia sinensis</em> and contain caffeine; tisanes like rooibos, chamomile, or peppermint are usually caffeine-free.</strong></p><h2>True tea vs tisane</h2><table><thead><tr><th>Property</th><th>True tea</th><th>Tisane (herbal &ldquo;tea&rdquo;)</th></tr></thead><tbody><tr><td>Made from</td><td><em>Camellia sinensis</em> leaves</td><td>Herbs, spices, flowers, roots, fruit</td></tr><tr><td>Caffeine</td><td>Yes (varies by type)</td><td>Usually none (a few exceptions)</td></tr><tr><td>Examples</td><td>Green, black, oolong, white, pu-erh</td><td>Rooibos, chamomile, peppermint, ginger, hibiscus</td></tr><tr><td>Brewing</td><td>Shorter, temperature matters</td><td>Often longer steeps, near-boiling</td></tr></tbody></table><h2>Why the distinction matters</h2><p>Calling everything &ldquo;tea&rdquo; is common and harmless in daily speech, but the label tells you two useful things. First, <strong>caffeine</strong>: a true tea will have some; a pure herbal tisane usually won't &mdash; handy if you're avoiding caffeine at night. Second, <strong>brewing</strong>: many tisanes are more forgiving and can steep longer and hotter without turning bitter, while delicate green teas can't.</p><h2>Common caffeine-free tisanes</h2><p>Rooibos, chamomile, peppermint, ginger, hibiscus, and lemongrass are all tisanes. Rooibos is a popular one because it's naturally caffeine-free and low in the tannins that make some teas astringent &mdash; more in <a href=\"/is-rooibos-caffeine-free\">is rooibos caffeine-free</a> and <a href=\"/rooibos-tea-benefits\">rooibos</a>.</p><h2>What about spiced or blended &ldquo;teas&rdquo;?</h2><p>It depends on the base. A masala chai is built on black tea, so it's a true tea with a caffeine content, spices and all. A caffeine-free &ldquo;herbal chai&rdquo; built on rooibos is a tisane. If caffeine matters to you, check what the base actually is &mdash; see <a href=\"/what-is-masala-chai\">what is masala chai</a> and <a href=\"/black-tea\">black tea</a>.</p>",
+  "sources": [
+    {
+      "title": "Camellia sinensis and herbal infusions: botanical distinction",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/camellia-sinensis",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is a tisane?",
+      "a": "A tisane is an herbal infusion made from plants other than the tea plant — herbs, spices, flowers, roots, or fruit. Chamomile, peppermint, rooibos, and ginger 'teas' are all tisanes."
+    },
+    {
+      "q": "Is herbal tea real tea?",
+      "a": "Technically no. Real tea comes from Camellia sinensis (green, black, oolong, white, pu-erh). Herbal 'teas' are tisanes — infusions of other plants — even though everyone calls them tea."
+    },
+    {
+      "q": "Do tisanes have caffeine?",
+      "a": "Most don't. Pure herbal tisanes like chamomile, peppermint, and rooibos are naturally caffeine-free. A few exceptions (like yerba mate) contain caffeine, so check if it matters to you."
+    },
+    {
+      "q": "Is chai a tea or a tisane?",
+      "a": "It depends on the base. Masala chai is built on black tea, so it's a true, caffeinated tea. A caffeine-free 'herbal chai' made on a rooibos base is a tisane."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "definition",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "See what's in the cup",
+  "product_bridge_blurb": "Our blends are built on real tea — green tea and black tea bases — with spices and functional add-ins. Explore the range.",
+  "related": [
+    "is-rooibos-caffeine-free",
+    "rooibos-tea-benefits",
+    "what-is-masala-chai"
+  ],
+  "disclaimer": false
+}

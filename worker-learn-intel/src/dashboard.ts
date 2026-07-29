@@ -1,4 +1,16 @@
 import { GapReport } from "./types";
+import type { EngineRates, WindowComparison } from "./sweeps";
+
+/** Days per comparison window. The TMolecule corpus (~81 pages at 10/tick)
+ * rotates about every 8 days, so a 30-day window covers roughly three full
+ * passes — enough that the two windows compare the same pages over time
+ * rather than different subsets of the corpus. */
+export const VISIBILITY_WINDOW_DAYS = 30;
+
+export interface VisibilityPanel {
+  rates: EngineRates[];
+  comparisons: WindowComparison[];
+}
 
 // TMolecule warm palette — tobacco brown / cream / copper / moss.
 // Matches the brand's ayurvedic-apothecary register.
@@ -200,7 +212,62 @@ function renderFindings(reports: GapReport[], bucket: Bucket): string {
   return sections.join("");
 }
 
-export function renderDashboard(reports: GapReport[]): string {
+/**
+ * Per-engine cited and mentioned rates, each with its 95% Wilson interval, and
+ * a 30-day-over-30-day verdict.
+ *
+ * The interval is the point of this panel. A bare "4 of 6 cited" reads as 67%
+ * and invites a conclusion the sample cannot support — the real interval on
+ * that fraction runs 30% to 90%. Anything flagged "within noise" moved less
+ * than the panel can resolve, and is not evidence of anything.
+ */
+function renderVisibility(visibility: VisibilityPanel | null): string {
+  if (!visibility || visibility.rates.every((r) => r.cited.n === 0)) {
+    return `<p class="muted">No sweep history yet. Rates appear after the first cron batch writes a sweep record; the month-over-month verdict needs two windows, so about ${VISIBILITY_WINDOW_DAYS * 2} days.</p>`;
+  }
+
+  const compareBy = new Map(visibility.comparisons.map((c) => [c.engine, c]));
+
+  const rows = visibility.rates
+    .map((r) => {
+      const cmp = compareBy.get(r.engine);
+      const verdict = (label: string | undefined, withinNoise: boolean | undefined): string => {
+        if (!label || label === "no data") return `<span class="muted">\u2014</span>`;
+        const cls = withinNoise ? "muted" : "verdict-real";
+        return `<span class="${cls}">${escapeHtml(label)}</span>`;
+      };
+      return `<tr>
+        <td><strong>${escapeHtml(r.label)}</strong></td>
+        <td>${escapeHtml(r.cited.label)}</td>
+        <td>${verdict(cmp?.cited.label, cmp?.cited.withinNoise)}</td>
+        <td>${escapeHtml(r.mentioned.label)}</td>
+        <td>${verdict(cmp?.mentioned.label, cmp?.mentioned.withinNoise)}</td>
+      </tr>`;
+    })
+    .join("");
+
+  return `
+    <table class="detail-table">
+      <thead>
+        <tr>
+          <th>Engine</th>
+          <th>Cited (95% CI)</th>
+          <th>vs prior ${VISIBILITY_WINDOW_DAYS}d</th>
+          <th>Mentioned (95% CI)</th>
+          <th>vs prior ${VISIBILITY_WINDOW_DAYS}d</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <p class="finding-sub">
+      <strong>Cited</strong> = the engine used one of our URLs as a source (a crawlability and structure problem when missing).
+      <strong>Mentioned</strong> = the engine named the brand in prose with no link (a brand-authority problem when missing).
+      Pages an engine did not answer for are excluded from its denominator, so an outage never reads as a citation loss.
+      Intervals assume independent draws; because the same pages recur across sweeps the true interval is somewhat wider.
+    </p>`;
+}
+
+export function renderDashboard(reports: GapReport[], visibility: VisibilityPanel | null = null): string {
   // Header stats reflect editorial only — that's the actionable population.
   const editorial = reports.filter((r) => isEditorial(r.slug));
   const totalClaims = editorial.reduce((s, r) => s + r.total_claims, 0);
@@ -483,6 +550,7 @@ export function renderDashboard(reports: GapReport[]): string {
   .bar span { display:block; height:100%; transition:width .3s }
   .cov-text { font-size:13px; color:var(--ink) }
   .muted { color:var(--muted); font-weight:normal }
+  .verdict-real { color:var(--ink); font-weight:600 }
   .cite-cell { text-align:center; padding:8px 10px; min-width:48px }
   .cite-cell .pill { padding:2px 8px; font-size:11px; line-height:1.2 }
   .pill { display:inline-block; padding:3px 10px; border-radius:999px; font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.06em }
@@ -594,6 +662,11 @@ export function renderDashboard(reports: GapReport[]): string {
         <p>A GitHub Actions workflow runs every Friday at 01:00 ET (05:00 UTC) and refreshes every editorial page in this report. Outside the weekly run, a Cloudflare cron rotates ~10 pages/day as a safety net.</p>
       </div>
     </details>
+  </section>
+
+  <section>
+    <h2>AI visibility rates</h2>
+    ${renderVisibility(visibility)}
   </section>
 
   <section>

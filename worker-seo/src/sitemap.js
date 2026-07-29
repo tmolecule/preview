@@ -4,6 +4,9 @@
 // to redirect and here to exclude the slug from the sitemap.
 export const LEARN_REDIRECTS = {
   'masala-chai-recipe': 'https://tmolecule.com/blogs/recipes/masala-chai-recipe',
+  // Consolidated the older /learn/cardamom into the newer, better-cited
+  // cardamom-benefits page (2026-07-13) to avoid two competing cardamom pages.
+  'cardamom': 'https://tmolecule.com/learn/cardamom-benefits',
 };
 
 export async function handleSitemap(env, origin, mount = '') {
@@ -13,17 +16,23 @@ export async function handleSitemap(env, origin, mount = '') {
   const entries = [`<url><loc>${origin}${mount}/</loc><lastmod>${now}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>`];
 
   // Static code-routed tool pages (not in KV) — list explicitly so they index.
-  for (const tool of ['tea-finder', 'brew-guide', 'cost-per-cup']) {
+  for (const tool of ['tools', 'tea-finder', 'brew-guide', 'cost-per-cup', 'caffeine-comparator', 'collagen-calculator', 'sugar-saved', 'spice-blend-builder']) {
     entries.push(`<url><loc>${origin}${mount}/${tool}</loc><lastmod>${now}</lastmod><changefreq>monthly</changefreq><priority>0.6</priority></url>`);
   }
 
   const articleEntries = [];
   const presentPillars = new Set();
 
-  for (const key of list.keys) {
-    if (key.name.includes(':')) continue; // skip variant + experiment keys
-    if (LEARN_REDIRECTS[key.name]) continue; // 301'd elsewhere — don't list
-    const raw = await env.LEARN_PAGES.get(key.name);
+  // Fetch page bodies in PARALLEL — sequential awaits inside this loop made the
+  // sitemap take ~N×200ms cold, timing out crawlers on cache-miss regen. Filter
+  // first, then Promise.all; order is preserved so the XML is byte-identical.
+  const pages = await Promise.all(
+    list.keys
+      .filter((key) => !key.name.includes(':') && !LEARN_REDIRECTS[key.name])
+      .map(async (key) => ({ name: key.name, raw: await env.LEARN_PAGES.get(key.name) }))
+  );
+
+  for (const { name, raw } of pages) {
     let lastmod = now;
     if (raw) {
       try {
@@ -32,7 +41,7 @@ export async function handleSitemap(env, origin, mount = '') {
         if (d.pillar) presentPillars.add(d.pillar);
       } catch {}
     }
-    articleEntries.push(`<url><loc>${origin}${mount}/${key.name}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
+    articleEntries.push(`<url><loc>${origin}${mount}/${name}</loc><lastmod>${lastmod}</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>`);
   }
 
   // Pillar hub pages — emitted only for pillars that actually have content.
@@ -49,7 +58,11 @@ ${entries.join('\n')}
   return new Response(xml, {
     headers: {
       'content-type': 'application/xml; charset=utf-8',
-      'cache-control': 'public, max-age=3600, s-maxage=86400'
+      // s-maxage kept at 1h (not 24h): the sitemap's whole job is to advertise
+      // freshness via <lastmod>. A 24h edge cache silently hid same-day content
+      // updates from crawlers — seen 2026-07-28, when 13 corrected pages kept
+      // serving April/May lastmod for a full day after they were re-seeded.
+      'cache-control': 'public, max-age=3600, s-maxage=3600'
     }
   });
 }

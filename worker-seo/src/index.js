@@ -1,18 +1,26 @@
 import { handleArticle, handleArticleMarkdown, handleIndex, handleHub, handleLlmsTxt, handleManifest } from './learn.js';
 import { handleSitemap, handleRobots, LEARN_REDIRECTS } from './sitemap.js';
-import { renderNotFound, renderBrewGuide, renderCostPerCup, renderTeaFinder } from './template.js';
-import { BREW_GUIDE_JS, COST_PER_CUP_JS, TEA_FINDER_JS } from './widget-bundles.js';
+import { renderNotFound, renderBrewGuide, renderCostPerCup, renderTeaFinder, renderCaffeineComparator, renderCollagenCalculator, renderSugarSaved, renderSpiceBlendBuilder, renderToolsHub } from './template.js';
+import { BREW_GUIDE_JS, COST_PER_CUP_JS, TEA_FINDER_JS, CAFFEINE_COMPARATOR_JS, COLLAGEN_CALCULATOR_JS, SUGAR_SAVED_JS, SPICE_BLEND_BUILDER_JS, ADVISOR_JS, STEEP_GUIDE_JS } from './widget-bundles.js';
 import { handleDeck } from './deck.js';
 import { pickVariant, VARIANT_DEFAULT } from './experiments.js';
+import { classifyCrawler } from './crawlers.js';
+import { handleAdvisor, AdvisorRateLimiter } from './advisor.js';
+
+// Durable Object class must be a named export of the entry module.
+export { AdvisorRateLimiter };
 import { isHubSlug } from './taxonomy.js';
 import AGENTS_MD from '../agents.md';
 
-/** Serve an inlined widget IIFE bundle with long, CORS-open caching. */
+/** Serve an inlined widget IIFE bundle. Short browser cache so fixes propagate
+ *  quickly even for lazily-injected loads (e.g. the header advisor) that a
+ *  hard-refresh doesn't bypass; the versioned embeds (?v=WIDGET_VERSION) still
+ *  cache hard at the edge. */
 function serveWidgetJs(js) {
   return new Response(js, {
     headers: {
       'content-type': 'application/javascript; charset=utf-8',
-      'cache-control': 'public, max-age=3600, s-maxage=86400',
+      'cache-control': 'public, max-age=120, s-maxage=600',
       'access-control-allow-origin': '*'
     }
   });
@@ -23,13 +31,22 @@ async function handleHealth(env) {
   let kvOk = false;
   let kvCount = 0;
   let kvLatencyMs = 0;
+  let timer;
   try {
     const kvStart = Date.now();
-    const list = await env.LEARN_PAGES.list({ limit: 100 });
+    // Bound the probe: if KV hangs, resolve to a controlled 503 'degraded' below
+    // instead of letting the request stall until Cloudflare's gateway 504s (opaque
+    // to the uptime monitor). 5s is well under the edge gateway timeout.
+    const list = await Promise.race([
+      env.LEARN_PAGES.list({ limit: 100 }),
+      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('kv-timeout')), 5000); }),
+    ]);
+    clearTimeout(timer);
     kvLatencyMs = Date.now() - kvStart;
     kvOk = true;
     kvCount = list.keys.length;
   } catch {
+    clearTimeout(timer);
     kvOk = false;
   }
   const ok = kvOk && kvCount > 0;
@@ -225,10 +242,11 @@ async function handleFetch(request, env, ctx) {
     });
   }
 
-  // IndexNow ownership-proof key. Hosted under the /learn mount, so the
-  // submittable URL scope is /learn/* (all this Worker owns). Submit URLs via
-  // POST to https://api.indexnow.org/IndexNow with this key + keyLocation
-  // pointing back at this file.
+  // IndexNow ownership-proof key. Served BOTH under /learn (/learn/<key>.txt)
+  // and at the apex root (tmolecule.com/<key>.txt, via exact-path routes in
+  // wrangler.toml). The root-hosted copy expands the submittable URL scope from
+  // /learn/* to the WHOLE domain (incl. /blogs/*). Submit URLs via POST to
+  // https://api.indexnow.org/IndexNow with keyLocation pointing at the ROOT copy.
   if (path === '/6e140b318cfa4ad57fd1a1e06e4bd20e.txt') {
     return new Response('6e140b318cfa4ad57fd1a1e06e4bd20e', {
       status: 200,
@@ -241,6 +259,18 @@ async function handleFetch(request, env, ctx) {
 
   if (path === '/manifest.json') {
     return handleManifest(env, url.origin, mount);
+  }
+
+  // Recipe / article media (images), served from the DECKS R2 bucket under media/*.
+  // Referenced from seeds as image_url = <origin>/learn/media/<file>.
+  if (path.startsWith('/media/')) {
+    const obj = await env.DECKS.get(path.slice(1));
+    if (!obj) return new Response('Not found', { status: 404 });
+    const headers = new Headers();
+    obj.writeHttpMetadata(headers);
+    if (!headers.has('content-type')) headers.set('content-type', 'image/jpeg');
+    headers.set('cache-control', 'public, max-age=31536000, immutable');
+    return new Response(obj.body, { headers });
   }
 
   // Interactive tool widget (#2 Brew Guide). The IIFE is served here; the host
@@ -283,6 +313,70 @@ async function handleFetch(request, env, ctx) {
     });
   }
 
+  // Interactive tool widget (#5 Caffeine comparator). Embeddable on other sites.
+  if (path === '/widgets/caffeine-comparator.js') {
+    return serveWidgetJs(CAFFEINE_COMPARATOR_JS);
+  }
+  if (path === '/caffeine-comparator') {
+    return new Response(renderCaffeineComparator(url.origin, env, mount), {
+      headers: {
+        'content-type': 'text/html; charset=utf-8',
+        'cache-control': 'public, max-age=300, s-maxage=3600'
+      }
+    });
+  }
+
+  // Interactive tool widget (#10 Steep Guide — tea-type water temp/time/ratio lookup).
+  if (path === '/widgets/steep-guide.js') {
+    return serveWidgetJs(STEEP_GUIDE_JS);
+  }
+
+  // Interactive tool widget (#6 Collagen-per-day calculator).
+  if (path === '/widgets/collagen-calculator.js') {
+    return serveWidgetJs(COLLAGEN_CALCULATOR_JS);
+  }
+  if (path === '/collagen-calculator') {
+    return new Response(renderCollagenCalculator(url.origin, env, mount), {
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300, s-maxage=3600' }
+    });
+  }
+
+  // Interactive tool widget (#7 Sugar-saved / café-swap calculator).
+  if (path === '/widgets/sugar-saved.js') {
+    return serveWidgetJs(SUGAR_SAVED_JS);
+  }
+  if (path === '/sugar-saved') {
+    return new Response(renderSugarSaved(url.origin, env, mount), {
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300, s-maxage=3600' }
+    });
+  }
+
+  // Interactive tool widget (#8 Chai spice-blend builder).
+  if (path === '/widgets/spice-blend-builder.js') {
+    return serveWidgetJs(SPICE_BLEND_BUILDER_JS);
+  }
+  if (path === '/spice-blend-builder') {
+    return new Response(renderSpiceBlendBuilder(url.origin, env, mount), {
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300, s-maxage=3600' }
+    });
+  }
+
+  // RAG advisor — POST /learn/advisor. Billable LLM + Vectorize endpoint (rate-limited, no-store).
+  if (path === '/advisor') {
+    return handleAdvisor(request, env, ctx);
+  }
+  // Advisor chat widget IIFE (mounts into <div id="tm-advisor">).
+  if (path === '/widgets/advisor.js') {
+    return serveWidgetJs(ADVISOR_JS);
+  }
+
+  // Tools hub — the single indexable landing page linking every interactive tool.
+  if (path === '/tools') {
+    return new Response(renderToolsHub(url.origin, env, mount), {
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=300, s-maxage=3600' }
+    });
+  }
+
   if (path.startsWith('/decks/')) {
     return handleDeck(request, env, path);
   }
@@ -318,8 +412,85 @@ async function handleFetch(request, env, ctx) {
   });
 }
 
+// Baseline security headers for every Worker response. The Worker generates the
+// /learn HTML + tool/widget pages, which carry NONE of Shopify's edge security
+// headers otherwise. CSP mirrors Shopify's own (frame-ancestors + mixed-content +
+// upgrade only — deliberately NO script-src/style-src, so the templates' inline
+// <style>/<script> keep working). COOP/CORP/Referrer-Policy/Permissions-Policy are
+// the headers Shopify itself is missing too; a CF Transform Rule adds those four to
+// the Shopify-served pages (homepage/products/collections/blogs).
+const SECURITY_HEADERS = {
+  'strict-transport-security': 'max-age=31536000; includeSubDomains',
+  'content-security-policy': "block-all-mixed-content; frame-ancestors 'none'; upgrade-insecure-requests",
+  'x-content-type-options': 'nosniff',
+  'x-frame-options': 'DENY',
+  'referrer-policy': 'strict-origin-when-cross-origin',
+  'permissions-policy': 'camera=(), microphone=(), geolocation=(), payment=(), browsing-topics=()',
+  'cross-origin-opener-policy': 'same-origin',
+  'cross-origin-resource-policy': 'same-origin',
+};
+function withSecurityHeaders(response) {
+  const r = new Response(response.body, response);
+  for (const [k, v] of Object.entries(SECURITY_HEADERS)) r.headers.set(k, v);
+  return r;
+}
+
+// Server-side pageview logging for the /learn worker pages (GA4's gtag is not
+// injected here, so the whole corpus is otherwise invisible to analytics).
+// Writes one Analytics Engine data point per HTML page response. Runs on EVERY
+// request — including edge-cache HITs, since the Worker still executes — so
+// counts are complete, not miss-only. No-op when the PAGEVIEWS binding is
+// absent; never throws into the response path.
+//
+// Schema (query via the Analytics Engine SQL API, dataset
+// `tmolecule_learn_pageviews`):
+//   index1 = path        blob1 = path      blob2 = referer   blob3 = variant
+//   blob4  = client      (human | gptbot | claudebot | perplexity | googlebot | other-bot | …)
+//   blob5  = user-agent (truncated 200)
+//   blob6  = purpose     (training | search | user-agent | index | other | none)
+//   blob7  = operator    (OpenAI | Anthropic | Perplexity | Google | …, '' for humans)
+//   double1 = 1 (count)  double2 = isBot (0 human/unknown, 1 crawler)
+//   double3 = isLiveRetrieval (1 when purpose === 'user-agent')
+//
+// APPEND ONLY once this ships — positions are how the dataset is queried.
+// Layout deliberately mirrors WhollyKaw's `learn_pageviews` so one query works
+// against both brands.
+//
+// double3 is the one to watch. `training` crawls (GPTBot, ClaudeBot) say
+// nothing about whether we get cited; a live conversation-time fetch
+// (ChatGPT-User, Claude-User, Perplexity-User) means the page is being pulled
+// into a real answer right now, and it moves weeks before a citation rate does.
+function logPageview(request, resp, url, env) {
+  try {
+    if (request.method !== 'GET' || !env.PAGEVIEWS || resp.status !== 200) return;
+    if (!(resp.headers.get('content-type') || '').includes('text/html')) return;
+    const path = (url.pathname.replace(/\/+$/, '') || '/').slice(0, 96);
+    const ua = (request.headers.get('user-agent') || '');
+    const c = classifyCrawler(ua);
+    // Our own auditor crawls this corpus as a side effect of measuring it.
+    // Counting it would inflate exactly the numbers it exists to report.
+    if (c.isSelf) return;
+    env.PAGEVIEWS.writeDataPoint({
+      indexes: [path],
+      blobs: [
+        path,
+        (request.headers.get('referer') || '').slice(0, 200),
+        '',
+        c.client,
+        ua.slice(0, 200),
+        c.purpose,
+        c.operator,
+      ],
+      doubles: [1, c.isBot ? 1 : 0, c.purpose === 'user-agent' ? 1 : 0],
+    });
+  } catch (_) { /* analytics must never break a response */ }
+}
+
 export default {
   async fetch(request, env, ctx) {
-    return handleWithCache(request, env, ctx, () => handleFetch(request, env, ctx));
+    const response = await handleWithCache(request, env, ctx, () => handleFetch(request, env, ctx));
+    const resp = withSecurityHeaders(response);
+    logPageview(request, resp, new URL(request.url), env);
+    return resp;
   }
 };

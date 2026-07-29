@@ -1,0 +1,424 @@
+{
+    "version": "0.1.20260717",
+    "status_code": 20000,
+    "status_message": "Ok.",
+    "time": "14.0614 sec.",
+    "cost": 0.004,
+    "tasks_count": 1,
+    "tasks_error": 0,
+    "tasks": [
+        {
+            "id": "07190130-1525-0629-0000-a99d801674ab",
+            "status_code": 20000,
+            "status_message": "Ok.",
+            "time": "14.0301 sec.",
+            "cost": 0.004,
+            "result_count": 1,
+            "path": [
+                "v3",
+                "ai_optimization",
+                "chat_gpt",
+                "llm_scraper",
+                "live",
+                "advanced"
+            ],
+            "data": {
+                "api": "ai_optimization",
+                "function": "llm_scraper",
+                "se": "chat_gpt",
+                "keyword": "best shaving soap for sensitive skin",
+                "location_name": "United States",
+                "language_code": "en",
+                "force_web_search": true,
+                "device": "desktop",
+                "os": "windows"
+            },
+            "result": [
+                {
+                    "keyword": "best shaving soap for sensitive skin",
+                    "location_code": 2840,
+                    "language_code": "en",
+                    "model": "gpt-5-5",
+                    "check_url": "https:\/\/chatgpt.com\/?prompt=best%20shaving%20soap%20for%20sensitive%20skin&hints=search",
+                    "datetime": "2026-07-18 22:30:37 +00:00",
+                    "markdown": "If you have sensitive skin, the biggest difference-maker is usually choosing an **unscented or fragrance-free shaving soap** with a rich, protective lather. Fragrance (including essential oils) is a common trigger for irritation, even in otherwise high-quality soaps. [www.nbcnews.com](https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com)[whollykaw.com](https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com)\n\nA few standout options:\n\n### [Wholly Kaw Bare Siero Unscented Shaving Soap](https:\/\/whollykaw.com\/products\/shaving-soap-bare-siero?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=46907821588792&utm_source=chatgpt.com)\n*$24.99*\n\nThis is one of the strongest premium choices if your skin is very reactive. It's formulated specifically for sensitive skin with a highly protective, slick lather that helps reduce razor drag.\n\nOther excellent options:\n\n### [Stirling Soap Co. Unscented with Beeswax](https:\/\/newenglandshaving.com\/products\/stirling-soap-co-unscented-with-beeswax-shave-soap?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=46925064241403&utm_source=chatgpt.com)\n*$16.50*\n\nGreat value, fragrance-free, and formulated without lanolin. The beeswax adds extra glide and cushion.\n\n### [Barrister and Mann Unscented (Vegan Omnibus)](https:\/\/www.barristerandmann.com\/products\/unscented-shaving-soap-vegan?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=43612105048117&utm_source=chatgpt.com)\n*$22.99*\n\nAn excellent vegan option with outstanding slickness and protection. It's designed specifically for people avoiding fragrances.\n\nYou might also consider:\n\n### [Stirling Sheep Unscented](https:\/\/newenglandshaving.com\/products\/stirling-soap-co-sheep-unscented-shaving-soap?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=46407201390843&utm_source=chatgpt.com)\n*$17.50*\n\n### [Proraso Sensitive Shaving Soap](https:\/\/www.target.com\/p\/proraso-shaving-soap-in-bowl-for-sensitive-skin-5-2-oz-with-green-tea-and-oatmeal\/-\/A-94068612?utm_source=chatgpt.com)\n*$13.99*\n\n### [Le Père Lucien Natural Unscented](https:\/\/maggardrazors.com\/products\/le-pere-lucien-natural-unscented-shaving-soap-98g?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=39473735237810&utm_source=chatgpt.com)\n*$22.00*\n\n### [Martin de Candre Natural Unscented](https:\/\/www.malegroomingsupplies.com\/products\/martin-de-candre-natural-shaving-soap?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=56700305899785&utm_source=chatgpt.com)\n*$45.48*\n\n### Which one should you choose?\n\n- **Best overall:** Wholly Kaw Bare Siero\n- **Best value:** Stirling Unscented with Beeswax\n- **Best vegan:** Barrister and Mann Unscented\n- **Best budget:** Proraso Sensitive (contains a mild scent, but many people with mildly sensitive skin tolerate it well)\n- **Best luxury:** Martin de Candre Natural Unscented [whollykaw.com](https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com)\n\n### Tips to reduce irritation\n- Use a sharp razor blade—dull blades cause more irritation than almost anything else.\n- Build a well-hydrated lather and don't rush the prep.\n- Shave with the grain on the first pass.\n- Finish with a fragrance-free moisturizer or alcohol-free aftershave balm. [www.nbcnews.com](https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com)[www.goodhousekeeping.com](https:\/\/www.goodhousekeeping.com\/beauty\/anti-aging\/a71377960\/smooth-shave-tips\/?utm_source=chatgpt.com)\n\nIf you tell me:\n- whether you use a **double-edge safety razor**, **straight razor**, or **cartridge razor**,\n- and your budget (under $20, $20–40, or premium),\n\nI can narrow it down to the best option for your setup.",
+                    "search_results": [
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/www.allure.com\/story\/best-shaving-creams-for-sensitive-skin?utm_source=chatgpt.com",
+                            "domain": "www.allure.com",
+                            "title": "9 Best Shaving Creams for Sensitive Skin That Smooth and Soothe | Allure",
+                            "description": "SMOOTH MOVES  9 BEST SHAVING CREAMS FOR SENSITIVE SKIN THAT SMOOTH AND SOOTHE  See ya, razor burn.  By Christa Joanna Lee  October 24, 2025  Image: image contains two shaving creams for sensitive ski...",
+                            "breadcrumb": "allure.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/www.allure.com\/story\/best-shave-creams?utm_source=chatgpt.com",
+                            "domain": "www.allure.com",
+                            "title": "8 Best Shave Creams to Level Up Your Everything Shower | Allure",
+                            "description": "SMOOTH AS SILK  8 BEST SHAVE CREAMS TO LEVEL UP YOUR EVERYTHING SHOWER  Silky skin now loading.  By Eden Stuart  May 29, 2026  Image: A collage of Fur and Hanni shave creams with a white product swat...",
+                            "breadcrumb": "allure.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/www.nbcnews.com\/select\/shopping\/best-shave-soap-rcna194859?utm_source=chatgpt.com",
+                            "domain": "www.nbcnews.com",
+                            "title": "5 Best Shave Bars, Tested and Reviewed | NBC Select",
+                            "description": "5 best shaving bar soaps, tested and reviewed by editors  Dermatologists say to look for shaving bars with ingredients like glycerin, which help retain moisture in the skin.  March 5, 2025, 7:53 PM U...",
+                            "breadcrumb": "nbcnews.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/whollykaw.com\/blogs\/news\/best-shaving-soap-sensitive-skin?utm_source=chatgpt.com",
+                            "domain": "whollykaw.com",
+                            "title": "Best Shaving Soap for Sensitive Skin: 5 Tested Picks | WhollyKaw",
+                            "description": "April 10, 2026  by Sri Ram  THE BEST SHAVING SOAP FOR SENSITIVE SKIN: 5 TESTED PICKS (AND WHY FOAM FAILS)  For sensitive skin, the best shaving soap is an unscented, fragra...  Image: best shaving so...",
+                            "breadcrumb": "whollykaw.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/whollykaw.com\/learn\/best-shaving-soap-for-beginners?utm_source=chatgpt.com",
+                            "domain": "whollykaw.com",
+                            "title": "Best Shaving Soap for Beginners: A Ranked First-Soap Buying Guide",
+                            "description": "WHAT'S THE BEST SHAVING SOAP FOR BEGINNERS?  A ranked guide to the best shaving soap for beginners — most forgiving first soap, best first scented, best for sensitive skin. Comparison table, a how-to...",
+                            "breadcrumb": "whollykaw.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/whollykaw.com\/learn\/best-shaving-cream-sensitive-skin?utm_source=chatgpt.com",
+                            "domain": "whollykaw.com",
+                            "title": "Best Shaving Cream for Sensitive Skin: What Actually Works",
+                            "description": "WHAT'S THE BEST SHAVING CREAM FOR SENSITIVE SKIN?  Sensitive skin needs a shaving cream with no menthol, no sulfate surfactants, no synthetic fragrance — and a brush, not a hand-applied film. Tallow-...",
+                            "breadcrumb": "whollykaw.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/whollykaw.com\/learn\/best-artisan-shaving-soap-brands?utm_source=chatgpt.com",
+                            "domain": "whollykaw.com",
+                            "title": "Best Artisan Shaving Soap (2026): A Ranked Guide by Use Case",
+                            "description": "THE RANKED PICKS  1. BARE SIERO — BEST FOR SENSITIVE SKIN AND UNSCENTED SHAVING  Best for: reactive skin, post-procedure shaving, anyone avoiding fragrance entirely. Base: Siero (tallow + donkey milk...",
+                            "breadcrumb": "whollykaw.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/www.reuzel.com\/blogs\/news\/best-shaving-creams-soaps-sensitive-skin-2026?utm_source=chatgpt.com",
+                            "domain": "www.reuzel.com",
+                            "title": "The Best Shaving Creams & Soaps for Sensitive Skin (2026 Guide) – Reuzel",
+                            "description": "<p>Shaving shouldn’t burn. This 2026 guide breaks down the best shaving creams, soaps, and pre-shave products for sensitive skin—so you get a close, comfortable shave without irritation, razor burn,...",
+                            "breadcrumb": "reuzel.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/wilsonhauscandles.com\/best-shave-soaps-for-sensitive-skin\/?utm_source=chatgpt.com",
+                            "domain": "wilsonhauscandles.com",
+                            "title": "Best Shave Soaps For Sensitive Skin - 2026 Reviews - Wilson Haus Candles",
+                            "description": "BEST SHAVE SOAPS FOR SENSITIVE SKIN – 2026 REVIEWS  ByWilson Haus Candles Editor July 5, 2026  Shaving with sensitive skin can feel like a gamble every morning. One wrong product and you’re dealing w...",
+                            "breadcrumb": "wilsonhauscandles.com"
+                        },
+                        {
+                            "type": "chatgpt_search_result",
+                            "url": "https:\/\/www.beautyepic.com\/best-shaving-soaps-for-sensitive-skin\/?utm_source=chatgpt.com",
+                            "domain": "www.beautyepic.com",
+                            "title": "7 Best Shaving Soaps For Sensitive Skin In 2026",
+                            "description": "7 BEST SHAVING SOAPS FOR SENSITIVE SKIN  May 9, 2025 by Mani Pandey  Image: Shaving Soaps For Sensitive Skin  Important: This article is for informational purposes only. Please read our full disclaim...",
+                            "breadcrumb": "beautyepic.com"
+                        }
+                    ],
+                    "sources": [
+                        {
+                            "type": "chat_gpt_source",
+                            "title": "The Best Shaving Creams for Men and Women, According to Derms",
+                            "snippet": null,
+                            "domain": "www.nbcnews.com",
+                            "url": "https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com",
+                            "thumbnail": null,
+                            "source_name": "NBC News",
+                            "publication_date": "2025-03-17 00:00:00 +00:00",
+                            "markdown": null
+                        },
+                        {
+                            "type": "chat_gpt_source",
+                            "title": "Best Unscented (Fragrance-Free) Shaving Soap: A Ranked Buying Guide",
+                            "snippet": null,
+                            "domain": "whollykaw.com",
+                            "url": "https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com",
+                            "thumbnail": null,
+                            "source_name": "WhollyKaw",
+                            "publication_date": "2026-06-03 00:00:00 +00:00",
+                            "markdown": null
+                        },
+                        {
+                            "type": "chat_gpt_source",
+                            "title": "How to Get a Smooth, Nick-Free Shave, According to Beauty Pros",
+                            "snippet": "This article from Good Housekeeping offers expert advice on achieving a smooth and nick-free shave, with insights from Reviews Analyst Chiara Butler. It emphasizes the importance of both proper skin preparation and using the right shaving techniques to avoid irritation, ingrown hairs, and cuts. Key tips include lubricating the skin with soap, shaving cream, or oil to reduce friction; using clean, sharp razor blades—replacing them after around five uses; and shaving in the correct direction, which is generally opposite to hair growth for a closer result. Butler also highlights the importance of post-shave care, recommending immediate moisturization while the skin is still damp to lock in hydration and prevent dryness. The advice is especially tailored for those with sensitive skin, including choosing shaving products accordingly. Overall, the guide focuses on enhancing both the comfort and effectiveness of shaving.",
+                            "domain": "www.goodhousekeeping.com",
+                            "url": "https:\/\/www.goodhousekeeping.com\/beauty\/anti-aging\/a71377960\/smooth-shave-tips\/?utm_source=chatgpt.com",
+                            "thumbnail": null,
+                            "source_name": "Good Housekeeping",
+                            "publication_date": "2026-05-29 20:40:24 +00:00",
+                            "markdown": null
+                        }
+                    ],
+                    "fan_out_queries": [
+                        "best shaving soap sensitive skin"
+                    ],
+                    "brand_entities": null,
+                    "se_results_count": 0,
+                    "item_types": [
+                        "chat_gpt_text",
+                        "chat_gpt_products"
+                    ],
+                    "items_count": 9,
+                    "items": [
+                        {
+                            "type": "chat_gpt_text",
+                            "rank_group": 1,
+                            "rank_absolute": 1,
+                            "markdown": "If you have sensitive skin, the biggest difference-maker is usually choosing an **unscented or fragrance-free shaving soap** with a rich, protective lather. Fragrance (including essential oils) is a common trigger for irritation, even in otherwise high-quality soaps. [www.nbcnews.com](https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com)[whollykaw.com](https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com)\n\nA few standout options:\n\n",
+                            "sources": [
+                                {
+                                    "type": "chat_gpt_source",
+                                    "title": "The Best Shaving Creams for Men and Women, According to Derms",
+                                    "snippet": null,
+                                    "domain": "www.nbcnews.com",
+                                    "url": "https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com",
+                                    "thumbnail": null,
+                                    "source_name": "NBC News",
+                                    "publication_date": "2025-03-17 00:00:00 +00:00",
+                                    "markdown": null
+                                },
+                                {
+                                    "type": "chat_gpt_source",
+                                    "title": "Best Unscented (Fragrance-Free) Shaving Soap: A Ranked Buying Guide",
+                                    "snippet": null,
+                                    "domain": "whollykaw.com",
+                                    "url": "https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com",
+                                    "thumbnail": null,
+                                    "source_name": "WhollyKaw",
+                                    "publication_date": "2026-06-03 00:00:00 +00:00",
+                                    "markdown": null
+                                }
+                            ],
+                            "brand_entities": null
+                        },
+                        {
+                            "type": "chat_gpt_products",
+                            "rank_group": 1,
+                            "rank_absolute": 2,
+                            "items": [
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "gid:\/\/shopify\/p\/5PMz5Sap8dQCNUpUbnGgEb",
+                                    "merchants": "WhollyKaw",
+                                    "id_to_token_map": null,
+                                    "title": "Wholly Kaw Bare Siero Unscented Shaving Soap",
+                                    "rating": null,
+                                    "price": 24.99,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/whollykaw.com\/products\/shaving-soap-bare-siero?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=46907821588792&utm_source=chatgpt.com",
+                                    "domain": "whollykaw.com",
+                                    "images": [
+                                        "https:\/\/whollykaw.com\/cdn\/shop\/files\/IMG-7693.jpg?v=1713177019"
+                                    ],
+                                    "product_ids": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "chat_gpt_text",
+                            "rank_group": 2,
+                            "rank_absolute": 3,
+                            "markdown": "\n\nThis is one of the strongest premium choices if your skin is very reactive. It's formulated specifically for sensitive skin with a highly protective, slick lather that helps reduce razor drag.\n\nOther excellent options:\n\n",
+                            "sources": null,
+                            "brand_entities": null
+                        },
+                        {
+                            "type": "chat_gpt_products",
+                            "rank_group": 2,
+                            "rank_absolute": 4,
+                            "items": [
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "gid:\/\/shopify\/p\/4Fhsiq2W8XtQc1GadmorCz",
+                                    "merchants": "New England Shaving Company",
+                                    "id_to_token_map": null,
+                                    "title": "Stirling Soap Co. Unscented with Beeswax",
+                                    "rating": null,
+                                    "price": 16.5,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/newenglandshaving.com\/products\/stirling-soap-co-unscented-with-beeswax-shave-soap?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=46925064241403&utm_source=chatgpt.com",
+                                    "domain": "newenglandshaving.com",
+                                    "images": [
+                                        "https:\/\/newenglandshaving.com\/cdn\/shop\/files\/Unscented_with_Beeswax_-_Shave_Soap.jpg?v=1780873449"
+                                    ],
+                                    "product_ids": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "chat_gpt_text",
+                            "rank_group": 3,
+                            "rank_absolute": 5,
+                            "markdown": "\n\nGreat value, fragrance-free, and formulated without lanolin. The beeswax adds extra glide and cushion.\n\n",
+                            "sources": null,
+                            "brand_entities": null
+                        },
+                        {
+                            "type": "chat_gpt_products",
+                            "rank_group": 3,
+                            "rank_absolute": 6,
+                            "items": [
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "gid:\/\/shopify\/p\/2PQ20oXh66pNQp5OifJMsd",
+                                    "merchants": "Barrister and Mann LLC",
+                                    "id_to_token_map": null,
+                                    "title": "Barrister and Mann Unscented (Vegan Omnibus)",
+                                    "rating": null,
+                                    "price": 22.99,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/www.barristerandmann.com\/products\/unscented-shaving-soap-vegan?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=43612105048117&utm_source=chatgpt.com",
+                                    "domain": "www.barristerandmann.com",
+                                    "images": [
+                                        "https:\/\/www.barristerandmann.com\/cdn\/shop\/files\/UnscentedSeamless.jpg?v=1718068558"
+                                    ],
+                                    "product_ids": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "chat_gpt_text",
+                            "rank_group": 4,
+                            "rank_absolute": 7,
+                            "markdown": "\n\nAn excellent vegan option with outstanding slickness and protection. It's designed specifically for people avoiding fragrances.\n\nYou might also consider:\n\n",
+                            "sources": null,
+                            "brand_entities": null
+                        },
+                        {
+                            "type": "chat_gpt_products",
+                            "rank_group": 4,
+                            "rank_absolute": 8,
+                            "items": [
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "gid:\/\/shopify\/p\/7dQxx4BBysJ45AEo5yooiq",
+                                    "merchants": "New England Shaving Company",
+                                    "id_to_token_map": null,
+                                    "title": "Stirling Sheep Unscented",
+                                    "rating": null,
+                                    "price": 17.5,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/newenglandshaving.com\/products\/stirling-soap-co-sheep-unscented-shaving-soap?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=46407201390843&utm_source=chatgpt.com",
+                                    "domain": "newenglandshaving.com",
+                                    "images": [
+                                        "https:\/\/newenglandshaving.com\/cdn\/shop\/files\/StirlingSheep.jpg?v=1780873608"
+                                    ],
+                                    "product_ids": null
+                                },
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "94068612",
+                                    "merchants": "Target",
+                                    "id_to_token_map": null,
+                                    "title": "Proraso Sensitive Shaving Soap",
+                                    "rating": null,
+                                    "price": 13.99,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/www.target.com\/p\/proraso-shaving-soap-in-bowl-for-sensitive-skin-5-2-oz-with-green-tea-and-oatmeal\/-\/A-94068612?utm_source=chatgpt.com",
+                                    "domain": "www.target.com",
+                                    "images": [
+                                        "https:\/\/images.openai.com\/products\/v1\/6c\/f5\/6cf572fa24208af479cbfad88dc785745482ac79f8ac6ca5ff6c4a00eb1e5095.jpg",
+                                        "https:\/\/target.scene7.com\/is\/image\/Target\/GUEST_ed03be60-6276-49ff-b354-e18da843437f",
+                                        "https:\/\/target.scene7.com\/is\/image\/Target\/GUEST_45896323-29ad-4866-8bbf-67516649bba3"
+                                    ],
+                                    "product_ids": null
+                                },
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "gid:\/\/shopify\/p\/14KQXdiLG4mlasSya5jrxT",
+                                    "merchants": "Maggard Razors",
+                                    "id_to_token_map": null,
+                                    "title": "Le Père Lucien Natural Unscented",
+                                    "rating": null,
+                                    "price": 22,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/maggardrazors.com\/products\/le-pere-lucien-natural-unscented-shaving-soap-98g?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=39473735237810&utm_source=chatgpt.com",
+                                    "domain": "maggardrazors.com",
+                                    "images": [
+                                        "https:\/\/maggardrazors.com\/cdn\/shop\/files\/Le-Pere-Lucien-Nature-Unscented-Shaving-Soap-98g-Tin-img1.jpg?v=1698780347"
+                                    ],
+                                    "product_ids": null
+                                },
+                                {
+                                    "type": "chat_gpt_products_element",
+                                    "product_id": "gid:\/\/shopify\/p\/17wJkuwdRqalYfMCZFsjQA",
+                                    "merchants": "Male Grooming Supplies",
+                                    "id_to_token_map": null,
+                                    "title": "Martin de Candre Natural Unscented",
+                                    "rating": null,
+                                    "price": 45.48,
+                                    "currency": "USD",
+                                    "tag": null,
+                                    "url": "https:\/\/www.malegroomingsupplies.com\/products\/martin-de-candre-natural-shaving-soap?utm_campaign=openai_catalog&utm_content=product_card&utm_medium=feed&variant=56700305899785&utm_source=chatgpt.com",
+                                    "domain": "www.malegroomingsupplies.com",
+                                    "images": [
+                                        "https:\/\/www.malegroomingsupplies.com\/cdn\/shop\/files\/MDC_Natural_50g_clipped_rev_1.jpg?v=1777719462"
+                                    ],
+                                    "product_ids": null
+                                }
+                            ]
+                        },
+                        {
+                            "type": "chat_gpt_text",
+                            "rank_group": 5,
+                            "rank_absolute": 9,
+                            "markdown": "\n\n### Which one should you choose?\n\n- **Best overall:** Wholly Kaw Bare Siero\n- **Best value:** Stirling Unscented with Beeswax\n- **Best vegan:** Barrister and Mann Unscented\n- **Best budget:** Proraso Sensitive (contains a mild scent, but many people with mildly sensitive skin tolerate it well)\n- **Best luxury:** Martin de Candre Natural Unscented [whollykaw.com](https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com)\n\n### Tips to reduce irritation\n- Use a sharp razor blade—dull blades cause more irritation than almost anything else.\n- Build a well-hydrated lather and don't rush the prep.\n- Shave with the grain on the first pass.\n- Finish with a fragrance-free moisturizer or alcohol-free aftershave balm. [www.nbcnews.com](https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com)[www.goodhousekeeping.com](https:\/\/www.goodhousekeeping.com\/beauty\/anti-aging\/a71377960\/smooth-shave-tips\/?utm_source=chatgpt.com)\n\nIf you tell me:\n- whether you use a **double-edge safety razor**, **straight razor**, or **cartridge razor**,\n- and your budget (under $20, $20–40, or premium),\n\nI can narrow it down to the best option for your setup.",
+                            "sources": [
+                                {
+                                    "type": "chat_gpt_source",
+                                    "title": "Best Unscented (Fragrance-Free) Shaving Soap: A Ranked Buying Guide",
+                                    "snippet": null,
+                                    "domain": "whollykaw.com",
+                                    "url": "https:\/\/whollykaw.com\/learn\/best-unscented-shaving-soap?utm_source=chatgpt.com",
+                                    "thumbnail": null,
+                                    "source_name": "WhollyKaw",
+                                    "publication_date": "2026-06-03 00:00:00 +00:00",
+                                    "markdown": null
+                                },
+                                {
+                                    "type": "chat_gpt_source",
+                                    "title": "The Best Shaving Creams for Men and Women, According to Derms",
+                                    "snippet": null,
+                                    "domain": "www.nbcnews.com",
+                                    "url": "https:\/\/www.nbcnews.com\/select\/shopping\/best-shaving-creams-ncna1272354?utm_source=chatgpt.com",
+                                    "thumbnail": null,
+                                    "source_name": "NBC News",
+                                    "publication_date": "2025-03-17 00:00:00 +00:00",
+                                    "markdown": null
+                                },
+                                {
+                                    "type": "chat_gpt_source",
+                                    "title": "How to Get a Smooth, Nick-Free Shave, According to Beauty Pros",
+                                    "snippet": "This article from Good Housekeeping offers expert advice on achieving a smooth and nick-free shave, with insights from Reviews Analyst Chiara Butler. It emphasizes the importance of both proper skin preparation and using the right shaving techniques to avoid irritation, ingrown hairs, and cuts. Key tips include lubricating the skin with soap, shaving cream, or oil to reduce friction; using clean, sharp razor blades—replacing them after around five uses; and shaving in the correct direction, which is generally opposite to hair growth for a closer result. Butler also highlights the importance of post-shave care, recommending immediate moisturization while the skin is still damp to lock in hydration and prevent dryness. The advice is especially tailored for those with sensitive skin, including choosing shaving products accordingly. Overall, the guide focuses on enhancing both the comfort and effectiveness of shaving.",
+                                    "domain": "www.goodhousekeeping.com",
+                                    "url": "https:\/\/www.goodhousekeeping.com\/beauty\/anti-aging\/a71377960\/smooth-shave-tips\/?utm_source=chatgpt.com",
+                                    "thumbnail": null,
+                                    "source_name": "Good Housekeeping",
+                                    "publication_date": "2026-05-29 20:40:24 +00:00",
+                                    "markdown": null
+                                }
+                            ],
+                            "brand_entities": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -5,13 +5,23 @@
   "type": "module",
   "scripts": {
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "deploy": "wrangler deploy --var BUILD_VERSION:$(date +%s)",
+    "deploy:noversion": "wrangler deploy",
     "tail": "wrangler tail",
     "kv:list": "wrangler kv key list --binding=LEARN_PAGES",
-    "kv:seed": "bash scripts/seed-kv.sh",
-    "kv:seed-preview": "bash scripts/seed-kv.sh --preview"
+    "verify:citations": "node scripts/verify-citations.mjs",
+    "kv:seed": "npm run verify:citations && bash scripts/seed-kv.sh",
+    "kv:seed-preview": "bash scripts/seed-kv.sh --preview",
+    "build:related": "node scripts/build-related-links.mjs",
+    "validate:seeds": "node scripts/validate-seeds.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "test": "bun test",
+    "test:compliance": "bun test test/compliance.test.ts",
+    "build:vectors": "node scripts/build-learn-vectors.mjs && npx wrangler vectorize upsert tm-learn-corpus --file scripts/.cache/tm-learn-vectors.ndjson"
   },
   "devDependencies": {
-    "wrangler": "^3.90.0"
+    "ajv": "^8.20.0",
+    "sanitize-html": "^2.17.5",
+    "wrangler": "^4.98.0"
   }
 }

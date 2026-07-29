@@ -1,0 +1,60 @@
+{
+  "title": "Ayurveda & Tea: The Tradition Behind Every Cup",
+  "h1": "Ayurveda and tea: the tradition behind the cup",
+  "meta_description": "Ayurveda is a 3,000-year-old wellness tradition from India built around food, spices and daily rhythm — and tea sits at its heart. A plain guide to the tradition and the spices in your cup.",
+  "image_url": "",
+  "published_at": "2026-07-15T14:00:00Z",
+  "updated_at": "2026-07-15T14:00:00Z",
+  "keywords": [
+    "ayurveda tea",
+    "ayurvedic tea",
+    "ayurveda and tea",
+    "ayurvedic spices",
+    "ayurveda tradition"
+  ],
+  "body_html": "<p><strong>Ayurveda is a traditional system of wellness from India, more than 3,000 years old, built around food, spices and daily rhythm.</strong> Warming spices and tea &mdash; cardamom, ginger, cinnamon, clove &mdash; sit close to its heart, which is why a cup of masala chai traces straight back to it. What follows describes that <em>cultural and culinary tradition</em> and published research about the ingredients &mdash; not medical advice.</p><h2>What Ayurveda is, briefly</h2><p>The word joins two Sanskrit roots: <em>ayus</em> (life) and <em>veda</em> (knowledge). It's a tradition that classifies foods and spices by qualities &mdash; <a href=\"/warming-vs-cooling-foods\">warming or cooling</a>, light or heavy &mdash; and pays close attention to daily routine. For the full background, see <a href=\"/what-is-ayurveda\">what is Ayurveda</a>.</p><h2>Why spices and tea are central</h2><p>Ayurvedic cooking leans on aromatic spices, and the same handful define chai. In the tradition these spices are described as warming and aromatic; on the palate they're simply what makes a spiced cup taste the way it does. The drink most people know as <a href=\"/what-is-masala-chai\">masala chai</a> is a spiced-tea preparation with deep roots in this tradition.</p><h2>The spices in your cup</h2><table><thead><tr><th>Spice</th><th>Traditional Ayurvedic description</th><th>Where you meet it</th></tr></thead><tbody><tr><td>Cardamom</td><td>Warming, aromatic, &ldquo;digestive&rdquo;</td><td>Chai, the Cardamom &amp; Green Tea Elixir</td></tr><tr><td>Ginger</td><td>Warming, pungent</td><td>Chai, warming teas</td></tr><tr><td>Cinnamon</td><td>Warming, sweet</td><td>Chai</td></tr><tr><td>Clove</td><td>Warming, pungent</td><td>Chai</td></tr><tr><td>Turmeric</td><td>Warming, bitter-earthy</td><td>Golden milk (haldi doodh)</td></tr></tbody></table><p>These are traditional classifications, not health claims. For each spice's place in the tradition and what research has studied, see <a href=\"/ayurvedic-spices\">Ayurvedic spices, cup by cup</a>.</p><h2>Classic Ayurvedic teas</h2><p>Beyond chai, the tradition includes simple herbal tisanes. The best known is <a href=\"/ccf-tea\">CCF tea</a> &mdash; cumin, coriander and fennel seeds steeped together, caffeine-free and mild. <a href=\"/golden-milk\">Golden milk</a> (turmeric simmered in milk) is another. These are everyday preparations, sipped as part of a daily rhythm.</p><h2>The daily rhythm</h2><p>Ayurveda places real weight on <a href=\"/dinacharya\">routine</a> &mdash; consistent times for waking, eating and winding down. A warm morning cup is a natural anchor for that kind of ritual, which is part of why tea and the tradition fit together so comfortably.</p><h2>Our small place in it</h2><p>TMolecule grew out of a family that has blended tea since 1935. We're not vaidyas (Ayurvedic practitioners), and we don't offer Ayurvedic treatment &mdash; we make spiced and <a href=\"/ayurveda-collagen\">functional teas</a> whose ingredients happen to share a long history with this tradition, and we try to describe that history honestly.</p><p><em>This page is general information about a cultural tradition. It is not medical or dietary advice. Statements about ingredients describe published research or traditional use and have not been evaluated by the Food and Drug Administration; these products are not intended to diagnose, treat, cure, or prevent any disease.</em></p>",
+  "sources": [
+    {
+      "title": "Ayurvedic Medicine: In Depth",
+      "url": "https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth",
+      "publisher": "NIH — National Center for Complementary and Integrative Health",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Ayurveda: history, principles and materia medica",
+      "url": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/ayurveda",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is Ayurveda?",
+      "a": "Ayurveda is a traditional system of wellness that originated in India over 3,000 years ago, centered on food, herbs, spices and daily routine. It's a cultural and historical tradition — not a substitute for professional medical care."
+    },
+    {
+      "q": "Is masala chai Ayurvedic?",
+      "a": "Masala chai is a spiced-tea preparation with deep roots in the Ayurvedic culinary tradition — its warming spices (cardamom, ginger, cinnamon, clove) are staples of that tradition. That's a matter of food history, not a health claim."
+    },
+    {
+      "q": "What spices does Ayurveda use?",
+      "a": "Many, but the warming aromatics you'll recognize from chai are central: cardamom, ginger, cinnamon and clove, plus turmeric in preparations like golden milk. See our cup-by-cup guide for each spice's place in the tradition."
+    },
+    {
+      "q": "Does TMolecule make Ayurvedic health claims?",
+      "a": "No. We describe the tradition and published ingredient research for context. We don't offer Ayurvedic treatment or claim our teas diagnose, treat, cure or prevent anything — always consult a qualified professional for health concerns."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "use-case",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Taste the tradition",
+  "product_bridge_blurb": "Our blends are built on the warming spices at the heart of this tradition — green cardamom, ginger and Ceylon cinnamon, milled and ready.",
+  "related": [
+    "what-is-ayurveda",
+    "ayurvedic-spices",
+    "ccf-tea"
+  ],
+  "disclaimer": true
+}

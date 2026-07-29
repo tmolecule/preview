@@ -4,6 +4,8 @@
   "private": true,
   "description": "Cloudflare Worker that indexes learn.tmolecule.com into Vectorize and powers (1) AI-citation gap monitor and (2) self-internal-linking suggester.",
   "scripts": {
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
     "tail": "wrangler tail",

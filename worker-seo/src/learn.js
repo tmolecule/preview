@@ -1,7 +1,25 @@
-import { renderArticle, renderIndex } from './template.js';
+import { renderArticle, renderRecipe, renderIndex, renderHub, renderNotFound } from './template.js';
+import { pickVariant, buildStickyCookie, VARIANT_DEFAULT } from './experiments.js';
+import { PILLAR_BY_SLUG } from './taxonomy.js';
 
-export async function handleArticle(slug, env, origin) {
+/**
+ * Load article JSON for a (slug, variant) pair from KV. If the variant key
+ * is missing, fall back to the default slug so a misconfigured experiment
+ * never serves a 404.
+ */
+async function loadArticleData(slug, variant, env) {
+  if (variant && variant !== VARIANT_DEFAULT) {
+    const variantRaw = await env.LEARN_PAGES.get(`${slug}:${variant}`);
+    if (variantRaw) return { raw: variantRaw, served: variant };
+  }
   const raw = await env.LEARN_PAGES.get(slug);
+  if (!raw) return { raw: null, served: VARIANT_DEFAULT };
+  return { raw, served: VARIANT_DEFAULT };
+}
+
+export async function handleArticle(slug, env, origin, request, mount = '') {
+  const requested = request ? await pickVariant(slug, env, request) : VARIANT_DEFAULT;
+  const { raw, served } = await loadArticleData(slug, requested, env);
   if (!raw) return null;
 
   let data;
@@ -11,15 +29,23 @@ export async function handleArticle(slug, env, origin) {
     return new Response('Page data malformed', { status: 500 });
   }
 
-  const html = renderArticle(data, slug, origin, env);
-  return new Response(html, {
-    headers: {
-      'content-type': 'text/html; charset=utf-8',
-      'cache-control': 'public, max-age=300, s-maxage=86400',
-      'x-tmolecule-source': 'worker-pseo',
-      'link': `<${origin}/${slug}.md>; rel="alternate"; type="text/markdown"`
-    }
-  });
+  const isRecipe = data.type === 'recipe';
+  const html = isRecipe
+    ? renderRecipe(data, slug, origin, env, mount)
+    : renderArticle(data, slug, origin, env, mount);
+  const headers = {
+    'content-type': 'text/html; charset=utf-8',
+    'cache-control': 'public, max-age=300, s-maxage=86400',
+    'x-tmolecule-source': isRecipe ? 'worker-pseo-recipe' : 'worker-pseo',
+    'x-tmol-variant': served,
+    'vary': 'Cookie',
+    'link': `<${origin}${mount}/${slug}.md>; rel="alternate"; type="text/markdown"`
+  };
+  if (request) {
+    const cookie = buildStickyCookie(slug, served, request);
+    if (cookie) headers['set-cookie'] = cookie;
+  }
+  return new Response(html, { headers });
 }
 
 /**
@@ -27,9 +53,11 @@ export async function handleArticle(slug, env, origin) {
  * Same article content, no HTML chrome, no JS, no CSS, no nav.
  * Discoverable via the Link header on the HTML page and via /llms.txt.
  */
-export async function handleArticleMarkdown(slug, env, origin) {
-  const raw = await env.LEARN_PAGES.get(slug);
+export async function handleArticleMarkdown(slug, env, origin, request, mount = '') {
+  const requested = request ? await pickVariant(slug, env, request) : VARIANT_DEFAULT;
+  const { raw, served } = await loadArticleData(slug, requested, env);
   if (!raw) return null;
+
   let data;
   try {
     data = JSON.parse(raw);
@@ -37,18 +65,20 @@ export async function handleArticleMarkdown(slug, env, origin) {
     return new Response('# Page data malformed', { status: 500 });
   }
 
-  const md = renderArticleMarkdown(data, slug, origin, env);
+  const md = renderArticleMarkdown(data, slug, origin, env, mount);
   return new Response(md, {
     headers: {
       'content-type': 'text/markdown; charset=utf-8',
       'cache-control': 'public, max-age=300, s-maxage=86400',
       'x-tmolecule-source': 'worker-pseo-md',
+      'x-tmol-variant': served,
+      'vary': 'Cookie',
       'access-control-allow-origin': '*'
     }
   });
 }
 
-function renderArticleMarkdown(data, slug, origin, env) {
+function renderArticleMarkdown(data, slug, origin, env, mount = '') {
   const {
     title,
     h1,
@@ -61,7 +91,7 @@ function renderArticleMarkdown(data, slug, origin, env) {
     sources = []
   } = data;
 
-  const canonical = `${origin}/${slug}`;
+  const canonical = `${origin}${mount}/${slug}`;
   const frontmatter = [
     '---',
     `title: ${escYaml(title)}`,
@@ -159,10 +189,11 @@ function stripTags(s) {
   return String(s).replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&mdash;/g, ',').replace(/&ndash;/g, '-').replace(/&middot;/g, '·').replace(/&rsaquo;/g, '›').replace(/&copy;/g, '(c)').replace(/&reg;/g, '®');
 }
 
-export async function handleIndex(env, origin) {
+export async function handleIndex(env, origin, mount = '') {
   const list = await env.LEARN_PAGES.list({ limit: 1000 });
   const items = [];
   for (const key of list.keys) {
+    if (key.name.includes(':')) continue; // skip variant + experiment keys
     const raw = await env.LEARN_PAGES.get(key.name);
     if (!raw) continue;
     try {
@@ -172,12 +203,57 @@ export async function handleIndex(env, origin) {
         title: data.title,
         meta_description: data.meta_description,
         updated_at: data.updated_at,
-        keywords: data.keywords || []
+        featured: data.featured === true,
+        keywords: data.keywords || [],
+        pillar: data.pillar || null
       });
     } catch {}
   }
   items.sort((a, b) => a.title.localeCompare(b.title));
-  const html = renderIndex(items, origin, env);
+  const html = renderIndex(items, origin, env, mount);
+  return new Response(html, {
+    headers: {
+      'content-type': 'text/html; charset=utf-8',
+      'cache-control': 'public, max-age=300, s-maxage=3600'
+    }
+  });
+}
+
+/**
+ * Pillar hub page (/ingredients, /benefits, …). Lists every article whose
+ * `pillar` matches, grouped by `cluster`. 404s for an unknown pillar.
+ */
+export async function handleHub(pillarSlug, env, origin, mount = '') {
+  const pillar = PILLAR_BY_SLUG[pillarSlug];
+  if (!pillar) {
+    return new Response(renderNotFound(env, origin, mount), {
+      status: 404,
+      headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'public, max-age=60' }
+    });
+  }
+
+  const list = await env.LEARN_PAGES.list({ limit: 1000 });
+  const items = [];
+  for (const key of list.keys) {
+    if (key.name.includes(':')) continue; // skip variant + experiment keys
+    const raw = await env.LEARN_PAGES.get(key.name);
+    if (!raw) continue;
+    try {
+      const data = JSON.parse(raw);
+      if (data.pillar !== pillarSlug) continue;
+      items.push({
+        slug: key.name,
+        title: data.title,
+        meta_description: data.meta_description,
+        updated_at: data.updated_at,
+        cluster: data.cluster || 'general',
+        intent: data.intent || null
+      });
+    } catch {}
+  }
+  items.sort((a, b) => a.title.localeCompare(b.title));
+
+  const html = renderHub(pillar, items, origin, env, mount);
   return new Response(html, {
     headers: {
       'content-type': 'text/html; charset=utf-8',
@@ -189,10 +265,11 @@ export async function handleIndex(env, origin) {
 /**
  * /manifest.json — JSON article list for the in-header search box.
  */
-export async function handleManifest(env, origin) {
+export async function handleManifest(env, origin, mount = '') {
   const list = await env.LEARN_PAGES.list({ limit: 1000 });
   const articles = [];
   for (const key of list.keys) {
+    if (key.name.includes(':')) continue;
     const raw = await env.LEARN_PAGES.get(key.name);
     if (!raw) continue;
     try {
@@ -218,10 +295,11 @@ export async function handleManifest(env, origin) {
 /**
  * /llms.txt — discovery endpoint for LLM-based agents and AI search engines.
  */
-export async function handleLlmsTxt(env, origin) {
+export async function handleLlmsTxt(env, origin, mount = '') {
   const list = await env.LEARN_PAGES.list({ limit: 1000 });
   const items = [];
   for (const key of list.keys) {
+    if (key.name.includes(':')) continue;
     const raw = await env.LEARN_PAGES.get(key.name);
     if (!raw) continue;
     try {
@@ -247,12 +325,12 @@ export async function handleLlmsTxt(env, origin) {
   ];
 
   for (const it of items) {
-    lines.push(`### [${it.title}](${origin}/${it.slug}.md)`);
+    lines.push(`### [${it.title}](${origin}${mount}/${it.slug}.md)`);
     lines.push('');
     if (it.description) lines.push(`${it.description}`);
     if (it.updated_at) lines.push(`Last updated: ${it.updated_at.split('T')[0]}`);
     if (it.keywords && it.keywords.length) lines.push(`Topics: ${it.keywords.join(', ')}`);
-    lines.push(`HTML: ${origin}/${it.slug}`);
+    lines.push(`HTML: ${origin}${mount}/${it.slug}`);
     lines.push('');
   }
 
@@ -261,7 +339,7 @@ export async function handleLlmsTxt(env, origin) {
     '',
     `- Site: ${env.SHOP_ORIGIN}`,
     `- Author: ${env.AUTHOR_NAME || env.SITE_NAME}`,
-    `- Tagline: Food with benefits. Real health benefits.`,
+    `- Tagline: Food with benefits. Real ingredients.`,
     `- Categories: chai concentrates, masala chai, matcha, green tea, black tea, oolong tea, rooibos tea, tea brewing methods, tea health benefits`,
     ''
   );

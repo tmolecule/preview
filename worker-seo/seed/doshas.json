@@ -1,0 +1,60 @@
+{
+  "title": "The Three Doshas: Vata, Pitta & Kapha, Explained",
+  "h1": "The three doshas: vata, pitta and kapha",
+  "meta_description": "In Ayurveda the three doshas — vata, pitta and kapha — are a traditional framework for describing qualities and tendencies. A plain guide to what they are, as a cultural lens, not a medical diagnosis.",
+  "image_url": "",
+  "published_at": "2026-07-15T18:00:00Z",
+  "updated_at": "2026-07-15T18:00:00Z",
+  "keywords": [
+    "doshas",
+    "vata pitta kapha",
+    "three doshas ayurveda",
+    "what is my dosha",
+    "ayurveda body types"
+  ],
+  "body_html": "<p>In Ayurveda, the three <strong>doshas &mdash; vata, pitta and kapha &mdash; are a traditional framework for describing qualities and tendencies</strong>, built from the five elements. Think of them as a cultural vocabulary the tradition uses to talk about balance in food, routine and nature. This is a descriptive system, <strong>not a medical diagnosis or a health prescription</strong>.</p><h2>What a dosha is</h2><p>The five elements of the tradition (space, air, fire, water, earth) combine into three functional principles. Each dosha is described by a set of qualities &mdash; light or heavy, warm or cool, dry or moist. In the tradition, everything from a person's tendencies to a spice's character can be described in these terms. It's a lens, not a lab test.</p><h2>The three doshas</h2><table><thead><tr><th>Dosha</th><th>Elements</th><th>Traditional qualities</th><th>Associated with</th></tr></thead><tbody><tr><td><a href=\"/vata-dosha\">Vata</a></td><td>Air + space</td><td>Light, dry, mobile, cool, quick</td><td>Movement, autumn, wind</td></tr><tr><td><a href=\"/pitta-dosha\">Pitta</a></td><td>Fire + water</td><td>Warm, sharp, intense, oily</td><td>Transformation, summer, midday</td></tr><tr><td><a href=\"/kapha-dosha\">Kapha</a></td><td>Earth + water</td><td>Heavy, stable, moist, cool, slow</td><td>Structure, spring, morning</td></tr></tbody></table><p>For each dosha in depth &mdash; its qualities, the tastes and foods the tradition associates with it &mdash; see <a href=\"/vata-dosha\">vata</a>, <a href=\"/pitta-dosha\">pitta</a> and <a href=\"/kapha-dosha\">kapha</a>.</p><h2>How food and spices are described</h2><p>Because foods and spices are also given qualities, the tradition talks about &ldquo;balancing&rdquo; through what you eat &mdash; a warming spice for a cool, damp day, for instance. This is where <a href=\"/warming-vs-cooling-foods\">warming vs cooling foods</a> comes in, and why aromatic <a href=\"/ayurvedic-spices\">Ayurvedic spices</a> feature so heavily. These are traditional culinary associations, not health claims.</p><h2>&ldquo;What&rsquo;s my dosha?&rdquo;</h2><p>In the tradition, people use questionnaires and reflection to describe their tendencies in doshic terms &mdash; a self-reflection exercise, not a diagnosis. There is no clinical test for a dosha, and it doesn&rsquo;t replace anything a medical professional would assess. Treat it as a cultural framework to explore, not a health tool.</p><h2>Where it fits</h2><p>The doshas are the backbone of how Ayurveda organizes its ideas about food, routine and nature. For the wider tradition see <a href=\"/what-is-ayurveda\">what is Ayurveda</a> and <a href=\"/ayurveda\">Ayurveda and tea</a>.</p><p><em>This is general information about a cultural tradition, not medical or dietary advice. Doshas are a traditional descriptive framework, not a diagnosis. These statements have not been evaluated by the Food and Drug Administration and are not intended to diagnose, treat, cure or prevent any disease.</em></p>",
+  "sources": [
+    {
+      "title": "Ayurvedic Medicine: In Depth (doshas and constitution)",
+      "url": "https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth",
+      "publisher": "NIH — National Center for Complementary and Integrative Health",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Tridosha theory: the classical framework of Ayurveda",
+      "url": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/ayurveda",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What are the three doshas?",
+      "a": "Vata (air + space), pitta (fire + water) and kapha (earth + water) — three functional principles the Ayurvedic tradition uses to describe qualities and tendencies. It's a descriptive framework, not a medical diagnosis."
+    },
+    {
+      "q": "How do I know my dosha?",
+      "a": "In the tradition, people use questionnaires and self-reflection to describe their tendencies in doshic terms. It's a cultural self-reflection exercise — there's no clinical test for a dosha, and it isn't a health assessment."
+    },
+    {
+      "q": "Is the dosha system scientific?",
+      "a": "It's a traditional classification framework from a cultural wellness system, not a clinical or diagnostic tool. It's best understood as a lens for exploring the tradition, used alongside — not instead of — modern medical care."
+    },
+    {
+      "q": "Can food change my dosha?",
+      "a": "The tradition describes foods and spices by qualities (warming, cooling, heavy, light) and talks about 'balancing' through them. That's a traditional culinary framework, not a health claim about changing your body."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "definition",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore the tradition",
+  "product_bridge_blurb": "Our blends lean on the warming spices the tradition describes — a simple, everyday way in.",
+  "related": [
+    "vata-dosha",
+    "pitta-dosha",
+    "kapha-dosha"
+  ],
+  "disclaimer": true
+}

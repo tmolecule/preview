@@ -96,10 +96,14 @@ function buildBreadcrumb({ data, title, canonical, origin, env, mount }) {
 function renderProductBridge(data, env) {
   const href = data.product_bridge;
   if (!href) return '';
-  const url = /^https?:\/\//.test(href) ? href : `${env.SHOP_ORIGIN}${href}`;
-  const label = data.product_bridge_label || 'Shop the blend';
+  const toUrl = (u) => (/^https?:\/\//.test(u) ? u : `${env.SHOP_ORIGIN}${u}`);
   const blurb = data.product_bridge_blurb || `Put this into practice with a cup from ${env.SITE_NAME}.`;
-  return `<aside class="bridge"><div class="bridge__text"><strong>${esc(blurb)}</strong></div><a class="btn" href="${esc(url)}">${esc(label)} &rsaquo;</a></aside>`;
+  let btns = `<a class="btn" href="${esc(toUrl(href))}">${esc(data.product_bridge_label || 'Shop the blend')} &rsaquo;</a>`;
+  // Optional second product — pages that fit two blends (e.g. Spice Rush + the Elixir).
+  if (data.product_bridge_2) {
+    btns += `<a class="btn" href="${esc(toUrl(data.product_bridge_2))}">${esc(data.product_bridge_2_label || 'Shop the blend')} &rsaquo;</a>`;
+  }
+  return `<aside class="bridge"><div class="bridge__text"><strong>${esc(blurb)}</strong></div><div class="bridge__btns">${btns}</div></aside>`;
 }
 
 /**
@@ -174,12 +178,81 @@ function needsDisclaimer(data) {
   return data.intent === 'safety' || data.intent === 'eu-status' || data.disclaimer === true;
 }
 
+/**
+ * Author object for Article/Recipe JSON-LD. A page may override the global
+ * env.AUTHOR_NAME with a richer per-page `author` ({ name, url, jobTitle, sameAs })
+ * to attribute an expert byline; otherwise it falls back to the site author.
+ */
+function buildAuthor(data, env) {
+  const a = data && data.author;
+  if (a && typeof a === 'object' && a.name) {
+    const author = { '@type': 'Person', name: a.name, url: a.url || env.SHOP_ORIGIN };
+    if (a.jobTitle) author.jobTitle = a.jobTitle;
+    if (Array.isArray(a.sameAs) && a.sameAs.length) author.sameAs = a.sameAs;
+    author.worksFor = { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN };
+    return author;
+  }
+  return {
+    '@type': 'Person',
+    name: env.AUTHOR_NAME || env.SITE_NAME,
+    url: env.SHOP_ORIGIN,
+    worksFor: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+}
+
+/**
+ * Citation object for Article JSON-LD. Honors a per-source `type` — use
+ * "ScholarlyArticle" for peer-reviewed / PubMed sources, a stronger AI-extraction
+ * signal than the generic CreativeWork — plus optional author and datePublished.
+ */
+function buildCitation(s) {
+  // Auto-detect peer-reviewed sources: a PubMed/PMC URL is a ScholarlyArticle
+  // even when the seed didn't set an explicit `type` — a stronger AI-extraction
+  // signal than the generic CreativeWork. Explicit `type` still wins.
+  const isScholarly = /(?:pubmed|pmc)\.ncbi\.nlm\.nih\.gov/i.test(s.url || '');
+  const c = { '@type': s.type || (isScholarly ? 'ScholarlyArticle' : 'CreativeWork'), name: s.title, url: s.url };
+  if (s.author) c.author = s.author;
+  if (s.datePublished) c.datePublished = s.datePublished;
+  if (s.publisher) c.publisher = { '@type': 'Organization', name: s.publisher };
+  return c;
+}
+
+/**
+ * On-page navigation ("On this page") — anchor links to in-body section ids.
+ * `on_page_nav` is a list of { anchor, label }; body H2s must carry matching ids.
+ */
+function renderOnPageNav(data) {
+  const nav = Array.isArray(data.on_page_nav)
+    ? data.on_page_nav.filter(n => n && n.anchor && n.label)
+    : [];
+  if (!nav.length) return '';
+  const links = nav.map(n => `<li><a href="#${esc(n.anchor)}">${esc(n.label)}</a></li>`).join('');
+  return `<nav class="on-page-nav" aria-label="On this page"><h2 class="opn-head">On this page</h2><ul>${links}</ul></nav>`;
+}
+
+/**
+ * Visible hero image for a recipe/article. The image_url is also used for
+ * og:image + schema, but neither renders on-page or carries alt text — this does.
+ * Alt comes from the seed's `image_alt`, falling back to the headline.
+ */
+function renderHero(data) {
+  const src = data.image_url;
+  if (!src) return '';
+  const alt = data.image_alt || data.h1 || data.title || '';
+  return `<img class="hero-img" src="${esc(src)}" alt="${esc(alt)}" loading="eager" decoding="async">`;
+}
+
 // Interactive tool widgets that an article can embed via a seed `"widget"` field.
 // The IIFE self-mounts into the div; it's served at <mount>/widgets/<name>.js.
 const WIDGET_EMBEDS = {
   'tea-finder': { id: 'tm-tea-finder', heading: 'Not sure which tea?', blurb: 'Take the four-question finder — flavor, routine and dietary preference, no health questions.' },
   'brew-guide': { id: 'tm-brew-guide', heading: 'Brew it right', blurb: 'Scale temperature, steep time and the water-to-milk ratio to your servings.' },
-  'cost-per-cup': { id: 'tm-cost-per-cup', heading: 'What does your cup cost?', blurb: 'Compare it against a café latte or a DIY coffee-and-powder routine — live.' }
+  'cost-per-cup': { id: 'tm-cost-per-cup', heading: 'What does your cup cost?', blurb: 'Compare it against a café latte or a DIY coffee-and-powder routine — live.' },
+  'caffeine-comparator': { id: 'tm-caffeine-comparator', heading: 'How much caffeine is in your tea?', blurb: 'Compare common teas and coffee, by the cup and across your day.' },
+  'collagen-calculator': { id: 'tm-collagen-calculator', heading: 'How much collagen are you getting?', blurb: 'Set your cups per day to see the collagen protein per day and week — a content figure, not a health claim.' },
+  'sugar-saved': { id: 'tm-sugar-saved', heading: 'How much sugar could you skip?', blurb: 'Swap café chai lattes for unsweetened Spice Rush and see a year of sugar, calories and dollars.' },
+  'spice-blend-builder': { id: 'tm-spice-blend-builder', heading: 'Build your chai spice blend', blurb: 'Dial in cardamom, ginger, cinnamon and clove and read your cup\'s flavor profile.' },
+  'steep-guide': { id: 'tm-steep-guide', heading: 'How to steep your tea', blurb: 'Pick a tea type for its water temperature, steep time and leaf-to-water ratio, sourced from tea-industry and tea-house guidance.' }
 };
 
 /** Inline a tool widget into an article body (no-op for an unknown name). */
@@ -230,25 +303,13 @@ export function renderArticle(data, slug, origin, env, mount = '') {
     dateModified: updated_at,
     mainEntityOfPage: canonical,
     keywords: keywords.length ? keywords.join(', ') : undefined,
-    author: {
-      '@type': 'Person',
-      name: env.AUTHOR_NAME || env.SITE_NAME,
-      url: env.SHOP_ORIGIN,
-      worksFor: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
-    },
+    author: buildAuthor(data, env),
     publisher: {
       '@type': 'Organization',
       name: env.SITE_NAME,
       logo: { '@type': 'ImageObject', url: env.LOGO_URL }
     },
-    citation: sources.length
-      ? sources.map(s => ({
-          '@type': 'CreativeWork',
-          name: s.title,
-          url: s.url,
-          publisher: s.publisher ? { '@type': 'Organization', name: s.publisher } : undefined
-        }))
-      : undefined
+    citation: sources.length ? sources.map(s => buildCitation(s)) : undefined
   };
 
   const crumb = buildBreadcrumb({ data, title, canonical, origin, env, mount });
@@ -275,6 +336,23 @@ export function renderArticle(data, slug, origin, env, mount = '') {
     schemaTags.push(`<script type="application/ld+json">${JSON.stringify(faqSchema)}</script>`);
   }
 
+  // Optional Dataset node: exposes cited figures (e.g. caffeine mg by drink) as
+  // machine-readable structured data. Competitor pages publishing the same numbers
+  // ship no structured data at all — this is a differentiator for AI-answer and
+  // rich-result eligibility. Backward compatible: absent when seed has no `dataset`.
+  if (data.dataset) {
+    const datasetSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Dataset',
+      name: data.dataset.name,
+      description: data.dataset.description,
+      variableMeasured: (data.dataset.variableMeasured || []).map(v => ({
+        '@type': 'PropertyValue', name: v.name, value: v.value, unitText: v.unitText
+      }))
+    };
+    schemaTags.push(`<script type="application/ld+json">${JSON.stringify(datasetSchema)}</script>`);
+  }
+
   const faqHtml = faqs.length
     ? `<section class="faq"><h2>Frequently asked questions</h2>${faqs.map(f =>
         `<details><summary>${esc(f.q)}</summary><div class="faq-a">${f.a_html || `<p>${esc(f.a)}</p>`}</div></details>`
@@ -287,7 +365,7 @@ export function renderArticle(data, slug, origin, env, mount = '') {
       ).join('')}</ol></section>`
     : '';
 
-  const bylineHtml = `<p class="byline">By <span class="author-name">${esc(env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time> &middot; ${readMins} min read</p>`;
+  const bylineHtml = `<p class="byline">By <span class="author-name">${esc((data.author && data.author.name) || env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time> &middot; ${readMins} min read</p>`;
 
   return baseHtml({
     title: safeTitle,
@@ -303,12 +381,13 @@ export function renderArticle(data, slug, origin, env, mount = '') {
       <article>
         <h1>${esc(h1 || title)}</h1>
         ${meta_description ? `<p class="lede">${safeDesc}</p>` : ''}
+        ${renderHero(data)}
         ${bylineHtml}
         <div class="read-progress" aria-live="polite" aria-label="Reading progress" data-total-mins="${readMins}">
           <span class="rp-bar-track"><span class="rp-bar"></span></span>
           <span class="rp-text">${readMins} min left</span>
         </div>
-        ${needsDisclaimer(data) ? wellnessDisclaimer('top') : ''}
+        ${renderOnPageNav(data)}
         ${rewriteMountLinks(body_html, mount)}
         ${data.widget ? renderWidgetEmbed(data.widget, origin, mount) : ''}
         ${renderSafetyBlock(data)}
@@ -422,7 +501,7 @@ export function renderRecipe(data, slug, origin, env, mount = '') {
       ).join('')}</ol></section>`
     : '';
 
-  const bylineHtml = `<p class="byline">By <span class="author-name">${esc(env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time> &middot; ${readMins} min read</p>`;
+  const bylineHtml = `<p class="byline">By <span class="author-name">${esc((data.author && data.author.name) || env.AUTHOR_NAME || env.SITE_NAME)}</span> &middot; <time datetime="${esc(published_at)}">${esc(dateStr)}</time> &middot; ${readMins} min read</p>`;
 
   return baseHtml({
     title: safeTitle,
@@ -438,6 +517,7 @@ export function renderRecipe(data, slug, origin, env, mount = '') {
       <article>
         <h1>${esc(h1 || title)}</h1>
         ${meta_description ? `<p class="lede">${safeDesc}</p>` : ''}
+        ${renderHero(data)}
         ${bylineHtml}
         <div class="read-progress" aria-live="polite" aria-label="Reading progress" data-total-mins="${readMins}">
           <span class="rp-bar-track"><span class="rp-bar"></span></span>
@@ -747,6 +827,326 @@ export function renderCostPerCup(origin, env, mount = '') {
         </nav>
       </article>
       <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * #5 Caffeine comparator tool page — hosts the caffeine-comparator widget (IIFE
+ * served at <mount>/widgets/caffeine-comparator.js). Indexable; the GSC / IndexNow
+ * URL. Also designed to be EMBEDDED by other sites (link-building asset) — see the
+ * copy-paste snippet in the body.
+ *
+ * COMPLIANCE: caffeine content is purely factual (SCOPE.md allows it explicitly).
+ * The <noscript> fallback lists representative figures and makes no health claim;
+ * the note carries the general-information + FDA-reference framing.
+ */
+export function renderCaffeineComparator(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/caffeine-comparator`;
+  const title = `Caffeine in Tea vs Coffee: Interactive Comparator — ${env.SITE_NAME} Learn`;
+  const description =
+    'How much caffeine is in your tea? Compare rooibos, white, green, oolong, black, matcha and pu-erh against coffee and espresso — per cup and across your day.';
+  const scriptSrc = `${origin}${mount}/widgets/caffeine-comparator.js?v=${WIDGET_VERSION}`;
+  const embedSnippet = `<div id="tm-caffeine-comparator"></div>\n<script defer src="${origin}${mount}/widgets/caffeine-comparator.js"></script>`;
+
+  const appSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: 'Tea Caffeine Comparator',
+    applicationCategory: 'LifestyleApplication',
+    operatingSystem: 'Web',
+    url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Caffeine comparator', item: canonical }
+    ]
+  };
+
+  return baseHtml({
+    title,
+    description,
+    canonical,
+    ogType: 'website',
+    env,
+    mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>How much caffeine is in your tea?</h1>
+        <p class="lede">Pick a tea and your cups per day to see the caffeine per cup, the daily total, and how it stacks up against coffee — with every common tea on one chart.</p>
+        <section class="widget-block"><div id="tm-caffeine-comparator"></div></section>
+        <noscript>
+          <h2>Caffeine per ~8 oz cup (representative)</h2>
+          <ul>
+            <li>Rooibos / herbal: <strong>0 mg</strong> (naturally caffeine-free)</li>
+            <li>White tea: ~15&ndash;30 mg</li>
+            <li>Green tea: ~30&ndash;50 mg</li>
+            <li>Oolong tea: ~30&ndash;50 mg</li>
+            <li>Black tea: ~40&ndash;70 mg</li>
+            <li>Pu-erh: ~30&ndash;70 mg</li>
+            <li>Matcha (1 tsp): ~60&ndash;80 mg</li>
+            <li>Espresso (1 shot): ~60&ndash;80 mg</li>
+            <li>Brewed coffee: ~80&ndash;100 mg</li>
+          </ul>
+        </noscript>
+        <p class="tm-research-note">Representative figures per ~8&nbsp;oz cup; brewing strength, leaf grade and steep time all change the real number. The ~400&nbsp;mg/day figure used for context is a reference the U.S. FDA has cited for healthy adults, not a recommendation. This is general information, not medical or dietary advice.</p>
+        <section class="cc-embed">
+          <h2>Embed this tool</h2>
+          <p>Free to embed on your own site or blog &mdash; please keep the link back to ${esc(env.SITE_NAME)}.</p>
+          <pre style="background:rgba(122,90,43,.06);border:1px solid rgb(var(--color-rule));border-radius:8px;padding:.9rem 1rem;overflow:auto;font-size:.82rem;line-height:1.5"><code>${esc(embedSnippet)}</code></pre>
+        </section>
+        <nav class="related" aria-label="Related guides">
+          <h2>Related reading</h2>
+          <ul>
+            <li><a href="${mount}/is-rooibos-caffeine-free">Is rooibos caffeine-free?</a></li>
+            <li><a href="${mount}/l-theanine-and-caffeine-in-tea">L-theanine and caffeine in tea</a></li>
+            <li><a href="${mount}/best-tea-to-replace-coffee">The best tea to replace coffee</a></li>
+            <li><a href="${mount}/best-tea-for-sleep">Tea for sleep</a></li>
+          </ul>
+        </nav>
+      </article>
+      <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * #6 Collagen-per-day calculator page. Content figures only (grams of collagen
+ * protein consumed) — no skin/joint/hair outcome claims. Spice Rush = 10 g
+ * hydrolyzed collagen per cup (verified from the PDP).
+ */
+export function renderCollagenCalculator(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/collagen-calculator`;
+  const title = `Collagen in Your Tea: How Much Are You Getting? — ${env.SITE_NAME} Learn`;
+  const description =
+    'How much collagen protein do you get from your tea? Spice Rush has 10 g of hydrolyzed collagen per cup — set your cups per day to see the daily and weekly total.';
+  const scriptSrc = `${origin}${mount}/widgets/collagen-calculator.js?v=${WIDGET_VERSION}`;
+  const appSchema = {
+    '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Collagen-per-Day Calculator',
+    applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Collagen calculator', item: canonical }
+    ]
+  };
+  return baseHtml({
+    title, description, canonical, ogType: 'website', env, mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>How much collagen are you actually getting?</h1>
+        <p class="lede">Each cup of Spice Rush carries 10&nbsp;g of hydrolyzed collagen. Set your cups per day to see the daily and weekly total — and where it sits next to the range research commonly studies.</p>
+        <section class="widget-block"><div id="tm-collagen-calculator"></div></section>
+        <noscript>
+          <ul>
+            <li>Spice Rush: <strong>10 g</strong> hydrolyzed collagen per cup</li>
+            <li>1 cup = 10 g/day · 2 cups = 20 g/day · 3 cups = 30 g/day</li>
+            <li>Published collagen-peptide research commonly uses ~2.5&ndash;15 g/day</li>
+          </ul>
+        </noscript>
+        <p class="tm-research-note">These are content figures — the amount of collagen protein consumed — not a health outcome. The 2.5&ndash;15&nbsp;g/day band describes what research commonly studies, not a recommendation or a promised result. This is general information, not medical or dietary advice.</p>
+        <nav class="related" aria-label="Related guides">
+          <h2>Related reading</h2>
+          <ul>
+            <li><a href="${mount}/collagen-tea-vs-collagen-powder">Collagen tea vs powder</a></li>
+            <li><a href="${mount}/does-collagen-tea-actually-work">Does collagen tea actually work?</a></li>
+            <li><a href="${mount}/collagen-peptides">What are collagen peptides?</a></li>
+          </ul>
+        </nav>
+      </article>
+      <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * #7 Sugar-saved / café-swap calculator page. Sugar-grams, calories-from-sugar
+ * and dollars arithmetic — a comparison, not a health claim.
+ */
+export function renderSugarSaved(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/sugar-saved`;
+  const title = `Sugar-Saved Calculator: Café Chai vs Unsweetened Spice Rush — ${env.SITE_NAME} Learn`;
+  const description =
+    'See a year of sugar, calories and dollars you would skip by swapping café chai lattes (~40 g sugar each) for unsweetened Spice Rush (0 g added sugar).';
+  const scriptSrc = `${origin}${mount}/widgets/sugar-saved.js?v=${WIDGET_VERSION}`;
+  const appSchema = {
+    '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Sugar-Saved Café-Swap Calculator',
+    applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Sugar-saved calculator', item: canonical }
+    ]
+  };
+  return baseHtml({
+    title, description, canonical, ogType: 'website', env, mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>How much sugar could you skip?</h1>
+        <p class="lede">A café chai latte carries around 40&nbsp;g of sugar. Spice Rush has none added. Set your café habit to see a year of sugar, calories and dollars you'd avoid by swapping.</p>
+        <section class="widget-block"><div id="tm-sugar-saved"></div></section>
+        <noscript>
+          <ul>
+            <li>Café chai latte: <strong>~40 g</strong> sugar (typically 30&ndash;50 g)</li>
+            <li>Spice Rush: <strong>0 g</strong> added sugar</li>
+            <li>Swapping 5 café chais/week ≈ 10&nbsp;lb of sugar and ~$1,300 in a year</li>
+          </ul>
+        </noscript>
+        <p class="tm-research-note">Café figures are representative and vary by chain, size and recipe. This is a sugar-and-cost comparison, not a health claim. General information, not medical or dietary advice.</p>
+        <nav class="related" aria-label="Related guides">
+          <h2>Related reading</h2>
+          <ul>
+            <li><a href="${mount}/how-to-brew-chai-without-sugar">How to brew chai without sugar</a></li>
+            <li><a href="${mount}/is-tea-keto-and-paleo-friendly">Is tea keto & paleo friendly?</a></li>
+            <li><a href="${mount}/best-milk-for-chai">The best milk for chai</a></li>
+          </ul>
+        </nav>
+      </article>
+      <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * #8 Chai spice-blend builder page. Pure flavor tool — no health claims.
+ */
+export function renderSpiceBlendBuilder(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/spice-blend-builder`;
+  const title = `Chai Spice Blend Builder: Design Your Cup — ${env.SITE_NAME} Learn`;
+  const description =
+    'Dial in cardamom, ginger, cinnamon and clove and see your chai flavor profile in words — plus how close it is to Spice Rush, our balanced everyday blend.';
+  const scriptSrc = `${origin}${mount}/widgets/spice-blend-builder.js?v=${WIDGET_VERSION}`;
+  const appSchema = {
+    '@context': 'https://schema.org', '@type': 'WebApplication', name: 'Chai Spice Blend Builder',
+    applicationCategory: 'LifestyleApplication', operatingSystem: 'Web', url: canonical,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: { '@type': 'Organization', name: env.SITE_NAME, url: env.SHOP_ORIGIN }
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Spice blend builder', item: canonical }
+    ]
+  };
+  return baseHtml({
+    title, description, canonical, ogType: 'website', env, mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(appSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>Build your chai spice blend</h1>
+        <p class="lede">Cardamom, ginger, cinnamon, clove — the four spices that make a chai. Dial each one and read your cup's flavor profile, then see how close you got to Spice Rush.</p>
+        <section class="widget-block"><div id="tm-spice-blend-builder"></div></section>
+        <noscript>
+          <ul>
+            <li><strong>Cardamom</strong> — floral, aromatic, citrus-cool</li>
+            <li><strong>Ginger</strong> — warming, bright, gently spicy</li>
+            <li><strong>Cinnamon</strong> (Ceylon) — sweet, woody</li>
+            <li><strong>Clove</strong> — deep, resinous, warming</li>
+          </ul>
+          <p>Spice Rush balances all four with black tea and collagen, milled to dissolve in one stir.</p>
+        </noscript>
+        <nav class="related" aria-label="Related guides">
+          <h2>Related reading</h2>
+          <ul>
+            <li><a href="${mount}/best-cardamom-for-chai">The best cardamom for chai</a></li>
+            <li><a href="${mount}/chai-tea-benefits-spice-by-spice">Chai, spice by spice</a></li>
+            <li><a href="${mount}/what-is-masala-chai">What is masala chai?</a></li>
+          </ul>
+        </nav>
+      </article>
+      <script defer src="${scriptSrc}"></script>
+    `
+  });
+}
+
+/**
+ * Tools hub — a single indexable landing page listing every interactive tool.
+ * The one thing to link from the nav ("Tools" → /learn/tools). ItemList schema
+ * for AI shopping/answer surfaces.
+ */
+const TOOLS_HUB = [
+  { slug: 'collagen-calculator', name: 'Collagen Calculator', blurb: 'Set your cups per day to see how much collagen protein you actually get.' },
+  { slug: 'sugar-saved', name: 'Sugar-Saved Calculator', blurb: 'Sugar, calories and dollars you skip swapping café chai for unsweetened Spice Rush.' },
+  { slug: 'spice-blend-builder', name: 'Spice Blend Builder', blurb: 'Dial in cardamom, ginger, cinnamon and clove and read your cup&rsquo;s flavor.' },
+  { slug: 'tea-finder', name: 'Tea Finder', blurb: 'Four quick questions — flavor, routine, dietary — matched to a blend.' },
+  { slug: 'brew-guide', name: 'Brew Guide', blurb: 'Scale water temperature, steep time and milk ratio to your servings.' },
+  { slug: 'cost-per-cup', name: 'Cost per Cup', blurb: 'Compare your cup against a café latte or a coffee-and-powder routine.' },
+  { slug: 'caffeine-comparator', name: 'Caffeine Comparator', blurb: 'Caffeine per cup for every common tea vs coffee, and across your day.' },
+];
+
+export function renderToolsHub(origin, env, mount = '') {
+  const canonical = `${origin}${mount}/tools`;
+  const title = `Tea Tools & Calculators — ${env.SITE_NAME} Learn`;
+  const description =
+    'Free interactive tea tools from TMolecule: a collagen calculator, a café-swap sugar-saved calculator, a chai spice-blend builder, a tea finder, a brew guide, cost-per-cup and a caffeine comparator.';
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'TMolecule tea tools & calculators',
+    itemListElement: TOOLS_HUB.map((t, i) => ({
+      '@type': 'ListItem', position: i + 1, name: t.name, url: `${origin}${mount}/${t.slug}`
+    }))
+  };
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Learn', item: `${origin}${mount}/` },
+      { '@type': 'ListItem', position: 2, name: 'Tools', item: canonical }
+    ]
+  };
+  const cards = TOOLS_HUB.map((t) => `
+          <a class="tool-card" href="${mount}/${t.slug}" style="display:block;text-decoration:none;padding:1.15rem 1.25rem;border:1px solid rgb(var(--color-rule));border-radius:12px;background:rgba(122,90,43,.03);transition:box-shadow .15s ease;">
+            <div style="font-family:var(--serif);font-weight:600;font-size:1.2rem;color:rgb(var(--color-foreground));margin:0 0 .3rem;">${t.name} &rsaquo;</div>
+            <p style="font-family:var(--sans);font-size:.92rem;line-height:1.5;color:rgb(var(--color-mute));margin:0;">${t.blurb}</p>
+          </a>`).join('');
+
+  return baseHtml({
+    title, description, canonical, ogType: 'website', env, mount,
+    schemaTags: [
+      `<script type="application/ld+json">${JSON.stringify(itemListSchema)}</script>`,
+      `<script type="application/ld+json">${JSON.stringify(breadcrumbSchema)}</script>`
+    ],
+    bodyInner: `
+      <article>
+        <h1>Tea tools &amp; calculators</h1>
+        <p class="lede">Free, no-signup tools to plan your cup — from how much collagen you&rsquo;re getting to how much sugar you&rsquo;d skip swapping the café. Everything runs in your browser.</p>
+        <section class="advisor-block" style="margin:1.5rem 0;"><div id="tm-advisor"></div></section>
+        <script defer src="${origin}${mount}/widgets/advisor.js?v=${WIDGET_VERSION}"></script>
+        <h2>Calculators &amp; guides</h2>
+        <section class="tools-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin:1.5rem 0;">
+          ${cards}
+        </section>
+        <p class="tm-research-note">Calculators show content, cost and flavor figures, not health outcomes. General information, not medical or dietary advice.</p>
+      </article>
     `
   });
 }
@@ -1650,6 +2050,7 @@ ${schemaTags.join('\n')}
     border:1px solid #e2cf99;border-left:3px solid rgb(var(--color-button));
   }
   .bridge__text strong{font-family:var(--serif);font-size:1.1rem;color:rgb(var(--color-foreground));font-weight:600}
+  .bridge__btns{display:flex;gap:.6rem;flex-wrap:wrap}
 
   /* Related guides */
   .related{margin:2.4rem 0}
@@ -1676,11 +2077,46 @@ ${schemaTags.join('\n')}
   .reg__col p{margin:.6rem 0 0;font-size:.92rem;color:rgb(var(--color-mute))}
   @media (max-width:560px){.reg__grid{grid-template-columns:1fr}}
 
-  /* Wellness / FDA disclaimer */
+  /* Wellness / FDA disclaimer — amber banner, kept prominent on ingredient/effects pages */
   .wellness-disclaimer{
-    margin:1.6rem 0;padding:.95rem 1.1rem;border-radius:10px;
-    background:rgba(var(--color-mute),.08);border:1px solid rgb(var(--color-rule));border-left:3px solid rgb(var(--color-mute));
-    font-family:var(--sans);font-size:.82rem;line-height:1.55;color:rgb(var(--color-mute));
+    margin:1.6rem 0;padding:.9rem 1.15rem;border-radius:8px;
+    background:#fbf6e6;border:1px solid #d9c27a;border-left:4px solid #b8902f;
+    font-family:var(--sans);font-size:.82rem;line-height:1.55;color:#5a4a22;
+  }
+
+  /* On-page navigation ("On this page") */
+  .on-page-nav{
+    background:rgba(122,90,43,.05);border:1px solid rgb(var(--color-rule));
+    border-radius:8px;padding:.9rem 1.2rem;margin:0 0 2rem;
+  }
+  .on-page-nav .opn-head{
+    font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;
+    color:rgb(var(--color-mute));margin:0 0 .5rem;font-weight:700;
+  }
+  .on-page-nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.35rem 1.2rem}
+  .on-page-nav li{margin:0}
+  .on-page-nav a{font-size:.92rem}
+
+  /* Research citation cards — peer-reviewed / PubMed sources cited inline in the body */
+  .citation-card{
+    border:1px solid rgb(var(--color-rule));border-left:4px solid rgb(var(--color-button));
+    background:rgb(var(--color-card));border-radius:6px;padding:1rem 1.15rem;margin:1.6rem 0;
+  }
+  .citation-card__type{
+    display:inline-block;font-family:var(--sans);font-size:.68rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.07em;color:rgb(var(--color-button));margin:0 0 .35rem;
+  }
+  .citation-card__title{font-family:var(--serif);font-weight:600;font-size:1.02rem;line-height:1.35;margin:0 0 .3rem}
+  .citation-card__title a{color:rgb(var(--color-foreground));text-decoration:none}
+  .citation-card__title a:hover{text-decoration:underline}
+  .citation-card__meta{font-family:var(--sans);font-size:.8rem;color:rgb(var(--color-mute));margin:0 0 .5rem}
+  .citation-card__finding{margin:.35rem 0 0;font-size:.95rem}
+
+  /* Hero image (recipe / article) */
+  .hero-img{
+    display:block;width:100%;height:auto;border-radius:12px;margin:0 0 1.6rem;
+    border:1px solid rgb(var(--color-rule));
+    box-shadow:0 1px 2px rgba(80,50,20,.08),0 8px 28px rgba(80,50,20,.12);
   }
 </style>
 </head>

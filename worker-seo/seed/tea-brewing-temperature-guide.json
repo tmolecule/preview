@@ -1,0 +1,62 @@
+{
+  "title": "Tea Brewing Temperature Guide: Every Type, Chart Included",
+  "h1": "Tea brewing temperature guide",
+  "meta_description": "Green and white teas want cooler water; black, pu-erh, and herbal want a full boil. A simple temperature-and-time chart for every type of tea, plus no-thermometer tricks.",
+  "image_url": "",
+  "published_at": "2026-07-14T20:00:00Z",
+  "updated_at": "2026-07-28T12:00:00Z",
+  "keywords": [
+    "tea brewing temperature",
+    "tea water temperature chart",
+    "what temperature to brew tea",
+    "tea steeping temperature",
+    "how hot should tea water be"
+  ],
+  "body_html": "<p>Different teas need different water temperatures. <strong>Delicate green and white teas want cooler water (165&ndash;190&deg;F); oolong wants medium (180&ndash;195&deg;F); and black, pu-erh, and herbal teas want a full boil (195&ndash;212&deg;F).</strong> Too-hot water scorches delicate leaves and makes them bitter; too-cool water under-extracts robust ones. Here's the whole chart.</p><h2>Temperature &amp; time by tea type</h2><table><thead><tr><th>Tea</th><th>Temp (&deg;F)</th><th>Temp (&deg;C)</th><th>Steep time</th></tr></thead><tbody><tr><td>White</td><td>175&ndash;190</td><td>79&ndash;88</td><td>3&ndash;5 min</td></tr><tr><td>Green</td><td>165&ndash;185</td><td>74&ndash;85</td><td>~1 min (Japanese) or 3&ndash;4 min (Western)*</td></tr><tr><td>Oolong</td><td>180&ndash;195</td><td>82&ndash;91</td><td>3&ndash;7 min</td></tr><tr><td>Black</td><td>195&ndash;212</td><td>91&ndash;100</td><td>3&ndash;5 min</td></tr><tr><td>Pu-erh</td><td>200&ndash;212</td><td>93&ndash;100</td><td>3&ndash;5 min</td></tr><tr><td>Herbal / tisane</td><td>200&ndash;212</td><td>93&ndash;100</td><td>5&ndash;7 min</td></tr></tbody></table><p><em>*Green tea spans two published conventions: a brief ~1-minute Japanese-style steep (Tea Association of the USA; Ippodo) versus a longer 3&ndash;4-minute general Western steep (Healthline). Both are real and cited &mdash; see our <a href=\"/green-tea-steeping-time\">green tea steeping time</a> breakdown for the full picture.</em></p><h2>Why temperature matters</h2><p>The rule of thumb: <strong>the less oxidized the tea, the cooler the water.</strong> Green and white teas keep fresh, heat-sensitive compounds that turn bitter when scorched, so they want cooler water and short steeps. Fully oxidized black tea and sturdy herbals need a full boil to extract properly. Oolong sits in the middle. For the oxidation background, see <a href=\"/what-is-tea-oxidation\">what is tea oxidation</a>.</p><h2>No thermometer? Use these tricks</h2><ul><li><strong>Full boil (~212&deg;F):</strong> rolling bubbles &mdash; for black, pu-erh, herbal.</li><li><strong>~185&deg;F:</strong> boil, then wait about 1 minute &mdash; for oolong.</li><li><strong>~175&deg;F:</strong> boil, then wait 2&ndash;3 minutes (or add a splash of cold water) &mdash; for green and white.</li></ul><h2>Get the specifics</h2><p>For step-by-step brewing of the two most common teas, see <a href=\"/how-to-brew-green-tea\">how to brew green tea</a> and <a href=\"/how-to-brew-black-tea\">how to brew black tea</a>. Herbal &ldquo;teas&rdquo; are tisanes and follow the full-boil, longer-steep rule &mdash; see <a href=\"/what-is-a-tisane\">what is a tisane</a>.</p>",
+  "sources": [
+    {
+      "title": "Brewing Tea",
+      "url": "https://www.teausa.org/brewingtea",
+      "publisher": "Tea Association of the USA",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "How to Steep Tea Like an Expert",
+      "url": "https://www.healthline.com/nutrition/how-to-steep-tea",
+      "publisher": "Healthline",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What water temperature is best for tea?",
+      "a": "It depends on the tea. Green: 165-185°F. White: 175-190°F. Oolong: 180-195°F. Black, pu-erh, and herbal: a full boil, 195-212°F. The less oxidized the tea, the cooler the water."
+    },
+    {
+      "q": "Should you use boiling water for all tea?",
+      "a": "No. Boiling water is right for black, pu-erh, and herbal teas, but it scorches delicate green and white teas and makes them bitter. Let the kettle rest a couple of minutes for those."
+    },
+    {
+      "q": "How do I get the right temperature without a thermometer?",
+      "a": "Boil the kettle, then wait: about 1 minute of cooling gets you near 185°F for oolong, and 2-3 minutes gets you near 175°F for green and white tea. A full rolling boil is for black and herbal."
+    },
+    {
+      "q": "Does water temperature really change the taste?",
+      "a": "Yes, a lot. Too-hot water over-extracts delicate teas into bitterness; too-cool water leaves robust teas weak and flat. Matching temperature to the tea is the single biggest brewing fix."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "use-case",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Brew our blends right",
+  "product_bridge_blurb": "Green-tea Elixir or black-tea chai — match the water to the tea and both taste their best. Explore the range.",
+  "related": [
+    "how-to-brew-green-tea",
+    "how-to-brew-black-tea",
+    "what-is-tea-oxidation",
+    "green-tea-steeping-time",
+    "matcha-to-water-ratio"
+  ],
+  "disclaimer": false
+}

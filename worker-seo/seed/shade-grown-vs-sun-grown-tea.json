@@ -1,0 +1,54 @@
+{
+  "title": "Shade-Grown vs Sun-Grown Tea: What's the Difference?",
+  "h1": "Shade-grown vs sun-grown tea",
+  "meta_description": "Shade-grown tea is covered from sunlight before harvest, making it sweeter, greener, and higher in L-theanine; sun-grown is grassier or bolder. Here's how and why.",
+  "image_url": "",
+  "published_at": "2026-07-14T18:00:00Z",
+  "updated_at": "2026-07-14T18:00:00Z",
+  "keywords": [
+    "shade grown vs sun grown tea",
+    "shade grown tea",
+    "why is matcha shade grown",
+    "gyokuro vs sencha",
+    "shaded green tea"
+  ],
+  "body_html": "<p>The difference is sunlight before harvest. <strong>Shade-grown tea is covered for a few weeks before picking; sun-grown is not.</strong> Shading pushes the plant to make more chlorophyll and L-theanine and fewer bitter catechins &mdash; producing the vivid green, sweeter, umami leaves used for <a href=\"/what-is-matcha\">matcha</a> and gyokuro. Sun-grown teas (most green, oolong, and black) taste grassier, brighter, or bolder.</p><h2>Side-by-side comparison</h2><table><thead><tr><th>Property</th><th>Shade-grown</th><th>Sun-grown</th></tr></thead><tbody><tr><td>Before harvest</td><td>Covered ~2&ndash;4 weeks</td><td>Full sun throughout</td></tr><tr><td>Color</td><td>Deep, vivid green</td><td>Lighter green to brown</td></tr><tr><td>L-theanine</td><td>Higher (more umami/sweetness)</td><td>Lower</td></tr><tr><td>Catechins (astringency)</td><td>Lower relative to L-theanine</td><td>Higher</td></tr><tr><td>Flavor</td><td>Sweet, savory, smooth</td><td>Grassy, brisk, more astringent</td></tr><tr><td>Examples</td><td>Matcha, gyokuro, kabusecha</td><td>Sencha, most greens, oolong, black</td></tr></tbody></table><h2>Why shading changes the leaf</h2><p>When a tea plant is shaded, it gets less light for photosynthesis. It responds by producing more chlorophyll (the intense green) and holding on to more L-theanine, the amino acid behind tea's savory sweetness and its calm-alert character. At the same time, fewer of the sunlight-driven catechins form, so the leaf is less astringent. The result is a smoother, sweeter cup &mdash; the signature of high-grade Japanese greens.</p><h2>Which teas are shaded?</h2><p>Shading is mostly a Japanese green-tea practice: matcha (ground from shaded tencha), gyokuro, and kabusecha. Most of the world's tea &mdash; sencha, Chinese greens, oolong, and black &mdash; is sun-grown. That's a big part of why matcha tastes so different from a steeped green tea; see <a href=\"/matcha-vs-green-tea\">matcha vs green tea</a>.</p><h2>Does shade-grown mean better?</h2><p>Not universally &mdash; it means sweeter and less astringent, which suits umami-forward styles but isn't the goal for a brisk breakfast tea. It also costs more (shading is labor-intensive and lowers yield). The &ldquo;better&rdquo; tea is the one whose flavor you want. For the base families, see <a href=\"/green-tea-vs-black-tea\">green tea vs black tea</a>.</p>",
+  "sources": [
+    {
+      "title": "Effect of shading on L-theanine and catechin content in tea leaves",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/camellia-sinensis",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What does shade-grown tea mean?",
+      "a": "It means the tea plants were covered from direct sunlight for a few weeks before harvest. This raises chlorophyll and L-theanine and lowers bitter catechins, giving a sweeter, greener, smoother tea."
+    },
+    {
+      "q": "Why is matcha shade-grown?",
+      "a": "Shading boosts L-theanine and chlorophyll while reducing astringency, which gives matcha its vivid green color, umami sweetness, and smooth taste. Matcha is ground from shaded leaves called tencha."
+    },
+    {
+      "q": "Is shade-grown tea healthier than sun-grown?",
+      "a": "It has a different compound balance — more L-theanine, fewer catechins relative to it — but 'healthier' isn't the right frame. It mainly tastes sweeter and less astringent. Choose by the flavor you want."
+    },
+    {
+      "q": "What's the difference between gyokuro and sencha?",
+      "a": "Gyokuro is shade-grown and sencha is sun-grown, though both are Japanese green teas. Gyokuro is sweeter and more umami; sencha is grassier and brisker."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "tea-base",
+  "intent": "comparison",
+  "product_bridge": "/products/cardamom-green-tea-elixir",
+  "product_bridge_label": "Green tea, elevated",
+  "product_bridge_blurb": "Our Cardamom & Green Tea Elixir builds on green tea with a real cardamom oleoresin — a light, aromatic cup in a drop.",
+  "related": [
+    "matcha-vs-green-tea",
+    "what-is-matcha",
+    "green-tea-vs-black-tea"
+  ],
+  "disclaimer": false
+}

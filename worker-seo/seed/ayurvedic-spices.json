@@ -1,0 +1,60 @@
+{
+  "title": "Ayurvedic Spices, Cup by Cup: Cardamom, Ginger, Cinnamon & Clove",
+  "h1": "Ayurvedic spices, cup by cup",
+  "meta_description": "The warming spices in a cup of chai — cardamom, ginger, cinnamon, clove — are staples of the Ayurvedic tradition. Each spice's place in that tradition, its flavor, and what research describes.",
+  "image_url": "",
+  "published_at": "2026-07-15T14:00:00Z",
+  "updated_at": "2026-07-15T14:00:00Z",
+  "keywords": [
+    "ayurvedic spices",
+    "ayurveda spices list",
+    "warming spices ayurveda",
+    "chai spices ayurveda",
+    "cardamom ginger cinnamon ayurveda"
+  ],
+  "body_html": "<p>The warming spices that make a cup of chai &mdash; <strong>cardamom, ginger, cinnamon and clove</strong> &mdash; are the same aromatics central to the Ayurvedic tradition, where they're classified as <a href=\"/warming-vs-cooling-foods\">&ldquo;warming&rdquo;</a> and aromatic. Below is each spice's place in that tradition, how it tastes, and what published research has studied. This is tradition and research framing, <strong>not health claims</strong>.</p><h2>At a glance</h2><table><thead><tr><th>Spice</th><th>Traditional Ayurvedic description</th><th>Flavor</th></tr></thead><tbody><tr><td>Cardamom</td><td>Warming, aromatic, classed as &ldquo;digestive&rdquo;</td><td>Floral, citrus-cool, sweet</td></tr><tr><td>Ginger</td><td>Warming, pungent (&ldquo;the universal spice&rdquo;)</td><td>Bright, hot, zesty</td></tr><tr><td>Cinnamon</td><td>Warming, sweet</td><td>Sweet, woody (Ceylon is milder)</td></tr><tr><td>Clove</td><td>Warming, pungent</td><td>Deep, resinous, intense</td></tr></tbody></table><h2>Cardamom</h2><p>Often called the queen of spices, green cardamom is prized across Ayurvedic cooking and described in the tradition as a warming, aromatic digestive spice. In research terms, cardamom's aroma comes from compounds like 1,8-cineole; it has been studied in various contexts, though effects are modest and context-dependent. For the spice itself, see <a href=\"/what-is-cardamom\">what is cardamom</a> and <a href=\"/cardamom-benefits\">the research on cardamom</a>.</p><h2>Ginger</h2><p>Ginger is so widely used it's sometimes called <em>vishwabhesaj</em> (&ldquo;the universal spice&rdquo;) in the tradition, classed as warming and pungent. It has been studied most in the context of nausea and digestion; see <a href=\"/ginger\">the evidence on ginger</a>. In a cup it brings the bright, warming heat that balances sweeter spices.</p><h2>Cinnamon</h2><p>Cinnamon is a warming, sweet spice in the tradition. Which cinnamon matters: <a href=\"/ceylon-vs-cassia-cinnamon\">Ceylon vs cassia</a> differ in flavor and in a compound called coumarin. For flavor and use, see <a href=\"/cinnamon\">cinnamon</a>.</p><h2>Clove</h2><p>Clove is intense &mdash; a little goes a long way. In the tradition it's warming and pungent; on the palate it's the deep, resinous note at the back of a good chai. It rounds out the blend rather than leading it.</p><h2>Putting them together</h2><p>These four are the backbone of masala chai, each doing a different job &mdash; cardamom lifts, ginger warms, cinnamon sweetens, clove deepens. Our <a href=\"/chai-tea-benefits-spice-by-spice\">spice-by-spice chai breakdown</a> walks through how they balance, and <a href=\"/best-cardamom-for-chai\">best cardamom for chai</a> covers choosing the lead spice. For the wider tradition, see <a href=\"/ayurveda\">Ayurveda and tea</a>.</p><p><em>Descriptions of Ayurvedic classifications are cultural and historical; statements about ingredients describe published research. Neither is a medical claim. This information has not been evaluated by the Food and Drug Administration and is not intended to diagnose, treat, cure or prevent any disease.</em></p>",
+  "sources": [
+    {
+      "title": "Spices in Ayurveda: classification and traditional use",
+      "url": "https://www.sciencedirect.com/topics/pharmacology-toxicology-and-pharmaceutical-science/ayurveda",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Elettaria cardamomum: flavor compounds and composition",
+      "url": "https://www.sciencedirect.com/topics/agricultural-and-biological-sciences/elettaria-cardamomum",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What spices are used in Ayurveda?",
+      "a": "Many, but the warming aromatics central to the tradition — and to chai — are cardamom, ginger, cinnamon and clove, plus turmeric. They're classified in the tradition as 'warming' spices."
+    },
+    {
+      "q": "Why are these called warming spices?",
+      "a": "'Warming' is a traditional Ayurvedic classification describing a quality the tradition assigns to certain foods and spices. It's a cultural descriptive framework, not a temperature or a health claim."
+    },
+    {
+      "q": "Is chai an Ayurvedic drink?",
+      "a": "Masala chai is a spiced-tea preparation rooted in the Ayurvedic culinary tradition — its spices are tradition staples. That's food history, not a health claim."
+    },
+    {
+      "q": "Which Ayurvedic spice is strongest?",
+      "a": "Clove is the most intense — use it sparingly. Cardamom is potent but floral, ginger brings heat, and cinnamon is the sweet, mellow base."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "use-case",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "All four, in one stir",
+  "product_bridge_blurb": "Spice Rush is a milled collagen chai built on green cardamom, ginger, Ceylon cinnamon and clove — the tradition's warming spices, balanced for you.",
+  "related": [
+    "cardamom-benefits",
+    "ginger",
+    "chai-tea-benefits-spice-by-spice"
+  ],
+  "disclaimer": true
+}

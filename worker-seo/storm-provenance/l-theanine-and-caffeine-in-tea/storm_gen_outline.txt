@@ -1,0 +1,52 @@
+# Chemical Composition
+## L-Theanine
+### Molecular Structure
+### Chemical Classification
+### Discovery and Isolation History
+#### 1949 Discovery in Japan
+#### 1950 Isolation from Gyokuro Tea
+## Caffeine
+### Molecular Structure
+### Chemical Classification
+### Discovery and Naming History
+#### 1821 Isolation from Coffee
+#### 1827 Discovery in Tea
+# Occurrence in Tea
+## Natural Presence in Tea Plants
+### Camellia sinensis Species
+### Content by Tea Type
+#### Green Tea
+#### Black Tea
+#### White Tea
+#### Oolong Tea
+#### Pu-erh Tea
+### Variability Within Tea Categories
+### Concentration Levels
+#### L-Theanine Content
+#### Caffeine Content
+# Mechanisms of Action
+## L-Theanine's Physiological Effects
+### Blood-Brain Barrier Crossing
+#### Leucine-Preferring Transport System
+### Neurobiological Mechanisms
+#### Glutamate Receptor Interaction
+#### Alpha Brain Wave Activity
+#### Neurotransmitter Modulation
+##### GABA and Serotonin Enhancement
+### Individual Effects
+#### Relaxation and Anxiolytic Properties
+#### Cognitive Enhancement
+#### Sleep Quality
+## Caffeine's Physiological Effects
+### Central Nervous System Stimulation
+#### Adenosine Receptor Blockade
+#### Neurotransmitter Enhancement
+##### Dopamine, Norepinephrine, and Serotonin
+##### Acetylcholine Release
+### Cellular Mechanisms
+#### Calcium Transport Regulation
+#### cAMP Enzyme Inhibition
+### Individual Effects
+#### Alertness and Energy
+#### Metabolism Enhancement
+#### Potential Adverse Effects

@@ -1,0 +1,61 @@
+{
+  "title": "Ayurveda Meets Modern Collagen Tea: Old Spices, a New Ingredient",
+  "h1": "Where Ayurvedic spices meet modern collagen",
+  "meta_description": "TMolecule pairs the warming spices at the heart of the Ayurvedic tradition — cardamom, ginger, Ceylon cinnamon — with a modern ingredient the tradition never had: hydrolyzed collagen. An honest look at which parts are old and which are new.",
+  "image_url": "",
+  "published_at": "2026-07-15T20:00:00Z",
+  "updated_at": "2026-07-15T20:00:00Z",
+  "keywords": [
+    "ayurveda collagen",
+    "collagen chai",
+    "ayurvedic tea with collagen",
+    "modern ayurveda tea",
+    "collagen spiced tea"
+  ],
+  "body_html": "<p>Our blends pair <strong>the warming spices at the heart of the Ayurvedic tradition &mdash; cardamom, ginger, Ceylon cinnamon, clove &mdash; with a modern ingredient the tradition never had: hydrolyzed collagen.</strong> We think it's worth being honest about which part is old and which is new, so here's exactly that. This describes the ingredients and their history, <strong>not health outcomes</strong>.</p><h2>What comes from the tradition</h2><p>The spice side is genuinely old. Cardamom, ginger, cinnamon and clove are staples of Ayurvedic cooking, classified in the tradition as warming aromatics &mdash; the same spices that make a cup of <a href=\"/what-is-masala-chai\">masala chai</a>. That lineage is real food history, covered in <a href=\"/ayurvedic-spices\">Ayurvedic spices, cup by cup</a> and our overview of <a href=\"/ayurveda\">Ayurveda and tea</a>.</p><h2>What's modern</h2><p><strong>Collagen is not an Ayurvedic ingredient.</strong> Hydrolyzed collagen peptides are a modern food ingredient &mdash; collagen protein broken into short, dissolvable chains &mdash; that didn't exist in the classical tradition. We add it because it's flavorless and mixes cleanly into a spiced cup, so people who already use collagen can fold it into a tea they enjoy. For the ingredient itself, see <a href=\"/collagen-peptides\">collagen peptides</a>.</p><h2>Old and new, side by side</h2><table><thead><tr><th>In the cup</th><th>Where it comes from</th><th>What it is</th></tr></thead><tbody><tr><td>Cardamom, ginger, Ceylon cinnamon, clove</td><td>The Ayurvedic tradition</td><td>Warming aromatic spices (flavor)</td></tr><tr><td>Black tea</td><td>Long tea-drinking tradition</td><td>The caffeinated base</td></tr><tr><td>Hydrolyzed collagen</td><td>Modern food science</td><td>A flavorless protein add-in</td></tr></tbody></table><h2>Why combine them</h2><p>The honest answer is convenience and enjoyment, not tradition. A spiced cup is a pleasant daily ritual; adding a measured, flavorless protein means one fewer scoop of powder to stir into water. It's the same familiar cup with a modern add-in &mdash; see <a href=\"/collagen-chai-vs-regular-chai\">collagen chai vs regular chai</a> for the plain comparison.</p><h2>What we don't claim</h2><p>We want to be clear about the line: we don't claim collagen is Ayurvedic, that our teas &ldquo;balance your doshas,&rdquo; or that they diagnose, treat or cure anything. The spices carry a genuine tradition; the collagen is a modern ingredient described by its research; neither is a health promise. That honesty is the point.</p><h2>Our place in it</h2><p>TMolecule grew from a family that has blended tea since 1935. We're a tea company borrowing a spice tradition and adding a modern ingredient &mdash; not Ayurvedic practitioners. To see how much collagen a cup actually delivers, try the calculator below.</p><p><em>This is general information, not medical or dietary advice. Ayurvedic descriptions are cultural and historical; statements about collagen describe published research, not outcomes. These statements have not been evaluated by the Food and Drug Administration and are not intended to diagnose, treat, cure or prevent any disease.</em></p>",
+  "sources": [
+    {
+      "title": "Ayurvedic Medicine: In Depth",
+      "url": "https://www.nccih.nih.gov/health/ayurvedic-medicine-in-depth",
+      "publisher": "NIH — National Center for Complementary and Integrative Health",
+      "type": "CreativeWork"
+    },
+    {
+      "title": "Hydrolyzed collagen — sources and applications",
+      "url": "https://www.sciencedirect.com/topics/food-science/hydrolyzed-collagen",
+      "publisher": "ScienceDirect (Elsevier)",
+      "type": "CreativeWork"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Is collagen part of Ayurveda?",
+      "a": "No. Hydrolyzed collagen is a modern food ingredient that wasn't part of the classical Ayurvedic tradition. In our blends, the spices come from the tradition; the collagen is a modern addition, and we don't pretend otherwise."
+    },
+    {
+      "q": "Is Spice Rush an Ayurvedic product?",
+      "a": "It's a modern spiced tea built on spices with a long Ayurvedic history, plus black tea and collagen. We describe that lineage honestly but make no Ayurvedic health claims — it's a tea, not a treatment."
+    },
+    {
+      "q": "Does adding collagen make the tea more 'Ayurvedic'?",
+      "a": "No — if anything the collagen is the least traditional part. The Ayurvedic connection is the warming spices; the collagen is a modern, flavorless protein add-in for convenience."
+    },
+    {
+      "q": "Why pair an old spice tradition with a modern ingredient?",
+      "a": "For enjoyment and convenience: a familiar spiced cup that also carries a measured protein, so people who already take collagen can fold it into a tea they like. That's the whole idea — no health promise attached."
+    }
+  ],
+  "pillar": "living",
+  "cluster": "ayurveda",
+  "intent": "use-case",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Old spices, one modern cup",
+  "product_bridge_blurb": "Spice Rush pairs the tradition's warming spices — green cardamom, ginger, Ceylon cinnamon, clove — with 10 g of hydrolyzed collagen, milled to dissolve in one stir.",
+  "related": [
+    "ayurvedic-spices",
+    "collagen-chai-vs-regular-chai",
+    "collagen-peptides"
+  ],
+  "disclaimer": true,
+  "widget": "collagen-calculator"
+}

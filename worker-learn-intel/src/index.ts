@@ -1,10 +1,11 @@
-import { Env, SeedPage } from "./types";
+import { Env, GapReport, SeedPage } from "./types";
 import { indexPage, listIndexedSlugs } from "./indexer";
 import { runGapAnalysis, saveGapReport, listGapReports, suggestCoverage } from "./gap";
 import { suggestLinks } from "./linker";
-import { renderDashboard } from "./dashboard";
+import { renderDashboard, VISIBILITY_WINDOW_DAYS } from "./dashboard";
 import { debugQuery, debugDfsChatGPT, debugDfsAIO, debugDfsAmazon, debugDfsAsin, debugDfsReviews } from "./debug";
 import { generateImage } from "./image-gen";
+import { emptyEngineTallies, recordSweep, visibilityData, type EngineId } from "./sweeps";
 
 function unauthorized(): Response {
   return new Response("Unauthorized", { status: 401 });
@@ -30,8 +31,11 @@ export default {
     // Public read-only dashboard. We rely on Cloudflare Access or workers_dev URL obscurity
     // for protection — flip to admin-gated if this gets a custom hostname.
     if (path === "/" || path === "/dashboard") {
-      const reports = await listGapReports(env);
-      return new Response(renderDashboard(reports), {
+      const [reports, visibility] = await Promise.all([
+        listGapReports(env),
+        visibilityData(env, VISIBILITY_WINDOW_DAYS),
+      ]);
+      return new Response(renderDashboard(reports, visibility), {
         headers: {
           "content-type": "text/html; charset=utf-8",
           // Always serve fresh — reports update every cycle; a cached dashboard
@@ -169,22 +173,65 @@ async function runGapBatch(env: Env, slugs: string[] | null, force = false): Pro
     });
   }
 
-  // Cap only applies to autonomous cron runs (slugs == null). Explicit slug lists from a
-  // manual or weekly batch invocation should process all requested pages — the caller decided.
-  if (slugs == null) targets = targets.slice(0, cap);
+  // Cap applies whenever the caller did NOT name specific pages. Explicit slug
+  // lists from a manual or weekly batch invocation process all requested pages —
+  // the caller decided.
+  //
+  // `!slugs?.length` deliberately covers BOTH null (cron) and [] (empty array).
+  // A bare `slugs == null` check let `{"slugs": []}` fall through to "every
+  // indexed page, uncapped" — 264 pages, each running 8-15 sequential LLM
+  // verdicts plus three paid citation engines. Posting an empty array is never
+  // a request to sweep the entire corpus.
+  if (!slugs?.length) targets = targets.slice(0, cap);
 
   let ran = 0, errors = 0;
+  const tallies = emptyEngineTallies();
   for (const p of targets) {
     if (!p.primary_kw) continue;
     const pageUrl = `${env.LEARN_ORIGIN}/${p.slug}`;
     try {
       const report = await runGapAnalysis(env, p.slug, p.primary_kw, pageUrl, force);
       await saveGapReport(env, report);
+      tallyReport(tallies, report);
       ran += 1;
     } catch (e) {
       errors += 1;
       console.error(`gap analysis failed for ${p.slug}:`, e);
     }
   }
+
+  // One append-only record per batch. This is the only history we keep of the
+  // rates themselves — gap:<slug>:latest is overwritten every run — so without
+  // it there is nothing to compare a month against. Never let a telemetry
+  // write fail the batch that produced it.
+  if (ran > 0) {
+    try {
+      await recordSweep(env, { ts: new Date().toISOString(), pages: ran, engines: tallies });
+    } catch (e) {
+      console.error("recordSweep failed:", e);
+    }
+  }
+
   return { ran, skipped: Math.max(0, targets.length - ran - errors), errors };
+}
+
+/**
+ * Fold one page's report into the batch tally.
+ *
+ * `undefined` means the engine was not checked (missing credentials, a failed
+ * call, or a query with no AI Overview surface). Those pages must not enter the
+ * denominator — counting them would report an outage as a citation loss.
+ */
+function tallyReport(tallies: ReturnType<typeof emptyEngineTallies>, report: GapReport): void {
+  const engines: Array<[EngineId, boolean | undefined, boolean | undefined]> = [
+    ["perplexity", report.perplexity_cited_us, report.perplexity_mentioned_us],
+    ["chatgpt", report.chatgpt_cited_us, report.chatgpt_mentioned_us],
+    ["aio", report.aio_cited_us, report.aio_mentioned_us],
+  ];
+  for (const [engine, cited, mentioned] of engines) {
+    if (cited === undefined) continue;
+    tallies[engine].checked += 1;
+    if (cited) tallies[engine].cited += 1;
+    if (mentioned) tallies[engine].mentioned += 1;
+  }
 }

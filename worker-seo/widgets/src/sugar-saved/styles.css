@@ -1,0 +1,23 @@
+/* Sugar-saved / café-swap calculator — scoped inside the widget shadow root. */
+
+.ss-controls { margin: 0 0 18px; }
+.ss-slider-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--sans); font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 6px;
+}
+.ss-slider-val { font-weight: 700; color: var(--accent); font-size: 1.05rem; }
+.ss-slider input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+.ss-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 0 0 14px;
+}
+.ss-stat {
+  background: var(--accent-soft); border: 1px solid var(--rule);
+  border-radius: var(--tm-radius); padding: 14px 12px; text-align: center;
+}
+.ss-stat-num { font-family: var(--serif); font-weight: 600; font-size: 1.9rem; line-height: 1; color: var(--accent); }
+.ss-stat-num span { font-size: 0.85rem; font-weight: 600; }
+.ss-stat-label { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-soft); margin-top: 5px; }
+
+.ss-basis { font-family: var(--sans); font-size: 0.8rem; color: var(--mute); margin: 0 0 14px; }
+.ss-cta { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 2px; }

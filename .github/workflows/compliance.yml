@@ -1,0 +1,57 @@
+name: Compliance gate (worker-seo)
+
+# The worker-seo /learn corpus lives in a subdirectory of this repo, so this workflow lives at
+# the repo root (where GitHub reads workflows) but runs every step inside worker-seo/.
+# Blocks a PR from merging a no-medical-claims violation, malformed seed, editorial scaffolding
+# ({{VERIFY}} / broken {{TODO}} links), or a missing wellness/FDA disclaimer on an
+# ingredient-effect page. TMolecule products are ingestible foods/teas, not drugs.
+
+on:
+  pull_request:
+    paths:
+      - 'worker-seo/seed/**'
+      - 'worker-seo/scripts/**'
+      - 'worker-seo/src/**'
+      - 'worker-seo/test/**'
+      - 'worker-seo/package.json'
+      - '.github/workflows/compliance.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'worker-seo/seed/**'
+      - 'worker-seo/scripts/**'
+      - 'worker-seo/src/**'
+      - 'worker-seo/test/**'
+  workflow_dispatch: {}
+
+concurrency:
+  group: compliance-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    working-directory: worker-seo
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+      # `npm install` (not `npm ci`): the committed package-lock.json is stale/out-of-sync with
+      # package.json (missing ajv/sanitize-html, wrangler version drift). The gate only needs
+      # ajv to run; regenerating the lockfile is a separate cleanup.
+      - run: npm install --no-audit --no-fund
+      - name: Schema + no-medical-claims (strict)
+        run: npm run validate:seeds -- --strict
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Bun compliance suite
+        run: bun test  # full suite: compliance + crawlers, not just compliance.test.ts
+      - name: Citations guardrail
+        run: npm run verify:citations
+      - name: Broken /learn links
+        run: npm run check:links

@@ -1,0 +1,37 @@
+/* Collagen-per-day calculator — scoped inside the widget shadow root.
+   Brand tokens come from brand.css (injected alongside this file). */
+
+.cg-controls { margin: 0 0 18px; }
+
+.cg-slider-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--sans); font-size: 0.9rem; color: var(--ink-soft); margin-bottom: 6px;
+}
+.cg-slider-val { font-weight: 700; color: var(--accent); font-size: 1.05rem; }
+.cg-slider input[type="range"] { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+.cg-result {
+  background: var(--accent-soft); border: 1px solid var(--rule);
+  border-radius: var(--tm-radius); padding: 16px 18px; text-align: center; margin: 0 0 16px;
+}
+.cg-big { font-family: var(--serif); font-weight: 600; font-size: 2.6rem; line-height: 1; color: var(--accent); }
+.cg-big span { font-size: 1.1rem; font-weight: 600; }
+.cg-cap { font-family: var(--sans); font-size: 0.9rem; color: var(--ink-soft); margin-top: 6px; }
+
+.cg-scale { margin: 0 0 18px; }
+.cg-scale-track {
+  position: relative; height: 12px; background: #fffdf6;
+  border: 1px solid var(--rule); border-radius: 999px; overflow: hidden;
+}
+.cg-scale-band { position: absolute; top: 0; bottom: 0; background: var(--accent-soft); }
+.cg-scale-marker {
+  position: absolute; top: -4px; width: 4px; height: 20px; background: var(--accent);
+  border-radius: 2px; transform: translateX(-2px); box-shadow: 0 1px 3px rgba(70,50,15,.3);
+}
+.cg-scale-ticks {
+  display: flex; justify-content: space-between; font-family: var(--sans);
+  font-size: 0.72rem; color: var(--mute); margin-top: 5px;
+}
+.cg-scale-cap { font-family: var(--sans); font-size: 0.76rem; color: var(--mute); margin-top: 6px; }
+
+.cg-cta { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 2px; }

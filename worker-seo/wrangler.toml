@@ -2,7 +2,12 @@ name = "tmolecule-seo"
 main = "src/index.js"
 compatibility_date = "2026-04-01"
 account_id = "6766841fb403fe06a6e2c1f2ea3b5ea0"
-workers_dev = true
+# Disabled 2026-07-07: the live *.workers.dev copy served the whole /learn corpus
+# at root (mount '') with SELF-referential canonicals (e.g.
+# tmolecule-seo.workers.dev/tea-finder → itself, not the apex), i.e. a second
+# indexable host duplicating the entire corpus. Same failure WK hit; site is only
+# served via the routes below.
+workers_dev = false
 
 # Worker is bound to three routes, all on the same TMolecule zone:
 #
@@ -30,6 +35,60 @@ zone_name = "tmolecule.com"
 pattern = "tmolecule.com/learn/*"
 zone_name = "tmolecule.com"
 
+# Bare /learn (with or without a query string). The wildcard route above matches
+# "/learn/" and "/learn/<slug>" but NOT bare "/learn", so it fell through to
+# Shopify and 404'd (crawlers hit it, and the www→apex 301 preserves ?utm and
+# lands here). unmountedPath() already maps "/learn" → "/" (index) in
+# src/index.js; this route just lets the request reach the Worker. The trailing *
+# is REQUIRED so "/learn?utm=..." matches too — an exact "tmolecule.com/learn"
+# route does NOT match a URL with a query string at the CF edge. Safe: no other
+# root path starts with "learn" (verified 2026-07-07). Same fix as whollykaw.com.
+[[routes]]
+pattern = "tmolecule.com/learn*"
+zone_name = "tmolecule.com"
+
+# Apex/www agent-facing files. Shopify auto-serves a generic boilerplate
+# /agents.md and /llms.txt; these exact-path routes let the Worker intercept
+# them at the CF edge (same O2O mechanism as /learn/*) so we serve our own
+# brand-specific, compliance-aware versions instead. unmountedPath() passes a
+# path outside the /learn mount through unchanged, so the router sees them as
+# top-level /agents.md and /llms.txt.
+[[routes]]
+pattern = "tmolecule.com/agents.md"
+zone_name = "tmolecule.com"
+
+[[routes]]
+pattern = "tmolecule.com/llms.txt"
+zone_name = "tmolecule.com"
+
+[[routes]]
+pattern = "www.tmolecule.com/agents.md"
+zone_name = "tmolecule.com"
+
+[[routes]]
+pattern = "www.tmolecule.com/llms.txt"
+zone_name = "tmolecule.com"
+
+# Root-level IndexNow key. Same exact-path O2O trick: these routes let the Worker
+# serve the key at the APEX (tmolecule.com/<key>.txt), not just under /learn/.
+# A root-hosted key expands the IndexNow submittable scope from /learn/* to the
+# WHOLE domain (so /blogs/* recipe + article URLs can be submitted too). The
+# handler in src/index.js already answers this path (unmountedPath passes it
+# through unchanged); these routes just get the request to the Worker.
+[[routes]]
+pattern = "tmolecule.com/6e140b318cfa4ad57fd1a1e06e4bd20e.txt"
+zone_name = "tmolecule.com"
+
+[[routes]]
+pattern = "www.tmolecule.com/6e140b318cfa4ad57fd1a1e06e4bd20e.txt"
+zone_name = "tmolecule.com"
+
+# Bundle imported .md files (src/index.js imports ../agents.md) as text strings.
+[[rules]]
+type = "Text"
+globs = ["**/*.md"]
+fallthrough = true
+
 # KV namespace for page content.
 [[kv_namespaces]]
 binding = "LEARN_PAGES"
@@ -41,23 +100,61 @@ preview_id = "6619209e0aaf4870aa03c9f0119fbf82"
 binding = "DECKS"
 bucket_name = "tmolecule-decks"
 
+# Server-side pageview log for the /learn corpus. GA4's gtag is not injected on
+# worker-served pages, so without this the entire corpus is invisible to
+# analytics. Blob/double layout is documented at logPageview() in src/index.js
+# and deliberately mirrors WhollyKaw's `learn_pageviews`, so one AE SQL query
+# works across both brands. Auto-created on first writeDataPoint() call.
+[[analytics_engine_datasets]]
+binding = "PAGEVIEWS"
+dataset = "tmolecule_learn_pageviews"
+
 # Analytics Engine dataset for deck view + per-slide tracking.
 # Auto-created on first writeDataPoint() call.
 [[analytics_engine_datasets]]
 binding = "DECK_ANALYTICS"
 dataset = "tmolecule_deck_analytics"
 
+# A/B measurement for the header advisor ("Ask Ayurveda" vs "Product Advisor").
+# One row per advisor turn: blobs=[variant, rec|norec], indexes=[variant].
+[[analytics_engine_datasets]]
+binding = "ADVISOR_ANALYTICS"
+dataset = "tmolecule_advisor_ab"
+
+# --- RAG advisor (POST /learn/advisor) ---
+# Workers AI runtime — embeds the shopper's question for retrieval (bge-base, 768-dim).
+[ai]
+binding = "AI"
+
+# Vectorize — semantic index of the /learn corpus. Populated by scripts/build-learn-vectors.mjs
+# (npm run build:vectors). The advisor queries top-k here and injects retrieved /learn passages
+# into the Claude call (RAG). Re-run build:vectors after adding/editing /learn pages.
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "tm-learn-corpus"
+
+# Durable Object per-IP rate limiter for the billable advisor endpoint (default 20/min/IP).
+[durable_objects]
+bindings = [{ name = "ADVISOR_RL_DO", class_name = "AdvisorRateLimiter" }]
+
+[[migrations]]
+tag = "v1-advisor-rl"
+new_classes = ["AdvisorRateLimiter"]
+
 [vars]
 SITE_NAME = "TMolecule"
 SHOP_ORIGIN = "https://tmolecule.com"
+PRODUCTS_ORIGIN = "https://tmolecule.myshopify.com"
 LOGO_URL = "https://tmolecule.com/cdn/shop/files/logo.png?v=1654437257"
 GSC_VERIFICATION = "SFYPUwnKraRF0kqkMv8AoCoVAO5O_AU8LZTJ5uBrHN4"
 AUTHOR_NAME = "PGP Iyer"
 CF_ACCOUNT_ID = "6766841fb403fe06a6e2c1f2ea3b5ea0"
 DECK_ANALYTICS_DATASET = "tmolecule_deck_analytics"
-# Bump this any time KV content changes mid-day to force edge-cache invalidation
-# without waiting for the s-maxage TTL (24 hours on articles).
-BUILD_VERSION = "2026-05-31-collagen-content"
+# Fallback only. `npm run deploy` overrides this with `--var BUILD_VERSION:<epoch>`
+# so every deploy rotates the edge-cache key and auto-invalidates stale content
+# (matches whollykaw). This literal is used only by `deploy:noversion` / a bare
+# `wrangler deploy`; bump it by hand if you deploy that way and need a cache flush.
+BUILD_VERSION = "2026-06-07-agents-md"
 
 [observability]
 enabled = true

@@ -1,0 +1,74 @@
+{
+  "published_at": "2026-06-24T10:00:00Z",
+  "updated_at": "2026-06-24T10:00:00Z",
+  "type": "recipe",
+  "pillar": "recipes",
+  "cluster": "chai",
+  "intent": "recipe",
+  "title": "Dirty Chai Latte Recipe (Chai + Espresso)",
+  "h1": "Dirty chai latte",
+  "meta_description": "A dirty chai latte is a spiced chai latte with a shot of espresso. How to make one at home, hot or iced, plus the difference between a dirty and a filthy chai.",
+  "image_url": "https://tmolecule.com/learn/media/dirty-chai-latte.jpg",
+  "keywords": [
+    "dirty chai latte",
+    "dirty chai latte recipe",
+    "what is a dirty chai",
+    "chai with espresso",
+    "how to make a dirty chai latte"
+  ],
+  "body_html": "<p>A dirty chai latte is a spiced chai latte with a shot of espresso added. The chai brings the cardamom-ginger-cinnamon warmth; the espresso adds a coffee backbone and an extra caffeine kick. It is the drink for people who can't decide between tea and coffee and refuse to.</p>\n<p>One shot makes it &ldquo;dirty.&rdquo; A double shot, by convention, makes it a <strong>filthy chai</strong>.</p>\n<h2>Ingredients</h2>\n<ul><li>2 sachets Spice Rush Collagen Black Tea (or 2 tbsp loose masala chai)</li><li>1/2 cup (120 ml) water</li><li>1 shot (about 1 oz / 30 ml) espresso (or 1/4 cup very strong coffee)</li><li>3/4 cup (180 ml) milk of choice, steamed or warmed</li><li>1&ndash;2 tsp sweetener to taste &mdash; optional</li></ul>\n<h2>How to make a dirty chai latte</h2>\n<ol><li>Brew a strong chai. Steep your chai in 1/2 cup of water for 4&ndash;5 minutes; you want it concentrated, since the espresso and milk will dilute it.</li><li>Pull the espresso. Make one shot of espresso (or brew 1/4 cup of very strong coffee).</li><li>Warm and froth the milk. Steam it with a wand, froth with a handheld frother, or heat and whisk it.</li><li>Build the drink. Pour the strong chai and the espresso into a mug, add any sweetener, then top with the frothed milk. Stir once.</li></ol>\n<h2>Tips and variations</h2>\n<ul>\n<li><strong>No espresso machine?</strong> Use 1/4 cup of very strong brewed coffee, or a moka-pot shot. It won't have crema, but the flavour holds up.</li>\n<li><strong>Iced dirty chai:</strong> brew the chai strong, let it cool, then pour chai + espresso over ice and top with cold milk. See our <a href=\"/iced-chai-latte\">iced chai latte</a> method.</li>\n<li><strong>Filthy chai:</strong> add a second espresso shot. Worth knowing the caffeine adds up &mdash; see <a href=\"/l-theanine-and-caffeine-in-tea\">how tea and coffee caffeine differ</a>.</li>\n<li><strong>Sweetness:</strong> a dirty chai needs less sweetener than you'd think; the spice reads as sweet on its own.</li>\n</ul>",
+  "recipe": {
+    "prepTime": "PT3M",
+    "cookTime": "PT5M",
+    "totalTime": "PT8M",
+    "recipeYield": "1 latte (about 12 oz)",
+    "recipeCategory": "Beverage",
+    "recipeCuisine": "Indian",
+    "recipeIngredient": [
+      "2 sachets Spice Rush Collagen Black Tea (or 2 tbsp loose masala chai)",
+      "1/2 cup water",
+      "1 shot espresso (or 1/4 cup very strong coffee)",
+      "3/4 cup milk of choice, steamed",
+      "1 to 2 tsp sweetener, to taste (optional)"
+    ],
+    "recipeInstructions": [
+      "Steep the chai in 1/2 cup of water for 4 to 5 minutes so it is concentrated.",
+      "Pull one shot of espresso (or brew 1/4 cup of very strong coffee).",
+      "Steam or warm and froth the milk.",
+      "Combine the strong chai and espresso in a mug, add sweetener if using, and top with the frothed milk."
+    ]
+  },
+  "faqs": [
+    {
+      "q": "What is a dirty chai latte?",
+      "a": "A spiced chai latte with a shot of espresso added. The chai gives the spice and the tea base; the espresso adds coffee flavour and extra caffeine."
+    },
+    {
+      "q": "What's a filthy chai?",
+      "a": "A dirty chai with a double shot of espresso instead of one. Same drink, more coffee."
+    },
+    {
+      "q": "How much caffeine is in a dirty chai latte?",
+      "a": "More than a plain chai latte, because you're adding espresso on top of the black tea. The exact total depends on the tea strength and the number of shots. See our caffeine comparator for the per-cup figures."
+    },
+    {
+      "q": "Can I make a dirty chai without an espresso machine?",
+      "a": "Yes. Use 1/4 cup of very strong brewed coffee or a moka-pot shot in place of the espresso. It won't have crema but tastes nearly the same."
+    },
+    {
+      "q": "Can a dirty chai be iced?",
+      "a": "Yes. Brew the chai strong, let it cool, then combine chai and espresso over ice and top with cold milk."
+    }
+  ],
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Make it with Spice Rush",
+  "product_bridge_blurb": "Spice Rush is a chai-spiced black tea — brew it strong and add your espresso shot.",
+  "related": [
+    "iced-chai-latte",
+    "masala-chai-recipe",
+    "what-is-chai-latte",
+    "l-theanine-and-caffeine-in-tea"
+  ],
+  "widget": "brew-guide",
+  "image_alt": "A dirty chai latte in a rustic ceramic mug topped with frothy milk and a dusting of cinnamon, with a cinnamon stick, star anise and coffee beans beside it"
+}

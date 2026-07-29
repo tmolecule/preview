@@ -1,0 +1,85 @@
+{
+  "published_at": "2026-06-24T09:00:00Z",
+  "updated_at": "2026-07-28T12:00:00Z",
+  "pillar": "blends",
+  "cluster": "rooibos",
+  "intent": "question",
+  "disclaimer": true,
+  "title": "Is Rooibos Caffeine-Free? Yes, and Here's Why",
+  "h1": "Is rooibos tea caffeine-free?",
+  "meta_description": "Pure rooibos is naturally caffeine-free because it comes from the South African Aspalathus linearis plant, not the tea plant Camellia sinensis. The one exception: rooibos blended with real tea.",
+  "image_url": "",
+  "keywords": [
+    "is rooibos caffeine free",
+    "does rooibos have caffeine",
+    "rooibos caffeine",
+    "caffeine free tea",
+    "rooibos vs green tea caffeine",
+    "is rooibos a real tea"
+  ],
+  "on_page_nav": [
+    {
+      "anchor": "why",
+      "label": "Why it's caffeine-free"
+    },
+    {
+      "anchor": "the-exception",
+      "label": "The one exception"
+    },
+    {
+      "anchor": "compared",
+      "label": "Caffeine compared"
+    }
+  ],
+  "body_html": "<p><strong>Yes, pure rooibos is naturally caffeine-free.</strong> It is not actually a tea in the strict sense: rooibos comes from <em>Aspalathus linearis</em>, a shrubby legume native to South Africa, not from <em>Camellia sinensis</em>, the plant behind black, green, white and oolong tea. Because the rooibos plant simply does not produce caffeine, plain red or green rooibos contains none at all.</p>\n<p>That makes it one of the few naturally caffeine-free options that still brews into a full-bodied, satisfying cup, which is why a lot of people reach for it in the evening. There is one catch worth knowing about, though.</p>\n\n<h2 id=\"why\">Why is rooibos caffeine-free?</h2>\n<p>Caffeine is a compound that certain plants produce, including the tea plant, the coffee plant, cacao and a handful of others. The rooibos shrub is not one of them. So unlike a \"true\" tea, where caffeine is naturally present in the leaf, a rooibos infusion starts with zero caffeine and stays that way. Steeping it longer or hotter will not create caffeine that was never there.</p>\n\n<h2 id=\"the-exception\">The one exception: check the blend</h2>\n<p>The word \"rooibos\" on a label does not always mean pure rooibos. Some products blend rooibos with black or green tea, or sell a \"rooibos chai\" built on a tea base, and those <em>will</em> contain caffeine from the added true tea. If you need it to be completely caffeine-free, read the ingredient list and look for 100% rooibos with no <em>Camellia sinensis</em> in the mix.</p>\n\n<h2 id=\"compared\">How rooibos compares on caffeine</h2>\n<table><thead><tr><th>Drink</th><th>Caffeine per cup (approx.)</th></tr></thead><tbody>\n<tr><td>Pure rooibos</td><td>0 mg</td></tr>\n<tr><td>Green tea</td><td>30&ndash;50 mg</td></tr>\n<tr><td>Black tea</td><td>40&ndash;70 mg</td></tr>\n<tr><td>Coffee</td><td>~95 mg</td></tr>\n</tbody></table>\n<p>Because it carries no caffeine, rooibos is a common choice late in the day. For other low- and no-caffeine options, see <a href=\"/best-tea-for-sleep\">tea for sleep</a>, and for how the true teas stack up, <a href=\"/green-tea-vs-black-tea\">green tea vs black tea</a>.</p>\n<div class=\"citation-card\"><span class=\"citation-card__type\">Research review</span><p class=\"citation-card__title\"><a href=\"https://pmc.ncbi.nlm.nih.gov/articles/PMC10774856/\" rel=\"noopener\" target=\"_blank\">The health benefits of rooibos tea in humans (Aspalathus linearis): a scoping review</a></p><p class=\"citation-card__meta\">Scoping review, via PubMed Central (2024)</p><p class=\"citation-card__finding\">A scoping review that maps the human research on rooibos, including its caffeine-free, naturally low-tannin profile and its antioxidant content. It describes what the published studies cover, not a guaranteed result for any individual.</p></div>\n<p>If you are pregnant, breastfeeding, or managing a health condition, talk to a qualified healthcare provider before making any drink a daily habit.</p>",
+  "faqs": [
+    {
+      "q": "Does rooibos have any caffeine at all?",
+      "a": "Pure rooibos has none. It comes from a plant that does not produce caffeine. Only blends that mix rooibos with black or green tea contain caffeine, from the added true tea."
+    },
+    {
+      "q": "Is red rooibos caffeine-free but green rooibos not?",
+      "a": "Both are caffeine-free. “Red” and “green” rooibos are just oxidised and unoxidised versions of the same plant; neither contains caffeine."
+    },
+    {
+      "q": "Can I drink rooibos at night?",
+      "a": "Many people do, precisely because it has no caffeine. As general information rather than medical advice: if caffeine usually disrupts your sleep, a naturally caffeine-free infusion avoids that issue."
+    },
+    {
+      "q": "Is rooibos actually a tea?",
+      "a": "Not technically. “True” teas come from Camellia sinensis. Rooibos is a herbal infusion from Aspalathus linearis, a South African legume, so it is more accurately called a tisane."
+    },
+    {
+      "q": "Does rooibos chai have caffeine?",
+      "a": "It depends on the blend. A rooibos chai built only on rooibos and spices is caffeine-free; one that adds black tea is not. Check the ingredient list."
+    }
+  ],
+  "sources": [
+    {
+      "title": "The health benefits of rooibos tea in humans (Aspalathus linearis): a scoping review",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10774856/",
+      "publisher": "PubMed Central, 2024",
+      "type": "ScholarlyArticle",
+      "datePublished": "2024"
+    },
+    {
+      "title": "Theanine and Caffeine Content of Infusions Prepared from Commercial Tea Samples",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4787341/",
+      "publisher": "PubMed Central",
+      "type": "ScholarlyArticle"
+    },
+    {
+      "title": "How Much Caffeine Is in Green Tea?",
+      "url": "https://www.healthline.com/nutrition/caffeine-in-green-tea",
+      "publisher": "Healthline",
+      "type": "CreativeWork"
+    }
+  ],
+  "related": [
+    "rooibos-tea-benefits",
+    "best-tea-for-sleep",
+    "green-tea-vs-black-tea",
+    "what-makes-a-tea-functional"
+  ],
+  "widget": "caffeine-comparator"
+}
