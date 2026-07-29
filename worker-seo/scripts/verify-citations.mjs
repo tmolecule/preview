@@ -4,6 +4,38 @@
 //   1. PubMed / PMC URLs are checked against NCBI E-utilities — the PMID /
 //      PMCID must resolve to a real record, and the cited `title` must
 //      reasonably match the record's real title.
+//   1b. INLINE PubMed / PMC links — bare `<a href>`s to
+//      pubmed.ncbi.nlm.nih.gov/<PMID> or pmc.ncbi.nlm.nih.gov/articles/PMC<id>
+//      embedded directly in `body_html` — are extracted and resolved through
+//      the SAME NCBI E-utilities + titleOverlap() logic as `sources[]`, not a
+//      parallel implementation. This exists because the `sources[]` array
+//      can be 100% legitimate while a page still has hallucinated PMIDs
+//      hand-typed into the prose (an LLM draft citing a real, well-formed
+//      PMID that happens to resolve to a completely unrelated paper — e.g. a
+//      shoulder-pain outcome-measure study linked from a chai/spice page).
+//      Inline links carry no cited `title` to compare against, so the check
+//      instead builds a context string from the page's `title` + `keywords`
+//      + the link's anchor text + its enclosing paragraph, and measures
+//      titleOverlap(context, realTitle):
+//        - PMID/PMCID does not resolve                -> FAIL (checkKind
+//          'inline-citation-mismatch') — same severity as an unresolved
+//          `sources[]` entry.
+//        - resolves, ZERO keyword overlap with context -> FAIL (checkKind
+//          'inline-citation-mismatch') — this is precisely the hallucinated-
+//          PMID defect: a real, resolving paper whose subject has nothing in
+//          common with the page it's cited on.
+//        - resolves, some overlap but below
+//          TITLE_MATCH_THRESHOLD                        -> WARN (checkKind
+//          'inline-citation-low-overlap') — ambiguous; the real title may
+//          just use different vocabulary than the page. Printed with the
+//          PMID, the real title, and the anchor/sentence so a human can
+//          adjudicate rather than the gate silently guessing wrong in either
+//          direction.
+//        - resolves, overlap >= threshold               -> PASS.
+//      Always runs (like the `sources[]` NCBI check, it is not gated by
+//      --offline, which only controls the raw HTTP dead-link checks below).
+//      NCBI-based FAILs here are, like `sources[]` FAILs, never downgraded
+//      by --warn-only-http.
 //   2. Every OTHER URL (journals, government sites, news, Wikipedia, etc.)
 //      is HTTP-checked directly:
 //        - 4xx/5xx  -> FAIL (dead citation; blocks the gate, same as a bad
@@ -113,6 +145,43 @@ function classify(url) {
   if (m) return { kind: 'pmc', id: m[1] };
   if (/(?:^|\.)wikipedia\.org/i.test(url)) return { kind: 'wikipedia' };
   return { kind: 'other' };
+}
+
+// ---- inline-citation extraction (body_html) ----
+// Finds every <a href="...pubmed.ncbi.nlm.nih.gov/<id>..."> or PMC-articles
+// link embedded in body_html, plus its anchor text and enclosing block
+// (paragraph/list-item/table-cell), stripped to plain text, for context.
+const INLINE_LINK_RE = /<a\b[^>]*href=["']([^"']*(?:pubmed\.ncbi\.nlm\.nih\.gov\/\d+|(?:pmc\.ncbi\.nlm\.nih\.gov\/articles\/|ncbi\.nlm\.nih\.gov\/pmc\/articles\/)PMC\d+)[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
+const stripTags = (s) => String(s || '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+
+function extractInlineCitations(bodyHtml) {
+  const out = [];
+  if (!bodyHtml) return out;
+  const re = new RegExp(INLINE_LINK_RE.source, INLINE_LINK_RE.flags);
+  let m;
+  while ((m = re.exec(bodyHtml))) {
+    const url = m[1];
+    const cls = classify(url);
+    if (cls.kind !== 'pubmed' && cls.kind !== 'pmc') continue; // shouldn't happen given the regex, but be safe
+    const anchorText = stripTags(m[2]);
+    const start = m.index;
+    const end = start + m[0].length;
+    const blockStart = Math.max(
+      bodyHtml.lastIndexOf('<p', start),
+      bodyHtml.lastIndexOf('<li', start),
+      bodyHtml.lastIndexOf('<td', start),
+      0
+    );
+    const endCandidates = [
+      bodyHtml.indexOf('</p>', end),
+      bodyHtml.indexOf('</li>', end),
+      bodyHtml.indexOf('</td>', end),
+    ].filter((i) => i !== -1);
+    const blockEnd = endCandidates.length ? Math.min(...endCandidates) + 4 : Math.min(bodyHtml.length, end + 400);
+    const context = stripTags(bodyHtml.slice(blockStart, blockEnd));
+    out.push({ url, anchorText, context, ...cls });
+  }
+  return out;
 }
 
 async function esummary(db, ids) {
@@ -281,6 +350,7 @@ function evaluateHttpResult(url, r) {
 // ---- collect every citation ----
 const files = readdirSync(SEED_DIR).filter(f => f.endsWith('.json')).sort();
 const citations = []; // { file, citedTitle, url, ...classify }
+const inlineCitations = []; // { file, pageTitle, pageKeywords, url, anchorText, context, ...classify }
 for (const file of files) {
   let data;
   try { data = JSON.parse(readFileSync(join(SEED_DIR, file), 'utf8')); } catch { continue; }
@@ -288,11 +358,19 @@ for (const file of files) {
     if (!s || !s.url) continue;
     citations.push({ file, citedTitle: s.title || '', url: s.url, ...classify(s.url) });
   }
+  for (const ic of extractInlineCitations(data.body_html)) {
+    inlineCitations.push({
+      file,
+      pageTitle: data.title || '',
+      pageKeywords: Array.isArray(data.keywords) ? data.keywords : [],
+      ...ic,
+    });
+  }
 }
 
-// ---- batch-resolve NCBI ids ----
-const pubmedIds = [...new Set(citations.filter(c => c.kind === 'pubmed').map(c => c.id))];
-const pmcIds = [...new Set(citations.filter(c => c.kind === 'pmc').map(c => c.id))];
+// ---- batch-resolve NCBI ids (sources[] + inline body_html links, one call each) ----
+const pubmedIds = [...new Set([...citations, ...inlineCitations].filter(c => c.kind === 'pubmed').map(c => c.id))];
+const pmcIds = [...new Set([...citations, ...inlineCitations].filter(c => c.kind === 'pmc').map(c => c.id))];
 
 let pubmed = {}, pmc = {};
 try {
@@ -332,10 +410,42 @@ const results = citations.map(c => {
   return { ...c, ...http };
 });
 
-const fails = results.filter(r => r.status === 'FAIL');
-const warns = results.filter(r => r.status === 'WARN');
+// ---- evaluate inline citations (body_html links) ----
+// Reuses the same esummary() records and titleOverlap() as sources[] above;
+// the only difference is there's no cited `title` to compare against, so the
+// "cited" side of titleOverlap() is a context string built from the page's
+// title + keywords + the link's anchor text + its enclosing paragraph.
+const inlineResults = inlineCitations.map(c => {
+  const rec = (c.kind === 'pubmed' ? pubmed : pmc)[c.id];
+  if (!rec || rec.error || !rec.title) {
+    return { ...c, status: 'FAIL', checkKind: 'inline-citation-mismatch', reason: `inline ${c.kind.toUpperCase()} ${c.id} does not resolve`, realTitle: '' };
+  }
+  const context = [c.pageTitle, c.pageKeywords.join(' '), c.anchorText, c.context].join(' ');
+  const overlap = titleOverlap(context, rec.title);
+  if (overlap === 0) {
+    return {
+      ...c, status: 'FAIL', checkKind: 'inline-citation-mismatch',
+      reason: `inline ${c.kind.toUpperCase()} ${c.id} resolves to a real paper with ZERO keyword overlap against the page — likely a hallucinated/fabricated citation`,
+      realTitle: rec.title, overlap,
+    };
+  }
+  if (overlap < TITLE_MATCH_THRESHOLD) {
+    return {
+      ...c, status: 'WARN', checkKind: 'inline-citation-low-overlap',
+      reason: `inline ${c.kind.toUpperCase()} ${c.id} overlap ${(overlap * 100).toFixed(0)}% is below the ${(TITLE_MATCH_THRESHOLD * 100).toFixed(0)}% threshold — ambiguous, needs human adjudication (may be a legitimate citation using different vocabulary)`,
+      realTitle: rec.title, overlap,
+    };
+  }
+  return { ...c, status: 'PASS', checkKind: 'inline-citation-ok', realTitle: rec.title, overlap };
+});
+
+const fails = [...results.filter(r => r.status === 'FAIL'), ...inlineResults.filter(r => r.status === 'FAIL')];
+const warns = [...results.filter(r => r.status === 'WARN'), ...inlineResults.filter(r => r.status === 'WARN')];
 const unver = results.filter(r => r.status === 'UNVERIFIED');
-const pass = results.filter(r => r.status === 'PASS');
+const pass = [...results.filter(r => r.status === 'PASS'), ...inlineResults.filter(r => r.status === 'PASS')];
+const inlineFails = inlineResults.filter(r => r.status === 'FAIL');
+const inlineWarns = inlineResults.filter(r => r.status === 'WARN');
+const inlinePass = inlineResults.filter(r => r.status === 'PASS');
 
 // Sub-tallies within WARN, useful for the corpus inventory.
 const byKind = (kind) => results.filter(r => r.checkKind === kind);
@@ -349,22 +459,39 @@ const httpSummary = {
   timeout: byKind('timeout').length,
   wikipedia: results.filter(r => r.kind === 'wikipedia').length,
 };
+const inlineSummary = {
+  total: inlineResults.length,
+  pass: inlinePass.length,
+  fail: inlineFails.length,
+  warn: inlineWarns.length,
+  mismatch: inlineResults.filter(r => r.checkKind === 'inline-citation-mismatch').length,
+  lowOverlap: inlineResults.filter(r => r.checkKind === 'inline-citation-low-overlap').length,
+};
 
 if (JSON_OUT) {
   console.log(JSON.stringify({
     summary: { total: results.length, pass: pass.length, fail: fails.length, warn: warns.length, unverified: unver.length, offline: OFFLINE, warnOnlyHttp: WARN_ONLY_HTTP },
     httpSummary,
+    inlineSummary,
     fails,
+    inlineFails,
+    inlineResults,
     results,
   }, null, 2));
 } else {
-  console.log(`\nCitation guardrail — ${results.length} sources across ${files.length} seeds${OFFLINE ? ' (offline: HTTP checks skipped)' : ''}`);
-  console.log(`  PASS ${pass.length}  ·  FAIL ${fails.length}  ·  WARN ${warns.length}  ·  UNVERIFIED ${unver.length}\n`);
+  console.log(`\nCitation guardrail — ${results.length} sources + ${inlineResults.length} inline body_html citations across ${files.length} seeds${OFFLINE ? ' (offline: HTTP checks skipped)' : ''}`);
+  console.log(`  PASS ${pass.length}  ·  FAIL ${fails.length}  ·  WARN ${warns.length}  ·  UNVERIFIED ${unver.length}`);
+  console.log(`  (of which inline body_html citations: PASS ${inlineSummary.pass}  ·  FAIL ${inlineSummary.fail}  ·  WARN ${inlineSummary.warn})\n`);
   if (fails.length) {
     console.log('FAILURES (block seeding):');
     for (const f of fails) {
-      console.log(`  ✗ ${f.file}`);
-      console.log(`      cited : ${f.citedTitle}`);
+      console.log(`  ✗ ${f.file}${f.checkKind && f.checkKind.startsWith('inline-') ? ' [inline]' : ''}`);
+      if (f.checkKind && f.checkKind.startsWith('inline-')) {
+        console.log(`      anchor: "${f.anchorText}"`);
+        console.log(`      context: ${f.context}`);
+      } else {
+        console.log(`      cited : ${f.citedTitle}`);
+      }
       console.log(`      ${f.url}`);
       console.log(`      reason: ${f.reason}`);
       if (f.realTitle) console.log(`      actual: ${f.realTitle}`);
@@ -373,12 +500,21 @@ if (JSON_OUT) {
   }
   if (warns.length) {
     console.log('WARNINGS:');
-    for (const w of warns) console.log(`  ! ${w.file} — ${w.reason} (${w.url})`);
+    for (const w of warns) {
+      const tag = w.checkKind && w.checkKind.startsWith('inline-') ? ' [inline]' : '';
+      console.log(`  ! ${w.file}${tag} — ${w.reason} (${w.url})`);
+      if (w.checkKind === 'inline-citation-low-overlap') {
+        console.log(`      anchor : "${w.anchorText}"`);
+        console.log(`      context: ${w.context}`);
+        console.log(`      actual : ${w.realTitle}`);
+      }
+    }
     console.log('');
   }
   if (!OFFLINE) {
-    console.log(`HTTP check breakdown: dead ${httpSummary.deadLink} · bare-root ${httpSummary.bareRoot} · redirect-to-root ${httpSummary.redirectToRoot} · rate-limited(429) ${httpSummary.rateLimited} · bot-challenge ${httpSummary.botChallenge} · network-error ${httpSummary.networkError} · timeout ${httpSummary.timeout} · wikipedia ${httpSummary.wikipedia}\n`);
+    console.log(`HTTP check breakdown: dead ${httpSummary.deadLink} · bare-root ${httpSummary.bareRoot} · redirect-to-root ${httpSummary.redirectToRoot} · rate-limited(429) ${httpSummary.rateLimited} · bot-challenge ${httpSummary.botChallenge} · network-error ${httpSummary.networkError} · timeout ${httpSummary.timeout} · wikipedia ${httpSummary.wikipedia}`);
   }
+  console.log(`Inline citation breakdown: total ${inlineSummary.total} · mismatch(FAIL) ${inlineSummary.mismatch} · low-overlap(WARN) ${inlineSummary.lowOverlap} · ok(PASS) ${inlineSummary.pass}\n`);
 }
 
 process.exit(fails.length ? 1 : 0);
