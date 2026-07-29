@@ -600,10 +600,24 @@ const inlineResults = inlineTitleChecked.map(c => {
         realTitle: c.rec.title, overlap: c.titleOv, abstractOverlap: abstractOv,
       };
     }
+    // No abstract retrieved => NO SIGNAL, not a negative one. NCBI's efetch
+    // does not reliably answer datacenter/CI IP ranges, so in CI every abstract
+    // comes back empty; hard-failing here turned correctly-cited papers into
+    // "fabricated" and broke the build (observed 2026-07-29: locally
+    // abstract-match PASS 3, in CI PASS 0 + FAIL 3 on the same commit).
+    // "Could not verify" must never masquerade as "verified bad" — the same
+    // principle already applied to bot-walled HTTP checks above.
+    if (!abstractText) {
+      return {
+        ...c, status: 'WARN', checkKind: 'inline-citation-abstract-unavailable',
+        reason: `inline ${c.kind.toUpperCase()} ${c.id} has ZERO title-keyword overlap with the page and its ABSTRACT COULD NOT BE RETRIEVED, so the title mismatch is unverified (indeterminate — NCBI efetch often refuses CI/datacenter IPs). Adjudicate by hand: real title is "${c.rec.title}"`,
+        realTitle: c.rec.title, overlap: c.titleOv, abstractOverlap: null,
+      };
+    }
     return {
       ...c, status: 'FAIL', checkKind: 'inline-citation-mismatch',
-      reason: `inline ${c.kind.toUpperCase()} ${c.id} resolves to a real paper with ZERO keyword overlap against the page in BOTH the title AND the abstract${abstractText ? ` (abstract overlap ${(abstractOv * 100).toFixed(0)}%)` : ' (abstract unavailable)'} — likely a hallucinated/fabricated citation`,
-      realTitle: c.rec.title, overlap: c.titleOv, abstractOverlap: abstractText ? abstractOv : null,
+      reason: `inline ${c.kind.toUpperCase()} ${c.id} resolves to a real paper with ZERO keyword overlap against the page in BOTH the title AND the abstract (abstract overlap ${(abstractOv * 100).toFixed(0)}%) — likely a hallucinated/fabricated citation`,
+      realTitle: c.rec.title, overlap: c.titleOv, abstractOverlap: abstractOv,
     };
   }
   if (c.titleOv < TITLE_MATCH_THRESHOLD) {
