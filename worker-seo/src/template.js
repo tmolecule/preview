@@ -529,6 +529,7 @@ export function renderRecipe(data, slug, origin, env, mount = '') {
         ${faqHtml}
         ${renderRelated(data, mount, slug)}
         ${sourcesHtml}
+        ${needsDisclaimer(data) ? wellnessDisclaimer('bottom') : ''}
       </article>
     `
   });
