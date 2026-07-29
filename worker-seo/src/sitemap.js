@@ -58,7 +58,11 @@ ${entries.join('\n')}
   return new Response(xml, {
     headers: {
       'content-type': 'application/xml; charset=utf-8',
-      'cache-control': 'public, max-age=3600, s-maxage=86400'
+      // s-maxage kept at 1h (not 24h): the sitemap's whole job is to advertise
+      // freshness via <lastmod>. A 24h edge cache silently hid same-day content
+      // updates from crawlers — seen 2026-07-28, when 13 corrected pages kept
+      // serving April/May lastmod for a full day after they were re-seeded.
+      'cache-control': 'public, max-age=3600, s-maxage=3600'
     }
   });
 }
