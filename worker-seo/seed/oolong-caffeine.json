@@ -1,0 +1,122 @@
+{
+  "title": "Does Oolong Tea Have Caffeine? (30–50 mg per Cup)",
+  "h1": "Does oolong tea have caffeine?",
+  "meta_description": "Yes — oolong has caffeine, about 30–50 mg per 8 oz cup (avg ~40 mg), between green and black tea. Published figures and what actually changes the number.",
+  "image_url": "",
+  "published_at": "2026-07-29T18:00:00Z",
+  "updated_at": "2026-07-29T18:00:00Z",
+  "keywords": [
+    "does oolong tea have caffeine",
+    "oolong tea caffeine",
+    "how much caffeine in oolong tea",
+    "oolong tea caffeine content",
+    "oolong vs green tea caffeine",
+    "oolong vs black tea caffeine",
+    "is oolong tea highly caffeinated",
+    "oolong caffeine mg"
+  ],
+  "widget": "caffeine-comparator",
+  "dataset": {
+    "name": "Caffeine content of oolong and comparison teas",
+    "description": "Caffeine range in milligrams per typical serving. Oolong, white, green, black, matcha, espresso, brewed coffee, and rooibos values match the caffeine comparator widget above (canonical site dataset). The oolong-specific published range is sourced separately from Medical News Today, since it is a single-source figure rather than the widget's site-wide range.",
+    "variableMeasured": [
+      { "name": "Oolong tea (8 oz, steeped — site canonical)", "value": "30-50", "unitText": "mg" },
+      { "name": "Oolong tea, published range (Medical News Today, 8 fl oz)", "value": "29-53", "unitText": "mg" },
+      { "name": "White tea (8 oz, steeped)", "value": "15-30", "unitText": "mg" },
+      { "name": "Green tea (8 oz, steeped)", "value": "30-50", "unitText": "mg" },
+      { "name": "Black tea (8 oz, steeped)", "value": "40-70", "unitText": "mg" },
+      { "name": "Matcha (1 tsp / 2 g, whisked in 2–3 oz)", "value": "60-80", "unitText": "mg" },
+      { "name": "Espresso (1 oz shot)", "value": "60-80", "unitText": "mg" },
+      { "name": "Brewed coffee (8 oz)", "value": "80-100", "unitText": "mg" },
+      { "name": "Rooibos / herbal (8 oz, caffeine-free)", "value": "0", "unitText": "mg" }
+    ]
+  },
+  "body_html": "<p>Yes &mdash; oolong tea has caffeine. A typical 8 oz cup runs about <strong>30&ndash;50 mg</strong> (avg ~40 mg), sitting between green tea and black tea. Published figures vary by source: Healthline puts a cup at <strong>38 mg</strong>, while Medical News Today reports a range of <strong>29&ndash;53 mg per 8 fl oz</strong>. Oolong's caffeine comes from the tea leaf itself, not from how dark or light the leaf was oxidized.</p><h2>How much caffeine is in oolong tea?</h2><p>Oolong sits in the middle of the true-tea caffeine spectrum &mdash; more than white tea, roughly level with green tea, and somewhat below black tea. Healthline's nutrition data puts a cup of oolong at <strong>38 mg of caffeine</strong>, compared with about 29 mg for a cup of green tea in the same source. Medical News Today gives a wider published band of <strong>29 to 53 mg per 8-fl-oz serving</strong>. Both figures land inside the 30&ndash;50 mg range this site uses as its working reference for oolong, with an average of about 40 mg.</p><h2>What is oolong tea?</h2><p>Oolong is tea leaf from <em>Camellia sinensis</em> &mdash; the same plant behind green, black, white, and matcha &mdash; that has been <strong>partially oxidized</strong>, somewhere between green tea (minimally oxidized) and black tea (fully oxidized). Oxidation is a controlled browning process the leaf undergoes after picking, and it's what determines which broad tea category a leaf becomes: Medical News Today notes that &ldquo;the more tea leaves oxidize, the darker they become, which determines the type of tea.&rdquo; A &ldquo;light&rdquo; oolong might be oxidized closer to 10&ndash;20%, tasting and looking closer to green tea, while a &ldquo;dark&rdquo; oolong can be oxidized 60&ndash;80% or more, tasting and looking closer to black tea. That's a wide spread within a single tea category.</p><h2>Does oxidation level change oolong's caffeine?</h2><p>Not in a direct, predictable way. Oxidation reliably changes color, aroma, and flavor &mdash; that's its whole job in tea processing &mdash; but it isn't the lever that sets caffeine content. Caffeine is present in the fresh leaf before oxidation ever starts, and what actually moves the final cup's number is closer to leaf grade, growing conditions, and how the tea is brewed (see below), the same factors that create ranges within green and black tea too. That's a large part of why light and dark oolongs both fall inside roughly the same published band instead of splitting into two very different numbers the way you might expect from such different-looking teas.</p><h2>Oolong vs. green tea vs. black tea caffeine</h2><p>Use the calculator above to compare oolong against any other drink by the cup or across a full day, or check the static reference table below:</p><table><thead><tr><th>Drink</th><th>Serving</th><th>Typical caffeine</th><th>Range</th></tr></thead><tbody><tr><td>White tea (steeped)</td><td>8 oz</td><td>~25 mg</td><td>15&ndash;30 mg</td></tr><tr><td>Green tea (steeped)</td><td>8 oz</td><td>~35 mg</td><td>30&ndash;50 mg</td></tr><tr><td>Oolong tea (steeped, site canonical)</td><td>8 oz</td><td>~40 mg</td><td>30&ndash;50 mg</td></tr><tr><td>Oolong tea (published range, Medical News Today)</td><td>8 fl oz</td><td>&mdash;</td><td>29&ndash;53 mg</td></tr><tr><td>Black tea (steeped)</td><td>8 oz</td><td>~50 mg</td><td>40&ndash;70 mg</td></tr><tr><td>Matcha</td><td>1 tsp (2 g) whisked in 2&ndash;3 oz</td><td>~65&ndash;70 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Espresso</td><td>1 oz shot</td><td>~63 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Brewed coffee</td><td>8 oz</td><td>~95 mg</td><td>80&ndash;100 mg</td></tr><tr><td>Rooibos / herbal (caffeine-free)</td><td>8 oz</td><td>0 mg</td><td>caffeine-free</td></tr></tbody></table><p>The pattern across sources is consistent even where the exact numbers differ: oolong sits above white and roughly level with or a little above green tea, and below black tea. It never lands near coffee's 80&ndash;100 mg range or matcha's more concentrated 60&ndash;80 mg.</p><h2>What changes oolong's caffeine</h2><ul><li><strong>Leaf grade and pluck.</strong> Younger leaves and buds generally carry more caffeine than older, more mature leaves &mdash; a difference in the raw material, not the oxidation step.</li><li><strong>Steep time and water temperature.</strong> A longer steep or hotter water pulls more caffeine out of the same leaves. See our <a href=\"/how-to-brew-oolong-tea\">how to brew oolong tea</a> guide for gongfu vs. Western steeping and how each affects strength.</li><li><strong>Leaf-to-water ratio.</strong> More leaf per cup means a stronger, more caffeinated brew, independent of oxidation level.</li><li><strong>Light vs. dark oolong style.</strong> Style affects flavor and aroma far more than it affects caffeine &mdash; don't assume a darker, more roasted-tasting oolong is automatically higher in caffeine.</li><li><strong>Decaf oolong.</strong> Decaffeinated oolong exists and has most, not all, of its caffeine removed through processing.</li></ul><h2>Is oolong's caffeine a lot?</h2><p>At roughly 30&ndash;50 mg per 8 oz cup, oolong is a modest share of the general daily reference the U.S. FDA has cited &mdash; about 400 mg per day as a level not generally associated with negative effects for most healthy adults. That reference covers everything caffeinated you drink in a day, not any single cup, so it's worth counting oolong alongside coffee, other tea, and anything else caffeinated you have that day. People who are pregnant, caffeine-sensitive, or managing a health condition should talk to a healthcare provider about what caffeine level is appropriate for them.</p><p>For how oolong compares to matcha and green tea specifically, see our <a href=\"/matcha-caffeine\">matcha caffeine</a> and <a href=\"/green-tea-caffeine\">green tea caffeine</a> pages. For oolong's other studied compounds, see <a href=\"/oolong-tea-benefits\">oolong tea benefits</a>.</p><p>This describes published research and general information, not medical or dietary advice.</p>",
+  "sources": [
+    {
+      "title": "Oolong Tea Benefits: Nutrition, Heart Health, and More",
+      "url": "https://www.healthline.com/nutrition/oolong-tea-benefits",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "Which tea has the most caffeine?",
+      "url": "https://www.medicalnewstoday.com/articles/which-tea-has-the-most-caffeine",
+      "publisher": "Medical News Today"
+    },
+    {
+      "title": "How Much Caffeine Is in Green Tea?",
+      "url": "https://www.healthline.com/nutrition/caffeine-in-green-tea",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "Spilling the Beans: How Much Caffeine Is Too Much?",
+      "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much",
+      "publisher": "U.S. Food and Drug Administration"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Does oolong tea have caffeine?",
+      "a": "Yes. A typical 8 oz cup of oolong has about 30–50 mg (avg ~40 mg). Healthline puts a cup at 38 mg; Medical News Today reports a published range of 29–53 mg per 8 fl oz."
+    },
+    {
+      "q": "How much caffeine is in oolong tea?",
+      "a": "Roughly 30–50 mg per 8 oz cup on average, based on this site's working range for oolong. Published single-source figures range from about 29 mg to 53 mg depending on the source and how it was measured."
+    },
+    {
+      "q": "Is oolong tea more caffeinated than green tea?",
+      "a": "They're close. Both typically fall in the 30–50 mg per 8 oz range, with oolong's average (~40 mg) running slightly above green tea's average (~35 mg) on this site's figures."
+    },
+    {
+      "q": "Is oolong tea less caffeinated than black tea?",
+      "a": "Generally yes. Oolong's typical range (30–50 mg) sits below black tea's typical range (40–70 mg), though the two ranges overlap somewhat at the edges."
+    },
+    {
+      "q": "Is oolong tea highly caffeinated?",
+      "a": "No — it's a moderate caffeine source. At 30–50 mg per cup, oolong has roughly a third to half the caffeine of an 8 oz cup of coffee (~80–100 mg)."
+    },
+    {
+      "q": "Does the oxidation level of oolong change its caffeine content?",
+      "a": "Not directly. Oxidation determines which tea category a leaf becomes (green, oolong, or black) and drives flavor and color, but caffeine is present in the leaf before oxidation starts and is shaped more by leaf grade and brewing than by oxidation level."
+    },
+    {
+      "q": "Does light oolong have less caffeine than dark oolong?",
+      "a": "Not reliably. Light and dark oolongs differ mainly in oxidation percentage, which affects taste and appearance far more than caffeine. Both styles generally fall inside the same published 30–50 mg range."
+    },
+    {
+      "q": "Is there a caffeine-free oolong?",
+      "a": "Decaffeinated oolong exists and has most, not all, of its caffeine removed through processing — it isn't fully 0 mg the way a rooibos or herbal tisane is."
+    },
+    {
+      "q": "Does oolong tea have more caffeine than coffee?",
+      "a": "No. Oolong's 30–50 mg per 8 oz cup is well below brewed coffee's typical 80–100 mg for the same serving size."
+    },
+    {
+      "q": "What affects how much caffeine is in a cup of oolong?",
+      "a": "Mainly leaf grade and pluck, steep time, water temperature, and how much leaf is used per cup — not the oxidation level that defines the oolong style."
+    },
+    {
+      "q": "Is decaf oolong tea available?",
+      "a": "Yes, most tea suppliers offer a decaffeinated oolong. Like other decaf true teas, it retains a small amount of residual caffeine after processing rather than being fully caffeine-free."
+    },
+    {
+      "q": "How does oolong's caffeine compare to matcha?",
+      "a": "Matcha runs higher. Oolong's typical range is 30–50 mg per cup, while matcha (whisked from powdered leaf rather than steeped) typically runs 60–80 mg per serving."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "oolong",
+  "intent": "informational",
+  "product_bridge": "/collections/all",
+  "product_bridge_label": "Explore true-tea blends",
+  "product_bridge_blurb": "TMolecule doesn't currently carry an oolong blend — our teas are built on green and black tea bases. Explore the collection for what's brewing now.",
+  "related": [
+    "chai-caffeine",
+    "matcha-caffeine",
+    "green-tea-caffeine",
+    "herbal-tea-caffeine-free",
+    "oolong-tea-benefits",
+    "how-to-brew-oolong-tea"
+  ],
+  "disclaimer": true
+}

@@ -1,0 +1,114 @@
+{
+  "title": "Does Thai Tea Contain Caffeine? (Strong Black Tea Base)",
+  "h1": "Does Thai tea contain caffeine?",
+  "meta_description": "Yes — Thai tea is strongly brewed black tea, so it has caffeine. No single published Thai-tea figure exists; here's why it trends at or above black tea.",
+  "image_url": "",
+  "published_at": "2026-07-29T18:45:00Z",
+  "updated_at": "2026-07-29T18:45:00Z",
+  "keywords": [
+    "does thai tea contain caffeine",
+    "does thai tea have caffeine",
+    "thai tea caffeine content",
+    "how much caffeine in thai tea",
+    "thai iced tea caffeine",
+    "is thai tea highly caffeinated",
+    "cha yen caffeine"
+  ],
+  "widget": "caffeine-comparator",
+  "dataset": {
+    "name": "Caffeine content of Thai tea's black tea base and comparison drinks",
+    "description": "Caffeine range in milligrams per typical serving. Black, green, white, matcha, espresso, brewed coffee, and rooibos values match the caffeine comparator widget above (canonical site dataset). Thai tea itself has no verified dedicated dataset entry here — no source states a Thai-tea-specific mg figure — so its black tea base is shown as the reference range instead; see the body text for why a strong Thai-tea brew trends toward or above the top of that range.",
+    "variableMeasured": [
+      { "name": "Black tea (8 oz, steeped — Thai tea's base)", "value": "40-70", "unitText": "mg" },
+      { "name": "White tea (8 oz, steeped)", "value": "15-30", "unitText": "mg" },
+      { "name": "Green tea (8 oz, steeped)", "value": "30-50", "unitText": "mg" },
+      { "name": "Matcha (1 tsp / 2 g, whisked in 2–3 oz)", "value": "60-80", "unitText": "mg" },
+      { "name": "Espresso (1 oz shot)", "value": "60-80", "unitText": "mg" },
+      { "name": "Brewed coffee (8 oz)", "value": "80-100", "unitText": "mg" },
+      { "name": "Rooibos / herbal (8 oz, caffeine-free)", "value": "0", "unitText": "mg" }
+    ]
+  },
+  "body_html": "<p>Yes &mdash; Thai tea contains caffeine. It's made from strongly brewed black tea (traditionally Assam or Ceylon), so its caffeine comes from that base. No single published mg figure exists specifically for Thai tea, but because it's brewed longer and stronger than a typical cup of black tea, it reasonably trends at or above the top of black tea's usual <strong>40&ndash;70 mg</strong> per 8 oz range. The condensed milk and sugar added afterward don't change the caffeine at all.</p><h2>What is Thai tea?</h2><p>Thai tea &mdash; also called Thai iced tea or, in Thai, <em>cha yen</em> &mdash; is a spiced, sweetened, iced black tea drink. WebMD describes it directly: &ldquo;Thai tea (<em>Camellia sinensis</em>) is a popular type of black tea, often served with condensed milk over ice.&rdquo; Healthline adds that it's &ldquo;a spiced and iced black tea drink popular in Thailand,&rdquo; typically brewed strong, then combined with sweetened condensed milk or evaporated milk mixed with sugar and poured over ice. Some recipes add whole spices like star anise or cardamom to the brew for flavor. None of that &mdash; the milk, the sugar, or the spices &mdash; changes how much caffeine the underlying black tea contributes; they're added after brewing, purely for taste and texture.</p><h2>How much caffeine is in Thai tea?</h2><p>There's no dedicated, verified Thai-tea-specific caffeine figure in the sources checked for this page. What is available is a general figure for black tea bags: Healthline states that &ldquo;tea bags contain an estimated caffeine concentration of 218 mg/L.&rdquo; Converting that by arithmetic to an 8 oz (about 0.237 L) cup: 218 mg/L &times; 0.237 L &asymp; <strong>52 mg</strong> &mdash; a figure Healthline itself doesn't state, and one that describes tea bags generally, not Thai tea's typically stronger, longer-steeped preparation specifically. Healthline also notes plainly that &ldquo;the amount of caffeine in different brewed teas may vary,&rdquo; and that caffeine content depends on &ldquo;where and how the tea leaves were grown and processed and how the beverage is prepared&rdquo; &mdash; brewing method included. Medical News Today's black tea range (64&ndash;112 mg per 8 fl oz) sits meaningfully higher than the generic tea-bag conversion above, which is a useful reminder that black tea figures vary a lot by source and method even before Thai tea's stronger brew is factored in.</p><h2>Why Thai tea tends to run stronger than a typical cup of black tea</h2><p>Thai tea is traditionally brewed with more leaf per cup and steeped longer than a quick everyday cup of black tea, specifically to produce the bold, dark, tannic base that stands up to the condensed milk and ice it's served with. Since a longer steep and a higher leaf-to-water ratio are exactly the two factors that pull more caffeine out of any black tea (see our <a href=\"/how-to-brew-black-tea\">how to brew black tea</a> guide), it's reasonable to expect a well-made Thai tea concentrate to land at or above the top of black tea's typical 40&ndash;70 mg range, even without a dedicated published number to point to. That's a mechanism-based expectation, not a stated figure &mdash; treat any specific Thai-tea mg claim you see elsewhere with some skepticism unless it cites where the number came from.</p><h2>Thai tea's black tea base vs. other drinks, compared</h2><p>Use the calculator above to compare black tea (Thai tea's base) against any other drink, by the cup or across a full day, or check the static reference table below:</p><table><thead><tr><th>Drink</th><th>Serving</th><th>Typical caffeine</th><th>Range</th></tr></thead><tbody><tr><td>Black tea (steeped &mdash; Thai tea's base)</td><td>8 oz</td><td>~50 mg</td><td>40&ndash;70 mg</td></tr><tr><td>White tea (steeped)</td><td>8 oz</td><td>~25 mg</td><td>15&ndash;30 mg</td></tr><tr><td>Green tea (steeped)</td><td>8 oz</td><td>~35 mg</td><td>30&ndash;50 mg</td></tr><tr><td>Matcha</td><td>1 tsp (2 g) whisked in 2&ndash;3 oz</td><td>~65&ndash;70 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Espresso</td><td>1 oz shot</td><td>~63 mg</td><td>60&ndash;80 mg</td></tr><tr><td>Brewed coffee</td><td>8 oz</td><td>~95 mg</td><td>80&ndash;100 mg</td></tr><tr><td>Rooibos / herbal (caffeine-free)</td><td>8 oz</td><td>0 mg</td><td>caffeine-free</td></tr></tbody></table><p>A standard-strength cup of black tea already sits well below coffee. A Thai-tea-strength brew, pulled from more leaf over a longer steep, would be expected to sit toward or past the top of that black-tea band &mdash; still short of a typical cup of coffee for most home and café preparations, though a very concentrated batch could get close.</p><h2>What changes Thai tea's caffeine</h2><ul><li><strong>Leaf-to-water ratio.</strong> Thai tea is typically brewed with more tea per cup of water than an everyday cup of black tea, which is the single biggest lever on caffeine.</li><li><strong>Steep time.</strong> A longer steep or simmer pulls more caffeine out of the same leaves &mdash; part of why Thai tea's flavor and color run so much darker than a quick-steeped cup.</li><li><strong>Tea grade and origin.</strong> Assam and Ceylon black teas, the traditional choices for Thai tea, can differ somewhat in caffeine from other black tea origins.</li><li><strong>Dilution with milk and ice.</strong> Condensed milk, sugar, and ice don't remove caffeine, but a heavily diluted, milk-forward pour spreads the same total caffeine across more liquid.</li></ul><h2>Is Thai tea's caffeine a lot?</h2><p>Working from black tea's typical 40&ndash;70 mg per 8 oz range (with a strong Thai-tea brew reasonably running at or somewhat above that), a serving is a moderate share of the general daily reference the U.S. FDA has cited &mdash; about 400 mg per day as a level not generally associated with negative effects for most healthy adults. That reference covers everything caffeinated you drink in a day, not any single cup, and a large Thai-tea-shop serving can be more than one 8 oz cup. People who are pregnant, caffeine-sensitive, or managing a health condition should talk to a healthcare provider about what caffeine level is appropriate for them.</p><p>For the full profile of the black tea Thai tea is built on, see <a href=\"/black-tea\">black tea: caffeine and the evidence</a>. For another black-tea-based drink with a similar caffeine story, see <a href=\"/chai-caffeine\">chai caffeine</a>.</p><p>This describes published research and general information, not medical or dietary advice.</p>",
+  "sources": [
+    {
+      "title": "Are There Health Benefits to Drinking Thai Tea?",
+      "url": "https://www.healthline.com/nutrition/thai-tea",
+      "publisher": "Healthline"
+    },
+    {
+      "title": "Which tea has the most caffeine?",
+      "url": "https://www.medicalnewstoday.com/articles/which-tea-has-the-most-caffeine",
+      "publisher": "Medical News Today"
+    },
+    {
+      "title": "Are There Health Benefits to Drinking Thai Tea?",
+      "url": "https://www.webmd.com/diet/health-benefits-thai-tea",
+      "publisher": "WebMD"
+    },
+    {
+      "title": "Spilling the Beans: How Much Caffeine Is Too Much?",
+      "url": "https://www.fda.gov/consumers/consumer-updates/spilling-beans-how-much-caffeine-too-much",
+      "publisher": "U.S. Food and Drug Administration"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Does Thai tea contain caffeine?",
+      "a": "Yes. Thai tea is made from strongly brewed black tea, so it carries caffeine from that base. No single published Thai-tea-specific mg figure exists, but it reasonably trends at or above black tea's typical 40–70 mg per 8 oz range because of its strong brew."
+    },
+    {
+      "q": "Does Thai iced tea have caffeine?",
+      "a": "Yes — Thai iced tea and Thai tea are the same drink (cha yen in Thai), just served cold. Chilling and adding ice don't remove caffeine."
+    },
+    {
+      "q": "How much caffeine is in Thai tea?",
+      "a": "There's no verified Thai-tea-specific figure. Its black tea base typically runs 40–70 mg per 8 oz cup; because Thai tea is brewed stronger and longer than an everyday cup, it can reasonably run toward or above the top of that range."
+    },
+    {
+      "q": "Does the condensed milk in Thai tea affect its caffeine?",
+      "a": "No. Condensed milk, evaporated milk, and sugar are added after brewing purely for flavor and texture — they don't add or remove any caffeine from the tea itself."
+    },
+    {
+      "q": "Is Thai tea highly caffeinated?",
+      "a": "It's a strong preparation of black tea, so it likely runs at the higher end of black tea's typical range or above. It isn't in the same territory as a shot of espresso or a strong cup of coffee, but it isn't a light tea either."
+    },
+    {
+      "q": "What kind of tea is Thai tea made from?",
+      "a": "Traditionally Assam or Ceylon black tea, brewed strong, sometimes with added spices like star anise or cardamom, then combined with sweetened condensed milk and served over ice."
+    },
+    {
+      "q": "Does Thai tea have more caffeine than coffee?",
+      "a": "Typically no — even a strong Thai-tea brew is expected to sit within or just above black tea's typical range (40–70 mg), below brewed coffee's typical 80–100 mg per 8 oz, though a very large or very concentrated serving could get closer."
+    },
+    {
+      "q": "Is Thai tea the same as black tea?",
+      "a": "Thai tea is a preparation of black tea — strongly brewed, spiced, and served with condensed milk over ice — not a separate tea type. Its caffeine comes from the same black tea leaf."
+    },
+    {
+      "q": "Why does Thai tea taste stronger than regular black tea?",
+      "a": "It's typically brewed with more tea leaf per cup of water and steeped longer than an everyday cup, which produces a bolder, darker, more tannic base — the same factors that also tend to pull out more caffeine."
+    },
+    {
+      "q": "Is there a caffeine-free Thai tea?",
+      "a": "A traditional Thai tea, made with real black tea, is not caffeine-free. A version made with decaf black tea or rooibos instead would carry much less or none, though that's a departure from the traditional recipe."
+    },
+    {
+      "q": "Does a large Thai tea from a shop have a lot of caffeine?",
+      "a": "It can add up — a larger serving means more total caffeine even if the per-ounce strength is the same. Count a big Thai tea alongside anything else caffeinated you have that day."
+    }
+  ],
+  "pillar": "blends",
+  "cluster": "thai-tea",
+  "intent": "informational",
+  "product_bridge": "/products/spice-rush-collagen-black-tea",
+  "product_bridge_label": "Shop Spice Rush Black Tea",
+  "product_bridge_blurb": "Spice Rush is built on the same strong black tea base Thai tea uses — brew it long and leaf-heavy for a bolder cup, the same lever that gives Thai tea its strength.",
+  "related": [
+    "black-tea",
+    "chai-caffeine",
+    "earl-grey-caffeine",
+    "green-tea-caffeine",
+    "how-to-brew-black-tea"
+  ],
+  "disclaimer": true
+}
