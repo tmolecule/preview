@@ -1,6 +1,6 @@
 TMolecule accessibility audit — 2026-08-03
 Page                 critical   serious    moderate   minor   
-  Home                 0          4          0          0       
+  Home                 0          0          0          0       
   Shop                 0          0          0          0       
   Product              0          0          0          0       
   Cart                 0          0          0          0       
@@ -8,6 +8,6 @@ Page                 critical   serious    moderate   minor
   Contact              0          0          0          0       
   Accessibility        0          0          0          0       
 
-TOTAL                0          4          0          0       
+TOTAL                0          0          0          0       
 
 Report saved: /home/runner/tmolecule/audits/axe-2026-08-03.json
